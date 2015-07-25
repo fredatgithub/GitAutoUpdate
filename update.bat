@@ -1,4 +1,3 @@
-cd \
 cd "C:\Users\fred\Documents\Visual Studio 2012\Projects"
 cd AddFeatures
 git pull origin master
