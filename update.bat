@@ -38,3 +38,6 @@ cd ..
 cd Chronometre
 git pull origin master
 cd ..
+cd GitAutoUpdate
+git pull origin master
+cd ..
