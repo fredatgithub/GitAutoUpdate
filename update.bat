@@ -42,3 +42,4 @@ cd ..
 cd GitAutoUpdate
 git pull origin master
 cd ..
+pause
