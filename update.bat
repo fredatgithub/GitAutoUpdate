@@ -1,4 +1,5 @@
-# rem add C:\Program Files\Git\bin to the environment variable PATH and reboot you PC
+rem first install GIT Bash
+rem then add C:\Program Files\Git\bin to the environment variable PATH and reboot you PC
 cd "C:\Users\fred\Documents\Visual Studio 2012\Projects"
 cd AddFeatures
 git pull origin master
