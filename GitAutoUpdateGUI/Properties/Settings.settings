@@ -20,5 +20,8 @@
     <Setting Name="LanguageFileName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Translations.xml</Value>
     </Setting>
+    <Setting Name="VisualStudioVersionsFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">VisualStudioVersions.xml</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

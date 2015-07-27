@@ -79,7 +79,7 @@ namespace GitAutoUpdateGUI
       cb.Items.Clear();
     }
 
-    private static void LoadComboBox(ComboBox cb, List<string> itemsList )
+    private static void LoadComboBox(ComboBox cb, List<string> itemsList)
     {
       //cb.Items.AddRange((object)itemsList.ToString());
     }
@@ -87,14 +87,33 @@ namespace GitAutoUpdateGUI
     private void LoadComboBoxVsVersions(ComboBox cb)
     {
       ClearComboBox(cb);
-      comboBoxVSVersion.Items.Add("Visual Studio 2003");
-      comboBoxVSVersion.Items.Add("Visual Studio 2005");
-      comboBoxVSVersion.Items.Add("Visual Studio 2008");
-      comboBoxVSVersion.Items.Add("Visual Studio 2010");
-      comboBoxVSVersion.Items.Add("Visual Studio 2012");
-      comboBoxVSVersion.Items.Add("Visual Studio 2013");
-      comboBoxVSVersion.Items.Add("Visual Studio 2015");
-      comboBoxVSVersion.SelectedIndex = 6;
+      // read XML file
+      if (!File.Exists(Settings.Default.VisualStudioVersionsFileName))
+      {
+        CreateVSVersionFile();
+      }
+
+      XDocument xmlDoc = XDocument.Load(Settings.Default.VisualStudioVersionsFileName);
+      var result = from node in xmlDoc.Descendants("VSVersion")
+                   where node.HasElements
+                   let xElement = node.Element("name")
+                   where xElement != null
+                   select new
+                   {
+                     vsNameValue = xElement.Value,
+                   };
+
+      foreach (var q in result)
+      {
+        comboBoxVSVersion.Items.Add(q.vsNameValue);
+      }
+
+      comboBoxVSVersion.SelectedIndex = comboBoxVSVersion.Items.Count - 1;// select latest version
+    }
+
+    private void CreateVSVersionFile()
+    {
+
     }
 
     private void LoadLanguages()
