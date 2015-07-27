@@ -7,7 +7,7 @@ cd %userprofile%
 cd "Documents"
 cd %VisualStudioName%
 cd "Projects"
-echo Press a key to update all git repositories if you're in the correct directory otherwise press CTRL-C to cancel
+echo Press a key to update all choosen git repositories if you're in the correct directory otherwise press CTRL-C to cancel
 pause
 cd AddFeatures
 git pull origin master
