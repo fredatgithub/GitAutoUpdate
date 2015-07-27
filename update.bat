@@ -4,7 +4,7 @@ VisualStudioVersion=2012
 cd \
 cd %userprofile%
 cd "Documents"
-cd "Visual Studio "VisualStudioVersion
+cd "Visual Studio "%VisualStudioVersion%
 cd "Projects"
 pause
 cd AddFeatures
