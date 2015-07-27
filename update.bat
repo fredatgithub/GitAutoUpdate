@@ -1,10 +1,13 @@
 rem first install GIT Bash
 rem then add C:\Program Files\Git\bin to the environment variable PATH and reboot you PC
-VisualStudioVersion=2012
+set VisualStudioVersion=2012
+set VSName="Visual Studio "%VisualStudioVersion%
+echo VSName
+pause
 cd \
 cd %userprofile%
 cd "Documents"
-cd "Visual Studio "%VisualStudioVersion%
+cd VSName
 cd "Projects"
 pause
 cd AddFeatures
