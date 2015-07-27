@@ -483,5 +483,10 @@ namespace GitAutoUpdateGUI
     {
       return container.FirstOrDefault(control => control.Focused);
     }
+
+    private void buttonUpdateVSProjects_Click(object sender, EventArgs e)
+    {
+
+    }
   }
 }

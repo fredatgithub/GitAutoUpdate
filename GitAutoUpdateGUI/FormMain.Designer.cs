@@ -61,6 +61,15 @@
       this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
       this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.labelChooseVSVersion = new System.Windows.Forms.Label();
+      this.textBoxVSProjectPath = new System.Windows.Forms.TextBox();
+      this.comboBoxVSVersion = new System.Windows.Forms.ComboBox();
+      this.buttonVSVersionGetPath = new System.Windows.Forms.Button();
+      this.checkBoxGitBashInstalled = new System.Windows.Forms.CheckBox();
+      this.label1 = new System.Windows.Forms.Label();
+      this.listViewVSProjects = new System.Windows.Forms.ListView();
+      this.labelPickDirectory = new System.Windows.Forms.Label();
+      this.buttonUpdateVSProjects = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -76,7 +85,7 @@
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
       this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-      this.menuStrip1.Size = new System.Drawing.Size(911, 28);
+      this.menuStrip1.Size = new System.Drawing.Size(1097, 28);
       this.menuStrip1.TabIndex = 1;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -323,11 +332,106 @@
       this.aboutToolStripMenuItem.Text = "À &propos de...";
       this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
       // 
+      // labelChooseVSVersion
+      // 
+      this.labelChooseVSVersion.AutoSize = true;
+      this.labelChooseVSVersion.Location = new System.Drawing.Point(30, 79);
+      this.labelChooseVSVersion.Name = "labelChooseVSVersion";
+      this.labelChooseVSVersion.Size = new System.Drawing.Size(220, 17);
+      this.labelChooseVSVersion.TabIndex = 2;
+      this.labelChooseVSVersion.Text = "Choose the Visual Studio version:";
+      // 
+      // textBoxVSProjectPath
+      // 
+      this.textBoxVSProjectPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.textBoxVSProjectPath.Location = new System.Drawing.Point(613, 77);
+      this.textBoxVSProjectPath.Name = "textBoxVSProjectPath";
+      this.textBoxVSProjectPath.Size = new System.Drawing.Size(460, 22);
+      this.textBoxVSProjectPath.TabIndex = 3;
+      this.textBoxVSProjectPath.Text = "C:\\";
+      // 
+      // comboBoxVSVersion
+      // 
+      this.comboBoxVSVersion.FormattingEnabled = true;
+      this.comboBoxVSVersion.Location = new System.Drawing.Point(256, 76);
+      this.comboBoxVSVersion.Name = "comboBoxVSVersion";
+      this.comboBoxVSVersion.Size = new System.Drawing.Size(171, 24);
+      this.comboBoxVSVersion.TabIndex = 4;
+      this.comboBoxVSVersion.Text = "Visual Studio Version";
+      // 
+      // buttonVSVersionGetPath
+      // 
+      this.buttonVSVersionGetPath.Location = new System.Drawing.Point(560, 77);
+      this.buttonVSVersionGetPath.Name = "buttonVSVersionGetPath";
+      this.buttonVSVersionGetPath.Size = new System.Drawing.Size(37, 23);
+      this.buttonVSVersionGetPath.TabIndex = 5;
+      this.buttonVSVersionGetPath.Text = "...";
+      this.buttonVSVersionGetPath.UseVisualStyleBackColor = true;
+      // 
+      // checkBoxGitBashInstalled
+      // 
+      this.checkBoxGitBashInstalled.AutoSize = true;
+      this.checkBoxGitBashInstalled.Location = new System.Drawing.Point(33, 124);
+      this.checkBoxGitBashInstalled.Name = "checkBoxGitBashInstalled";
+      this.checkBoxGitBashInstalled.Size = new System.Drawing.Size(136, 21);
+      this.checkBoxGitBashInstalled.TabIndex = 6;
+      this.checkBoxGitBashInstalled.Text = "GitBash installed";
+      this.checkBoxGitBashInstalled.UseVisualStyleBackColor = true;
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(30, 168);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(335, 17);
+      this.label1.TabIndex = 7;
+      this.label1.Text = "Select the Visual Studio projects you want to update";
+      // 
+      // listViewVSProjects
+      // 
+      this.listViewVSProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.listViewVSProjects.Location = new System.Drawing.Point(33, 202);
+      this.listViewVSProjects.Name = "listViewVSProjects";
+      this.listViewVSProjects.Size = new System.Drawing.Size(1040, 320);
+      this.listViewVSProjects.TabIndex = 8;
+      this.listViewVSProjects.UseCompatibleStateImageBehavior = false;
+      // 
+      // labelPickDirectory
+      // 
+      this.labelPickDirectory.AutoSize = true;
+      this.labelPickDirectory.Location = new System.Drawing.Point(442, 79);
+      this.labelPickDirectory.Name = "labelPickDirectory";
+      this.labelPickDirectory.Size = new System.Drawing.Size(112, 17);
+      this.labelPickDirectory.TabIndex = 9;
+      this.labelPickDirectory.Text = "Or pick directory";
+      // 
+      // buttonUpdateVSProjects
+      // 
+      this.buttonUpdateVSProjects.Location = new System.Drawing.Point(407, 168);
+      this.buttonUpdateVSProjects.Name = "buttonUpdateVSProjects";
+      this.buttonUpdateVSProjects.Size = new System.Drawing.Size(288, 23);
+      this.buttonUpdateVSProjects.TabIndex = 10;
+      this.buttonUpdateVSProjects.Text = "Update selected Visual Studio Projects";
+      this.buttonUpdateVSProjects.UseVisualStyleBackColor = true;
+      this.buttonUpdateVSProjects.Click += new System.EventHandler(this.buttonUpdateVSProjects_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(911, 534);
+      this.ClientSize = new System.Drawing.Size(1097, 534);
+      this.Controls.Add(this.buttonUpdateVSProjects);
+      this.Controls.Add(this.labelPickDirectory);
+      this.Controls.Add(this.listViewVSProjects);
+      this.Controls.Add(this.label1);
+      this.Controls.Add(this.checkBoxGitBashInstalled);
+      this.Controls.Add(this.buttonVSVersionGetPath);
+      this.Controls.Add(this.comboBoxVSVersion);
+      this.Controls.Add(this.textBoxVSProjectPath);
+      this.Controls.Add(this.labelChooseVSVersion);
       this.Controls.Add(this.menuStrip1);
       this.MainMenuStrip = this.menuStrip1;
       this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -378,5 +482,14 @@
     private System.Windows.Forms.ToolStripMenuItem languagetoolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem frenchToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
+    private System.Windows.Forms.Label labelChooseVSVersion;
+    private System.Windows.Forms.TextBox textBoxVSProjectPath;
+    private System.Windows.Forms.ComboBox comboBoxVSVersion;
+    private System.Windows.Forms.Button buttonVSVersionGetPath;
+    private System.Windows.Forms.CheckBox checkBoxGitBashInstalled;
+    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.ListView listViewVSProjects;
+    private System.Windows.Forms.Label labelPickDirectory;
+    private System.Windows.Forms.Button buttonUpdateVSProjects;
   }
 }
