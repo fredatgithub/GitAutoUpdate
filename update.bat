@@ -1,7 +1,7 @@
 rem first install GIT Bash
 rem then add C:\Program Files\Git\bin to the environment variable PATH and reboot you PC
 set VisualStudioVersion=2012
-set VisualStudioName="Visual Studio "%VisualStudioVersion%
+set VisualStudioName=Visual Studio %VisualStudioVersion%
 echo %VisualStudioName%
 pause
 cd \
