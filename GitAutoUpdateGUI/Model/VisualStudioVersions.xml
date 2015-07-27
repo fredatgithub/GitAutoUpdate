@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Document>
+  <DocumentVersion>
+    <version>1.0</version>
+  </DocumentVersion>
+  <VSVersions>
+    <VSVersion>
+      <name>Visual Studio 2003</name>
+    </VSVersion>
+    <VSVersion>
+      <name>Visual Studio 2005</name>
+    </VSVersion>
+    <VSVersion>
+      <name>Visual Studio 2008</name>
+    </VSVersion>
+    <VSVersion>
+      <name>Visual Studio 2010</name>
+    </VSVersion>
+    <VSVersion>
+      <name>Visual Studio 2012</name>
+    </VSVersion>
+    <VSVersion>
+      <name>Visual Studio 2013</name>
+    </VSVersion>
+    <VSVersion>
+      <name>Visual Studio 2015</name>
+    </VSVersion>
+  </VSVersions>
+</Document>
