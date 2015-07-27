@@ -1,0 +1,4 @@
+language: csharp
+solution: GitAutoUpdateGUI.sln
+notifications:
+  email: false
