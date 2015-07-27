@@ -1,6 +1,12 @@
 rem first install GIT Bash
 rem then add C:\Program Files\Git\bin to the environment variable PATH and reboot you PC
-cd "C:\Users\fred\Documents\Visual Studio 2012\Projects"
+VSVersion=2012
+cd \
+cd %userprofile%
+cd "Documents"
+cd "Visual Studio "VSVersion
+cd "Projects"
+pause
 cd AddFeatures
 git pull origin master
 cd ..
