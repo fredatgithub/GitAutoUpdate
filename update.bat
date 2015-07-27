@@ -1,6 +1,6 @@
 rem first install GIT Bash
 rem then add C:\Program Files\Git\bin to the environment variable PATH and reboot you PC
-VSVersion=2012
+VisualStudioVersion=2012
 cd \
 cd %userprofile%
 cd "Documents"
