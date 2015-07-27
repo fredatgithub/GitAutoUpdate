@@ -71,6 +71,30 @@ namespace GitAutoUpdateGUI
       GetWindowValue();
       LoadLanguages();
       SetLanguage(Settings.Default.LastLanguageUsed);
+      LoadComboBoxVsVersions(comboBoxVSVersion);
+    }
+
+    private static void ClearComboBox(ComboBox cb)
+    {
+      cb.Items.Clear();
+    }
+
+    private static void LoadComboBox(ComboBox cb, List<string> itemsList )
+    {
+      //cb.Items.AddRange((object)itemsList.ToString());
+    }
+
+    private void LoadComboBoxVsVersions(ComboBox cb)
+    {
+      ClearComboBox(cb);
+      comboBoxVSVersion.Items.Add("Visual Studio 2003");
+      comboBoxVSVersion.Items.Add("Visual Studio 2005");
+      comboBoxVSVersion.Items.Add("Visual Studio 2008");
+      comboBoxVSVersion.Items.Add("Visual Studio 2010");
+      comboBoxVSVersion.Items.Add("Visual Studio 2012");
+      comboBoxVSVersion.Items.Add("Visual Studio 2013");
+      comboBoxVSVersion.Items.Add("Visual Studio 2015");
+      comboBoxVSVersion.SelectedIndex = 6;
     }
 
     private void LoadLanguages()
