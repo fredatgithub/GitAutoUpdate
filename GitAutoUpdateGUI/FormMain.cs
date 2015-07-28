@@ -127,17 +127,17 @@ namespace GitAutoUpdateGUI
       XDocument xDoc = XDocument.Load(Settings.Default.LanguageFileName);
       var result = from node in xDoc.Descendants("term")
                    where node.HasElements
-                   let xElement = node.Element("name")
-                   where xElement != null
-                   let element = node.Element("englishValue")
-                   where element != null
-                   let xElement1 = node.Element("frenchValue")
-                   where xElement1 != null
+                   let xElementName = node.Element("name")
+                   where xElementName != null
+                   let xElementEnglish = node.Element("englishValue")
+                   where xElementEnglish != null
+                   let xElementFrench = node.Element("frenchValue")
+                   where xElementFrench != null
                    select new
                    {
-                     name = xElement.Value,
-                     englishValue = element.Value,
-                     frenchValue = xElement1.Value
+                     name = xElementName.Value,
+                     englishValue = xElementEnglish.Value,
+                     frenchValue = xElementFrench.Value
                    };
       foreach (var i in result)
       {
@@ -307,6 +307,7 @@ namespace GitAutoUpdateGUI
       comboBoxVSVersion.SelectedIndex = Settings.Default.comboBoxVSVersion;
       textBoxVSProjectPath.Text = Settings.Default.textBoxVSProjectPath;
       checkBoxGitBashInstalled.Checked = Settings.Default.checkBoxGitBashInstalled;
+      textBoxGitBashBinariesPath.Text = Settings.Default.textBoxGitBashBinariesPath;
     }
 
     private void SaveWindowValue()
@@ -319,6 +320,7 @@ namespace GitAutoUpdateGUI
       Settings.Default.comboBoxVSVersion = comboBoxVSVersion.SelectedIndex;
       Settings.Default.textBoxVSProjectPath = textBoxVSProjectPath.Text;
       Settings.Default.checkBoxGitBashInstalled = checkBoxGitBashInstalled.Checked;
+      Settings.Default.textBoxGitBashBinariesPath = textBoxGitBashBinariesPath.Text;
       Settings.Default.Save();
     }
 
@@ -414,6 +416,7 @@ namespace GitAutoUpdateGUI
           checkBoxGitBashInstalled.Text = _languageDicoFr["GitBash installed"];
           buttonUpdateVSProjects.Text = _languageDicoFr["Update selected Visual Studio Projects"];
           labelSelectVSProjects.Text = _languageDicoFr["Select the Visual Studio projects you want to update"];
+
           _currentLanguage = "French";
           break;
       }
@@ -421,7 +424,9 @@ namespace GitAutoUpdateGUI
 
     private void cutToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Control focusedControl = FindFocusedControl(new Control()); // replace new control by your control like tabControlMain
+      List<Control> listOfCtrl = new List<Control>
+      { textBoxVSProjectPath, textBoxGitBashBinariesPath};
+      Control focusedControl = FindFocusedControl(listOfCtrl);
       var tb = focusedControl as TextBox;
       if (tb != null)
       {
@@ -431,7 +436,8 @@ namespace GitAutoUpdateGUI
 
     private void copyToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Control focusedControl = FindFocusedControl(new Control()); // replace new control by your control like tabControlMain
+      Control focusedControl = FindFocusedControl(new List<Control>
+      { textBoxVSProjectPath, textBoxGitBashBinariesPath});
       var tb = focusedControl as TextBox;
       if (tb != null)
       {
@@ -441,7 +447,8 @@ namespace GitAutoUpdateGUI
 
     private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Control focusedControl = FindFocusedControl(new Control()); // replace new control by your control like tabControlMain
+      Control focusedControl = FindFocusedControl(new List<Control>
+      { textBoxVSProjectPath, textBoxGitBashBinariesPath}); 
       var tb = focusedControl as TextBox;
       if (tb != null)
       {
@@ -451,10 +458,11 @@ namespace GitAutoUpdateGUI
 
     private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Control focusedControl = FindFocusedControl(new Control()); // replace new control by your control like tabControlMain
+      Control focusedControl = FindFocusedControl(new List<Control>
+      { textBoxVSProjectPath, textBoxGitBashBinariesPath}); 
       if (focusedControl is TextBox)
       {
-        //((TextBox)focusedControl).SelectAll;
+        ((TextBox)focusedControl).SelectAll();
       }
     }
 
@@ -532,7 +540,7 @@ namespace GitAutoUpdateGUI
       return result;
     }
 
-    private static Control FindFocusedControl(Control container)
+    private static Control FindFocusedControl0(Control container)
     {
       foreach (Control childControl in container.Controls.Cast<Control>().Where(childControl => childControl.Focused))
       {
@@ -540,10 +548,15 @@ namespace GitAutoUpdateGUI
       }
 
       return (from Control childControl in container.Controls
-              select FindFocusedControl(childControl)).FirstOrDefault(maybeFocusedControl => maybeFocusedControl != null);
+              select FindFocusedControl0(childControl)).FirstOrDefault(maybeFocusedControl => maybeFocusedControl != null);
     }
 
     private static Control FindFocusedControl(IEnumerable<Control> container)
+    {
+      return container.FirstOrDefault(control => control.Focused);
+    }
+
+    private static Control FindFocusedControl(List<Control> container)
     {
       return container.FirstOrDefault(control => control.Focused);
     }
@@ -568,6 +581,11 @@ namespace GitAutoUpdateGUI
       }
 
       return result;
+    }
+
+    private void buttonGitBashBinPath_Click(object sender, EventArgs e)
+    {
+      textBoxGitBashBinariesPath.Text = ChooseDirectory();
     }
   }
 }

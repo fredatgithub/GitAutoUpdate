@@ -142,5 +142,17 @@ namespace GitAutoUpdateGUI.Properties {
                 this["checkBoxGitBashInstalled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string textBoxGitBashBinariesPath {
+            get {
+                return ((string)(this["textBoxGitBashBinariesPath"]));
+            }
+            set {
+                this["textBoxGitBashBinariesPath"] = value;
+            }
+        }
     }
 }

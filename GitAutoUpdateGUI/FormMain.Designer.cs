@@ -70,6 +70,8 @@
       this.listViewVSProjects = new System.Windows.Forms.ListView();
       this.labelPickDirectory = new System.Windows.Forms.Label();
       this.buttonUpdateVSProjects = new System.Windows.Forms.Button();
+      this.textBoxGitBashBinariesPath = new System.Windows.Forms.TextBox();
+      this.buttonGitBashBinPath = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -419,11 +421,33 @@
       this.buttonUpdateVSProjects.UseVisualStyleBackColor = true;
       this.buttonUpdateVSProjects.Click += new System.EventHandler(this.buttonUpdateVSProjects_Click);
       // 
+      // textBoxGitBashBinariesPath
+      // 
+      this.textBoxGitBashBinariesPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.textBoxGitBashBinariesPath.Location = new System.Drawing.Point(273, 122);
+      this.textBoxGitBashBinariesPath.Name = "textBoxGitBashBinariesPath";
+      this.textBoxGitBashBinariesPath.Size = new System.Drawing.Size(1064, 22);
+      this.textBoxGitBashBinariesPath.TabIndex = 11;
+      this.textBoxGitBashBinariesPath.Text = "C:\\";
+      // 
+      // buttonGitBashBinPath
+      // 
+      this.buttonGitBashBinPath.Location = new System.Drawing.Point(225, 121);
+      this.buttonGitBashBinPath.Name = "buttonGitBashBinPath";
+      this.buttonGitBashBinPath.Size = new System.Drawing.Size(37, 23);
+      this.buttonGitBashBinPath.TabIndex = 12;
+      this.buttonGitBashBinPath.Text = "...";
+      this.buttonGitBashBinPath.UseVisualStyleBackColor = true;
+      this.buttonGitBashBinPath.Click += new System.EventHandler(this.buttonGitBashBinPath_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1361, 534);
+      this.Controls.Add(this.buttonGitBashBinPath);
+      this.Controls.Add(this.textBoxGitBashBinariesPath);
       this.Controls.Add(this.buttonUpdateVSProjects);
       this.Controls.Add(this.labelPickDirectory);
       this.Controls.Add(this.listViewVSProjects);
@@ -492,5 +516,7 @@
     private System.Windows.Forms.ListView listViewVSProjects;
     private System.Windows.Forms.Label labelPickDirectory;
     private System.Windows.Forms.Button buttonUpdateVSProjects;
+    private System.Windows.Forms.TextBox textBoxGitBashBinariesPath;
+    private System.Windows.Forms.Button buttonGitBashBinPath;
   }
 }
