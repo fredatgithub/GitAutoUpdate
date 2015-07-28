@@ -23,5 +23,14 @@
     <Setting Name="VisualStudioVersionsFileName" Type="System.String" Scope="User">
       <Value Profile="(Default)">VisualStudioVersions.xml</Value>
     </Setting>
+    <Setting Name="comboBoxVSVersion" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="textBoxVSProjectPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="checkBoxGitBashInstalled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -106,5 +106,41 @@ namespace GitAutoUpdateGUI.Properties {
                 this["VisualStudioVersionsFileName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int comboBoxVSVersion {
+            get {
+                return ((int)(this["comboBoxVSVersion"]));
+            }
+            set {
+                this["comboBoxVSVersion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string textBoxVSProjectPath {
+            get {
+                return ((string)(this["textBoxVSProjectPath"]));
+            }
+            set {
+                this["textBoxVSProjectPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkBoxGitBashInstalled {
+            get {
+                return ((bool)(this["checkBoxGitBashInstalled"]));
+            }
+            set {
+                this["checkBoxGitBashInstalled"] = value;
+            }
+        }
     }
 }

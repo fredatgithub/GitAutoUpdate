@@ -368,6 +368,7 @@
       this.buttonVSVersionGetPath.TabIndex = 5;
       this.buttonVSVersionGetPath.Text = "...";
       this.buttonVSVersionGetPath.UseVisualStyleBackColor = true;
+      this.buttonVSVersionGetPath.Click += new System.EventHandler(this.buttonVSVersionGetPath_Click);
       // 
       // checkBoxGitBashInstalled
       // 

@@ -68,10 +68,10 @@ namespace GitAutoUpdateGUI
     private void LoadSettingsAtStartup()
     {
       DisplayTitle();
+      LoadComboBoxVsVersions(comboBoxVSVersion);
       GetWindowValue();
       LoadLanguages();
       SetLanguage(Settings.Default.LastLanguageUsed);
-      LoadComboBoxVsVersions(comboBoxVSVersion);
     }
 
     private static void ClearComboBox(ComboBox cb)
@@ -127,11 +127,17 @@ namespace GitAutoUpdateGUI
       XDocument xDoc = XDocument.Load(Settings.Default.LanguageFileName);
       var result = from node in xDoc.Descendants("term")
                    where node.HasElements
+                   let xElement = node.Element("name")
+                   where xElement != null
+                   let element = node.Element("englishValue")
+                   where element != null
+                   let xElement1 = node.Element("frenchValue")
+                   where xElement1 != null
                    select new
                    {
-                     name = node.Element("name").Value,
-                     englishValue = node.Element("englishValue").Value,
-                     frenchValue = node.Element("frenchValue").Value
+                     name = xElement.Value,
+                     englishValue = element.Value,
+                     frenchValue = xElement1.Value
                    };
       foreach (var i in result)
       {
@@ -298,6 +304,9 @@ namespace GitAutoUpdateGUI
       Height = Settings.Default.WindowHeight;
       Top = Settings.Default.WindowTop < 0 ? 0 : Settings.Default.WindowTop;
       Left = Settings.Default.WindowLeft < 0 ? 0 : Settings.Default.WindowLeft;
+      comboBoxVSVersion.SelectedIndex = Settings.Default.comboBoxVSVersion;
+      textBoxVSProjectPath.Text = Settings.Default.textBoxVSProjectPath;
+      checkBoxGitBashInstalled.Checked = Settings.Default.checkBoxGitBashInstalled;
     }
 
     private void SaveWindowValue()
@@ -307,6 +316,9 @@ namespace GitAutoUpdateGUI
       Settings.Default.WindowLeft = Left;
       Settings.Default.WindowTop = Top;
       Settings.Default.LastLanguageUsed = frenchToolStripMenuItem.Checked ? "French" : "English";
+      Settings.Default.comboBoxVSVersion = comboBoxVSVersion.SelectedIndex;
+      Settings.Default.textBoxVSProjectPath = textBoxVSProjectPath.Text;
+      Settings.Default.checkBoxGitBashInstalled = checkBoxGitBashInstalled.Checked;
       Settings.Default.Save();
     }
 
@@ -365,8 +377,6 @@ namespace GitAutoUpdateGUI
           labelPickDirectory.Text = _languageDicoEn["or pick directory:"];
           checkBoxGitBashInstalled.Text = _languageDicoEn["GitBash installed"];
           buttonUpdateVSProjects.Text = _languageDicoEn["Update selected Visual Studio Projects"];
-
-
 
           _currentLanguage = "English";
           break;
@@ -541,6 +551,23 @@ namespace GitAutoUpdateGUI
     private void buttonUpdateVSProjects_Click(object sender, EventArgs e)
     {
 
+    }
+
+    private void buttonVSVersionGetPath_Click(object sender, EventArgs e)
+    {
+      textBoxVSProjectPath.Text = ChooseDirectory();
+    }
+
+    private static string ChooseDirectory()
+    {
+      string result = string.Empty;
+      FolderBrowserDialog fbd = new FolderBrowserDialog();
+      if (fbd.ShowDialog() == DialogResult.OK)
+      {
+        result = fbd.SelectedPath;
+      }
+
+      return result;
     }
   }
 }
