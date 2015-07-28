@@ -360,6 +360,13 @@ namespace GitAutoUpdateGUI
           indexToolStripMenuItem.Text = _languageDicoEn["MenuHelpIndex"];
           searchToolStripMenuItem.Text = _languageDicoEn["MenuHelpSearch"];
           aboutToolStripMenuItem.Text = _languageDicoEn["MenuHelpAbout"];
+          labelSelectVSProjects.Text = _languageDicoEn["Select the Visual Studio projects you want to update"];
+          labelChooseVSVersion.Text = _languageDicoEn["Choose the Visual Studio version:"];
+          labelPickDirectory.Text = _languageDicoEn["or pick directory:"];
+          checkBoxGitBashInstalled.Text = _languageDicoEn["GitBash installed"];
+          buttonUpdateVSProjects.Text = _languageDicoEn["Update selected Visual Studio Projects"];
+
+
 
           _currentLanguage = "English";
           break;
@@ -392,7 +399,11 @@ namespace GitAutoUpdateGUI
           indexToolStripMenuItem.Text = _languageDicoFr["MenuHelpIndex"];
           searchToolStripMenuItem.Text = _languageDicoFr["MenuHelpSearch"];
           aboutToolStripMenuItem.Text = _languageDicoFr["MenuHelpAbout"];
-
+          labelChooseVSVersion.Text = _languageDicoFr["Choose the Visual Studio version:"];
+          labelPickDirectory.Text = _languageDicoFr["or pick directory:"];
+          checkBoxGitBashInstalled.Text = _languageDicoFr["GitBash installed"];
+          buttonUpdateVSProjects.Text = _languageDicoFr["Update selected Visual Studio Projects"];
+          labelSelectVSProjects.Text = _languageDicoFr["Select the Visual Studio projects you want to update"];
           _currentLanguage = "French";
           break;
       }

@@ -154,5 +154,30 @@
       <englishValue>There is nothing to copy</englishValue>
       <frenchValue>Il n'y a rien à copier</frenchValue>
     </term>
+    <term>
+      <name>Choose the Visual Studio version:</name>
+      <englishValue>Choose the Visual Studio version:</englishValue>
+      <frenchValue>Choisissez la version de Visual Studio :</frenchValue>
+    </term>
+    <term>
+      <name>or pick directory:</name>
+      <englishValue>or pick directory:</englishValue>
+      <frenchValue>ou choisissez le répertoire :</frenchValue>
+    </term>
+    <term>
+      <name>GitBash installed</name>
+      <englishValue>GitBash installed</englishValue>
+      <frenchValue>GitBash installé</frenchValue>
+    </term>
+    <term>
+      <name>Update selected Visual Studio Projects</name>
+      <englishValue>Update selected Visual Studio Projects</englishValue>
+      <frenchValue>Mettre à jour les projets Visual Studio</frenchValue>
+    </term>
+    <term>
+      <name>Select the Visual Studio projects you want to update</name>
+      <englishValue>Select the Visual Studio projects you want to update</englishValue>
+      <frenchValue>Sélectionnez les projets Visual Studio à mettre à jour</frenchValue>
+    </term>
   </terms>
 </Document>
