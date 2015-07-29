@@ -17,9 +17,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -41,6 +41,7 @@ namespace GitAutoUpdateGUI
     readonly Dictionary<string, string> _languageDicoFr = new Dictionary<string, string>();
     private const string OneSpace = " ";
     private const string comma = ",";
+    private const string dash = "-";
     private const string period = ".";
     private static readonly string Crlf = Environment.NewLine;
     private string _currentLanguage = "english";
@@ -589,11 +590,13 @@ namespace GitAutoUpdateGUI
 
     private void buttonUpdateVSProjects_Click(object sender, EventArgs e)
     {
+      Logger.Clear(textBoxLog);
       if (textBoxVSProjectPath.Text == string.Empty)
       {
         DisplayMessageOk(GetTranslatedString("The Visual Studio project directory path is empty") +
           period + Crlf + GetTranslatedString("Enter a correct path"),
           GetTranslatedString("Directory empty"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, GetTranslatedString("The Visual Studio project directory path is empty"));
         return;
       }
 
@@ -602,6 +605,7 @@ namespace GitAutoUpdateGUI
         DisplayMessageOk(GetTranslatedString("The Visual Studio project directory path doesn't exist") +
           period + Crlf + GetTranslatedString("Enter a correct path"),
           GetTranslatedString("Wrong Directory"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, GetTranslatedString("The Visual Studio project directory path doesn't exist"));
         return;
       }
 
@@ -610,6 +614,7 @@ namespace GitAutoUpdateGUI
         DisplayMessageOk(GetTranslatedString("The Visual Studio project directory is empty") +
           period + Crlf + GetTranslatedString("Enter a correct path"),
           GetTranslatedString("Directory empty"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, GetTranslatedString("The Visual Studio project directory is empty"));
         return;
       }
 
@@ -619,6 +624,7 @@ namespace GitAutoUpdateGUI
         DisplayMessageOk(GetTranslatedString("The GitBash directory path is empty") +
           period + Crlf + GetTranslatedString("Enter a correct path"),
           GetTranslatedString("Directory empty"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, GetTranslatedString("The GitBash directory path is empty"));
         return;
       }
 
@@ -627,6 +633,7 @@ namespace GitAutoUpdateGUI
         DisplayMessageOk(GetTranslatedString("The GitBash directory path doesn't exist") +
           period + Crlf + GetTranslatedString("Enter a correct path"),
           GetTranslatedString("Wrong Directory"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, GetTranslatedString("The GitBash directory path doesn't exist"));
         return;
       }
 
@@ -635,6 +642,7 @@ namespace GitAutoUpdateGUI
         DisplayMessageOk(GetTranslatedString("The GitBash directory doesn't have git.exe") +
           period + Crlf + GetTranslatedString("Enter a correct path"),
           GetTranslatedString("Wrong Directory"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, GetTranslatedString("The GitBash directory doesn't have git.exe"));
         return;
       }
     }
