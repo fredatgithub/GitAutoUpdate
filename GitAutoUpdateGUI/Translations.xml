@@ -259,5 +259,40 @@
       <englishValue>have</englishValue>
       <frenchValue>ont</frenchValue>
     </term>
+    <term>
+      <name>The list doesn't have any Visual Studio project to update</name>
+      <englishValue>The list doesn't have any Visual Studio project to update</englishValue>
+      <frenchValue>La liste n'a pas de projet Visual Studio à mettre à jour</frenchValue>
+    </term>
+    <term>
+      <name>Enter a correct path and search project again</name>
+      <englishValue>Enter a correct path and search project again</englishValue>
+      <frenchValue>Entrez un chemin correct et recherchez des projets</frenchValue>
+    </term>
+    <term>
+      <name>List empty</name>
+      <englishValue>List empty</englishValue>
+      <frenchValue>Liste vide</frenchValue>
+    </term>
+    <term>
+      <name>Updating selected projects</name>
+      <englishValue>Updating selected projects</englishValue>
+      <frenchValue>Mise à jour des projets sélectionnés</frenchValue>
+    </term>
+    <term>
+      <name>No project has been selected</name>
+      <englishValue>No project has been selected</englishValue>
+      <frenchValue>Aucun projet n'a été sélectionné</frenchValue>
+    </term>
+    <term>
+      <name>Select at least one project</name>
+      <englishValue>Select at least one project</englishValue>
+      <frenchValue>Sélectionnez au moins un projet</frenchValue>
+    </term>
+    <term>
+      <name>No selection</name>
+      <englishValue>No selection</englishValue>
+      <frenchValue>Pas de sélection</frenchValue>
+    </term>
   </terms>
 </Document>

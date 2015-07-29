@@ -592,7 +592,34 @@ namespace GitAutoUpdateGUI
 
     private void buttonUpdateVSProjects_Click(object sender, EventArgs e)
     {
+      if (listViewVSProjects.Items.Count == 0)
+      {
+        DisplayMessageOk(GetTranslatedString("The list doesn't have any Visual Studio project to update") +
+          period + Crlf + GetTranslatedString("Enter a correct path and search project again"),
+          GetTranslatedString("List empty"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, GetTranslatedString("The list doesn't have any Visual Studio project to update"));
+        return;
+      }
 
+      var selectedProjects = listViewVSProjects.CheckedItems;
+      if (selectedProjects.Count == 0)
+      {
+        DisplayMessageOk(GetTranslatedString("No project has been selected") +
+          period + Crlf + GetTranslatedString("Select at least one project"),
+          GetTranslatedString("No selection"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, GetTranslatedString("No project has been selected"));
+        return;
+      }
+
+      Logger.Add(textBoxLog, GetTranslatedString("Updating selected projects"));
+      foreach (ListViewItem selectedProject in selectedProjects)
+      {
+        var tmp1 = textBoxGitBashBinariesPath.Text;
+        var temp2 = selectedProject.Name;
+
+        //Process.Start(textBoxGitBashBinariesPath.Text, selectedProject.Name);
+      }
+      
     }
 
     private void buttonLoadVSProjects_Click(object sender, EventArgs e)
