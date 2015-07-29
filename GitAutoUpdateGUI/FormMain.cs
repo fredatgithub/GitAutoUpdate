@@ -19,6 +19,7 @@ SOFTWARE.
 */
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -39,6 +40,9 @@ namespace GitAutoUpdateGUI
     readonly Dictionary<string, string> _languageDicoEn = new Dictionary<string, string>();
     readonly Dictionary<string, string> _languageDicoFr = new Dictionary<string, string>();
     private const string OneSpace = " ";
+    private const string comma = ",";
+    private const string period = ".";
+    private static readonly string Crlf = Environment.NewLine;
     private string _currentLanguage = "english";
 
     private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -379,7 +383,7 @@ namespace GitAutoUpdateGUI
           labelPickDirectory.Text = _languageDicoEn["or pick directory:"];
           checkBoxGitBashInstalled.Text = _languageDicoEn["GitBash installed"];
           buttonUpdateVSProjects.Text = _languageDicoEn["Update selected Visual Studio Projects"];
-
+          buttonScannWholePC.Text = _languageDicoEn["Scan whole Pc"];
           _currentLanguage = "English";
           break;
         case "French":
@@ -416,7 +420,7 @@ namespace GitAutoUpdateGUI
           checkBoxGitBashInstalled.Text = _languageDicoFr["GitBash installed"];
           buttonUpdateVSProjects.Text = _languageDicoFr["Update selected Visual Studio Projects"];
           labelSelectVSProjects.Text = _languageDicoFr["Select the Visual Studio projects you want to update"];
-
+          buttonScannWholePC.Text = _languageDicoFr["Scan whole Pc"];
           _currentLanguage = "French";
           break;
       }
@@ -448,7 +452,7 @@ namespace GitAutoUpdateGUI
     private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
     {
       Control focusedControl = FindFocusedControl(new List<Control>
-      { textBoxVSProjectPath, textBoxGitBashBinariesPath}); 
+      { textBoxVSProjectPath, textBoxGitBashBinariesPath});
       var tb = focusedControl as TextBox;
       if (tb != null)
       {
@@ -459,7 +463,7 @@ namespace GitAutoUpdateGUI
     private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
     {
       Control focusedControl = FindFocusedControl(new List<Control>
-      { textBoxVSProjectPath, textBoxGitBashBinariesPath}); 
+      { textBoxVSProjectPath, textBoxGitBashBinariesPath});
       if (focusedControl is TextBox)
       {
         ((TextBox)focusedControl).SelectAll();
@@ -561,11 +565,6 @@ namespace GitAutoUpdateGUI
       return container.FirstOrDefault(control => control.Focused);
     }
 
-    private void buttonUpdateVSProjects_Click(object sender, EventArgs e)
-    {
-
-    }
-
     private void buttonVSVersionGetPath_Click(object sender, EventArgs e)
     {
       textBoxVSProjectPath.Text = ChooseDirectory();
@@ -586,6 +585,29 @@ namespace GitAutoUpdateGUI
     private void buttonGitBashBinPath_Click(object sender, EventArgs e)
     {
       textBoxGitBashBinariesPath.Text = ChooseDirectory();
+    }
+
+    private void buttonUpdateVSProjects_Click(object sender, EventArgs e)
+    {
+      if (!Directory.Exists(textBoxVSProjectPath.Text))
+      {
+        DisplayMessageOk(GetTranslatedString("The Visual Studio project directory path doesn't exist") +
+          period + Crlf + GetTranslatedString("Enter a correct path"),
+          GetTranslatedString("Wrong Directory"), MessageBoxButtons.OK);
+        return;
+      }
+
+      if (Directory.EnumerateDirectories(textBoxVSProjectPath.Text).Count() == 0)
+      {
+        DisplayMessageOk(GetTranslatedString("The Visual Studio project directory is empty") +
+          period + Crlf + GetTranslatedString("Enter a correct path"),
+          GetTranslatedString("Directory empty"), MessageBoxButtons.OK);
+        return;
+      }
+
+      // verification of GitBash in textBoxGitBashBinariesPath
+
+
     }
   }
 }

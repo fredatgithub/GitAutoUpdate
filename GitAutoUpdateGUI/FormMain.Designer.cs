@@ -72,6 +72,7 @@
       this.buttonUpdateVSProjects = new System.Windows.Forms.Button();
       this.textBoxGitBashBinariesPath = new System.Windows.Forms.TextBox();
       this.buttonGitBashBinPath = new System.Windows.Forms.Button();
+      this.buttonScannWholePC = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -413,9 +414,10 @@
       // 
       // buttonUpdateVSProjects
       // 
-      this.buttonUpdateVSProjects.Location = new System.Drawing.Point(407, 159);
+      this.buttonUpdateVSProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.buttonUpdateVSProjects.Location = new System.Drawing.Point(665, 159);
       this.buttonUpdateVSProjects.Name = "buttonUpdateVSProjects";
-      this.buttonUpdateVSProjects.Size = new System.Drawing.Size(288, 32);
+      this.buttonUpdateVSProjects.Size = new System.Drawing.Size(313, 32);
       this.buttonUpdateVSProjects.TabIndex = 10;
       this.buttonUpdateVSProjects.Text = "Update selected Visual Studio Projects";
       this.buttonUpdateVSProjects.UseVisualStyleBackColor = true;
@@ -441,11 +443,22 @@
       this.buttonGitBashBinPath.UseVisualStyleBackColor = true;
       this.buttonGitBashBinPath.Click += new System.EventHandler(this.buttonGitBashBinPath_Click);
       // 
+      // buttonScannWholePC
+      // 
+      this.buttonScannWholePC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.buttonScannWholePC.Location = new System.Drawing.Point(389, 159);
+      this.buttonScannWholePC.Name = "buttonScannWholePC";
+      this.buttonScannWholePC.Size = new System.Drawing.Size(211, 32);
+      this.buttonScannWholePC.TabIndex = 13;
+      this.buttonScannWholePC.Text = "Scan whole Pc";
+      this.buttonScannWholePC.UseVisualStyleBackColor = true;
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1361, 534);
+      this.Controls.Add(this.buttonScannWholePC);
       this.Controls.Add(this.buttonGitBashBinPath);
       this.Controls.Add(this.textBoxGitBashBinariesPath);
       this.Controls.Add(this.buttonUpdateVSProjects);
@@ -518,5 +531,6 @@
     private System.Windows.Forms.Button buttonUpdateVSProjects;
     private System.Windows.Forms.TextBox textBoxGitBashBinariesPath;
     private System.Windows.Forms.Button buttonGitBashBinPath;
+    private System.Windows.Forms.Button buttonScannWholePC;
   }
 }

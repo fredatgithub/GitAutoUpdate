@@ -179,5 +179,35 @@
       <englishValue>Select the Visual Studio projects you want to update</englishValue>
       <frenchValue>Sélectionnez les projets Visual Studio à mettre à jour</frenchValue>
     </term>
+    <term>
+      <name>Scan whole Pc</name>
+      <englishValue>Scan whole Pc</englishValue>
+      <frenchValue>Scanner le Pc entier</frenchValue>
+    </term>
+    <term>
+      <name>Wrong Directory</name>
+      <englishValue>Wrong Directory</englishValue>
+      <frenchValue>Mauvais répertoire</frenchValue>
+    </term>
+    <term>
+      <name>Enter a correct path</name>
+      <englishValue>Enter a correct path</englishValue>
+      <frenchValue>Entrez un chemin correct</frenchValue>
+    </term>
+    <term>
+      <name>The Visual Studio project directory path doesn't exist</name>
+      <englishValue>The Visual Studio project directory path doesn't exist</englishValue>
+      <frenchValue>Le chemin des répertoires des projets Visual Studio n'existe pas</frenchValue>
+    </term>
+    <term>
+      <name>The Visual Studio project directory is empty</name>
+      <englishValue>The Visual Studio project directory is empty</englishValue>
+      <frenchValue>Le répertoire des projets Visual Studio est vide</frenchValue>
+    </term>
+    <term>
+      <name>Directory empty</name>
+      <englishValue>Directory empty</englishValue>
+      <frenchValue>Répertoire vide</frenchValue>
+    </term>
   </terms>
 </Document>
