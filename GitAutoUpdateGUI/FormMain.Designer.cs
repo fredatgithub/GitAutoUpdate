@@ -28,6 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,6 +76,7 @@
       this.buttonGitBashBinPath = new System.Windows.Forms.Button();
       this.buttonScannWholePC = new System.Windows.Forms.Button();
       this.textBoxLog = new System.Windows.Forms.TextBox();
+      this.buttonLoadVSProjects = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -377,6 +380,7 @@
       // checkBoxGitBashInstalled
       // 
       this.checkBoxGitBashInstalled.AutoSize = true;
+      this.checkBoxGitBashInstalled.Enabled = false;
       this.checkBoxGitBashInstalled.Location = new System.Drawing.Point(33, 124);
       this.checkBoxGitBashInstalled.Name = "checkBoxGitBashInstalled";
       this.checkBoxGitBashInstalled.Size = new System.Drawing.Size(136, 21);
@@ -398,6 +402,14 @@
       this.listViewVSProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+      this.listViewVSProjects.GridLines = true;
+      listViewGroup5.Header = "ListViewGroup";
+      listViewGroup5.Name = "listViewGroup1";
+      listViewGroup6.Header = "ListViewGroup";
+      listViewGroup6.Name = "listViewGroup2";
+      this.listViewVSProjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup5,
+            listViewGroup6});
       this.listViewVSProjects.Location = new System.Drawing.Point(33, 356);
       this.listViewVSProjects.Name = "listViewVSProjects";
       this.listViewVSProjects.Size = new System.Drawing.Size(1304, 166);
@@ -415,8 +427,9 @@
       // 
       // buttonUpdateVSProjects
       // 
+      this.buttonUpdateVSProjects.Enabled = false;
       this.buttonUpdateVSProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonUpdateVSProjects.Location = new System.Drawing.Point(665, 159);
+      this.buttonUpdateVSProjects.Location = new System.Drawing.Point(1024, 159);
       this.buttonUpdateVSProjects.Name = "buttonUpdateVSProjects";
       this.buttonUpdateVSProjects.Size = new System.Drawing.Size(313, 32);
       this.buttonUpdateVSProjects.TabIndex = 10;
@@ -467,11 +480,23 @@
       this.textBoxLog.TabIndex = 14;
       this.textBoxLog.Text = "Log";
       // 
+      // buttonLoadVSProjects
+      // 
+      this.buttonLoadVSProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.buttonLoadVSProjects.Location = new System.Drawing.Point(633, 159);
+      this.buttonLoadVSProjects.Name = "buttonLoadVSProjects";
+      this.buttonLoadVSProjects.Size = new System.Drawing.Size(313, 32);
+      this.buttonLoadVSProjects.TabIndex = 15;
+      this.buttonLoadVSProjects.Text = "Search for Visual Studio Projects";
+      this.buttonLoadVSProjects.UseVisualStyleBackColor = true;
+      this.buttonLoadVSProjects.Click += new System.EventHandler(this.buttonLoadVSProjects_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1361, 534);
+      this.Controls.Add(this.buttonLoadVSProjects);
       this.Controls.Add(this.textBoxLog);
       this.Controls.Add(this.buttonScannWholePC);
       this.Controls.Add(this.buttonGitBashBinPath);
@@ -548,5 +573,6 @@
     private System.Windows.Forms.Button buttonGitBashBinPath;
     private System.Windows.Forms.Button buttonScannWholePC;
     private System.Windows.Forms.TextBox textBoxLog;
+    private System.Windows.Forms.Button buttonLoadVSProjects;
   }
 }

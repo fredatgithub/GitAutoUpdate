@@ -224,5 +224,40 @@
       <englishValue>The GitBash directory path doesn't exist</englishValue>
       <frenchValue>Le répertoire de GitBash n'existe pas</frenchValue>
     </term>
+    <term>
+      <name>Clearing past results</name>
+      <englishValue>Clearing past results</englishValue>
+      <frenchValue>Effacement des résultats précédents</frenchValue>
+    </term>
+    <term>
+      <name>Search for Visual Studio Projects</name>
+      <englishValue>Search for Visual Studio Projects</englishValue>
+      <frenchValue>Cherchez les projets Visual Studio</frenchValue>
+    </term>
+    <term>
+      <name>Searching for Visual Studio projects</name>
+      <englishValue>Searching for Visual Studio projects</englishValue>
+      <frenchValue>Recherche des projets Visual Studio</frenchValue>
+    </term>
+    <term>
+      <name>project</name>
+      <englishValue>project</englishValue>
+      <frenchValue>projet</frenchValue>
+    </term>
+    <term>
+      <name>been found</name>
+      <englishValue>been found</englishValue>
+      <frenchValue>été trouvé</frenchValue>
+    </term>
+    <term>
+      <name>has</name>
+      <englishValue>has</englishValue>
+      <frenchValue>a</frenchValue>
+    </term>
+    <term>
+      <name>have</name>
+      <englishValue>have</englishValue>
+      <frenchValue>ont</frenchValue>
+    </term>
   </terms>
 </Document>
