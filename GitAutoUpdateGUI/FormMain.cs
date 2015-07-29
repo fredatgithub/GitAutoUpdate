@@ -585,9 +585,22 @@ namespace GitAutoUpdateGUI
       return result;
     }
 
+    private static string ChooseOneFile(string filter = "All files (*.*)|*.*")
+    {
+      string result = string.Empty;
+      FileDialog fd = new OpenFileDialog();
+      fd.Filter = filter;
+      if (fd.ShowDialog() == DialogResult.OK)
+      {
+        result = fd.FileName;
+      }
+
+      return result;
+    }
+
     private void buttonGitBashBinPath_Click(object sender, EventArgs e)
     {
-      textBoxGitBashBinariesPath.Text = ChooseDirectory();
+      textBoxGitBashBinariesPath.Text = ChooseOneFile("git executable (git.exe)|git.exe");
     }
 
     private void buttonUpdateVSProjects_Click(object sender, EventArgs e)
@@ -663,24 +676,15 @@ namespace GitAutoUpdateGUI
         return;
       }
 
-      if (!Directory.Exists(textBoxGitBashBinariesPath.Text))
+      if (!File.Exists(textBoxGitBashBinariesPath.Text))
       {
-        DisplayMessageOk(GetTranslatedString("The GitBash directory path doesn't exist") +
+        DisplayMessageOk(GetTranslatedString("The executable GitBash directory path doesn't exist") +
           period + Crlf + GetTranslatedString("Enter a correct path"),
           GetTranslatedString("Wrong Directory"), MessageBoxButtons.OK);
-        Logger.Add(textBoxLog, GetTranslatedString("The GitBash directory path doesn't exist"));
+        Logger.Add(textBoxLog, GetTranslatedString("The executable GitBash directory path doesn't exist"));
         return;
       }
-
-      if (!File.Exists(Path.Combine(textBoxGitBashBinariesPath.Text, "git.exe")))
-      {
-        DisplayMessageOk(GetTranslatedString("The GitBash directory doesn't have git.exe") +
-          period + Crlf + GetTranslatedString("Enter a correct path"),
-          GetTranslatedString("Wrong Directory"), MessageBoxButtons.OK);
-        Logger.Add(textBoxLog, GetTranslatedString("The GitBash directory doesn't have git.exe"));
-        return;
-      }
-
+      
       Logger.Add(textBoxLog, GetTranslatedString("Searching for Visual Studio projects"));
       
       listViewVSProjects.Items.Clear();
@@ -832,6 +836,16 @@ namespace GitAutoUpdateGUI
       string extension = Path.GetExtension(filePath);
 
       return new[] { directory, fileName, extension };
+    }
+
+    private void textBoxGitBashBinariesPath_TextChanged(object sender, EventArgs e)
+    {
+      buttonUpdateVSProjects.Enabled = false;
+    }
+
+    private void textBoxVSProjectPath_TextChanged(object sender, EventArgs e)
+    {
+      buttonUpdateVSProjects.Enabled = false;
     }
   }
 }

@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-      System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -357,6 +357,7 @@
       this.textBoxVSProjectPath.Size = new System.Drawing.Size(622, 22);
       this.textBoxVSProjectPath.TabIndex = 3;
       this.textBoxVSProjectPath.Text = "C:\\";
+      this.textBoxVSProjectPath.TextChanged += new System.EventHandler(this.textBoxVSProjectPath_TextChanged);
       // 
       // comboBoxVSVersion
       // 
@@ -403,13 +404,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.listViewVSProjects.GridLines = true;
-      listViewGroup5.Header = "ListViewGroup";
-      listViewGroup5.Name = "listViewGroup1";
-      listViewGroup6.Header = "ListViewGroup";
-      listViewGroup6.Name = "listViewGroup2";
+      listViewGroup9.Header = "ListViewGroup";
+      listViewGroup9.Name = "listViewGroup1";
+      listViewGroup10.Header = "ListViewGroup";
+      listViewGroup10.Name = "listViewGroup2";
       this.listViewVSProjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup5,
-            listViewGroup6});
+            listViewGroup9,
+            listViewGroup10});
       this.listViewVSProjects.Location = new System.Drawing.Point(33, 356);
       this.listViewVSProjects.Name = "listViewVSProjects";
       this.listViewVSProjects.Size = new System.Drawing.Size(1304, 166);
@@ -446,6 +447,7 @@
       this.textBoxGitBashBinariesPath.Size = new System.Drawing.Size(1064, 22);
       this.textBoxGitBashBinariesPath.TabIndex = 11;
       this.textBoxGitBashBinariesPath.Text = "C:\\";
+      this.textBoxGitBashBinariesPath.TextChanged += new System.EventHandler(this.textBoxGitBashBinariesPath_TextChanged);
       // 
       // buttonGitBashBinPath
       // 

@@ -220,9 +220,9 @@
       <frenchValue>Le chemin de GitBash est vide</frenchValue>
     </term>
     <term>
-      <name>The GitBash directory path doesn't exist</name>
-      <englishValue>The GitBash directory path doesn't exist</englishValue>
-      <frenchValue>Le répertoire de GitBash n'existe pas</frenchValue>
+      <name>The executable GitBash directory path doesn't exist</name>
+      <englishValue>The GitBash executable directory path doesn't exist</englishValue>
+      <frenchValue>Le répertoire de l'exécutable GitBash n'existe pas</frenchValue>
     </term>
     <term>
       <name>Clearing past results</name>
