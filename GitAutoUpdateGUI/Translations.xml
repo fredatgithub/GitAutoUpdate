@@ -209,5 +209,20 @@
       <englishValue>Directory empty</englishValue>
       <frenchValue>Répertoire vide</frenchValue>
     </term>
+    <term>
+      <name>The Visual Studio project directory path is empty</name>
+      <englishValue>The Visual Studio project directory path is empty</englishValue>
+      <frenchValue>Le chemin des répertoires des projets Visual Studio est vide</frenchValue>
+    </term>
+    <term>
+      <name>The GitBash directory path is empty</name>
+      <englishValue>The GitBash directory path is empty</englishValue>
+      <frenchValue>Le chemin de GitBash est vide</frenchValue>
+    </term>
+    <term>
+      <name>The GitBash directory path doesn't exist</name>
+      <englishValue>The GitBash directory path doesn't exist</englishValue>
+      <frenchValue>Le répertoire de GitBash n'existe pas</frenchValue>
+    </term>
   </terms>
 </Document>

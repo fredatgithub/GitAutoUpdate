@@ -73,6 +73,7 @@
       this.textBoxGitBashBinariesPath = new System.Windows.Forms.TextBox();
       this.buttonGitBashBinPath = new System.Windows.Forms.Button();
       this.buttonScannWholePC = new System.Windows.Forms.Button();
+      this.textBoxLog = new System.Windows.Forms.TextBox();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -397,9 +398,9 @@
       this.listViewVSProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.listViewVSProjects.Location = new System.Drawing.Point(33, 202);
+      this.listViewVSProjects.Location = new System.Drawing.Point(33, 356);
       this.listViewVSProjects.Name = "listViewVSProjects";
-      this.listViewVSProjects.Size = new System.Drawing.Size(1304, 320);
+      this.listViewVSProjects.Size = new System.Drawing.Size(1304, 166);
       this.listViewVSProjects.TabIndex = 8;
       this.listViewVSProjects.UseCompatibleStateImageBehavior = false;
       // 
@@ -453,11 +454,24 @@
       this.buttonScannWholePC.Text = "Scan whole Pc";
       this.buttonScannWholePC.UseVisualStyleBackColor = true;
       // 
+      // textBoxLog
+      // 
+      this.textBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.textBoxLog.Location = new System.Drawing.Point(33, 212);
+      this.textBoxLog.Multiline = true;
+      this.textBoxLog.Name = "textBoxLog";
+      this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+      this.textBoxLog.Size = new System.Drawing.Size(1304, 122);
+      this.textBoxLog.TabIndex = 14;
+      this.textBoxLog.Text = "Log";
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1361, 534);
+      this.Controls.Add(this.textBoxLog);
       this.Controls.Add(this.buttonScannWholePC);
       this.Controls.Add(this.buttonGitBashBinPath);
       this.Controls.Add(this.textBoxGitBashBinariesPath);
@@ -532,5 +546,6 @@
     private System.Windows.Forms.TextBox textBoxGitBashBinariesPath;
     private System.Windows.Forms.Button buttonGitBashBinPath;
     private System.Windows.Forms.Button buttonScannWholePC;
+    private System.Windows.Forms.TextBox textBoxLog;
   }
 }

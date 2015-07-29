@@ -589,6 +589,14 @@ namespace GitAutoUpdateGUI
 
     private void buttonUpdateVSProjects_Click(object sender, EventArgs e)
     {
+      if (textBoxVSProjectPath.Text == string.Empty)
+      {
+        DisplayMessageOk(GetTranslatedString("The Visual Studio project directory path is empty") +
+          period + Crlf + GetTranslatedString("Enter a correct path"),
+          GetTranslatedString("Directory empty"), MessageBoxButtons.OK);
+        return;
+      }
+
       if (!Directory.Exists(textBoxVSProjectPath.Text))
       {
         DisplayMessageOk(GetTranslatedString("The Visual Studio project directory path doesn't exist") +
@@ -597,7 +605,7 @@ namespace GitAutoUpdateGUI
         return;
       }
 
-      if (Directory.EnumerateDirectories(textBoxVSProjectPath.Text).Count() == 0)
+      if (!Directory.EnumerateDirectories(textBoxVSProjectPath.Text).Any())
       {
         DisplayMessageOk(GetTranslatedString("The Visual Studio project directory is empty") +
           period + Crlf + GetTranslatedString("Enter a correct path"),
@@ -606,8 +614,29 @@ namespace GitAutoUpdateGUI
       }
 
       // verification of GitBash in textBoxGitBashBinariesPath
+      if (textBoxGitBashBinariesPath.Text == string.Empty)
+      {
+        DisplayMessageOk(GetTranslatedString("The GitBash directory path is empty") +
+          period + Crlf + GetTranslatedString("Enter a correct path"),
+          GetTranslatedString("Directory empty"), MessageBoxButtons.OK);
+        return;
+      }
 
+      if (!Directory.Exists(textBoxGitBashBinariesPath.Text))
+      {
+        DisplayMessageOk(GetTranslatedString("The GitBash directory path doesn't exist") +
+          period + Crlf + GetTranslatedString("Enter a correct path"),
+          GetTranslatedString("Wrong Directory"), MessageBoxButtons.OK);
+        return;
+      }
 
+      if (!File.Exists(Path.Combine(textBoxGitBashBinariesPath.Text, "git.exe")))
+      {
+        DisplayMessageOk(GetTranslatedString("The GitBash directory doesn't have git.exe") +
+          period + Crlf + GetTranslatedString("Enter a correct path"),
+          GetTranslatedString("Wrong Directory"), MessageBoxButtons.OK);
+        return;
+      }
     }
   }
 }
