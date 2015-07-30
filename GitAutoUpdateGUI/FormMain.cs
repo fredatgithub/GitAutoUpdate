@@ -624,12 +624,16 @@ namespace GitAutoUpdateGUI
         return;
       }
 
-      Logger.Add(textBoxLog, GetTranslatedString("Updating selected projects"));
-      foreach (ListViewItem selectedProject in selectedProjects)
-      {
-        var tmp1 = textBoxGitBashBinariesPath.Text;
-        var temp2 = selectedProject.Name;
+      // TODO check if git.exe is in the PATH of the PC
 
+      Logger.Add(textBoxLog, GetTranslatedString("Updating selected projects"));
+      // foreach (var projectName in from ListViewItem selectedProject in selectedProjects let gitBinary = textBoxGitBashBinariesPath.Text select selectedProject.Name)
+      foreach (ListViewItem selectedProj in selectedProjects)
+      {
+        //var gitBinary = textBoxGitBashBinariesPath.Text;
+        //var projectName = selectedProj.Text;
+        var solutionPath = selectedProj.SubItems[2];
+        // cd solutionPath and git pull under DOS
         //Process.Start(textBoxGitBashBinariesPath.Text, selectedProject.Name);
       }
       
