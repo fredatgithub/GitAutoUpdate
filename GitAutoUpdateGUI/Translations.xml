@@ -299,5 +299,15 @@
       <englishValue>Create script file</englishValue>
       <frenchValue>Créer le fichier script</frenchValue>
     </term>
+    <term>
+      <name>Creating the script</name>
+      <englishValue>Creating the script</englishValue>
+      <frenchValue>Création du script</frenchValue>
+    </term>
+    <term>
+      <name>in</name>
+      <englishValue>in</englishValue>
+      <frenchValue>dans</frenchValue>
+    </term>
   </terms>
 </Document>

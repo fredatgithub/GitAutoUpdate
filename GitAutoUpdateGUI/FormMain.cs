@@ -627,7 +627,13 @@ namespace GitAutoUpdateGUI
       // TODO check if git.exe is in the PATH of the PC
 
       Logger.Add(textBoxLog, GetTranslatedString("Updating selected projects"));
-      // foreach (var projectName in from ListViewItem selectedProject in selectedProjects let gitBinary = textBoxGitBashBinariesPath.Text select selectedProject.Name)
+      if (checkBoxCreateUpdateFile.Checked)
+      {
+        Logger.Add(textBoxLog, GetTranslatedString("Creating the update.bat script"));
+        Logger.Add(textBoxLog, GetTranslatedString("in"));
+        Logger.Add(textBoxLog, textBoxVSProjectPath.Text);
+      }
+
       foreach (ListViewItem selectedProj in selectedProjects)
       {
         //var gitBinary = textBoxGitBashBinariesPath.Text;
@@ -639,12 +645,12 @@ namespace GitAutoUpdateGUI
         // create a bat file with cd solutionPath and git pull
 
         // or create an update.bat file and put all selected proj to be updated with git pull
-        Process task = new Process();
-        task.StartInfo.UseShellExecute = true;
-        task.StartInfo.FileName = Path.Combine(solutionPath.ToString(), "git pull origin master");
-        //task.StartInfo.Arguments = "pull origin master";
-        //task.StartInfo.CreateNoWindow = false;
-        task.Start();
+        //Process task = new Process();
+        //task.StartInfo.UseShellExecute = true;
+        //task.StartInfo.FileName = Path.Combine(solutionPath.ToString(), "git pull origin master");
+        ////task.StartInfo.Arguments = "pull origin master";
+        ////task.StartInfo.CreateNoWindow = false;
+        //task.Start();
 
 
 
