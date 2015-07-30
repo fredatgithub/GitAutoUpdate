@@ -635,10 +635,23 @@ namespace GitAutoUpdateGUI
         var solutionPath = selectedProj.SubItems[2];
         // cd solutionPath and git pull under DOS
         //Process.Start(textBoxGitBashBinariesPath.Text, selectedProject.Name);
-      }
-      
-    }
 
+        // create a bat file with cd solutionPath and git pull
+
+        // or create an update.bat file and put all selected proj to be updated with git pull
+        Process task = new Process();
+        task.StartInfo.UseShellExecute = true;
+        task.StartInfo.FileName = Path.Combine(solutionPath.ToString(), "git pull origin master");
+        //task.StartInfo.Arguments = "pull origin master";
+        //task.StartInfo.CreateNoWindow = false;
+        task.Start();
+
+
+
+      }
+
+    }
+    
     private void buttonLoadVSProjects_Click(object sender, EventArgs e)
     {
       Logger.Clear(textBoxLog);
@@ -688,9 +701,9 @@ namespace GitAutoUpdateGUI
         Logger.Add(textBoxLog, GetTranslatedString("The executable GitBash directory path doesn't exist"));
         return;
       }
-      
+
       Logger.Add(textBoxLog, GetTranslatedString("Searching for Visual Studio projects"));
-      
+
       listViewVSProjects.Items.Clear();
 
       listViewVSProjects.Columns.Add("To be updated", 240, HorizontalAlignment.Left);
@@ -713,7 +726,7 @@ namespace GitAutoUpdateGUI
         {
           var tmpSolPath = GetDirectoryFileNameAndExtension(solutionName)[0];
           var tmpSolNameOnly = GetDirectoryFileNameAndExtension(solutionName)[1];
-          
+
           var subfilteredDirs = Directory.EnumerateDirectories(tmpSolPath, "*.git").ToList();
           if (subfilteredDirs.Count != 0)
           {
@@ -727,8 +740,8 @@ namespace GitAutoUpdateGUI
         }
       }
 
-      Logger.Add(textBoxLog, projectCount + OneSpace + GetTranslatedString("project") + Plural(projectCount)+
-        OneSpace + GetTranslatedString(Plural(projectCount, "has")) + OneSpace + 
+      Logger.Add(textBoxLog, projectCount + OneSpace + GetTranslatedString("project") + Plural(projectCount) +
+        OneSpace + GetTranslatedString(Plural(projectCount, "has")) + OneSpace +
         GetTranslatedString("been found") + FrenchPlural(projectCount));
       buttonUpdateVSProjects.Enabled = true;
     }

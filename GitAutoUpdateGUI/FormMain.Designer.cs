@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-      System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,6 +77,7 @@
       this.buttonScannWholePC = new System.Windows.Forms.Button();
       this.textBoxLog = new System.Windows.Forms.TextBox();
       this.buttonLoadVSProjects = new System.Windows.Forms.Button();
+      this.checkBoxCreateUpdateFile = new System.Windows.Forms.CheckBox();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -404,13 +405,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.listViewVSProjects.GridLines = true;
-      listViewGroup9.Header = "ListViewGroup";
-      listViewGroup9.Name = "listViewGroup1";
-      listViewGroup10.Header = "ListViewGroup";
-      listViewGroup10.Name = "listViewGroup2";
+      listViewGroup1.Header = "ListViewGroup";
+      listViewGroup1.Name = "listViewGroup1";
+      listViewGroup2.Header = "ListViewGroup";
+      listViewGroup2.Name = "listViewGroup2";
       this.listViewVSProjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup9,
-            listViewGroup10});
+            listViewGroup1,
+            listViewGroup2});
       this.listViewVSProjects.Location = new System.Drawing.Point(33, 356);
       this.listViewVSProjects.Name = "listViewVSProjects";
       this.listViewVSProjects.Size = new System.Drawing.Size(1304, 166);
@@ -430,7 +431,7 @@
       // 
       this.buttonUpdateVSProjects.Enabled = false;
       this.buttonUpdateVSProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonUpdateVSProjects.Location = new System.Drawing.Point(1024, 159);
+      this.buttonUpdateVSProjects.Location = new System.Drawing.Point(863, 159);
       this.buttonUpdateVSProjects.Name = "buttonUpdateVSProjects";
       this.buttonUpdateVSProjects.Size = new System.Drawing.Size(313, 32);
       this.buttonUpdateVSProjects.TabIndex = 10;
@@ -461,10 +462,11 @@
       // 
       // buttonScannWholePC
       // 
+      this.buttonScannWholePC.Enabled = false;
       this.buttonScannWholePC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.buttonScannWholePC.Location = new System.Drawing.Point(389, 159);
       this.buttonScannWholePC.Name = "buttonScannWholePC";
-      this.buttonScannWholePC.Size = new System.Drawing.Size(211, 32);
+      this.buttonScannWholePC.Size = new System.Drawing.Size(180, 32);
       this.buttonScannWholePC.TabIndex = 13;
       this.buttonScannWholePC.Text = "Scan whole Pc";
       this.buttonScannWholePC.UseVisualStyleBackColor = true;
@@ -485,19 +487,31 @@
       // buttonLoadVSProjects
       // 
       this.buttonLoadVSProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonLoadVSProjects.Location = new System.Drawing.Point(633, 159);
+      this.buttonLoadVSProjects.Location = new System.Drawing.Point(577, 159);
       this.buttonLoadVSProjects.Name = "buttonLoadVSProjects";
-      this.buttonLoadVSProjects.Size = new System.Drawing.Size(313, 32);
+      this.buttonLoadVSProjects.Size = new System.Drawing.Size(278, 32);
       this.buttonLoadVSProjects.TabIndex = 15;
       this.buttonLoadVSProjects.Text = "Search for Visual Studio Projects";
       this.buttonLoadVSProjects.UseVisualStyleBackColor = true;
       this.buttonLoadVSProjects.Click += new System.EventHandler(this.buttonLoadVSProjects_Click);
+      // 
+      // checkBoxCreateUpdateFile
+      // 
+      this.checkBoxCreateUpdateFile.AutoSize = true;
+      this.checkBoxCreateUpdateFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.checkBoxCreateUpdateFile.Location = new System.Drawing.Point(1182, 164);
+      this.checkBoxCreateUpdateFile.Name = "checkBoxCreateUpdateFile";
+      this.checkBoxCreateUpdateFile.Size = new System.Drawing.Size(155, 24);
+      this.checkBoxCreateUpdateFile.TabIndex = 16;
+      this.checkBoxCreateUpdateFile.Text = "Create script file";
+      this.checkBoxCreateUpdateFile.UseVisualStyleBackColor = true;
       // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1361, 534);
+      this.Controls.Add(this.checkBoxCreateUpdateFile);
       this.Controls.Add(this.buttonLoadVSProjects);
       this.Controls.Add(this.textBoxLog);
       this.Controls.Add(this.buttonScannWholePC);
@@ -576,5 +590,6 @@
     private System.Windows.Forms.Button buttonScannWholePC;
     private System.Windows.Forms.TextBox textBoxLog;
     private System.Windows.Forms.Button buttonLoadVSProjects;
+    private System.Windows.Forms.CheckBox checkBoxCreateUpdateFile;
   }
 }

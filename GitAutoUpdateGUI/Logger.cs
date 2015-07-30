@@ -11,13 +11,13 @@ namespace GitAutoUpdateGUI
   {
     public static string Message { get; set; }
     public static DestinationLog Destination { get; set; }
-    private const string oneSpace = " ";
-    private const string dash = "-";
+    private const string OneSpace = " ";
+    private const string Dash = "-";
     private static readonly string Crlf = Environment.NewLine;
 
     public static void Add(TextBoxBase textBox, string message)
     {
-      textBox.Text += DateTime.Now + oneSpace + dash + oneSpace + message + Crlf;
+      textBox.Text += DateTime.Now + OneSpace + Dash + OneSpace + message + Crlf;
     }
 
     public static void Clear(TextBoxBase textBox)

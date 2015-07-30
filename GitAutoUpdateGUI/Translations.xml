@@ -294,5 +294,10 @@
       <englishValue>No selection</englishValue>
       <frenchValue>Pas de sélection</frenchValue>
     </term>
+    <term>
+      <name>Create script file</name>
+      <englishValue>Create script file</englishValue>
+      <frenchValue>Créer le fichier script</frenchValue>
+    </term>
   </terms>
 </Document>
