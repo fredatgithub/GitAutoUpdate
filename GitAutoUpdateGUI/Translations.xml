@@ -324,5 +324,10 @@
       <englishValue>Press a key to exit</englishValue>
       <frenchValue>Appuyer sur une touche pour terminer</frenchValue>
     </term>
+    <term>
+      <name>Check/Uncheck All</name>
+      <englishValue>Check/Uncheck All</englishValue>
+      <frenchValue>Tout Cocher/Décocher</frenchValue>
+    </term>
   </terms>
 </Document>

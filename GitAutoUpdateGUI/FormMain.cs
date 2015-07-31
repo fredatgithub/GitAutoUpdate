@@ -120,7 +120,7 @@ namespace GitAutoUpdateGUI
 
     private static void CreateVSVersionFile()
     {
-
+      // TODO 
     }
 
     private void LoadLanguages()
@@ -391,6 +391,7 @@ namespace GitAutoUpdateGUI
           buttonScannWholePC.Text = _languageDicoEn["Scan whole Pc"];
           buttonLoadVSProjects.Text = _languageDicoEn["Search for Visual Studio Projects"];
           checkBoxCreateUpdateFile.Text = _languageDicoEn["Create script file"];
+          buttonCheckUncheckAll.Text = _languageDicoEn["Check/Uncheck All"];
           _currentLanguage = "English";
           break;
         case "French":
@@ -430,6 +431,7 @@ namespace GitAutoUpdateGUI
           buttonScannWholePC.Text = _languageDicoFr["Scan whole Pc"];
           buttonLoadVSProjects.Text = _languageDicoFr["Search for Visual Studio Projects"];
           checkBoxCreateUpdateFile.Text = _languageDicoFr["Create script file"];
+          buttonCheckUncheckAll.Text = _languageDicoFr["Check/Uncheck All"];
           _currentLanguage = "French";
           break;
       }
@@ -813,7 +815,8 @@ namespace GitAutoUpdateGUI
         foreach (var solutionName in filteredFiles)
         {
           var tmpSolPath = GetDirectoryFileNameAndExtension(solutionName)[0];
-          var tmpSolNameOnly = GetDirectoryFileNameAndExtension(solutionName)[1];
+          var tmpSolNameOnly0 = GetDirectoryFileNameAndExtension(solutionName)[0];
+          var tmpSolNameOnly = tmpSolNameOnly0.Substring(tmpSolNameOnly0.LastIndexOf('\\')+1);
 
           var subfilteredDirs = Directory.EnumerateDirectories(tmpSolPath, "*.git").ToList();
           if (subfilteredDirs.Count != 0)
@@ -951,6 +954,24 @@ namespace GitAutoUpdateGUI
     private void textBoxVSProjectPath_TextChanged(object sender, EventArgs e)
     {
       buttonUpdateVSProjects.Enabled = false;
+    }
+
+    private void buttonCheckUncheckAll_Click(object sender, EventArgs e)
+    {
+      if (listViewVSProjects.Items.Count != 0)
+      {
+        ToggleAllItems(listViewVSProjects);
+      }
+    }
+
+    private static void CheckAllItems(ListView lvw, bool check)
+    {
+      lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = check);
+    }
+
+    private static void ToggleAllItems(ListView lvw)
+    {
+      lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = !item.Checked);
     }
   }
 }

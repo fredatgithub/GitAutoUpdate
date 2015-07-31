@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-      System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,6 +78,7 @@
       this.textBoxLog = new System.Windows.Forms.TextBox();
       this.buttonLoadVSProjects = new System.Windows.Forms.Button();
       this.checkBoxCreateUpdateFile = new System.Windows.Forms.CheckBox();
+      this.buttonCheckUncheckAll = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -405,16 +406,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.listViewVSProjects.GridLines = true;
-      listViewGroup1.Header = "ListViewGroup";
-      listViewGroup1.Name = "listViewGroup1";
-      listViewGroup2.Header = "ListViewGroup";
-      listViewGroup2.Name = "listViewGroup2";
+      listViewGroup5.Header = "ListViewGroup";
+      listViewGroup5.Name = "listViewGroup1";
+      listViewGroup6.Header = "ListViewGroup";
+      listViewGroup6.Name = "listViewGroup2";
       this.listViewVSProjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
-      this.listViewVSProjects.Location = new System.Drawing.Point(33, 356);
+            listViewGroup5,
+            listViewGroup6});
+      this.listViewVSProjects.Location = new System.Drawing.Point(33, 383);
       this.listViewVSProjects.Name = "listViewVSProjects";
-      this.listViewVSProjects.Size = new System.Drawing.Size(1304, 166);
+      this.listViewVSProjects.Size = new System.Drawing.Size(1304, 139);
       this.listViewVSProjects.TabIndex = 8;
       this.listViewVSProjects.UseCompatibleStateImageBehavior = false;
       // 
@@ -506,11 +507,23 @@
       this.checkBoxCreateUpdateFile.Text = "Create script file";
       this.checkBoxCreateUpdateFile.UseVisualStyleBackColor = true;
       // 
+      // buttonCheckUncheckAll
+      // 
+      this.buttonCheckUncheckAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.buttonCheckUncheckAll.Location = new System.Drawing.Point(33, 340);
+      this.buttonCheckUncheckAll.Name = "buttonCheckUncheckAll";
+      this.buttonCheckUncheckAll.Size = new System.Drawing.Size(217, 32);
+      this.buttonCheckUncheckAll.TabIndex = 17;
+      this.buttonCheckUncheckAll.Text = "Check/Uncheck All";
+      this.buttonCheckUncheckAll.UseVisualStyleBackColor = true;
+      this.buttonCheckUncheckAll.Click += new System.EventHandler(this.buttonCheckUncheckAll_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1361, 534);
+      this.Controls.Add(this.buttonCheckUncheckAll);
       this.Controls.Add(this.checkBoxCreateUpdateFile);
       this.Controls.Add(this.buttonLoadVSProjects);
       this.Controls.Add(this.textBoxLog);
@@ -591,5 +604,6 @@
     private System.Windows.Forms.TextBox textBoxLog;
     private System.Windows.Forms.Button buttonLoadVSProjects;
     private System.Windows.Forms.CheckBox checkBoxCreateUpdateFile;
+    private System.Windows.Forms.Button buttonCheckUncheckAll;
   }
 }
