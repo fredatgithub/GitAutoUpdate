@@ -309,5 +309,10 @@
       <englishValue>in</englishValue>
       <frenchValue>dans</frenchValue>
     </term>
+    <term>
+      <name>Creating the update.bat script</name>
+      <englishValue>Creating the update.bat script</englishValue>
+      <frenchValue>Creation du script update.bat</frenchValue>
+    </term>
   </terms>
 </Document>

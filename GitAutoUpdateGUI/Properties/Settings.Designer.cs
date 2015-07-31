@@ -154,5 +154,17 @@ namespace GitAutoUpdateGUI.Properties {
                 this["textBoxGitBashBinariesPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkBoxCreateUpdateFile {
+            get {
+                return ((bool)(this["checkBoxCreateUpdateFile"]));
+            }
+            set {
+                this["checkBoxCreateUpdateFile"] = value;
+            }
+        }
     }
 }

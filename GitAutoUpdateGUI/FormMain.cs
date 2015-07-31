@@ -118,7 +118,7 @@ namespace GitAutoUpdateGUI
       comboBoxVSVersion.SelectedIndex = comboBoxVSVersion.Items.Count - 1;// select latest version
     }
 
-    private void CreateVSVersionFile()
+    private static void CreateVSVersionFile()
     {
 
     }
@@ -315,6 +315,7 @@ namespace GitAutoUpdateGUI
       textBoxVSProjectPath.Text = Settings.Default.textBoxVSProjectPath;
       checkBoxGitBashInstalled.Checked = Settings.Default.checkBoxGitBashInstalled;
       textBoxGitBashBinariesPath.Text = Settings.Default.textBoxGitBashBinariesPath;
+      checkBoxCreateUpdateFile.Checked = Settings.Default.checkBoxCreateUpdateFile;
     }
 
     private void SaveWindowValue()
@@ -328,6 +329,7 @@ namespace GitAutoUpdateGUI
       Settings.Default.textBoxVSProjectPath = textBoxVSProjectPath.Text;
       Settings.Default.checkBoxGitBashInstalled = checkBoxGitBashInstalled.Checked;
       Settings.Default.textBoxGitBashBinariesPath = textBoxGitBashBinariesPath.Text;
+      Settings.Default.checkBoxCreateUpdateFile = checkBoxCreateUpdateFile.Checked;
       Settings.Default.Save();
     }
 
@@ -388,6 +390,7 @@ namespace GitAutoUpdateGUI
           buttonUpdateVSProjects.Text = _languageDicoEn["Update selected Visual Studio Projects"];
           buttonScannWholePC.Text = _languageDicoEn["Scan whole Pc"];
           buttonLoadVSProjects.Text = _languageDicoEn["Search for Visual Studio Projects"];
+          checkBoxCreateUpdateFile.Text = _languageDicoEn["Create script file"];
           _currentLanguage = "English";
           break;
         case "French":
@@ -426,6 +429,7 @@ namespace GitAutoUpdateGUI
           labelSelectVSProjects.Text = _languageDicoFr["Select the Visual Studio projects you want to update"];
           buttonScannWholePC.Text = _languageDicoFr["Scan whole Pc"];
           buttonLoadVSProjects.Text = _languageDicoFr["Search for Visual Studio Projects"];
+          checkBoxCreateUpdateFile.Text = _languageDicoFr["Create script file"];
           _currentLanguage = "French";
           break;
       }
@@ -636,16 +640,16 @@ namespace GitAutoUpdateGUI
         Logger.Add(textBoxLog, textBoxVSProjectPath.Text);
       }
 
-      string updateScript = "update.bat";
+      string updateScript = Path.Combine(textBoxVSProjectPath.Text, "update.bat");
       // check if updateScript doesn't already exist, if so, increment the name
       updateScript = GenerateUniqueFileName(updateScript);
       CreateNewFile(updateScript);
-
+      AddBeginningOfScript(updateScript);
 
       foreach (ListViewItem selectedProj in selectedProjects)
       {
         //var gitBinary = textBoxGitBashBinariesPath.Text;
-        //var projectName = selectedProj.Text;
+        var projectName = selectedProj.Text;
         var solutionPath = selectedProj.SubItems[2];
         // cd solutionPath and git pull under DOS
         //Process.Start(textBoxGitBashBinariesPath.Text, selectedProject.Name);
@@ -653,19 +657,45 @@ namespace GitAutoUpdateGUI
         // create a bat file with cd solutionPath and git pull
 
         // or create an update.bat file and put all selected proj to be updated with git pull
-        //Process task = new Process();
-        //task.StartInfo.UseShellExecute = true;
-        //task.StartInfo.FileName = Path.Combine(solutionPath.ToString(), "git pull origin master");
-        ////task.StartInfo.Arguments = "pull origin master";
-        ////task.StartInfo.CreateNoWindow = false;
-        //task.Start();
         
+        AddGitPullToScript(updateScript, projectName);
       }
+
+      //Process task = new Process();
+      //task.StartInfo.UseShellExecute = true;
+      //task.StartInfo.FileName = updateScript;
+      //task.StartInfo.CreateNoWindow = false;
+      //task.Start();
     }
 
-    private static void CreateNewFile(string updateScript)
+    private static void AddGitPullToScript(string fileName, string directoryName)
     {
-      StreamWriter sw = new StreamWriter(updateScript, false, Encoding.UTF8);
+      const bool append = true;
+      StreamWriter sw = new StreamWriter(fileName, append);
+      sw.WriteLine("cd " + directoryName);
+      sw.WriteLine("git pull origin master");
+      sw.WriteLine("cd ..");
+      sw.Close();
+    }
+
+    private void AddBeginningOfScript(string fileName)
+    {
+      const bool append = true;
+      StreamWriter sw = new StreamWriter(fileName, append);
+      sw.WriteLine("REM Batch script generated automatically by GitAutoUpdateGui");
+      sw.WriteLine("REM Source and executable can be found at");
+      sw.WriteLine("REM https://github.com/fredatgithub/GitAutoUpdate");
+      sw.WriteLine("REM created by Freddy Juhel on the 31st of July 2015");
+      sw.WriteLine("REM If you have any error, check that GitBash is installed");
+      sw.WriteLine("REM then add C:\\Program Files\\Git\\bin to the environment PATH variable and reboot you PC");
+      sw.WriteLine("cd " + textBoxVSProjectPath.Text);
+      sw.Close();
+    }
+
+    private static void CreateNewFile(string fileName)
+    {
+      const bool doNotAppend = false;
+      StreamWriter sw = new StreamWriter(fileName, doNotAppend, Encoding.UTF8);
       sw.Close();
     }
 
@@ -882,9 +912,9 @@ namespace GitAutoUpdateGUI
         case "is":
           return number > 1 ? "are" : "is"; // without a space before
         case "The":
-          return "The"; // CAPITAL
+          return "The"; // CAPITAL useful when used with GetTranslatedString method
         case "the":
-          return "the"; // lower case
+          return "the"; // lower case useful when used with GetTranslatedString method
         case "has":
           return number > 1 ? "have" : "has";
         default:
