@@ -631,6 +631,7 @@ namespace GitAutoUpdateGUI
       }
 
       // TODO check if git.exe is in the PATH of the PC
+      //var gitBinary = textBoxGitBashBinariesPath.Text;
 
       Logger.Add(textBoxLog, GetTranslatedString("Updating selected projects"));
       if (checkBoxCreateUpdateFile.Checked)
@@ -648,24 +649,34 @@ namespace GitAutoUpdateGUI
 
       foreach (ListViewItem selectedProj in selectedProjects)
       {
-        //var gitBinary = textBoxGitBashBinariesPath.Text;
         var projectName = selectedProj.Text;
         var solutionPath = selectedProj.SubItems[2];
-        // cd solutionPath and git pull under DOS
-        //Process.Start(textBoxGitBashBinariesPath.Text, selectedProject.Name);
-
-        // create a bat file with cd solutionPath and git pull
-
-        // or create an update.bat file and put all selected proj to be updated with git pull
-        
         AddGitPullToScript(updateScript, projectName);
+        Logger.Add(textBoxLog, GetTranslatedString("Adding the selected project") + OneSpace + projectName);
+
       }
 
-      //Process task = new Process();
-      //task.StartInfo.UseShellExecute = true;
-      //task.StartInfo.FileName = updateScript;
-      //task.StartInfo.CreateNoWindow = false;
-      //task.Start();
+      AddPauseToFile(updateScript);
+      Process task = new Process
+      {
+        StartInfo =
+        {
+          UseShellExecute = true,
+          FileName = updateScript,
+          CreateNoWindow = false
+        }
+      };
+
+      task.Start();
+    }
+
+    private void AddPauseToFile(string fileName)
+    {
+      const bool append = true;
+      StreamWriter sw = new StreamWriter(fileName, append);
+      sw.WriteLine("REM " + GetTranslatedString("Press a key to exit"));
+      sw.WriteLine("pause");
+      sw.Close();
     }
 
     private static void AddGitPullToScript(string fileName, string directoryName)
@@ -688,6 +699,7 @@ namespace GitAutoUpdateGUI
       sw.WriteLine("REM created by Freddy Juhel on the 31st of July 2015");
       sw.WriteLine("REM If you have any error, check that GitBash is installed");
       sw.WriteLine("REM then add C:\\Program Files\\Git\\bin to the environment PATH variable and reboot you PC");
+      sw.WriteLine("cd \\");
       sw.WriteLine("cd " + textBoxVSProjectPath.Text);
       sw.Close();
     }

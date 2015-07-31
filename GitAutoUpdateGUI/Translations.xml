@@ -314,5 +314,15 @@
       <englishValue>Creating the update.bat script</englishValue>
       <frenchValue>Creation du script update.bat</frenchValue>
     </term>
+    <term>
+      <name>Adding the selected project</name>
+      <englishValue>Adding the selected project</englishValue>
+      <frenchValue>Ajout du projet sélectionné</frenchValue>
+    </term>
+    <term>
+      <name>Press a key to exit</name>
+      <englishValue>Press a key to exit</englishValue>
+      <frenchValue>Appuyer sur une touche pour terminer</frenchValue>
+    </term>
   </terms>
 </Document>
