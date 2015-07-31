@@ -21,9 +21,11 @@ SOFTWARE.
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using GitAutoUpdateGUI.Properties;
@@ -634,6 +636,12 @@ namespace GitAutoUpdateGUI
         Logger.Add(textBoxLog, textBoxVSProjectPath.Text);
       }
 
+      string updateScript = "update.bat";
+      // check if updateScript doesn't already exist, if so, increment the name
+      updateScript = GenerateUniqueFileName(updateScript);
+      CreateNewFile(updateScript);
+
+
       foreach (ListViewItem selectedProj in selectedProjects)
       {
         //var gitBinary = textBoxGitBashBinariesPath.Text;
@@ -651,13 +659,45 @@ namespace GitAutoUpdateGUI
         ////task.StartInfo.Arguments = "pull origin master";
         ////task.StartInfo.CreateNoWindow = false;
         //task.Start();
+        
+      }
+    }
 
+    private static void CreateNewFile(string updateScript)
+    {
+      StreamWriter sw = new StreamWriter(updateScript, false, Encoding.UTF8);
+      sw.Close();
+    }
 
-
+    private static string GenerateUniqueFileName(string fileName)
+    {
+      string result = string.Empty;
+      if (!File.Exists(fileName))
+      {
+        return fileName;
       }
 
+      int fileNumber = 1;
+      result = AddAtTheEndOfFileName(fileName, fileNumber.ToString(CultureInfo.InvariantCulture));
+      while (File.Exists(result))
+      {
+        fileNumber++;
+        result = AddAtTheEndOfFileName(fileName, fileNumber.ToString(CultureInfo.InvariantCulture));
+      }
+
+      return result;
     }
-    
+
+    private static string AddAtTheEndOfFileName(string fileName, string textToBeAdded)
+    {
+      const string backslash = "\\";
+      string result = GetDirectoryFileNameAndExtension(fileName)[0] + backslash
+                                 + GetDirectoryFileNameAndExtension(fileName)[1]
+                                 + textToBeAdded
+                                 + GetDirectoryFileNameAndExtension(fileName)[2];
+      return result;
+    }
+
     private void buttonLoadVSProjects_Click(object sender, EventArgs e)
     {
       Logger.Clear(textBoxLog);
