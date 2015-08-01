@@ -628,15 +628,16 @@ namespace GitAutoUpdateGUI
         return;
       }
 
-      string programFiles = Environment.GetEnvironmentVariable("ProgramFiles"); // C:\Program Files
-      var gitBinaryPath = programFiles + "\\GIT\\bin\\git.exe";
-      if (textBoxGitBashBinariesPath.Text != gitBinaryPath)
-      {
-        DisplayMessageOk(GetTranslatedString("The path to GitBash does not match its installation"),
-          GetTranslatedString("GitBash binaries no match"), MessageBoxButtons.OK);
-        return;
-      }
+      //string programFiles = Environment.GetEnvironmentVariable("ProgramFiles"); // C:\Program Files // wrong if (x86)
+      //var gitBinaryPath = programFiles + "\\GIT\\bin\\git.exe";
+      //if (textBoxGitBashBinariesPath.Text != gitBinaryPath)
+      //{
+      //  DisplayMessageOk(GetTranslatedString("The path to GitBash does not match its installation"),
+      //    GetTranslatedString("GitBash binaries no match"), MessageBoxButtons.OK);
+      //  return;
+      //}
 
+      var gitBinaryPath = "\\GIT\\bin\\git.exe";
       string pathVariable = Environment.GetEnvironmentVariable("Path");
       if (pathVariable != null && !pathVariable.Contains(gitBinaryPath))
       {
@@ -986,13 +987,18 @@ namespace GitAutoUpdateGUI
 
     private void comboBoxVSVersion_SelectedIndexChanged(object sender, EventArgs e)
     {
-      // C:\Users\fred\Documents\Visual Studio 2012\Projects
-      // get userprofile
       const string backSlash = "\\";
-      string userProfile = Environment.GetEnvironmentVariable("USERPROFILE"); // C:\Users\fred
+      string userProfile = Environment.GetEnvironmentVariable("USERPROFILE"); // C:\Users\userName
+      if (userProfile == string.Empty)
+      {
+        DisplayMessageOk(GetTranslatedString("The USERPROFILE variable cannot be empty"),
+          GetTranslatedString("USERPROFILE variable empty"), MessageBoxButtons.OK);
+        return;
+      }
+
       string vsVersion = GetNumbers(comboBoxVSVersion.SelectedItem.ToString());
       string documentsPath = Environment.SpecialFolder.MyDocuments.ToString();
-      if (!Directory.Exists(Path.Combine(userProfile, documentsPath)))
+      if (userProfile != null && !Directory.Exists(Path.Combine(userProfile, documentsPath)))
       {
         documentsPath = Environment.SpecialFolder.MyDocuments.ToString().Substring(2);
       }

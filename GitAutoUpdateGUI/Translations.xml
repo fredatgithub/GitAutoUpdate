@@ -349,5 +349,15 @@
       <englishValue>Path variable no GitBash binaries</englishValue>
       <frenchValue>Variable Path pas de binaires GitBash</frenchValue>
     </term>
+    <term>
+      <name>The USERPROFILE variable cannot be empty</name>
+      <englishValue>The USERPROFILE variable cannot be empty</englishValue>
+      <frenchValue>La variable USERPROFILE ne peut être vide</frenchValue>
+    </term>
+    <term>
+      <name>USERPROFILE variable empty</name>
+      <englishValue>USERPROFILE variable empty</englishValue>
+      <frenchValue>La variable USERPROFILE ne peut être vide</frenchValue>
+    </term>
   </terms>
 </Document>
