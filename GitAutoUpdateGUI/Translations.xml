@@ -329,5 +329,25 @@
       <englishValue>Check/Uncheck All</englishValue>
       <frenchValue>Tout Cocher/Décocher</frenchValue>
     </term>
+    <term>
+      <name>The path to GitBash does not match its installation</name>
+      <englishValue>The path to GitBash does not match its installation</englishValue>
+      <frenchValue>Le chemin des binaires de GitBash ne correspond pas à son installation</frenchValue>
+    </term>
+    <term>
+      <name>GitBash binaries no match</name>
+      <englishValue>GitBash binaries no match</englishValue>
+      <frenchValue>Chemin Binaires GitBash incorrect</frenchValue>
+    </term>
+    <term>
+      <name>The Path variable does not have the path to the GitBash binaries</name>
+      <englishValue>The Path variable does not have the path to the GitBash binaries</englishValue>
+      <frenchValue>La variable Path ne contient pas le chemin vers les binaires de GitBash</frenchValue>
+    </term>
+    <term>
+      <name>Path variable no GitBash binaries</name>
+      <englishValue>Path variable no GitBash binaries</englishValue>
+      <frenchValue>Variable Path pas de binaires GitBash</frenchValue>
+    </term>
   </terms>
 </Document>

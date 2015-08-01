@@ -97,7 +97,7 @@ namespace GitAutoUpdateGUI
       // read XML file
       if (!File.Exists(Settings.Default.VisualStudioVersionsFileName))
       {
-        CreateVSVersionFile();
+        CreateVsVersionFile();
       }
 
       XDocument xmlDoc = XDocument.Load(Settings.Default.VisualStudioVersionsFileName);
@@ -118,7 +118,7 @@ namespace GitAutoUpdateGUI
       comboBoxVSVersion.SelectedIndex = comboBoxVSVersion.Items.Count - 1;// select latest version
     }
 
-    private static void CreateVSVersionFile()
+    private static void CreateVsVersionFile()
     {
       // TODO 
     }
@@ -439,8 +439,7 @@ namespace GitAutoUpdateGUI
 
     private void cutToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      List<Control> listOfCtrl = new List<Control>
-      { textBoxVSProjectPath, textBoxGitBashBinariesPath};
+      List<Control> listOfCtrl = new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath };
       Control focusedControl = FindFocusedControl(listOfCtrl);
       var tb = focusedControl as TextBox;
       if (tb != null)
@@ -451,8 +450,7 @@ namespace GitAutoUpdateGUI
 
     private void copyToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Control focusedControl = FindFocusedControl(new List<Control>
-      { textBoxVSProjectPath, textBoxGitBashBinariesPath});
+      Control focusedControl = FindFocusedControl(new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath });
       var tb = focusedControl as TextBox;
       if (tb != null)
       {
@@ -462,8 +460,7 @@ namespace GitAutoUpdateGUI
 
     private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Control focusedControl = FindFocusedControl(new List<Control>
-      { textBoxVSProjectPath, textBoxGitBashBinariesPath});
+      Control focusedControl = FindFocusedControl(new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath });
       var tb = focusedControl as TextBox;
       if (tb != null)
       {
@@ -473,8 +470,7 @@ namespace GitAutoUpdateGUI
 
     private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Control focusedControl = FindFocusedControl(new List<Control>
-      { textBoxVSProjectPath, textBoxGitBashBinariesPath});
+      Control focusedControl = FindFocusedControl(new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath });
       if (focusedControl is TextBox)
       {
         ((TextBox)focusedControl).SelectAll();
@@ -632,8 +628,23 @@ namespace GitAutoUpdateGUI
         return;
       }
 
-      // TODO check if git.exe is in the PATH of the PC
-      //var gitBinary = textBoxGitBashBinariesPath.Text;
+      string programFiles = Environment.GetEnvironmentVariable("ProgramFiles"); // C:\Program Files
+      var gitBinaryPath = programFiles + "\\GIT\\bin\\git.exe";
+      if (textBoxGitBashBinariesPath.Text != gitBinaryPath)
+      {
+        DisplayMessageOk(GetTranslatedString("The path to GitBash does not match its installation"),
+          GetTranslatedString("GitBash binaries no match"), MessageBoxButtons.OK);
+        return;
+      }
+
+      string pathVariable = Environment.GetEnvironmentVariable("Path");
+      if (pathVariable != null && !pathVariable.Contains(gitBinaryPath))
+      {
+        DisplayMessageOk(GetTranslatedString("The Path variable does not have the path to the GitBash binaries"),
+          GetTranslatedString("Path variable no GitBash binaries"), MessageBoxButtons.OK);
+        return;
+      }
+
 
       Logger.Add(textBoxLog, GetTranslatedString("Updating selected projects"));
       if (checkBoxCreateUpdateFile.Checked)
@@ -655,7 +666,6 @@ namespace GitAutoUpdateGUI
         var solutionPath = selectedProj.SubItems[2];
         AddGitPullToScript(updateScript, projectName);
         Logger.Add(textBoxLog, GetTranslatedString("Adding the selected project") + OneSpace + projectName);
-
       }
 
       AddPauseToFile(updateScript);
@@ -816,7 +826,7 @@ namespace GitAutoUpdateGUI
         {
           var tmpSolPath = GetDirectoryFileNameAndExtension(solutionName)[0];
           var tmpSolNameOnly0 = GetDirectoryFileNameAndExtension(solutionName)[0];
-          var tmpSolNameOnly = tmpSolNameOnly0.Substring(tmpSolNameOnly0.LastIndexOf('\\')+1);
+          var tmpSolNameOnly = tmpSolNameOnly0.Substring(tmpSolNameOnly0.LastIndexOf('\\') + 1);
 
           var subfilteredDirs = Directory.EnumerateDirectories(tmpSolPath, "*.git").ToList();
           if (subfilteredDirs.Count != 0)
@@ -972,6 +982,28 @@ namespace GitAutoUpdateGUI
     private static void ToggleAllItems(ListView lvw)
     {
       lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = !item.Checked);
+    }
+
+    private void comboBoxVSVersion_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      // C:\Users\fred\Documents\Visual Studio 2012\Projects
+      // get userprofile
+      const string backSlash = "\\";
+      string userProfile = Environment.GetEnvironmentVariable("USERPROFILE"); // C:\Users\fred
+      string vsVersion = GetNumbers(comboBoxVSVersion.SelectedItem.ToString());
+      string documentsPath = Environment.SpecialFolder.MyDocuments.ToString();
+      if (!Directory.Exists(Path.Combine(userProfile, documentsPath)))
+      {
+        documentsPath = Environment.SpecialFolder.MyDocuments.ToString().Substring(2);
+      }
+
+      //string programFiles = Environment.GetEnvironmentVariable("ProgramFiles"); // C:\Program Files
+      textBoxVSProjectPath.Text = userProfile + backSlash + documentsPath + @"\Visual Studio " + vsVersion + @"\Projects";
+    }
+
+    private static string GetNumbers(string myString)
+    {
+      return myString.Where(Char.IsNumber).Aggregate(string.Empty, (current, c) => current + c);
     }
   }
 }
