@@ -300,9 +300,9 @@
       <frenchValue>Pas de sélection</frenchValue>
     </term>
     <term>
-      <name>Create script file</name>
-      <englishValue>Create script file</englishValue>
-      <frenchValue>Créer le fichier script</frenchValue>
+      <name>Only generate script file</name>
+      <englishValue>Only generate script file</englishValue>
+      <frenchValue>Juste créer le fichier script</frenchValue>
     </term>
     <term>
       <name>Creating the script</name>

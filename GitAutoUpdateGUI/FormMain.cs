@@ -312,7 +312,7 @@ namespace GitAutoUpdateGUI
       textBoxVSProjectPath.Text = Settings.Default.textBoxVSProjectPath;
       checkBoxGitBashInstalled.Checked = Settings.Default.checkBoxGitBashInstalled;
       textBoxGitBashBinariesPath.Text = Settings.Default.textBoxGitBashBinariesPath;
-      checkBoxCreateUpdateFile.Checked = Settings.Default.checkBoxCreateUpdateFile;
+      checkBoxOnlyGenerateScriptFile.Checked = Settings.Default.checkBoxCreateUpdateFile;
     }
 
     private void SaveWindowValue()
@@ -326,7 +326,7 @@ namespace GitAutoUpdateGUI
       Settings.Default.textBoxVSProjectPath = textBoxVSProjectPath.Text;
       Settings.Default.checkBoxGitBashInstalled = checkBoxGitBashInstalled.Checked;
       Settings.Default.textBoxGitBashBinariesPath = textBoxGitBashBinariesPath.Text;
-      Settings.Default.checkBoxCreateUpdateFile = checkBoxCreateUpdateFile.Checked;
+      Settings.Default.checkBoxCreateUpdateFile = checkBoxOnlyGenerateScriptFile.Checked;
       Settings.Default.Save();
     }
 
@@ -387,7 +387,7 @@ namespace GitAutoUpdateGUI
           buttonUpdateVSProjects.Text = _languageDicoEn["Update selected Visual Studio Projects"];
           buttonScannWholePC.Text = _languageDicoEn["Scan whole Pc"];
           buttonLoadVSProjects.Text = _languageDicoEn["Search for Visual Studio Projects"];
-          checkBoxCreateUpdateFile.Text = _languageDicoEn["Create script file"];
+          checkBoxOnlyGenerateScriptFile.Text = _languageDicoEn["Only generate script file"];
           buttonCheckUncheckAll.Text = _languageDicoEn["Check/Uncheck All"];
           _currentLanguage = "English";
           break;
@@ -427,7 +427,7 @@ namespace GitAutoUpdateGUI
           labelSelectVSProjects.Text = _languageDicoFr["Select the Visual Studio projects you want to update"];
           buttonScannWholePC.Text = _languageDicoFr["Scan whole Pc"];
           buttonLoadVSProjects.Text = _languageDicoFr["Search for Visual Studio Projects"];
-          checkBoxCreateUpdateFile.Text = _languageDicoFr["Create script file"];
+          checkBoxOnlyGenerateScriptFile.Text = _languageDicoFr["Only generate script file"];
           buttonCheckUncheckAll.Text = _languageDicoFr["Check/Uncheck All"];
           _currentLanguage = "French";
           break;
@@ -604,6 +604,11 @@ namespace GitAutoUpdateGUI
       textBoxGitBashBinariesPath.Text = ChooseOneFile("git executable (git.exe)|git.exe");
     }
 
+    private static bool ContainsIgnoreCase(string source, string toCheck)
+    {
+      return source.IndexOf(toCheck, StringComparison.InvariantCultureIgnoreCase) >= 0;
+    }
+
     private void buttonUpdateVSProjects_Click(object sender, EventArgs e)
     {
       if (listViewVSProjects.Items.Count == 0)
@@ -625,17 +630,17 @@ namespace GitAutoUpdateGUI
         return;
       }
 
-      var gitBinaryPath = "\\GIT\\bin\\git.exe"; // valid for x86 and x64 pc because of (x86) directory
+      var gitBinaryPath = "\\Git\\bin"; // valid for x86 and x64 pc because of (x86) directory
       string pathVariable = Environment.GetEnvironmentVariable("Path");
-      if (pathVariable != null && !pathVariable.Contains(gitBinaryPath))
+      if (pathVariable != null && !ContainsIgnoreCase(pathVariable, gitBinaryPath))
       {
         DisplayMessageOk(GetTranslatedString("The Path variable does not have the path to the GitBash binaries"),
           GetTranslatedString("Path variable no GitBash binaries"), MessageBoxButtons.OK);
         return;
       }
-
+      
       Logger.Add(textBoxLog, GetTranslatedString("Updating selected projects"));
-      if (checkBoxCreateUpdateFile.Checked)
+      if (checkBoxOnlyGenerateScriptFile.Checked)
       {
         Logger.Add(textBoxLog, GetTranslatedString("Creating the update.bat script"));
         Logger.Add(textBoxLog, GetTranslatedString("in"));
@@ -656,17 +661,24 @@ namespace GitAutoUpdateGUI
       }
 
       AddPauseToFile(updateScript);
-      Process task = new Process
+      if (!checkBoxOnlyGenerateScriptFile.Checked)
       {
-        StartInfo =
+        Process task = new Process
         {
-          UseShellExecute = true,
-          FileName = updateScript,
-          CreateNoWindow = false
-        }
-      };
+          StartInfo =
+          {
+            UseShellExecute = true,
+            FileName = updateScript,
+            CreateNoWindow = false
+          }
+        };
 
-      task.Start();
+        task.Start();
+      }
+      else
+      {
+        // TODO ask "Would you like to view the update script file?" and open with Notepad // increment app and publish release 1.1
+      }
     }
 
     private void AddPauseToFile(string fileName)
@@ -956,7 +968,7 @@ namespace GitAutoUpdateGUI
       {
         checkBoxGitBashInstalled.Checked = true;
         checkBoxGitBashInstalled.Text = GetTranslatedString("GitBash installed");
-        checkBoxGitBashInstalled.BackColor = Color.Green;
+        checkBoxGitBashInstalled.BackColor = Color.LightGreen;
       }
       else
       {
