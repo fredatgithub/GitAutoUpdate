@@ -180,7 +180,7 @@
       this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
       this.quitToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
       this.quitToolStripMenuItem.Text = "&Quitter";
-      this.quitToolStripMenuItem.Click += new System.EventHandler(this.QuitToolStripMenuItem_Click);
+      this.quitToolStripMenuItem.Click += new System.EventHandler(this.QuitToolStripMenuItemClick);
       // 
       // editToolStripMenuItem
       // 
@@ -223,7 +223,7 @@
       this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
       this.cutToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.cutToolStripMenuItem.Text = "&Couper";
-      this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
+      this.cutToolStripMenuItem.Click += new System.EventHandler(this.CutToolStripMenuItemClick);
       // 
       // copyToolStripMenuItem
       // 
@@ -232,7 +232,7 @@
       this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
       this.copyToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.copyToolStripMenuItem.Text = "Co&pier";
-      this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+      this.copyToolStripMenuItem.Click += new System.EventHandler(this.CopyToolStripMenuItemClick);
       // 
       // pasteToolStripMenuItem
       // 
@@ -241,7 +241,7 @@
       this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
       this.pasteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.pasteToolStripMenuItem.Text = "Co&ller";
-      this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+      this.pasteToolStripMenuItem.Click += new System.EventHandler(this.PasteToolStripMenuItemClick);
       // 
       // toolStripSeparator4
       // 
@@ -253,7 +253,7 @@
       this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
       this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.selectAllToolStripMenuItem.Text = "Sélectio&nner tout";
-      this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
+      this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.SelectAllToolStripMenuItemClick);
       // 
       // toolsToolStripMenuItem
       // 
@@ -290,14 +290,14 @@
       this.frenchToolStripMenuItem.Name = "frenchToolStripMenuItem";
       this.frenchToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
       this.frenchToolStripMenuItem.Text = "Français";
-      this.frenchToolStripMenuItem.Click += new System.EventHandler(this.frenchToolStripMenuItem_Click);
+      this.frenchToolStripMenuItem.Click += new System.EventHandler(this.FrenchToolStripMenuItemClick);
       // 
       // englishToolStripMenuItem
       // 
       this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
       this.englishToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
       this.englishToolStripMenuItem.Text = "Anglais";
-      this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
+      this.englishToolStripMenuItem.Click += new System.EventHandler(this.EnglishToolStripMenuItemClick);
       // 
       // helpToolStripMenuItem
       // 
@@ -339,7 +339,7 @@
       this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
       this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
       this.aboutToolStripMenuItem.Text = "À &propos de...";
-      this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+      this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItemClick);
       // 
       // labelChooseVSVersion
       // 
@@ -361,7 +361,7 @@
       this.textBoxVSProjectPath.Size = new System.Drawing.Size(468, 20);
       this.textBoxVSProjectPath.TabIndex = 3;
       this.textBoxVSProjectPath.Text = "C:\\";
-      this.textBoxVSProjectPath.TextChanged += new System.EventHandler(this.textBoxVSProjectPath_TextChanged);
+      this.textBoxVSProjectPath.TextChanged += new System.EventHandler(this.TextBoxVsProjectPathTextChanged);
       // 
       // comboBoxVSVersion
       // 
@@ -383,7 +383,7 @@
       this.buttonVSVersionGetPath.TabIndex = 5;
       this.buttonVSVersionGetPath.Text = "...";
       this.buttonVSVersionGetPath.UseVisualStyleBackColor = true;
-      this.buttonVSVersionGetPath.Click += new System.EventHandler(this.buttonVSVersionGetPath_Click);
+      this.buttonVSVersionGetPath.Click += new System.EventHandler(this.ButtonVsVersionGetPathClick);
       // 
       // checkBoxGitBashInstalled
       // 
@@ -448,7 +448,7 @@
       this.buttonUpdateVSProjects.TabIndex = 10;
       this.buttonUpdateVSProjects.Text = "Update selected Visual Studio Projects";
       this.buttonUpdateVSProjects.UseVisualStyleBackColor = true;
-      this.buttonUpdateVSProjects.Click += new System.EventHandler(this.buttonUpdateVSProjects_Click);
+      this.buttonUpdateVSProjects.Click += new System.EventHandler(this.ButtonUpdateVsProjectsClick);
       // 
       // textBoxGitBashBinariesPath
       // 
@@ -460,7 +460,7 @@
       this.textBoxGitBashBinariesPath.Size = new System.Drawing.Size(799, 20);
       this.textBoxGitBashBinariesPath.TabIndex = 11;
       this.textBoxGitBashBinariesPath.Text = "C:\\";
-      this.textBoxGitBashBinariesPath.TextChanged += new System.EventHandler(this.textBoxGitBashBinariesPath_TextChanged);
+      this.textBoxGitBashBinariesPath.TextChanged += new System.EventHandler(this.TextBoxGitBashBinariesPathTextChanged);
       // 
       // buttonGitBashBinPath
       // 
@@ -471,7 +471,7 @@
       this.buttonGitBashBinPath.TabIndex = 12;
       this.buttonGitBashBinPath.Text = "...";
       this.buttonGitBashBinPath.UseVisualStyleBackColor = true;
-      this.buttonGitBashBinPath.Click += new System.EventHandler(this.buttonGitBashBinPath_Click);
+      this.buttonGitBashBinPath.Click += new System.EventHandler(this.ButtonGitBashBinPathClick);
       // 
       // buttonScannWholePC
       // 
@@ -509,7 +509,7 @@
       this.buttonLoadVSProjects.TabIndex = 15;
       this.buttonLoadVSProjects.Text = "Search for Visual Studio Projects";
       this.buttonLoadVSProjects.UseVisualStyleBackColor = true;
-      this.buttonLoadVSProjects.Click += new System.EventHandler(this.buttonLoadVSProjects_Click);
+      this.buttonLoadVSProjects.Click += new System.EventHandler(this.ButtonLoadVsProjectsClick);
       // 
       // checkBoxCreateUpdateFile
       // 
@@ -533,7 +533,7 @@
       this.buttonCheckUncheckAll.TabIndex = 17;
       this.buttonCheckUncheckAll.Text = "Check/Uncheck All";
       this.buttonCheckUncheckAll.UseVisualStyleBackColor = true;
-      this.buttonCheckUncheckAll.Click += new System.EventHandler(this.buttonCheckUncheckAll_Click);
+      this.buttonCheckUncheckAll.Click += new System.EventHandler(this.ButtonCheckUncheckAllClick);
       // 
       // FormMain
       // 
@@ -563,7 +563,7 @@
       this.ShowIcon = false;
       this.Text = "Git Auto update GUI";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMainFormClosing);
-      this.Load += new System.EventHandler(this.FormMain_Load);
+      this.Load += new System.EventHandler(this.FormMainLoad);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
       this.ResumeLayout(false);
