@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-      System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup17 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup18 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,7 +94,7 @@
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
       this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-      this.menuStrip1.Size = new System.Drawing.Size(1021, 24);
+      this.menuStrip1.Size = new System.Drawing.Size(1124, 24);
       this.menuStrip1.TabIndex = 1;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -180,7 +180,7 @@
       this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
       this.quitToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
       this.quitToolStripMenuItem.Text = "&Quitter";
-      this.quitToolStripMenuItem.Click += new System.EventHandler(this.QuitToolStripMenuItemClick);
+      this.quitToolStripMenuItem.Click += new System.EventHandler(this.QuitToolStripMenuItem_Click);
       // 
       // editToolStripMenuItem
       // 
@@ -223,7 +223,7 @@
       this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
       this.cutToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.cutToolStripMenuItem.Text = "&Couper";
-      this.cutToolStripMenuItem.Click += new System.EventHandler(this.CutToolStripMenuItemClick);
+      this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
       // 
       // copyToolStripMenuItem
       // 
@@ -232,7 +232,7 @@
       this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
       this.copyToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.copyToolStripMenuItem.Text = "Co&pier";
-      this.copyToolStripMenuItem.Click += new System.EventHandler(this.CopyToolStripMenuItemClick);
+      this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
       // 
       // pasteToolStripMenuItem
       // 
@@ -241,7 +241,7 @@
       this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
       this.pasteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.pasteToolStripMenuItem.Text = "Co&ller";
-      this.pasteToolStripMenuItem.Click += new System.EventHandler(this.PasteToolStripMenuItemClick);
+      this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
       // 
       // toolStripSeparator4
       // 
@@ -253,7 +253,7 @@
       this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
       this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.selectAllToolStripMenuItem.Text = "Sélectio&nner tout";
-      this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.SelectAllToolStripMenuItemClick);
+      this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
       // 
       // toolsToolStripMenuItem
       // 
@@ -290,14 +290,14 @@
       this.frenchToolStripMenuItem.Name = "frenchToolStripMenuItem";
       this.frenchToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
       this.frenchToolStripMenuItem.Text = "Français";
-      this.frenchToolStripMenuItem.Click += new System.EventHandler(this.FrenchToolStripMenuItemClick);
+      this.frenchToolStripMenuItem.Click += new System.EventHandler(this.frenchToolStripMenuItem_Click);
       // 
       // englishToolStripMenuItem
       // 
       this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
       this.englishToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
       this.englishToolStripMenuItem.Text = "Anglais";
-      this.englishToolStripMenuItem.Click += new System.EventHandler(this.EnglishToolStripMenuItemClick);
+      this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
       // 
       // helpToolStripMenuItem
       // 
@@ -339,15 +339,16 @@
       this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
       this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
       this.aboutToolStripMenuItem.Text = "À &propos de...";
-      this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItemClick);
+      this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
       // 
       // labelChooseVSVersion
       // 
       this.labelChooseVSVersion.AutoSize = true;
+      this.labelChooseVSVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.labelChooseVSVersion.Location = new System.Drawing.Point(22, 64);
       this.labelChooseVSVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelChooseVSVersion.Name = "labelChooseVSVersion";
-      this.labelChooseVSVersion.Size = new System.Drawing.Size(165, 13);
+      this.labelChooseVSVersion.Size = new System.Drawing.Size(220, 17);
       this.labelChooseVSVersion.TabIndex = 2;
       this.labelChooseVSVersion.Text = "Choose the Visual Studio version:";
       // 
@@ -355,19 +356,19 @@
       // 
       this.textBoxVSProjectPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.textBoxVSProjectPath.Location = new System.Drawing.Point(536, 63);
-      this.textBoxVSProjectPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.textBoxVSProjectPath.Location = new System.Drawing.Point(636, 63);
+      this.textBoxVSProjectPath.Margin = new System.Windows.Forms.Padding(2);
       this.textBoxVSProjectPath.Name = "textBoxVSProjectPath";
-      this.textBoxVSProjectPath.Size = new System.Drawing.Size(468, 20);
+      this.textBoxVSProjectPath.Size = new System.Drawing.Size(471, 20);
       this.textBoxVSProjectPath.TabIndex = 3;
       this.textBoxVSProjectPath.Text = "C:\\";
-      this.textBoxVSProjectPath.TextChanged += new System.EventHandler(this.TextBoxVsProjectPathTextChanged);
+      this.textBoxVSProjectPath.TextChanged += new System.EventHandler(this.textBoxVSProjectPath_TextChanged);
       // 
       // comboBoxVSVersion
       // 
       this.comboBoxVSVersion.FormattingEnabled = true;
-      this.comboBoxVSVersion.Location = new System.Drawing.Point(215, 62);
-      this.comboBoxVSVersion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.comboBoxVSVersion.Location = new System.Drawing.Point(283, 62);
+      this.comboBoxVSVersion.Margin = new System.Windows.Forms.Padding(2);
       this.comboBoxVSVersion.Name = "comboBoxVSVersion";
       this.comboBoxVSVersion.Size = new System.Drawing.Size(129, 21);
       this.comboBoxVSVersion.TabIndex = 4;
@@ -376,23 +377,24 @@
       // 
       // buttonVSVersionGetPath
       // 
-      this.buttonVSVersionGetPath.Location = new System.Drawing.Point(497, 63);
-      this.buttonVSVersionGetPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonVSVersionGetPath.Location = new System.Drawing.Point(603, 63);
+      this.buttonVSVersionGetPath.Margin = new System.Windows.Forms.Padding(2);
       this.buttonVSVersionGetPath.Name = "buttonVSVersionGetPath";
       this.buttonVSVersionGetPath.Size = new System.Drawing.Size(28, 19);
       this.buttonVSVersionGetPath.TabIndex = 5;
       this.buttonVSVersionGetPath.Text = "...";
       this.buttonVSVersionGetPath.UseVisualStyleBackColor = true;
-      this.buttonVSVersionGetPath.Click += new System.EventHandler(this.ButtonVsVersionGetPathClick);
+      this.buttonVSVersionGetPath.Click += new System.EventHandler(this.buttonVSVersionGetPath_Click);
       // 
       // checkBoxGitBashInstalled
       // 
       this.checkBoxGitBashInstalled.AutoSize = true;
-      this.checkBoxGitBashInstalled.Enabled = false;
-      this.checkBoxGitBashInstalled.Location = new System.Drawing.Point(25, 101);
-      this.checkBoxGitBashInstalled.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.checkBoxGitBashInstalled.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.checkBoxGitBashInstalled.ForeColor = System.Drawing.SystemColors.ControlText;
+      this.checkBoxGitBashInstalled.Location = new System.Drawing.Point(25, 100);
+      this.checkBoxGitBashInstalled.Margin = new System.Windows.Forms.Padding(2);
       this.checkBoxGitBashInstalled.Name = "checkBoxGitBashInstalled";
-      this.checkBoxGitBashInstalled.Size = new System.Drawing.Size(104, 17);
+      this.checkBoxGitBashInstalled.Size = new System.Drawing.Size(150, 21);
       this.checkBoxGitBashInstalled.TabIndex = 6;
       this.checkBoxGitBashInstalled.Text = "GitBash installed";
       this.checkBoxGitBashInstalled.UseVisualStyleBackColor = true;
@@ -400,10 +402,11 @@
       // labelSelectVSProjects
       // 
       this.labelSelectVSProjects.AutoSize = true;
-      this.labelSelectVSProjects.Location = new System.Drawing.Point(22, 136);
+      this.labelSelectVSProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelSelectVSProjects.Location = new System.Drawing.Point(29, 136);
       this.labelSelectVSProjects.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelSelectVSProjects.Name = "labelSelectVSProjects";
-      this.labelSelectVSProjects.Size = new System.Drawing.Size(253, 13);
+      this.labelSelectVSProjects.Size = new System.Drawing.Size(335, 17);
       this.labelSelectVSProjects.TabIndex = 7;
       this.labelSelectVSProjects.Text = "Select the Visual Studio projects you want to update";
       // 
@@ -413,27 +416,28 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.listViewVSProjects.GridLines = true;
-      listViewGroup1.Header = "ListViewGroup";
-      listViewGroup1.Name = "listViewGroup1";
-      listViewGroup2.Header = "ListViewGroup";
-      listViewGroup2.Name = "listViewGroup2";
+      listViewGroup17.Header = "ListViewGroup";
+      listViewGroup17.Name = "listViewGroup1";
+      listViewGroup18.Header = "ListViewGroup";
+      listViewGroup18.Name = "listViewGroup2";
       this.listViewVSProjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup17,
+            listViewGroup18});
       this.listViewVSProjects.Location = new System.Drawing.Point(25, 311);
-      this.listViewVSProjects.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.listViewVSProjects.Margin = new System.Windows.Forms.Padding(2);
       this.listViewVSProjects.Name = "listViewVSProjects";
-      this.listViewVSProjects.Size = new System.Drawing.Size(979, 114);
+      this.listViewVSProjects.Size = new System.Drawing.Size(1082, 114);
       this.listViewVSProjects.TabIndex = 8;
       this.listViewVSProjects.UseCompatibleStateImageBehavior = false;
       // 
       // labelPickDirectory
       // 
       this.labelPickDirectory.AutoSize = true;
-      this.labelPickDirectory.Location = new System.Drawing.Point(361, 64);
+      this.labelPickDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelPickDirectory.Location = new System.Drawing.Point(421, 64);
       this.labelPickDirectory.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.labelPickDirectory.Name = "labelPickDirectory";
-      this.labelPickDirectory.Size = new System.Drawing.Size(82, 13);
+      this.labelPickDirectory.Size = new System.Drawing.Size(109, 17);
       this.labelPickDirectory.TabIndex = 9;
       this.labelPickDirectory.Text = "or pick directory";
       // 
@@ -441,44 +445,44 @@
       // 
       this.buttonUpdateVSProjects.Enabled = false;
       this.buttonUpdateVSProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonUpdateVSProjects.Location = new System.Drawing.Point(647, 129);
-      this.buttonUpdateVSProjects.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonUpdateVSProjects.Location = new System.Drawing.Point(733, 129);
+      this.buttonUpdateVSProjects.Margin = new System.Windows.Forms.Padding(2);
       this.buttonUpdateVSProjects.Name = "buttonUpdateVSProjects";
       this.buttonUpdateVSProjects.Size = new System.Drawing.Size(235, 26);
       this.buttonUpdateVSProjects.TabIndex = 10;
       this.buttonUpdateVSProjects.Text = "Update selected Visual Studio Projects";
       this.buttonUpdateVSProjects.UseVisualStyleBackColor = true;
-      this.buttonUpdateVSProjects.Click += new System.EventHandler(this.ButtonUpdateVsProjectsClick);
+      this.buttonUpdateVSProjects.Click += new System.EventHandler(this.buttonUpdateVSProjects_Click);
       // 
       // textBoxGitBashBinariesPath
       // 
       this.textBoxGitBashBinariesPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.textBoxGitBashBinariesPath.Location = new System.Drawing.Point(205, 99);
-      this.textBoxGitBashBinariesPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.textBoxGitBashBinariesPath.Location = new System.Drawing.Point(242, 99);
+      this.textBoxGitBashBinariesPath.Margin = new System.Windows.Forms.Padding(2);
       this.textBoxGitBashBinariesPath.Name = "textBoxGitBashBinariesPath";
-      this.textBoxGitBashBinariesPath.Size = new System.Drawing.Size(799, 20);
+      this.textBoxGitBashBinariesPath.Size = new System.Drawing.Size(865, 20);
       this.textBoxGitBashBinariesPath.TabIndex = 11;
       this.textBoxGitBashBinariesPath.Text = "C:\\";
-      this.textBoxGitBashBinariesPath.TextChanged += new System.EventHandler(this.TextBoxGitBashBinariesPathTextChanged);
+      this.textBoxGitBashBinariesPath.TextChanged += new System.EventHandler(this.textBoxGitBashBinariesPath_TextChanged);
       // 
       // buttonGitBashBinPath
       // 
-      this.buttonGitBashBinPath.Location = new System.Drawing.Point(169, 98);
-      this.buttonGitBashBinPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonGitBashBinPath.Location = new System.Drawing.Point(207, 99);
+      this.buttonGitBashBinPath.Margin = new System.Windows.Forms.Padding(2);
       this.buttonGitBashBinPath.Name = "buttonGitBashBinPath";
       this.buttonGitBashBinPath.Size = new System.Drawing.Size(28, 19);
       this.buttonGitBashBinPath.TabIndex = 12;
       this.buttonGitBashBinPath.Text = "...";
       this.buttonGitBashBinPath.UseVisualStyleBackColor = true;
-      this.buttonGitBashBinPath.Click += new System.EventHandler(this.ButtonGitBashBinPathClick);
+      this.buttonGitBashBinPath.Click += new System.EventHandler(this.buttonGitBashBinPath_Click);
       // 
       // buttonScannWholePC
       // 
       this.buttonScannWholePC.Enabled = false;
       this.buttonScannWholePC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonScannWholePC.Location = new System.Drawing.Point(292, 129);
-      this.buttonScannWholePC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonScannWholePC.Location = new System.Drawing.Point(378, 129);
+      this.buttonScannWholePC.Margin = new System.Windows.Forms.Padding(2);
       this.buttonScannWholePC.Name = "buttonScannWholePC";
       this.buttonScannWholePC.Size = new System.Drawing.Size(135, 26);
       this.buttonScannWholePC.TabIndex = 13;
@@ -491,32 +495,32 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.textBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.textBoxLog.Location = new System.Drawing.Point(25, 172);
-      this.textBoxLog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.textBoxLog.Margin = new System.Windows.Forms.Padding(2);
       this.textBoxLog.Multiline = true;
       this.textBoxLog.Name = "textBoxLog";
       this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-      this.textBoxLog.Size = new System.Drawing.Size(979, 100);
+      this.textBoxLog.Size = new System.Drawing.Size(1082, 100);
       this.textBoxLog.TabIndex = 14;
       this.textBoxLog.Text = "Log";
       // 
       // buttonLoadVSProjects
       // 
       this.buttonLoadVSProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonLoadVSProjects.Location = new System.Drawing.Point(433, 129);
-      this.buttonLoadVSProjects.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonLoadVSProjects.Location = new System.Drawing.Point(519, 129);
+      this.buttonLoadVSProjects.Margin = new System.Windows.Forms.Padding(2);
       this.buttonLoadVSProjects.Name = "buttonLoadVSProjects";
       this.buttonLoadVSProjects.Size = new System.Drawing.Size(208, 26);
       this.buttonLoadVSProjects.TabIndex = 15;
       this.buttonLoadVSProjects.Text = "Search for Visual Studio Projects";
       this.buttonLoadVSProjects.UseVisualStyleBackColor = true;
-      this.buttonLoadVSProjects.Click += new System.EventHandler(this.ButtonLoadVsProjectsClick);
+      this.buttonLoadVSProjects.Click += new System.EventHandler(this.buttonLoadVSProjects_Click);
       // 
       // checkBoxCreateUpdateFile
       // 
       this.checkBoxCreateUpdateFile.AutoSize = true;
       this.checkBoxCreateUpdateFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBoxCreateUpdateFile.Location = new System.Drawing.Point(886, 133);
-      this.checkBoxCreateUpdateFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.checkBoxCreateUpdateFile.Location = new System.Drawing.Point(972, 133);
+      this.checkBoxCreateUpdateFile.Margin = new System.Windows.Forms.Padding(2);
       this.checkBoxCreateUpdateFile.Name = "checkBoxCreateUpdateFile";
       this.checkBoxCreateUpdateFile.Size = new System.Drawing.Size(129, 21);
       this.checkBoxCreateUpdateFile.TabIndex = 16;
@@ -527,19 +531,19 @@
       // 
       this.buttonCheckUncheckAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.buttonCheckUncheckAll.Location = new System.Drawing.Point(25, 276);
-      this.buttonCheckUncheckAll.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.buttonCheckUncheckAll.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCheckUncheckAll.Name = "buttonCheckUncheckAll";
       this.buttonCheckUncheckAll.Size = new System.Drawing.Size(163, 26);
       this.buttonCheckUncheckAll.TabIndex = 17;
       this.buttonCheckUncheckAll.Text = "Check/Uncheck All";
       this.buttonCheckUncheckAll.UseVisualStyleBackColor = true;
-      this.buttonCheckUncheckAll.Click += new System.EventHandler(this.ButtonCheckUncheckAllClick);
+      this.buttonCheckUncheckAll.Click += new System.EventHandler(this.buttonCheckUncheckAll_Click);
       // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1021, 434);
+      this.ClientSize = new System.Drawing.Size(1124, 434);
       this.Controls.Add(this.buttonCheckUncheckAll);
       this.Controls.Add(this.checkBoxCreateUpdateFile);
       this.Controls.Add(this.buttonLoadVSProjects);
@@ -558,12 +562,12 @@
       this.Controls.Add(this.labelChooseVSVersion);
       this.Controls.Add(this.menuStrip1);
       this.MainMenuStrip = this.menuStrip1;
-      this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.Margin = new System.Windows.Forms.Padding(2);
       this.Name = "FormMain";
       this.ShowIcon = false;
       this.Text = "Git Auto update GUI";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMainFormClosing);
-      this.Load += new System.EventHandler(this.FormMainLoad);
+      this.Load += new System.EventHandler(this.FormMain_Load);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
       this.ResumeLayout(false);

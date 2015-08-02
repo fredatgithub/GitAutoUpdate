@@ -170,6 +170,11 @@
       <frenchValue>GitBash installé</frenchValue>
     </term>
     <term>
+      <name>GitBash not installed</name>
+      <englishValue>GitBash not installed</englishValue>
+      <frenchValue>GitBash non installé</frenchValue>
+    </term>
+    <term>
       <name>Update selected Visual Studio Projects</name>
       <englishValue>Update selected Visual Studio Projects</englishValue>
       <frenchValue>Mettre à jour les projets Visual Studio</frenchValue>

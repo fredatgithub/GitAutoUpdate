@@ -21,6 +21,7 @@ SOFTWARE.
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -79,6 +80,7 @@ namespace GitAutoUpdateGUI
       GetWindowValue();
       LoadLanguages();
       SetLanguage(Settings.Default.LastLanguageUsed);
+      CheckGitBashBinary();
     }
 
     private static void ClearComboBox(ComboBox cb)
@@ -943,7 +945,27 @@ namespace GitAutoUpdateGUI
 
     private void textBoxGitBashBinariesPath_TextChanged(object sender, EventArgs e)
     {
+      CheckGitBashBinary();
       buttonUpdateVSProjects.Enabled = false;
+    }
+
+    private void CheckGitBashBinary()
+    {
+      checkBoxGitBashInstalled.Enabled = true;
+      if (File.Exists(textBoxGitBashBinariesPath.Text))
+      {
+        checkBoxGitBashInstalled.Checked = true;
+        checkBoxGitBashInstalled.Text = GetTranslatedString("GitBash installed");
+        checkBoxGitBashInstalled.BackColor = Color.Green;
+      }
+      else
+      {
+        checkBoxGitBashInstalled.Checked = false;
+        checkBoxGitBashInstalled.Text = GetTranslatedString("GitBash not installed");
+        checkBoxGitBashInstalled.BackColor = Color.Red;
+      }
+      
+      checkBoxGitBashInstalled.Enabled = false;
     }
 
     private void textBoxVSProjectPath_TextChanged(object sender, EventArgs e)
