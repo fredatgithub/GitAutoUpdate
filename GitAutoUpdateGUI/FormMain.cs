@@ -18,6 +18,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+using GitAutoUpdateGUI.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,7 +30,6 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using GitAutoUpdateGUI.Properties;
 
 namespace GitAutoUpdateGUI
 {
@@ -46,6 +46,7 @@ namespace GitAutoUpdateGUI
     private const string Comma = ",";
     private const string Dash = "-";
     private const string Period = ".";
+    private const string backslash = "\\";
     private static readonly string Crlf = Environment.NewLine;
     private string _currentLanguage = "english";
 
@@ -801,7 +802,6 @@ namespace GitAutoUpdateGUI
 
     private static string AddAtTheEndOfFileName(string fileName, string textToBeAdded)
     {
-      const string backslash = "\\";
       string result = GetDirectoryFileNameAndExtension(fileName)[0] + backslash
                                  + GetDirectoryFileNameAndExtension(fileName)[1]
                                  + textToBeAdded
@@ -877,7 +877,6 @@ namespace GitAutoUpdateGUI
       int projectCount = 0;
       foreach (var directory in Directory.EnumerateDirectories(textBoxVSProjectPath.Text))
       {
-        //Logger.Add(textBoxLog, directories); // for debug
         var filteredFiles = Directory.GetFiles(directory, "*.sln").ToList();
         foreach (var solutionName in filteredFiles)
         {
@@ -888,7 +887,6 @@ namespace GitAutoUpdateGUI
           var subfilteredDirs = Directory.EnumerateDirectories(tmpSolPath, "*.git").ToList();
           if (subfilteredDirs.Count != 0)
           {
-            //Logger.Add(textBoxLog, solutionName); // for debug
             ListViewItem item1 = new ListViewItem(tmpSolNameOnly) { Checked = false };
             item1.SubItems.Add(tmpSolNameOnly);
             item1.SubItems.Add(tmpSolPath);
@@ -994,9 +992,9 @@ namespace GitAutoUpdateGUI
         case "is":
           return number > 1 ? "are" : "is"; // without a space before
         case "The":
-          return "The"; // CAPITAL useful when used with GetTranslatedString method
+          return "The"; // CAPITAL useful when used with Translate method
         case "the":
-          return "the"; // lower case useful when used with GetTranslatedString method
+          return "the"; // lower case useful when used with Translate method
         case "has":
           return number > 1 ? "have" : "has";
         default:
@@ -1079,13 +1077,12 @@ namespace GitAutoUpdateGUI
         documentsPath = Environment.SpecialFolder.MyDocuments.ToString().Substring(2);
       }
 
-      //string programFiles = Environment.GetEnvironmentVariable("ProgramFiles"); // C:\Program Files
       textBoxVSProjectPath.Text = userProfile + backSlash + documentsPath + @"\Visual Studio " + vsVersion + @"\Projects";
     }
 
     private static string GetNumbers(string myString)
     {
-      return myString.Where(Char.IsNumber).Aggregate(string.Empty, (current, c) => current + c);
+      return myString.Where(char.IsNumber).Aggregate(string.Empty, (current, c) => current + c);
     }
   }
 }
