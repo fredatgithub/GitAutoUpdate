@@ -87,7 +87,7 @@ namespace GitAutoUpdateGUI
     {
       cb.Items.Clear();
     }
-    
+
     private void LoadComboBoxVsVersions(ComboBox cb)
     {
       ClearComboBox(cb);
@@ -117,7 +117,45 @@ namespace GitAutoUpdateGUI
 
     private static void CreateVsVersionFile()
     {
-      // TODO 
+      List<string> minimumVersion = new List<string>
+      {
+        "<?xml version=\"1.0\" encoding=\"utf - 8\" ?>",
+        "<Document>",
+        "<DocumentVersion>",
+        "<version> 1.0 </version>",
+        "</DocumentVersion>",
+        "<VSVersions>",
+        "<VSVersion>",
+        "<name>Visual Studio 2003</name>",
+        "</VSVersion>",
+        "<VSVersion>",
+        "<name>Visual Studio 2005</name>",
+        "</VSVersion>",
+        "<VSVersion>",
+        "<name>Visual Studio 2008</name>",
+        "</VSVersion>",
+        "<VSVersion>",
+        "<name>Visual Studio 2010</name>",
+        "</VSVersion>",
+        "<VSVersion>",
+        "<name>Visual Studio 2012</name>",
+        "</VSVersion>",
+        "<VSVersion>",
+        "<name>Visual Studio 2013</name>",
+        "</VSVersion>",
+        "<VSVersion>",
+        "<name>Visual Studio 2015</name>",
+        "</VSVersion>",
+        "</VSVersions>",
+        "</Document>"
+      };
+      StreamWriter sw = new StreamWriter(Settings.Default.VisualStudioVersionsFileName);
+      foreach (string item in minimumVersion)
+      {
+        sw.WriteLine(item);
+      }
+
+      sw.Close();
     }
 
     private void LoadLanguages()
@@ -387,7 +425,7 @@ namespace GitAutoUpdateGUI
           buttonUpdateVSProjects.Text = _languageDicoEn["Update selected Visual Studio Projects"];
           buttonScannWholePC.Text = _languageDicoEn["Scan whole Pc"];
           buttonLoadVSProjects.Text = _languageDicoEn["Search for Visual Studio Projects"];
-          checkBoxOnlyGenerateScriptFile.Text = _languageDicoEn["Only generate script file"];
+          checkBoxOnlyGenerateScriptFile.Text = _languageDicoEn["Generate only the script file"];
           buttonCheckUncheckAll.Text = _languageDicoEn["Check/Uncheck All"];
           _currentLanguage = "English";
           break;
@@ -427,7 +465,7 @@ namespace GitAutoUpdateGUI
           labelSelectVSProjects.Text = _languageDicoFr["Select the Visual Studio projects you want to update"];
           buttonScannWholePC.Text = _languageDicoFr["Scan whole Pc"];
           buttonLoadVSProjects.Text = _languageDicoFr["Search for Visual Studio Projects"];
-          checkBoxOnlyGenerateScriptFile.Text = _languageDicoFr["Only generate script file"];
+          checkBoxOnlyGenerateScriptFile.Text = _languageDicoFr["Generate only the script file"];
           buttonCheckUncheckAll.Text = _languageDicoFr["Check/Uncheck All"];
           _currentLanguage = "French";
           break;
@@ -479,17 +517,17 @@ namespace GitAutoUpdateGUI
       if (tb != ActiveControl) return;
       if (tb.Text == string.Empty)
       {
-        DisplayMessageOk(GetTranslatedString("ThereIs") + OneSpace +
-          GetTranslatedString(errorMessage) + OneSpace +
-          GetTranslatedString("ToCut") + OneSpace, GetTranslatedString(errorMessage),
+        DisplayMessageOk(Translate("ThereIs") + OneSpace +
+          Translate(errorMessage) + OneSpace +
+          Translate("ToCut") + OneSpace, Translate(errorMessage),
           MessageBoxButtons.OK);
         return;
       }
 
       if (tb.SelectedText == string.Empty)
       {
-        DisplayMessageOk(GetTranslatedString("NoTextHasBeenSelected"),
-          GetTranslatedString(errorMessage), MessageBoxButtons.OK);
+        DisplayMessageOk(Translate("NoTextHasBeenSelected"),
+          Translate(errorMessage), MessageBoxButtons.OK);
         return;
       }
 
@@ -502,15 +540,15 @@ namespace GitAutoUpdateGUI
       if (tb != ActiveControl) return;
       if (tb.Text == string.Empty)
       {
-        DisplayMessageOk(GetTranslatedString("ThereIsNothingToCopy") + OneSpace,
-          GetTranslatedString(message), MessageBoxButtons.OK);
+        DisplayMessageOk(Translate("ThereIsNothingToCopy") + OneSpace,
+          Translate(message), MessageBoxButtons.OK);
         return;
       }
 
       if (tb.SelectedText == string.Empty)
       {
-        DisplayMessageOk(GetTranslatedString("NoTextHasBeenSelected"),
-          GetTranslatedString(message), MessageBoxButtons.OK);
+        DisplayMessageOk(Translate("NoTextHasBeenSelected"),
+          Translate(message), MessageBoxButtons.OK);
         return;
       }
 
@@ -530,7 +568,7 @@ namespace GitAutoUpdateGUI
       MessageBox.Show(this, message, title, buttons);
     }
 
-    private string GetTranslatedString(string index)
+    private string Translate(string index)
     {
       string result = string.Empty;
       switch (_currentLanguage.ToLower())
@@ -613,20 +651,20 @@ namespace GitAutoUpdateGUI
     {
       if (listViewVSProjects.Items.Count == 0)
       {
-        DisplayMessageOk(GetTranslatedString("The list doesn't have any Visual Studio project to update") +
-          Period + Crlf + GetTranslatedString("Enter a correct path and search project again"),
-          GetTranslatedString("List empty"), MessageBoxButtons.OK);
-        Logger.Add(textBoxLog, GetTranslatedString("The list doesn't have any Visual Studio project to update"));
+        DisplayMessageOk(Translate("The list doesn't have any Visual Studio project to update") +
+          Period + Crlf + Translate("Enter a correct path and search project again"),
+          Translate("List empty"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, Translate("The list doesn't have any Visual Studio project to update"));
         return;
       }
 
       var selectedProjects = listViewVSProjects.CheckedItems;
       if (selectedProjects.Count == 0)
       {
-        DisplayMessageOk(GetTranslatedString("No project has been selected") +
-          Period + Crlf + GetTranslatedString("Select at least one project"),
-          GetTranslatedString("No selection"), MessageBoxButtons.OK);
-        Logger.Add(textBoxLog, GetTranslatedString("No project has been selected"));
+        DisplayMessageOk(Translate("No project has been selected") +
+          Period + Crlf + Translate("Select at least one project"),
+          Translate("No selection"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, Translate("No project has been selected"));
         return;
       }
 
@@ -634,16 +672,16 @@ namespace GitAutoUpdateGUI
       string pathVariable = Environment.GetEnvironmentVariable("Path");
       if (pathVariable != null && !ContainsIgnoreCase(pathVariable, gitBinaryPath))
       {
-        DisplayMessageOk(GetTranslatedString("The Path variable does not have the path to the GitBash binaries"),
-          GetTranslatedString("Path variable no GitBash binaries"), MessageBoxButtons.OK);
+        DisplayMessageOk(Translate("The Path variable does not have the path to the GitBash binaries"),
+          Translate("Path variable no GitBash binaries"), MessageBoxButtons.OK);
         return;
       }
-      
-      Logger.Add(textBoxLog, GetTranslatedString("Updating selected projects"));
+
+      Logger.Add(textBoxLog, Translate("Updating selected projects"));
       if (checkBoxOnlyGenerateScriptFile.Checked)
       {
-        Logger.Add(textBoxLog, GetTranslatedString("Creating the update.bat script"));
-        Logger.Add(textBoxLog, GetTranslatedString("in"));
+        Logger.Add(textBoxLog, Translate("Creating the update.bat script"));
+        Logger.Add(textBoxLog, Translate("in"));
         Logger.Add(textBoxLog, textBoxVSProjectPath.Text);
       }
 
@@ -657,7 +695,7 @@ namespace GitAutoUpdateGUI
       {
         var projectName = selectedProj.Text;
         AddGitPullToScript(updateScript, projectName);
-        Logger.Add(textBoxLog, GetTranslatedString("Adding the selected project") + OneSpace + projectName);
+        Logger.Add(textBoxLog, Translate("Adding the selected project") + OneSpace + projectName);
       }
 
       AddPauseToFile(updateScript);
@@ -677,15 +715,35 @@ namespace GitAutoUpdateGUI
       }
       else
       {
-        // TODO ask "Would you like to view the update script file?" and open with Notepad // increment app and publish release 1.1
+        if (DisplayMessage(Translate("Would you like to view the update script file"),
+          Translate("View update script file"), MessageBoxButtons.YesNo) == DialogResult.Yes)
+        {
+          Process task = new Process
+          {
+            StartInfo =
+          {
+            UseShellExecute = true,
+            FileName = "Notepad.exe",
+            Arguments = updateScript,
+            CreateNoWindow = false
+          }
+          };
+
+          task.Start();
+        }
       }
+    }
+
+    private DialogResult DisplayMessage(string message, string title, MessageBoxButtons buttons)
+    {
+      return MessageBox.Show(this, message, title, buttons);
     }
 
     private void AddPauseToFile(string fileName)
     {
       const bool append = true;
       StreamWriter sw = new StreamWriter(fileName, append);
-      sw.WriteLine("REM " + GetTranslatedString("Press a key to exit"));
+      sw.WriteLine("REM " + Translate("Press a key to exit"));
       sw.WriteLine("pause");
       sw.Close();
     }
@@ -754,54 +812,54 @@ namespace GitAutoUpdateGUI
     private void buttonLoadVSProjects_Click(object sender, EventArgs e)
     {
       Logger.Clear(textBoxLog);
-      Logger.Add(textBoxLog, GetTranslatedString("Clearing past results"));
+      Logger.Add(textBoxLog, Translate("Clearing past results"));
       if (textBoxVSProjectPath.Text == string.Empty)
       {
-        DisplayMessageOk(GetTranslatedString("The Visual Studio project directory path is empty") +
-          Period + Crlf + GetTranslatedString("Enter a correct path"),
-          GetTranslatedString("Directory empty"), MessageBoxButtons.OK);
-        Logger.Add(textBoxLog, GetTranslatedString("The Visual Studio project directory path is empty"));
+        DisplayMessageOk(Translate("The Visual Studio project directory path is empty") +
+          Period + Crlf + Translate("Enter a correct path"),
+          Translate("Directory empty"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, Translate("The Visual Studio project directory path is empty"));
         return;
       }
 
       if (!Directory.Exists(textBoxVSProjectPath.Text))
       {
-        DisplayMessageOk(GetTranslatedString("The Visual Studio project directory path doesn't exist") +
-          Period + Crlf + GetTranslatedString("Enter a correct path"),
-          GetTranslatedString("Wrong Directory"), MessageBoxButtons.OK);
-        Logger.Add(textBoxLog, GetTranslatedString("The Visual Studio project directory path doesn't exist"));
+        DisplayMessageOk(Translate("The Visual Studio project directory path doesn't exist") +
+          Period + Crlf + Translate("Enter a correct path"),
+          Translate("Wrong Directory"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, Translate("The Visual Studio project directory path doesn't exist"));
         return;
       }
 
       if (!Directory.EnumerateDirectories(textBoxVSProjectPath.Text).Any())
       {
-        DisplayMessageOk(GetTranslatedString("The Visual Studio project directory is empty") +
-          Period + Crlf + GetTranslatedString("Enter a correct path"),
-          GetTranslatedString("Directory empty"), MessageBoxButtons.OK);
-        Logger.Add(textBoxLog, GetTranslatedString("The Visual Studio project directory is empty"));
+        DisplayMessageOk(Translate("The Visual Studio project directory is empty") +
+          Period + Crlf + Translate("Enter a correct path"),
+          Translate("Directory empty"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, Translate("The Visual Studio project directory is empty"));
         return;
       }
 
       // verification of GitBash in textBoxGitBashBinariesPath
       if (textBoxGitBashBinariesPath.Text == string.Empty)
       {
-        DisplayMessageOk(GetTranslatedString("The GitBash directory path is empty") +
-          Period + Crlf + GetTranslatedString("Enter a correct path"),
-          GetTranslatedString("Directory empty"), MessageBoxButtons.OK);
-        Logger.Add(textBoxLog, GetTranslatedString("The GitBash directory path is empty"));
+        DisplayMessageOk(Translate("The GitBash directory path is empty") +
+          Period + Crlf + Translate("Enter a correct path"),
+          Translate("Directory empty"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, Translate("The GitBash directory path is empty"));
         return;
       }
 
       if (!File.Exists(textBoxGitBashBinariesPath.Text))
       {
-        DisplayMessageOk(GetTranslatedString("The executable GitBash directory path doesn't exist") +
-          Period + Crlf + GetTranslatedString("Enter a correct path"),
-          GetTranslatedString("Wrong Directory"), MessageBoxButtons.OK);
-        Logger.Add(textBoxLog, GetTranslatedString("The executable GitBash directory path doesn't exist"));
+        DisplayMessageOk(Translate("The executable GitBash directory path doesn't exist") +
+          Period + Crlf + Translate("Enter a correct path"),
+          Translate("Wrong Directory"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, Translate("The executable GitBash directory path doesn't exist"));
         return;
       }
 
-      Logger.Add(textBoxLog, GetTranslatedString("Searching for Visual Studio projects"));
+      Logger.Add(textBoxLog, Translate("Searching for Visual Studio projects"));
 
       listViewVSProjects.Items.Clear();
 
@@ -840,9 +898,9 @@ namespace GitAutoUpdateGUI
         }
       }
 
-      Logger.Add(textBoxLog, projectCount + OneSpace + GetTranslatedString("project") + Plural(projectCount) +
-        OneSpace + GetTranslatedString(Plural(projectCount, "has")) + OneSpace +
-        GetTranslatedString("been found") + FrenchPlural(projectCount));
+      Logger.Add(textBoxLog, projectCount + OneSpace + Translate("project") + Plural(projectCount) +
+        OneSpace + Translate(Plural(projectCount, "has")) + OneSpace +
+        Translate("been found") + FrenchPlural(projectCount));
       buttonUpdateVSProjects.Enabled = true;
     }
 
@@ -967,16 +1025,16 @@ namespace GitAutoUpdateGUI
       if (File.Exists(textBoxGitBashBinariesPath.Text))
       {
         checkBoxGitBashInstalled.Checked = true;
-        checkBoxGitBashInstalled.Text = GetTranslatedString("GitBash installed");
+        checkBoxGitBashInstalled.Text = Translate("GitBash installed");
         checkBoxGitBashInstalled.BackColor = Color.LightGreen;
       }
       else
       {
         checkBoxGitBashInstalled.Checked = false;
-        checkBoxGitBashInstalled.Text = GetTranslatedString("GitBash not installed");
+        checkBoxGitBashInstalled.Text = Translate("GitBash not installed");
         checkBoxGitBashInstalled.BackColor = Color.Red;
       }
-      
+
       checkBoxGitBashInstalled.Enabled = false;
     }
 
@@ -1009,8 +1067,8 @@ namespace GitAutoUpdateGUI
       string userProfile = Environment.GetEnvironmentVariable("USERPROFILE"); // C:\Users\userName
       if (userProfile == string.Empty)
       {
-        DisplayMessageOk(GetTranslatedString("The USERPROFILE variable cannot be empty"),
-          GetTranslatedString("USERPROFILE variable empty"), MessageBoxButtons.OK);
+        DisplayMessageOk(Translate("The USERPROFILE variable cannot be empty"),
+          Translate("USERPROFILE variable empty"), MessageBoxButtons.OK);
         return;
       }
 

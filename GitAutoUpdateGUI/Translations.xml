@@ -300,8 +300,8 @@
       <frenchValue>Pas de sélection</frenchValue>
     </term>
     <term>
-      <name>Only generate script file</name>
-      <englishValue>Only generate script file</englishValue>
+      <name>Generate only the script file</name>
+      <englishValue>Generate only the script file</englishValue>
       <frenchValue>Juste créer le fichier script</frenchValue>
     </term>
     <term>
@@ -363,6 +363,16 @@
       <name>USERPROFILE variable empty</name>
       <englishValue>USERPROFILE variable empty</englishValue>
       <frenchValue>La variable USERPROFILE ne peut être vide</frenchValue>
+    </term>
+    <term>
+      <name>View update script file</name>
+      <englishValue>View update script file</englishValue>
+      <frenchValue>Visualiser le fichier script Update</frenchValue>
+    </term>
+    <term>
+      <name>Would you like to view the update script file</name>
+      <englishValue>Would you like to view the update script file</englishValue>
+      <frenchValue>Voulez-vous visualiser le fichier script Update</frenchValue>
     </term>
   </terms>
 </Document>
