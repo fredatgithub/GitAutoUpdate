@@ -677,6 +677,8 @@ namespace GitAutoUpdateGUI
       {
         DisplayMessageOk(Translate("The Path variable does not have the path to the GitBash binaries"),
           Translate("Path variable no GitBash binaries"), MessageBoxButtons.OK);
+        // TODO ask user if he wants to add GitBasdh binary to Windows Path variable
+        // set PATH=%PATH%;"c:\Program Files (x86)\Git\bin"
         return;
       }
 
