@@ -374,5 +374,20 @@
       <englishValue>Would you like to view the update script file</englishValue>
       <frenchValue>Voulez-vous visualiser le fichier script Update</frenchValue>
     </term>
+    <term>
+      <name>Clearing list result</name>
+      <englishValue>Clearing list result</englishValue>
+      <frenchValue>Effacer la liste des résultats</frenchValue>
+    </term>
+    <term>
+      <name>Scanning whole PC started</name>
+      <englishValue>Scanning whole PC started</englishValue>
+      <frenchValue>Lancement du scan de tout le PC</frenchValue>
+    </term>
+    <term>
+      <name>Clear log</name>
+      <englishValue>Clear log</englishValue>
+      <frenchValue>Effacer les log</frenchValue>
+    </term>
   </terms>
 </Document>

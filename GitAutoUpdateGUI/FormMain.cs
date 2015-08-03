@@ -428,6 +428,7 @@ namespace GitAutoUpdateGUI
           buttonLoadVSProjects.Text = _languageDicoEn["Search for Visual Studio Projects"];
           checkBoxOnlyGenerateScriptFile.Text = _languageDicoEn["Generate only the script file"];
           buttonCheckUncheckAll.Text = _languageDicoEn["Check/Uncheck All"];
+          buttonClearLogTextBox.Text = _languageDicoEn["Clear log"];
           _currentLanguage = "English";
           break;
         case "French":
@@ -468,6 +469,7 @@ namespace GitAutoUpdateGUI
           buttonLoadVSProjects.Text = _languageDicoFr["Search for Visual Studio Projects"];
           checkBoxOnlyGenerateScriptFile.Text = _languageDicoFr["Generate only the script file"];
           buttonCheckUncheckAll.Text = _languageDicoFr["Check/Uncheck All"];
+          buttonClearLogTextBox.Text = _languageDicoFr["Clear log"];
           _currentLanguage = "French";
           break;
       }
@@ -1083,6 +1085,19 @@ namespace GitAutoUpdateGUI
     private static string GetNumbers(string myString)
     {
       return myString.Where(char.IsNumber).Aggregate(string.Empty, (current, c) => current + c);
+    }
+
+    private void buttonClearLogTextBox_Click(object sender, EventArgs e)
+    {
+      textBoxLog.Text = string.Empty;
+    }
+
+    private void buttonScannWholePC_Click(object sender, EventArgs e)
+    {
+      Logger.Add(textBoxLog, Translate("Clearing list result"));
+      Logger.Add(textBoxLog, Translate("Scanning whole PC started"));
+      listViewVSProjects.Items.Clear();
+      // TODO for each drive for each directory if it has an .sln file and a .git directory then add
     }
   }
 }
