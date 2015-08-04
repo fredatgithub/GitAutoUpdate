@@ -1100,7 +1100,7 @@ namespace GitAutoUpdateGUI
       Logger.Add(textBoxLog, Translate("Scanning whole PC started"));
       listViewVSProjects.Items.Clear();
       // TODO for each drive for each directory if it has an .sln file and a .git directory then add
-      List<FileInfo> listOfDir = SearchFiles(new List<string> { "*.sln" });
+      List<FileInfo> listOfDir = SearchFiles(new List<string> { "*" });
       foreach (var item in listOfDir)
       {
         Logger.Add(textBoxLog, item.Name);
