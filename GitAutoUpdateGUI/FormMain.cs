@@ -1096,15 +1096,49 @@ namespace GitAutoUpdateGUI
 
     private void buttonScannWholePC_Click(object sender, EventArgs e)
     {
+      Logger.Clear(textBoxLog);
       Logger.Add(textBoxLog, Translate("Clearing list result"));
       Logger.Add(textBoxLog, Translate("Scanning whole PC started"));
       listViewVSProjects.Items.Clear();
       // TODO for each drive for each directory if it has an .sln file and a .git directory then add
-      List<FileInfo> listOfDir = SearchFiles(new List<string> { "*" });
+      List<FileInfo> listOfDir = SearchVsGitHubDirectories();
       foreach (var item in listOfDir)
       {
         Logger.Add(textBoxLog, item.Name);
       }
+    }
+
+    private List<FileInfo> SearchVsGitHubDirectories()
+    {
+      List<FileInfo> files = new List<FileInfo>();
+
+      foreach (DriveInfo drive in DriveInfo.GetDrives().Where(drive => drive.DriveType != DriveType.CDRom))
+      {
+        var dirs = from dir in drive.RootDirectory.EnumerateDirectories()
+                   select new
+                   {
+                     ProgDir = dir,
+                   };
+        foreach (var di in dirs)
+        {
+          try
+          {
+            foreach (var fi in di.ProgDir.EnumerateFiles("*.sln", SearchOption.AllDirectories))
+            {
+              try
+              {
+                files.Add(fi);
+              }
+              catch (UnauthorizedAccessException) { }
+              catch (Exception) { }
+            }
+          }
+          catch (UnauthorizedAccessException) { }
+          catch (Exception) { }
+        }
+      }
+
+      return files;
     }
 
     private List<FileInfo> SearchFiles(List<string> pattern)
