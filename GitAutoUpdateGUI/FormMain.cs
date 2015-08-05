@@ -902,13 +902,13 @@ namespace GitAutoUpdateGUI
 
       Logger.Add(textBoxLog, projectCount + OneSpace + Translate("project") + Plural(projectCount) +
         OneSpace + Translate(Plural(projectCount, "has")) + OneSpace +
-        Translate("been found") + FrenchPlural(projectCount));
+        Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
       buttonUpdateVSProjects.Enabled = true;
     }
 
-    private string FrenchPlural(int number)
+    private static string FrenchPlural(int number, string currentLanguage = "english")
     {
-      return (number > 1 && _currentLanguage.ToLower() == "french") ? "s" : string.Empty;
+      return (number > 1 && currentLanguage.ToLower() == "french") ? "s" : string.Empty;
     }
 
     private static string Plural(int number, string irregularNoun = "")
@@ -996,9 +996,9 @@ namespace GitAutoUpdateGUI
         case "is":
           return number > 1 ? "are" : "is"; // without a space before
         case "The":
-          return "The"; // CAPITAL useful when used with Translate method
+          return "The"; // CAPITAL useful when used with Translate method because of French plural
         case "the":
-          return "the"; // lower case useful when used with Translate method
+          return "the"; // lower case useful when used with Translate method because of French plural
         case "has":
           return number > 1 ? "have" : "has";
         default:
@@ -1101,11 +1101,103 @@ namespace GitAutoUpdateGUI
       Logger.Add(textBoxLog, Translate("Scanning whole PC started"));
       listViewVSProjects.Items.Clear();
       // TODO for each drive for each directory if it has an .sln file and a .git directory then add
-      List<FileInfo> listOfDir = SearchVsGitHubDirectories();
-      foreach (var item in listOfDir)
+      //List<FileInfo> listOfDir = SearchVsGitHubDirectories();
+      //foreach (var item in listOfDir)
+      //{
+      //  Logger.Add(textBoxLog, item.Name);
+
+      //}
+
+      Logger.Add(textBoxLog, Translate("Searching for Visual Studio projects"));
+
+      listViewVSProjects.Items.Clear();
+
+      listViewVSProjects.Columns.Add("To be updated", 240, HorizontalAlignment.Left);
+      listViewVSProjects.Columns.Add("Solution Name", 240, HorizontalAlignment.Left);
+      listViewVSProjects.Columns.Add("Solution Path", 640, HorizontalAlignment.Left);
+
+      listViewVSProjects.View = View.Details;
+      listViewVSProjects.LabelEdit = false;
+      listViewVSProjects.AllowColumnReorder = true;
+      listViewVSProjects.CheckBoxes = true;
+      listViewVSProjects.FullRowSelect = true;
+      listViewVSProjects.GridLines = true;
+      listViewVSProjects.Sorting = SortOrder.None;
+      int projectCount = 0;
+      // Algo
+      /*
+      1. for each drive in all drives excluding CDROM, removable
+      2. for each directory starting in the rootDirectory in all directories in drive
+      3. if directory has an *.sln file
+      4. if directory has .git dubdirectory
+      5. add this directory to result variable
+        */
+
+      foreach (DriveInfo drive in DriveInfo.GetDrives().Where(drive => drive.DriveType != DriveType.CDRom))
       {
-        Logger.Add(textBoxLog, item.Name);
+        var allDirectories = from dir in drive.RootDirectory.EnumerateDirectories()
+                             select new { ProgDir = dir };
+        foreach (var subDirectory in allDirectories)
+        {
+          try
+          {
+            foreach (var directory in Directory.EnumerateDirectories(subDirectory.ProgDir.FullName))
+            {
+              var filteredFiles = Directory.GetFiles(directory, "*.sln").ToList();
+              foreach (var solutionName in filteredFiles)
+              {
+                var tmpSolPath = GetDirectoryFileNameAndExtension(solutionName)[0];
+                var tmpSolNameOnly0 = GetDirectoryFileNameAndExtension(solutionName)[0];
+                var tmpSolNameOnly = tmpSolNameOnly0.Substring(tmpSolNameOnly0.LastIndexOf('\\') + 1);
+
+                var subfilteredDirs = Directory.EnumerateDirectories(tmpSolPath, "*.git").ToList();
+                if (subfilteredDirs.Count != 0)
+                {
+                  ListViewItem item1 = new ListViewItem(tmpSolNameOnly) { Checked = false };
+                  item1.SubItems.Add(tmpSolNameOnly);
+                  item1.SubItems.Add(tmpSolPath);
+                  listViewVSProjects.Items.Add(item1);
+                  projectCount++;
+                }
+              }
+            }
+          }
+          catch (Exception) { }
+        }
       }
+
+      Logger.Add(textBoxLog, projectCount + OneSpace + Translate("project") + Plural(projectCount) +
+        OneSpace + Translate(Plural(projectCount, "has")) + OneSpace +
+        Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
+      buttonUpdateVSProjects.Enabled = true;
+
+    }
+
+    private static List<DriveInfo> GetAllDrives(DriveType[] excludeDriveTypeList)
+    {
+      List<DriveInfo> result = new List<DriveInfo>();
+      try
+      {
+        foreach (DriveInfo drive in DriveInfo.GetDrives())
+        {
+          bool addingDrive = true;
+          foreach (var excludeDriveType in excludeDriveTypeList)
+          {
+            if (excludeDriveType == drive.DriveType)
+            {
+              addingDrive = false;
+              break;
+            }
+          }
+
+          if (addingDrive)
+          {
+            result.Add(drive);
+          }
+        }
+      }
+      catch (Exception) { }
+      return result;
     }
 
     private List<FileInfo> SearchVsGitHubDirectories()
@@ -1114,26 +1206,21 @@ namespace GitAutoUpdateGUI
 
       foreach (DriveInfo drive in DriveInfo.GetDrives().Where(drive => drive.DriveType != DriveType.CDRom))
       {
-        var dirs = from dir in drive.RootDirectory.EnumerateDirectories()
-                   select new
-                   {
-                     ProgDir = dir,
-                   };
-        foreach (var di in dirs)
+        var allDirectories = from dir in drive.RootDirectory.EnumerateDirectories()
+                             select new { ProgDir = dir };
+        foreach (var directory in allDirectories)
         {
           try
           {
-            foreach (var fi in di.ProgDir.EnumerateFiles("*.sln", SearchOption.AllDirectories))
+            foreach (var fileInfo in directory.ProgDir.EnumerateFiles("*.sln", SearchOption.AllDirectories))
             {
               try
               {
-                files.Add(fi);
+                files.Add(fileInfo);
               }
-              catch (UnauthorizedAccessException) { }
               catch (Exception) { }
             }
           }
-          catch (UnauthorizedAccessException) { }
           catch (Exception) { }
         }
       }
