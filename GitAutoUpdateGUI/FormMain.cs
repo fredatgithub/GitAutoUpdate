@@ -1173,6 +1173,26 @@ namespace GitAutoUpdateGUI
 
     }
 
+    private static List<string> GetAllDirectories(string path, string pattern = "*", 
+      SearchOption searchOption = SearchOption.TopDirectoryOnly)
+    {
+      List<string> result = new List<string>();
+      if (!Directory.Exists(path))
+      {
+        return result;
+      }
+
+      try
+      {
+        foreach (var directory in Directory.EnumerateDirectories(path, pattern, searchOption))
+        {
+          result.Add(directory);
+        }
+      }
+      catch (Exception) { }
+      return result;
+    }
+
     private static List<DriveInfo> GetAllDrives(DriveType[] excludeDriveTypeList)
     {
       List<DriveInfo> result = new List<DriveInfo>();
@@ -1235,11 +1255,7 @@ namespace GitAutoUpdateGUI
       foreach (DriveInfo drive in DriveInfo.GetDrives().Where(drive => drive.DriveType != DriveType.CDRom))
       {
         var dirs = from dir in drive.RootDirectory.EnumerateDirectories()
-                   select new
-                   {
-                     ProgDir = dir,
-                   };
-
+                   select new { ProgDir = dir };
         foreach (var di in dirs)
         {
           try
@@ -1252,16 +1268,11 @@ namespace GitAutoUpdateGUI
                 {
                   files.Add(fi);
                 }
-                catch (UnauthorizedAccessException)
-                {
-
-                }
+                catch (UnauthorizedAccessException) { }
               }
             }
           }
-          catch (UnauthorizedAccessException)
-          {
-          }
+          catch (UnauthorizedAccessException) { }
         }
       }
 
