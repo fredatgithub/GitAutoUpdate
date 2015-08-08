@@ -1081,7 +1081,7 @@ namespace GitAutoUpdateGUI
         documentsPath = Environment.SpecialFolder.MyDocuments.ToString().Substring(2);
       }
 
-      textBoxVSProjectPath.Text = userProfile + backSlash + documentsPath + @"\Visual Studio " + vsVersion + @"\Projects";
+      textBoxVSProjectPath.Text = Path.Combine(userProfile, documentsPath, @"\Visual Studio ", vsVersion, @"\Projects");
     }
 
     private static string GetNumbers(string myString)
@@ -1101,7 +1101,7 @@ namespace GitAutoUpdateGUI
       Logger.Add(textBoxLog, Translate("Scanning whole PC started"));
       listViewVSProjects.Items.Clear();
       // TODO for each drive for each directory if it has an .sln file and a .git directory then add
-      string mydoc = textBoxVSProjectPath.Text;
+      string mydoc = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
       IEnumerable<string> listOfDir = GetAllDirectories(mydoc, "*", SearchOption.AllDirectories);
       foreach (var item in listOfDir)
       {
