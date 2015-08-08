@@ -1101,12 +1101,12 @@ namespace GitAutoUpdateGUI
       Logger.Add(textBoxLog, Translate("Scanning whole PC started"));
       listViewVSProjects.Items.Clear();
       // TODO for each drive for each directory if it has an .sln file and a .git directory then add
-      //List<FileInfo> listOfDir = SearchVsGitHubDirectories();
-      //foreach (var item in listOfDir)
-      //{
-      //  Logger.Add(textBoxLog, item.Name);
-
-      //}
+      string mydoc = textBoxVSProjectPath.Text;
+      IEnumerable<string> listOfDir = GetAllDirectories(mydoc, "*", SearchOption.AllDirectories);
+      foreach (var item in listOfDir)
+      {
+        Logger.Add(textBoxLog, item);
+      }
 
       Logger.Add(textBoxLog, Translate("Searching for Visual Studio projects"));
 
@@ -1173,7 +1173,7 @@ namespace GitAutoUpdateGUI
 
     }
 
-    private static List<string> GetAllDirectories(string path, string pattern = "*", 
+    public static IEnumerable<string> GetAllDirectories(string path, string pattern = "*",
       SearchOption searchOption = SearchOption.TopDirectoryOnly)
     {
       List<string> result = new List<string>();
@@ -1182,14 +1182,21 @@ namespace GitAutoUpdateGUI
         return result;
       }
 
-      try
+      bool complete = false;
+      do
       {
-        foreach (var directory in Directory.EnumerateDirectories(path, pattern, searchOption))
+        try
         {
-          result.Add(directory);
+          foreach (var directory in Directory.EnumerateDirectories(path, pattern, searchOption))
+          {
+            result.Add(directory);
+          }
+          complete = true;
         }
-      }
-      catch (Exception) { }
+        catch (UnauthorizedAccessException) { complete = false; }
+        catch (Exception) { complete = false; }
+      } while (!complete);
+
       return result;
     }
 
