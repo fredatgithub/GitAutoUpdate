@@ -1100,6 +1100,7 @@ namespace GitAutoUpdateGUI
       Logger.Add(textBoxLog, Translate("Clearing list result"));
       Logger.Add(textBoxLog, Translate("Scanning whole PC started"));
       listViewVSProjects.Items.Clear();
+      Application.DoEvents();
       // TODO for each drive for each directory if it has an .sln file and a .git directory then add
       string mydoc = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
       IEnumerable<string> listOfDir = GetAllDirectories(mydoc, "*", SearchOption.AllDirectories);
@@ -1109,6 +1110,7 @@ namespace GitAutoUpdateGUI
       foreach (var item in listOfVsGittedSoltion)
       {
         Logger.Add(textBoxLog, item);
+        Application.DoEvents();
       }
 
       listViewVSProjects.Items.Clear();
@@ -1191,6 +1193,7 @@ namespace GitAutoUpdateGUI
           foreach (var directory in Directory.EnumerateDirectories(path, pattern, searchOption))
           {
             result.Add(directory);
+            Application.DoEvents();
           }
           complete = true;
         }
