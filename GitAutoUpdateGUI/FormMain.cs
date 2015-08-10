@@ -1103,7 +1103,7 @@ namespace GitAutoUpdateGUI
       Application.DoEvents();
       // TODO for each drive for each directory if it has an .sln file and a .git directory then add
       string mydoc = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-      IEnumerable<string> listOfDir = GetAllDirectories(mydoc, "*", SearchOption.AllDirectories);
+      IEnumerable<string> listOfDir = GetAllDirectories(mydoc, ".git", SearchOption.AllDirectories);
       
       Logger.Add(textBoxLog, Translate("Searching for Visual Studio projects"));
       IEnumerable<string> listOfVsGittedSoltion = listOfDir.Where(a => a.Contains(".git"));
