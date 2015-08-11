@@ -44,9 +44,10 @@ namespace GitAutoUpdateGUI
     readonly Dictionary<string, string> _languageDicoFr = new Dictionary<string, string>();
     private const string OneSpace = " ";
     private const string Comma = ",";
+    private const string Colon = ":";
     private const string Dash = "-";
     private const string Period = ".";
-    private const string backslash = "\\";
+    private const string Backslash = "\\";
     private static readonly string Crlf = Environment.NewLine;
     private string _currentLanguage = "english";
 
@@ -806,7 +807,7 @@ namespace GitAutoUpdateGUI
 
     private static string AddAtTheEndOfFileName(string fileName, string textToBeAdded)
     {
-      string result = GetDirectoryFileNameAndExtension(fileName)[0] + backslash
+      string result = GetDirectoryFileNameAndExtension(fileName)[0] + Backslash
                                  + GetDirectoryFileNameAndExtension(fileName)[1]
                                  + textToBeAdded
                                  + GetDirectoryFileNameAndExtension(fileName)[2];
@@ -1100,17 +1101,16 @@ namespace GitAutoUpdateGUI
       Logger.Add(textBoxLog, Translate("Clearing list result"));
       Logger.Add(textBoxLog, Translate("Scanning whole PC started"));
       Logger.Add(textBoxLog, Translate("Searching for Visual Studio projects"));
+      Stopwatch chrono = new Stopwatch();
+      chrono.Start();
       listViewVSProjects.Items.Clear();
       Application.DoEvents();
       // TODO for each drive for each directory if it has an .sln file and a .git directory then add
+      DisplayMessageOk(Translate("The process may take several minutes or several hours depending on the number of folder inside my document directory") +
+        Crlf + Translate("A window will pop up at the end of the process"),
+        Translate("Lenghty process"), MessageBoxButtons.OK);
       string mydoc = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
       IEnumerable<string> listOfDir = GetAllDirectories(mydoc, ".git", SearchOption.AllDirectories);
-      //IEnumerable<string> listOfVsGittedSoltion = listOfDir.Where(a => a.Contains(".git"));
-      //foreach (var item in listOfVsGittedSoltion)
-      //{
-      //  Logger.Add(textBoxLog, item);
-      //  Application.DoEvents();
-      //}
 
       listViewVSProjects.Columns.Add("To be updated", 240, HorizontalAlignment.Left);
       listViewVSProjects.Columns.Add("Solution Name", 240, HorizontalAlignment.Left);
@@ -1150,7 +1150,17 @@ namespace GitAutoUpdateGUI
         OneSpace + Translate(Plural(projectCount, "has")) + OneSpace +
         Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
       buttonUpdateVSProjects.Enabled = true;
+      chrono.Stop();
+      TimeSpan ts = chrono.Elapsed;
+      DisplayMessageOk(Translate("The process is over") +Crlf + 
+        Translate("It took") + OneSpace + DisplayElapseTime(ts), 
+        Translate("Process over"), MessageBoxButtons.OK);
+    }
 
+    private static string DisplayElapseTime(TimeSpan ts)
+    {
+      return string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+          ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
     }
 
     public static IEnumerable<string> GetAllDirectories(string path, string pattern = "*",
@@ -1204,7 +1214,10 @@ namespace GitAutoUpdateGUI
           }
         }
       }
-      catch (Exception) { }
+      catch (Exception)
+      {
+        // ignored
+      }
       return result;
     }
 
@@ -1226,10 +1239,16 @@ namespace GitAutoUpdateGUI
               {
                 files.Add(fileInfo);
               }
-              catch (Exception) { }
+              catch (Exception)
+              {
+                // ignored
+              }
             }
           }
-          catch (Exception) { }
+          catch (Exception)
+          {
+            // ignored
+          }
         }
       }
 

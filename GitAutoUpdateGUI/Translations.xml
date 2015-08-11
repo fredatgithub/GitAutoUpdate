@@ -389,5 +389,40 @@
       <englishValue>Clear log</englishValue>
       <frenchValue>Effacer les log</frenchValue>
     </term>
+    <term>
+      <name>Lenghty process</name>
+      <englishValue>Lenghty process</englishValue>
+      <frenchValue>Processus long</frenchValue>
+    </term>
+    <term>
+      <name>A window will pop up at the end of the process</name>
+      <englishValue>A window will pop up at the end of the process</englishValue>
+      <frenchValue>Une fenêtre s'affichera à la fin du processus</frenchValue>
+    </term>
+    <term>
+      <name>The process may take several minutes or several hours depending on the number of folder inside my document directory</name>
+      <englishValue>The process may take several minutes or several hours depending on the number of folder inside my document directory</englishValue>
+      <frenchValue>Le processus peut prendre plusieurs minutes ou plusieurs heures selon le nombre de fichier à l'intérieur du répertoire mes docuements</frenchValue>
+    </term>
+    <term>
+      <name>The process is over</name>
+      <englishValue>The process is over</englishValue>
+      <frenchValue>Le processus est terminé</frenchValue>
+    </term>
+    <term>
+      <name>It took</name>
+      <englishValue>It took</englishValue>
+      <frenchValue>Cela a pris</frenchValue>
+    </term>
+    <term>
+      <name>milliseconds</name>
+      <englishValue>milliseconds</englishValue>
+      <frenchValue>millisecondes</frenchValue>
+    </term>
+    <term>
+      <name>Process over</name>
+      <englishValue>Process over</englishValue>
+      <frenchValue>Processus terminé</frenchValue>
+    </term>
   </terms>
 </Document>
