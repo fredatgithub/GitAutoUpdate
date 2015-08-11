@@ -572,7 +572,7 @@ namespace GitAutoUpdateGUI
       MessageBox.Show(this, message, title, buttons);
     }
 
-    private string Translate(string index)
+    private string Translate(string index) // could add (string index, string _currentLanguage = "english")
     {
       string result = string.Empty;
       switch (_currentLanguage.ToLower())
