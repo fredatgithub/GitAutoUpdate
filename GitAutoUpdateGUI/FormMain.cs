@@ -1099,21 +1099,18 @@ namespace GitAutoUpdateGUI
       Logger.Clear(textBoxLog);
       Logger.Add(textBoxLog, Translate("Clearing list result"));
       Logger.Add(textBoxLog, Translate("Scanning whole PC started"));
+      Logger.Add(textBoxLog, Translate("Searching for Visual Studio projects"));
       listViewVSProjects.Items.Clear();
       Application.DoEvents();
       // TODO for each drive for each directory if it has an .sln file and a .git directory then add
       string mydoc = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
       IEnumerable<string> listOfDir = GetAllDirectories(mydoc, ".git", SearchOption.AllDirectories);
-      
-      Logger.Add(textBoxLog, Translate("Searching for Visual Studio projects"));
-      IEnumerable<string> listOfVsGittedSoltion = listOfDir.Where(a => a.Contains(".git"));
-      foreach (var item in listOfVsGittedSoltion)
-      {
-        Logger.Add(textBoxLog, item);
-        Application.DoEvents();
-      }
-
-      listViewVSProjects.Items.Clear();
+      //IEnumerable<string> listOfVsGittedSoltion = listOfDir.Where(a => a.Contains(".git"));
+      //foreach (var item in listOfVsGittedSoltion)
+      //{
+      //  Logger.Add(textBoxLog, item);
+      //  Application.DoEvents();
+      //}
 
       listViewVSProjects.Columns.Add("To be updated", 240, HorizontalAlignment.Left);
       listViewVSProjects.Columns.Add("Solution Name", 240, HorizontalAlignment.Left);
@@ -1136,37 +1133,17 @@ namespace GitAutoUpdateGUI
       5. add this directory to result variable
         */
 
-      foreach (DriveInfo drive in DriveInfo.GetDrives().Where(drive => drive.DriveType != DriveType.CDRom))
+      foreach (var solutionName in listOfDir)
       {
-        var allDirectories = from dir in drive.RootDirectory.EnumerateDirectories()
-                             select new { ProgDir = dir };
-        foreach (var subDirectory in allDirectories)
-        {
-          try
-          {
-            foreach (var directory in Directory.EnumerateDirectories(subDirectory.ProgDir.FullName))
-            {
-              var filteredFiles = Directory.GetFiles(directory, "*.sln").ToList();
-              foreach (var solutionName in filteredFiles)
-              {
-                var tmpSolPath = GetDirectoryFileNameAndExtension(solutionName)[0];
-                var tmpSolNameOnly0 = GetDirectoryFileNameAndExtension(solutionName)[0];
-                var tmpSolNameOnly = tmpSolNameOnly0.Substring(tmpSolNameOnly0.LastIndexOf('\\') + 1);
+        var tmpSolPath = GetDirectoryFileNameAndExtension(solutionName.Substring(0, solutionName.Length - 5))[0];
+        var tmpSolNameOnly0 = GetDirectoryFileNameAndExtension(solutionName.Substring(0, solutionName.Length - 5))[0];
+        var tmpSolNameOnly = tmpSolNameOnly0.Substring(tmpSolNameOnly0.LastIndexOf('\\') + 1);
 
-                var subfilteredDirs = Directory.EnumerateDirectories(tmpSolPath, "*.git").ToList();
-                if (subfilteredDirs.Count != 0)
-                {
-                  ListViewItem item1 = new ListViewItem(tmpSolNameOnly) { Checked = false };
-                  item1.SubItems.Add(tmpSolNameOnly);
-                  item1.SubItems.Add(tmpSolPath);
-                  listViewVSProjects.Items.Add(item1);
-                  projectCount++;
-                }
-              }
-            }
-          }
-          catch (Exception) { }
-        }
+        ListViewItem item1 = new ListViewItem(tmpSolNameOnly) { Checked = false };
+        item1.SubItems.Add(tmpSolNameOnly);
+        item1.SubItems.Add(tmpSolPath);
+        listViewVSProjects.Items.Add(item1);
+        projectCount++;
       }
 
       Logger.Add(textBoxLog, projectCount + OneSpace + Translate("project") + Plural(projectCount) +
