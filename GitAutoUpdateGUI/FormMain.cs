@@ -20,6 +20,7 @@ SOFTWARE.
 
 using GitAutoUpdateGUI.Properties;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -684,7 +685,7 @@ namespace GitAutoUpdateGUI
         return;
       }
 
-      var gitBinaryPath = "\\Git\\bin"; // valid for x86 and x64 pc because of (x86) directory
+      const string gitBinaryPath = "\\Git\\bin"; // valid for x86 and x64 pc because of (x86) directory
       string pathVariable = Environment.GetEnvironmentVariable("Path");
       if (pathVariable != null && !ContainsIgnoreCase(pathVariable, gitBinaryPath))
       {
@@ -877,6 +878,7 @@ namespace GitAutoUpdateGUI
       }
 
       Logger.Add(textBoxLog, Translate("Searching for Visual Studio projects"));
+
       if (checkBoxUnlistVSSolution.Checked && textBoxUnlistOldSolution.Text == string.Empty)
       {
         checkBoxUnlistVSSolution.Checked = false;
@@ -920,7 +922,11 @@ namespace GitAutoUpdateGUI
           if (subfilteredDirs.Count != 0)
           {
             //removing old or bad solution
-            if (NotHavingWords(tmpSolNameOnly, textBoxUnlistOldSolution.Text.Split(',')))
+            if (!checkBoxUnlistVSSolution.Checked ||
+              textBoxUnlistOldSolution.Text == string.Empty || 
+              (checkBoxUnlistVSSolution.Checked && 
+              NotHavingWords(tmpSolNameOnly, textBoxUnlistOldSolution.Text.Split(','), 
+              checkBoxCaseSensitive.Checked)))
             {
               ListViewItem item1 = new ListViewItem(tmpSolNameOnly) { Checked = false };
               item1.SubItems.Add(tmpSolNameOnly);
@@ -938,9 +944,37 @@ namespace GitAutoUpdateGUI
       buttonUpdateVSProjects.Enabled = true;
     }
 
-    private static bool NotHavingWords(string source, IEnumerable<string> badWords)
+    private static bool NotHavingWords(string source, IEnumerable<string> badWords, bool caseSensitive = false)
     {
-      return badWords.All(badWord => !source.Contains(badWord));
+      bool result = true;
+      if (caseSensitive)
+      {
+        // Linq version
+        // if (badWords.Any(badWord => string.Compare(badWord.Trim(), source.Trim(), StringComparison.CurrentCulture) == 0))
+        foreach (string badWord in badWords)
+        {
+          if (string.Compare(badWord.Trim(), source.Trim(), StringComparison.CurrentCulture) == 0)
+          {
+            result = false;
+            break;
+          }
+        }
+
+        return result;
+      }
+
+      // Linq version
+      // if (badWords.Any(badWord => string.Compare(badWord.Trim(), source.Trim(), StringComparison.CurrentCultureIgnoreCase) == 0))
+      foreach (string badWord in badWords)
+      {
+        if (string.Compare(badWord.Trim(), source.Trim(), StringComparison.CurrentCultureIgnoreCase) == 0)
+        {
+          result = false;
+          break;
+        }
+      }
+
+      return result;
     }
 
     private static string FrenchPlural(int number, string currentLanguage = "english")
