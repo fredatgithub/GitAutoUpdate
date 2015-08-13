@@ -18,9 +18,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using GitAutoUpdateGUI.Properties;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -31,6 +29,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using GitAutoUpdateGUI.Properties;
 using NamespaceYouAreUsing;
 
 namespace GitAutoUpdateGUI
@@ -801,14 +800,13 @@ namespace GitAutoUpdateGUI
 
     private static string GenerateUniqueFileName(string fileName)
     {
-      string result = string.Empty;
       if (!File.Exists(fileName))
       {
         return fileName;
       }
 
       int fileNumber = 1;
-      result = AddAtTheEndOfFileName(fileName, fileNumber.ToString(CultureInfo.InvariantCulture));
+      string result = AddAtTheEndOfFileName(fileName, fileNumber.ToString(CultureInfo.InvariantCulture));
       while (File.Exists(result))
       {
         fileNumber++;
@@ -1185,7 +1183,7 @@ namespace GitAutoUpdateGUI
       chrono.Start();
       listViewVSProjects.Items.Clear();
       Application.DoEvents();
-      // TODO for each drive for each directory if it has an .sln file and a .git directory then add
+      
       DisplayMessageOk(Translate("The process may take several minutes or several hours depending on the number of folder inside my document directory") +
         Crlf + Translate("A window will pop up at the end of the process"),
         Translate("Lenghty process"), MessageBoxButtons.OK);
@@ -1209,7 +1207,7 @@ namespace GitAutoUpdateGUI
       1. for each drive in all drives excluding CDROM, removable
       2. for each directory starting in the rootDirectory in all directories in drive
       3. if directory has an *.sln file
-      4. if directory has .git dubdirectory
+      4. if directory has .git subdirectory
       5. add this directory to result variable
         */
 
