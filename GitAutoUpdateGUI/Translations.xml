@@ -330,8 +330,8 @@
       <frenchValue>Appuyer sur une touche pour terminer</frenchValue>
     </term>
     <term>
-      <name>Check/Uncheck All</name>
-      <englishValue>Check/Uncheck All</englishValue>
+      <name>Toggle items</name>
+      <englishValue>Toggle items</englishValue>
       <frenchValue>Tout Cocher/Décocher</frenchValue>
     </term>
     <term>
@@ -424,5 +424,60 @@
       <englishValue>Process over</englishValue>
       <frenchValue>Processus terminé</frenchValue>
     </term>
+    <term>
+      <name>Unlist Visual Studio Solution having the terms separated with a comma</name>
+      <englishValue>Unlist Visual Studio Solution having the terms separated with a comma</englishValue>
+      <frenchValue>Supprimer les solutions Visual Studio ayant les mots séparés par une virgule</frenchValue>
+    </term>
+    <term>
+      <name>Case sensitive</name>
+      <englishValue>Case sensitive</englishValue>
+      <frenchValue>Sensible à la casse</frenchValue>
+    </term>
+    <term>
+      <name>Removing Visual Studio Solution having</name>
+      <englishValue>Removing Visual Studio Solution having</englishValue>
+      <frenchValue>Suppression des solutions Visual Studio qui ont</frenchValue>
+    </term>
+    <term>
+      <name>the</name>
+      <englishValue>the</englishValue>
+      <frenchValue>le</frenchValue>
+    </term>
+    <term>
+      <name>and</name>
+      <englishValue>and</englishValue>
+      <frenchValue>et</frenchValue>
+    </term>
+    <term>
+      <name>word</name>
+      <englishValue>word</englishValue>
+      <frenchValue>mot</frenchValue>
+    </term>
+    <term>
+      <name>Uncheck all</name>
+      <englishValue>Uncheck all</englishValue>
+      <frenchValue>Désélectionne tout</frenchValue>
+    </term>
+    <term>
+      <name>Check all</name>
+      <englishValue>Check all</englishValue>
+      <frenchValue>Sélectionne tout</frenchValue>
+    </term>
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
   </terms>
 </Document>

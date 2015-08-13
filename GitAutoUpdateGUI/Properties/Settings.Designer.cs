@@ -166,5 +166,41 @@ namespace GitAutoUpdateGUI.Properties {
                 this["checkBoxCreateUpdateFile"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkBoxUnlistVSSolution {
+            get {
+                return ((bool)(this["checkBoxUnlistVSSolution"]));
+            }
+            set {
+                this["checkBoxUnlistVSSolution"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("old, bad")]
+        public string textBoxUnlistOldSolution {
+            get {
+                return ((string)(this["textBoxUnlistOldSolution"]));
+            }
+            set {
+                this["textBoxUnlistOldSolution"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkBoxCaseSensitive {
+            get {
+                return ((bool)(this["checkBoxCaseSensitive"]));
+            }
+            set {
+                this["checkBoxCaseSensitive"] = value;
+            }
+        }
     }
 }

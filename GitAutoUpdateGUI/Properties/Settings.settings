@@ -38,5 +38,14 @@
     <Setting Name="checkBoxCreateUpdateFile" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="checkBoxUnlistVSSolution" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="textBoxUnlistOldSolution" Type="System.String" Scope="User">
+      <Value Profile="(Default)">old, bad</Value>
+    </Setting>
+    <Setting Name="checkBoxCaseSensitive" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

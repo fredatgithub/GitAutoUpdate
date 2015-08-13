@@ -30,6 +30,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using NamespaceYouAreUsing;
 
 namespace GitAutoUpdateGUI
 {
@@ -43,9 +44,6 @@ namespace GitAutoUpdateGUI
     readonly Dictionary<string, string> _languageDicoEn = new Dictionary<string, string>();
     readonly Dictionary<string, string> _languageDicoFr = new Dictionary<string, string>();
     private const string OneSpace = " ";
-    private const string Comma = ",";
-    private const string Colon = ":";
-    private const string Dash = "-";
     private const string Period = ".";
     private const string Backslash = "\\";
     private static readonly string Crlf = Environment.NewLine;
@@ -353,6 +351,9 @@ namespace GitAutoUpdateGUI
       checkBoxGitBashInstalled.Checked = Settings.Default.checkBoxGitBashInstalled;
       textBoxGitBashBinariesPath.Text = Settings.Default.textBoxGitBashBinariesPath;
       checkBoxOnlyGenerateScriptFile.Checked = Settings.Default.checkBoxCreateUpdateFile;
+      checkBoxUnlistVSSolution.Checked = Settings.Default.checkBoxUnlistVSSolution;
+      textBoxUnlistOldSolution.Text = Settings.Default.textBoxUnlistOldSolution;
+      checkBoxCaseSensitive.Checked = Settings.Default.checkBoxCaseSensitive;
     }
 
     private void SaveWindowValue()
@@ -367,6 +368,9 @@ namespace GitAutoUpdateGUI
       Settings.Default.checkBoxGitBashInstalled = checkBoxGitBashInstalled.Checked;
       Settings.Default.textBoxGitBashBinariesPath = textBoxGitBashBinariesPath.Text;
       Settings.Default.checkBoxCreateUpdateFile = checkBoxOnlyGenerateScriptFile.Checked;
+      Settings.Default.checkBoxUnlistVSSolution = checkBoxUnlistVSSolution.Checked;
+      Settings.Default.textBoxUnlistOldSolution = textBoxUnlistOldSolution.Text;
+      Settings.Default.checkBoxCaseSensitive = checkBoxCaseSensitive.Checked;
       Settings.Default.Save();
     }
 
@@ -428,8 +432,12 @@ namespace GitAutoUpdateGUI
           buttonScannWholePC.Text = _languageDicoEn["Scan whole Pc"];
           buttonLoadVSProjects.Text = _languageDicoEn["Search for Visual Studio Projects"];
           checkBoxOnlyGenerateScriptFile.Text = _languageDicoEn["Generate only the script file"];
-          buttonCheckUncheckAll.Text = _languageDicoEn["Check/Uncheck All"];
+          buttonCheckUncheckAll.Text = _languageDicoEn["Toggle items"];
           buttonClearLogTextBox.Text = _languageDicoEn["Clear log"];
+          checkBoxUnlistVSSolution.Text = _languageDicoEn["Unlist Visual Studio Solution having the terms separated with a comma"];
+          checkBoxCaseSensitive.Text = _languageDicoEn["Case sensitive"];
+          buttonClearAll.Text = _languageDicoEn["Uncheck all"];
+          buttonCheckAll.Text = _languageDicoEn["Check all"];
           _currentLanguage = "English";
           break;
         case "French":
@@ -469,8 +477,12 @@ namespace GitAutoUpdateGUI
           buttonScannWholePC.Text = _languageDicoFr["Scan whole Pc"];
           buttonLoadVSProjects.Text = _languageDicoFr["Search for Visual Studio Projects"];
           checkBoxOnlyGenerateScriptFile.Text = _languageDicoFr["Generate only the script file"];
-          buttonCheckUncheckAll.Text = _languageDicoFr["Check/Uncheck All"];
+          buttonCheckUncheckAll.Text = _languageDicoFr["Toggle items"];
           buttonClearLogTextBox.Text = _languageDicoFr["Clear log"];
+          checkBoxUnlistVSSolution.Text = _languageDicoFr["Unlist Visual Studio Solution having the terms separated with a comma"];
+          checkBoxCaseSensitive.Text = _languageDicoFr["Case sensitive"];
+          buttonClearAll.Text = _languageDicoFr["Uncheck all"];
+          buttonCheckAll.Text = _languageDicoFr["Check all"];
           _currentLanguage = "French";
           break;
       }
@@ -865,6 +877,21 @@ namespace GitAutoUpdateGUI
       }
 
       Logger.Add(textBoxLog, Translate("Searching for Visual Studio projects"));
+      if (checkBoxUnlistVSSolution.Checked && textBoxUnlistOldSolution.Text == string.Empty)
+      {
+        checkBoxUnlistVSSolution.Checked = false;
+      }
+
+      if (checkBoxUnlistVSSolution.Checked && textBoxUnlistOldSolution.Text != string.Empty)
+      {
+        int numberOfBadWords = textBoxUnlistOldSolution.Text.Split(',').Count();
+        Logger.Add(textBoxLog, Translate("Removing Visual Studio Solution having") +
+          Punctuation.OneSpace + Translate("the") +
+          FrenchPlural(numberOfBadWords, _currentLanguage) +
+          Punctuation.OneSpace + Translate("word") +
+          Plural(numberOfBadWords) + Punctuation.OneSpace +
+          textBoxUnlistOldSolution.Text.Replace(",", Punctuation.OneSpace + Translate("and")));
+      }
 
       listViewVSProjects.Items.Clear();
 
@@ -892,11 +919,15 @@ namespace GitAutoUpdateGUI
           var subfilteredDirs = Directory.EnumerateDirectories(tmpSolPath, "*.git").ToList();
           if (subfilteredDirs.Count != 0)
           {
-            ListViewItem item1 = new ListViewItem(tmpSolNameOnly) { Checked = false };
-            item1.SubItems.Add(tmpSolNameOnly);
-            item1.SubItems.Add(tmpSolPath);
-            listViewVSProjects.Items.Add(item1);
-            projectCount++;
+            //removing old or bad solution
+            if (NotHavingWords(tmpSolNameOnly, textBoxUnlistOldSolution.Text.Split(',')))
+            {
+              ListViewItem item1 = new ListViewItem(tmpSolNameOnly) { Checked = false };
+              item1.SubItems.Add(tmpSolNameOnly);
+              item1.SubItems.Add(tmpSolPath);
+              listViewVSProjects.Items.Add(item1);
+              projectCount++;
+            }
           }
         }
       }
@@ -905,6 +936,11 @@ namespace GitAutoUpdateGUI
         OneSpace + Translate(Plural(projectCount, "has")) + OneSpace +
         Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
       buttonUpdateVSProjects.Enabled = true;
+    }
+
+    private static bool NotHavingWords(string source, IEnumerable<string> badWords)
+    {
+      return badWords.All(badWord => !source.Contains(badWord));
     }
 
     private static string FrenchPlural(int number, string currentLanguage = "english")
@@ -1054,9 +1090,14 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private static void CheckAllItems(ListView lvw, bool check)
+    private static void CheckAllItems(ListView lvw)
     {
-      lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = check);
+      lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = true);
+    }
+
+    private static void UnCheckAllItems(ListView lvw)
+    {
+      lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = false);
     }
 
     private static void ToggleAllItems(ListView lvw)
@@ -1066,7 +1107,6 @@ namespace GitAutoUpdateGUI
 
     private void comboBoxVSVersion_SelectedIndexChanged(object sender, EventArgs e)
     {
-      const string backSlash = "\\";
       string userProfile = Environment.GetEnvironmentVariable("USERPROFILE"); // C:\Users\userName
       if (userProfile == string.Empty)
       {
@@ -1082,7 +1122,13 @@ namespace GitAutoUpdateGUI
         documentsPath = Environment.SpecialFolder.MyDocuments.ToString().Substring(2);
       }
 
-      textBoxVSProjectPath.Text = Path.Combine(userProfile, documentsPath, @"\Visual Studio ", vsVersion, @"\Projects");
+      textBoxVSProjectPath.Text = AddSlash(userProfile) + AddSlash(documentsPath) +
+        "Visual Studio " + AddSlash(vsVersion) + AddSlash("Projects");
+    }
+
+    private static string AddSlash(string myString)
+    {
+      return myString.EndsWith("\\") ? myString : myString + "\\";
     }
 
     private static string GetNumbers(string myString)
@@ -1152,8 +1198,8 @@ namespace GitAutoUpdateGUI
       buttonUpdateVSProjects.Enabled = true;
       chrono.Stop();
       TimeSpan ts = chrono.Elapsed;
-      DisplayMessageOk(Translate("The process is over") +Crlf + 
-        Translate("It took") + OneSpace + DisplayElapseTime(ts), 
+      DisplayMessageOk(Translate("The process is over") + Crlf +
+        Translate("It took") + OneSpace + DisplayElapseTime(ts),
         Translate("Process over"), MessageBoxButtons.OK);
     }
 
@@ -1284,6 +1330,30 @@ namespace GitAutoUpdateGUI
       }
 
       return files;
+    }
+
+    private void textBoxUnlistOldSolution_TextChanged(object sender, EventArgs e)
+    {
+      if (textBoxUnlistOldSolution.Text == string.Empty)
+      {
+        checkBoxUnlistVSSolution.Checked = false;
+      }
+    }
+
+    private void buttonClearAll_Click(object sender, EventArgs e)
+    {
+      if (listViewVSProjects.Items.Count != 0)
+      {
+        UnCheckAllItems(listViewVSProjects);
+      }
+    }
+
+    private void buttonCheckAll_Click(object sender, EventArgs e)
+    {
+      if (listViewVSProjects.Items.Count != 0)
+      {
+        CheckAllItems(listViewVSProjects);
+      }
     }
   }
 }
