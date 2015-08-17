@@ -117,7 +117,7 @@ namespace GitAutoUpdateGUI
 
     private static void CreateVsVersionFile()
     {
-      List<string> minimumVersion = new List<string>
+      var minimumVersion = new List<string>
       {
         "<?xml version=\"1.0\" encoding=\"utf - 8\" ?>",
         "<Document>",
@@ -190,7 +190,7 @@ namespace GitAutoUpdateGUI
 
     private static void CreateLanguageFile()
     {
-      List<string> minimumVersion = new List<string>
+      var minimumVersion = new List<string>
       {
         "<?xml version=\"1.0\" encoding=\"utf - 8\" ?>",
         "<Document>",
@@ -490,7 +490,7 @@ namespace GitAutoUpdateGUI
 
     private void cutToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      List<Control> listOfCtrl = new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath };
+      var listOfCtrl = new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath };
       Control focusedControl = FindFocusedControl(listOfCtrl);
       var tb = focusedControl as TextBox;
       if (tb != null)
@@ -921,9 +921,9 @@ namespace GitAutoUpdateGUI
           {
             //removing old or bad solution
             if (!checkBoxUnlistVSSolution.Checked ||
-              textBoxUnlistOldSolution.Text == string.Empty || 
-              (checkBoxUnlistVSSolution.Checked && 
-              NotHavingWords(tmpSolNameOnly, textBoxUnlistOldSolution.Text.Split(','), 
+              textBoxUnlistOldSolution.Text == string.Empty ||
+              (checkBoxUnlistVSSolution.Checked &&
+              NotHavingWords(tmpSolNameOnly, textBoxUnlistOldSolution.Text.Split(','),
               checkBoxCaseSensitive.Checked)))
             {
               ListViewItem item1 = new ListViewItem(tmpSolNameOnly) { Checked = false };
@@ -1183,7 +1183,7 @@ namespace GitAutoUpdateGUI
       chrono.Start();
       listViewVSProjects.Items.Clear();
       Application.DoEvents();
-      
+
       DisplayMessageOk(Translate("The process may take several minutes or several hours depending on the number of folder inside my document directory") +
         Crlf + Translate("A window will pop up at the end of the process"),
         Translate("Lenghty process"), MessageBoxButtons.OK);
@@ -1271,7 +1271,7 @@ namespace GitAutoUpdateGUI
 
     private static List<DriveInfo> GetAllDrives(DriveType[] excludeDriveTypeList)
     {
-      List<DriveInfo> result = new List<DriveInfo>();
+      var result = new List<DriveInfo>();
       try
       {
         foreach (DriveInfo drive in DriveInfo.GetDrives())
@@ -1335,7 +1335,7 @@ namespace GitAutoUpdateGUI
 
     private List<FileInfo> SearchFiles(List<string> pattern)
     {
-      List<FileInfo> files = new List<FileInfo>();
+      var files = new List<FileInfo>();
 
       foreach (DriveInfo drive in DriveInfo.GetDrives().Where(drive => drive.DriveType != DriveType.CDRom))
       {
