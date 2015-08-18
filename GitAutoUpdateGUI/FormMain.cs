@@ -522,10 +522,8 @@ namespace GitAutoUpdateGUI
     private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
     {
       Control focusedControl = FindFocusedControl(new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath });
-      if (focusedControl is TextBox)
-      {
-        ((TextBox)focusedControl).SelectAll();
-      }
+      TextBox control = focusedControl as TextBox;
+      control?.SelectAll();
     }
 
     private void CutToClipboard(TextBoxBase tb, string errorMessage = "nothing")
@@ -601,23 +599,7 @@ namespace GitAutoUpdateGUI
 
       return result;
     }
-
-    private static Control FindFocusedControl0(Control container)
-    {
-      foreach (Control childControl in container.Controls.Cast<Control>().Where(childControl => childControl.Focused))
-      {
-        return childControl;
-      }
-
-      return (from Control childControl in container.Controls
-              select FindFocusedControl0(childControl)).FirstOrDefault(maybeFocusedControl => maybeFocusedControl != null);
-    }
-
-    private static Control FindFocusedControl(IEnumerable<Control> container)
-    {
-      return container.FirstOrDefault(control => control.Focused);
-    }
-
+    
     private static Control FindFocusedControl(List<Control> container)
     {
       return container.FirstOrDefault(control => control.Focused);
@@ -690,7 +672,7 @@ namespace GitAutoUpdateGUI
       {
         DisplayMessageOk(Translate("The Path variable does not have the path to the GitBash binaries"),
           Translate("Path variable no GitBash binaries"), MessageBoxButtons.OK);
-        // TODO ask user if he wants to add GitBasdh binary to Windows Path variable
+        // TODO ask user if he wants to add GitBash binary PATH to Windows Path variable
         // set PATH=%PATH%;"c:\Program Files (x86)\Git\bin"
         return;
       }
@@ -1250,7 +1232,7 @@ namespace GitAutoUpdateGUI
         return result;
       }
 
-      bool complete = false;
+      bool complete;
       do
       {
         try
