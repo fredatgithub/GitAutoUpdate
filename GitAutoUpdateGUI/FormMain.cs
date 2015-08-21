@@ -434,7 +434,7 @@ namespace GitAutoUpdateGUI
           checkBoxOnlyGenerateScriptFile.Text = _languageDicoEn["Generate only the script file"];
           buttonCheckUncheckAll.Text = _languageDicoEn["Toggle items"];
           buttonClearLogTextBox.Text = _languageDicoEn["Clear log"];
-          checkBoxUnlistVSSolution.Text = _languageDicoEn["Unlist Visual Studio Solution having the terms separated with a comma"];
+          checkBoxUnlistVSSolution.Text = _languageDicoEn["Unlist Visual Studio Solution having the following terms separated with a comma"];
           checkBoxCaseSensitive.Text = _languageDicoEn["Case sensitive"];
           buttonClearAll.Text = _languageDicoEn["Uncheck all"];
           buttonCheckAll.Text = _languageDicoEn["Check all"];
@@ -479,7 +479,7 @@ namespace GitAutoUpdateGUI
           checkBoxOnlyGenerateScriptFile.Text = _languageDicoFr["Generate only the script file"];
           buttonCheckUncheckAll.Text = _languageDicoFr["Toggle items"];
           buttonClearLogTextBox.Text = _languageDicoFr["Clear log"];
-          checkBoxUnlistVSSolution.Text = _languageDicoFr["Unlist Visual Studio Solution having the terms separated with a comma"];
+          checkBoxUnlistVSSolution.Text = _languageDicoFr["Unlist Visual Studio Solution having the following terms separated with a comma"];
           checkBoxCaseSensitive.Text = _languageDicoFr["Case sensitive"];
           buttonClearAll.Text = _languageDicoFr["Uncheck all"];
           buttonCheckAll.Text = _languageDicoFr["Check all"];
@@ -947,7 +947,9 @@ namespace GitAutoUpdateGUI
       // if (badWords.Any(badWord => string.Compare(badWord.Trim(), source.Trim(), StringComparison.CurrentCultureIgnoreCase) == 0))
       foreach (string badWord in badWords)
       {
-        if (string.Compare(badWord.Trim(), source.Trim(), StringComparison.CurrentCultureIgnoreCase) == 0)
+        string tmpbadWord = badWord.Trim().ToLower();
+        string tmpSource = source.Trim().ToLower();
+        if (tmpSource.Contains(tmpbadWord)) 
         {
           result = false;
           break;

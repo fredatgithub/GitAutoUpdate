@@ -569,7 +569,7 @@
       // textBoxUnlistOldSolution
       // 
       this.textBoxUnlistOldSolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBoxUnlistOldSolution.Location = new System.Drawing.Point(679, 201);
+      this.textBoxUnlistOldSolution.Location = new System.Drawing.Point(748, 201);
       this.textBoxUnlistOldSolution.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.textBoxUnlistOldSolution.Name = "textBoxUnlistOldSolution";
       this.textBoxUnlistOldSolution.Size = new System.Drawing.Size(465, 26);
@@ -581,7 +581,7 @@
       // 
       this.checkBoxCaseSensitive.AutoSize = true;
       this.checkBoxCaseSensitive.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBoxCaseSensitive.Location = new System.Drawing.Point(1150, 201);
+      this.checkBoxCaseSensitive.Location = new System.Drawing.Point(1219, 201);
       this.checkBoxCaseSensitive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.checkBoxCaseSensitive.Name = "checkBoxCaseSensitive";
       this.checkBoxCaseSensitive.Size = new System.Drawing.Size(141, 24);
