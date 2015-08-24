@@ -911,8 +911,11 @@ namespace GitAutoUpdateGUI
               ListViewItem item1 = new ListViewItem(tmpSolNameOnly) { Checked = false };
               item1.SubItems.Add(tmpSolNameOnly);
               item1.SubItems.Add(tmpSolPath);
-              listViewVSProjects.Items.Add(item1);
-              projectCount++;
+              if (!listViewVSProjects.Items.Contains(item1))
+              {
+                listViewVSProjects.Items.Add(item1);
+                projectCount++;
+              }
             }
           }
         }
