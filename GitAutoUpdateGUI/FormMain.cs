@@ -901,7 +901,7 @@ namespace GitAutoUpdateGUI
           var subfilteredDirs = Directory.EnumerateDirectories(tmpSolPath, "*.git").ToList();
           if (subfilteredDirs.Count != 0)
           {
-            //removing old or bad solution
+            //removing unwanted solution (having words such as old or bad)
             if (!checkBoxUnlistVSSolution.Checked ||
               textBoxUnlistOldSolution.Text == string.Empty ||
               (checkBoxUnlistVSSolution.Checked &&
@@ -911,10 +911,11 @@ namespace GitAutoUpdateGUI
               ListViewItem item1 = new ListViewItem(tmpSolNameOnly) { Checked = false };
               item1.SubItems.Add(tmpSolNameOnly);
               item1.SubItems.Add(tmpSolPath);
-              if (!listViewVSProjects.Items.Contains(item1))
+              if (!IsInlistView(listViewVSProjects, item1, 2))
               {
                 listViewVSProjects.Items.Add(item1);
                 projectCount++;
+                Application.DoEvents();
               }
             }
           }
@@ -927,6 +928,22 @@ namespace GitAutoUpdateGUI
       buttonUpdateVSProjects.Enabled = true;
     }
 
+    private static bool IsInlistView(ListView listView, ListViewItem lviItem, int columnNumber)
+    {
+      // return listView.Items.Cast<ListViewItem>().All(item => item.SubItems[columnNumber].Text != lviItem.SubItems[columnNumber].Text);
+      bool result = false;
+      foreach (ListViewItem item in listView.Items)
+      {
+        if (item.SubItems[columnNumber].Text == lviItem.SubItems[columnNumber].Text)
+        {
+          result = true;
+          break;
+        }
+      }
+
+      return result;
+    }
+    
     private static bool NotHavingWords(string source, IEnumerable<string> badWords, bool caseSensitive = false)
     {
       bool result = true;
