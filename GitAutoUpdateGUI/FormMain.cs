@@ -81,6 +81,36 @@ namespace GitAutoUpdateGUI
       LoadLanguages();
       SetLanguage(Settings.Default.LastLanguageUsed);
       CheckGitBashBinary();
+      CheckGitBashPathInWinPath();
+    }
+
+    private void CheckGitBashPathInWinPath()
+    {
+      checkBoxGitInPath.Enabled = true;
+      if (IsInWinPath("\\Git\\bin"))
+      {
+        checkBoxGitInPath.Checked = true;
+        checkBoxGitInPath.Text = Translate("GitBash binary path in Windows Path variable");
+        checkBoxGitInPath.BackColor = Color.LightGreen;
+        buttonAddGitBinaryToWinPath.Enabled = false;
+      }
+      else
+      {
+        checkBoxGitInPath.Checked = false;
+        checkBoxGitInPath.Text = Translate("GitBash binary path not in Windows Path variable");
+        checkBoxGitInPath.BackColor = Color.Red;
+        buttonAddGitBinaryToWinPath.Enabled = true;
+      }
+
+      checkBoxGitInPath.Enabled = false;
+    }
+
+    private static bool IsInWinPath(string substring)
+    {
+      bool result = false;
+      string winPath = Environment.GetEnvironmentVariable("Path",EnvironmentVariableTarget.Machine);
+      if (winPath != null) result = winPath.Contains(substring);
+      return result;
     }
 
     private static void ClearComboBox(ComboBox cb)
@@ -354,6 +384,7 @@ namespace GitAutoUpdateGUI
       checkBoxUnlistVSSolution.Checked = Settings.Default.checkBoxUnlistVSSolution;
       textBoxUnlistOldSolution.Text = Settings.Default.textBoxUnlistOldSolution;
       checkBoxCaseSensitive.Checked = Settings.Default.checkBoxCaseSensitive;
+      checkBoxGitInPath.Checked = Settings.Default.checkBoxGitInPath;
     }
 
     private void SaveWindowValue()
@@ -371,6 +402,7 @@ namespace GitAutoUpdateGUI
       Settings.Default.checkBoxUnlistVSSolution = checkBoxUnlistVSSolution.Checked;
       Settings.Default.textBoxUnlistOldSolution = textBoxUnlistOldSolution.Text;
       Settings.Default.checkBoxCaseSensitive = checkBoxCaseSensitive.Checked;
+      Settings.Default.checkBoxGitInPath = checkBoxGitInPath.Checked;
       Settings.Default.Save();
     }
 
@@ -427,7 +459,6 @@ namespace GitAutoUpdateGUI
           labelSelectVSProjects.Text = _languageDicoEn["Select the Visual Studio projects you want to update"];
           labelChooseVSVersion.Text = _languageDicoEn["Choose the Visual Studio version:"];
           labelPickDirectory.Text = _languageDicoEn["or pick directory:"];
-          checkBoxGitBashInstalled.Text = _languageDicoEn["GitBash installed"];
           buttonUpdateVSProjects.Text = _languageDicoEn["Update selected Visual Studio Projects"];
           buttonScannWholePC.Text = _languageDicoEn["Scan whole Pc"];
           buttonLoadVSProjects.Text = _languageDicoEn["Search for Visual Studio Projects"];
@@ -438,6 +469,8 @@ namespace GitAutoUpdateGUI
           checkBoxCaseSensitive.Text = _languageDicoEn["Case sensitive"];
           buttonClearAll.Text = _languageDicoEn["Uncheck all"];
           buttonCheckAll.Text = _languageDicoEn["Check all"];
+          checkBoxGitBashInstalled.Text = _languageDicoEn[CheckOrUncheck(checkBoxGitBashInstalled, "GitBash installed")];
+          checkBoxGitInPath.Text = _languageDicoEn[CheckOrUncheck(checkBoxGitInPath, "GitBash binary path in Windows Path variable")];
           _currentLanguage = "English";
           break;
         case "French":
@@ -471,7 +504,6 @@ namespace GitAutoUpdateGUI
           aboutToolStripMenuItem.Text = _languageDicoFr["MenuHelpAbout"];
           labelChooseVSVersion.Text = _languageDicoFr["Choose the Visual Studio version:"];
           labelPickDirectory.Text = _languageDicoFr["or pick directory:"];
-          checkBoxGitBashInstalled.Text = _languageDicoFr["GitBash installed"];
           buttonUpdateVSProjects.Text = _languageDicoFr["Update selected Visual Studio Projects"];
           labelSelectVSProjects.Text = _languageDicoFr["Select the Visual Studio projects you want to update"];
           buttonScannWholePC.Text = _languageDicoFr["Scan whole Pc"];
@@ -483,8 +515,23 @@ namespace GitAutoUpdateGUI
           checkBoxCaseSensitive.Text = _languageDicoFr["Case sensitive"];
           buttonClearAll.Text = _languageDicoFr["Uncheck all"];
           buttonCheckAll.Text = _languageDicoFr["Check all"];
+          checkBoxGitBashInstalled.Text = _languageDicoFr[CheckOrUncheck(checkBoxGitBashInstalled, "GitBash installed")];
+          checkBoxGitInPath.Text = _languageDicoFr[CheckOrUncheck(checkBoxGitInPath, "GitBash binary path in Windows Path variable")];
           _currentLanguage = "French";
           break;
+      }
+    }
+
+    private static string CheckOrUncheck(CheckBox cb, string positiveString)
+    {
+      switch (positiveString)
+      {
+        case "GitBash installed":
+          return cb.Checked ? "GitBash installed" : "GitBash not installed";
+        case "GitBash binary path in Windows Path variable":
+          return cb.Checked ? "GitBash binary path in Windows Path variable" : "GitBash binary path not in Windows Path variable";
+        default:
+          return "error";
       }
     }
 
@@ -1390,6 +1437,12 @@ namespace GitAutoUpdateGUI
       {
         CheckAllItems(listViewVSProjects);
       }
+    }
+
+    private void buttonAddGitBinaryToWinPath_Click(object sender, EventArgs e)
+    {
+      // Path = %path% + textBoxGitBashBinariesPath.text minus "git.exe"
+
     }
   }
 }

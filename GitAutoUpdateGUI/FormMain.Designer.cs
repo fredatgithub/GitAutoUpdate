@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-      System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup17 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup18 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -422,13 +422,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.listViewVSProjects.GridLines = true;
-      listViewGroup1.Header = "ListViewGroup";
-      listViewGroup1.Name = "listViewGroup1";
-      listViewGroup2.Header = "ListViewGroup";
-      listViewGroup2.Name = "listViewGroup2";
+      listViewGroup17.Header = "ListViewGroup";
+      listViewGroup17.Name = "listViewGroup1";
+      listViewGroup18.Header = "ListViewGroup";
+      listViewGroup18.Name = "listViewGroup2";
       this.listViewVSProjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup17,
+            listViewGroup18});
       this.listViewVSProjects.Location = new System.Drawing.Point(33, 435);
       this.listViewVSProjects.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.listViewVSProjects.Name = "listViewVSProjects";
@@ -618,26 +618,28 @@
       // checkBoxGitInPath
       // 
       this.checkBoxGitInPath.AutoSize = true;
+      this.checkBoxGitInPath.Enabled = false;
       this.checkBoxGitInPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.checkBoxGitInPath.ForeColor = System.Drawing.SystemColors.ControlText;
       this.checkBoxGitInPath.Location = new System.Drawing.Point(33, 122);
       this.checkBoxGitInPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.checkBoxGitInPath.Name = "checkBoxGitInPath";
-      this.checkBoxGitInPath.Size = new System.Drawing.Size(302, 24);
+      this.checkBoxGitInPath.Size = new System.Drawing.Size(416, 24);
       this.checkBoxGitInPath.TabIndex = 24;
-      this.checkBoxGitInPath.Text = "GitBash binary in Windows Path";
+      this.checkBoxGitInPath.Text = "GitBash binary path in Windows Path variable";
       this.checkBoxGitInPath.UseVisualStyleBackColor = true;
       // 
       // buttonAddGitBinaryToWinPath
       // 
       this.buttonAddGitBinaryToWinPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonAddGitBinaryToWinPath.Location = new System.Drawing.Point(374, 117);
+      this.buttonAddGitBinaryToWinPath.Location = new System.Drawing.Point(697, 117);
       this.buttonAddGitBinaryToWinPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonAddGitBinaryToWinPath.Name = "buttonAddGitBinaryToWinPath";
       this.buttonAddGitBinaryToWinPath.Size = new System.Drawing.Size(316, 32);
       this.buttonAddGitBinaryToWinPath.TabIndex = 25;
       this.buttonAddGitBinaryToWinPath.Text = "Add GitBash binary to Windows Path";
       this.buttonAddGitBinaryToWinPath.UseVisualStyleBackColor = true;
+      this.buttonAddGitBinaryToWinPath.Click += new System.EventHandler(this.buttonAddGitBinaryToWinPath_Click);
       // 
       // FormMain
       // 
