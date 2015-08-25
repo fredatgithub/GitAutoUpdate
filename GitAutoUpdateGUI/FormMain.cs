@@ -1442,7 +1442,7 @@ namespace GitAutoUpdateGUI
     private void buttonAddGitBinaryToWinPath_Click(object sender, EventArgs e)
     {
       // Path = %path% + textBoxGitBashBinariesPath.text minus "git.exe"
-
+      // TODO add implementation code
     }
   }
 }
