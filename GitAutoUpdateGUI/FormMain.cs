@@ -1486,9 +1486,9 @@ namespace GitAutoUpdateGUI
       {
         additionSuccessful = false;
         Logger.Add(textBoxLog, Translate("There was a security error") +
-                                        Punctuation.Comma + Punctuation.OneSpace +
-                                        Translate("probably lack of rights") +
-                                        Punctuation.Colon + Punctuation.OneSpace + 
+          Punctuation.CreateSentence(Punctuation.Comma, Punctuation.OneSpace,
+                                        Translate("probably lack of rights"),
+                                        Punctuation.Colon, Punctuation.OneSpace) +
                                         securityException.Message);
       }
       catch (Exception exception)
@@ -1501,7 +1501,7 @@ namespace GitAutoUpdateGUI
       if (additionSuccessful)
       {
         string message = Translate("The following path") + Punctuation.Colon + Punctuation.CrLf +
-          textBoxGitBashBinariesPath.Text.Substring(0, textBoxGitBashBinariesPath.Text.Length - 8) + 
+          textBoxGitBashBinariesPath.Text.Substring(0, textBoxGitBashBinariesPath.Text.Length - 8) +
           Punctuation.CrLf + Translate("has been added to the Windows Path variable") +
           Punctuation.CrLf + Translate("YOU HAVE TO REBOOT YOUR PC FOR THE VARIABLE TO BE TAKEN INTO EFFECT");
         Logger.Add(textBoxLog, message);
@@ -1510,7 +1510,7 @@ namespace GitAutoUpdateGUI
       else
       {
         string message = Translate("The following path") + Punctuation.Colon + Punctuation.CrLf +
-          textBoxGitBashBinariesPath.Text.Substring(0, textBoxGitBashBinariesPath.Text.Length - 8) + 
+          textBoxGitBashBinariesPath.Text.Substring(0, textBoxGitBashBinariesPath.Text.Length - 8) +
           Punctuation.CrLf + Translate("has not been added to the Windows Path variable") +
           Punctuation.CrLf + Translate("Check with the developer");
         Logger.Add(textBoxLog, message);
