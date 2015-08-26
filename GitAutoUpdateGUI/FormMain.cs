@@ -17,7 +17,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
+#define Debug
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -92,7 +92,11 @@ namespace GitAutoUpdateGUI
         checkBoxGitInPath.Checked = true;
         checkBoxGitInPath.Text = Translate("GitBash binary path in Windows Path variable");
         checkBoxGitInPath.BackColor = Color.LightGreen;
+#if Debug
+        buttonAddGitBinaryToWinPath.Enabled = true;
+#else
         buttonAddGitBinaryToWinPath.Enabled = false;
+#endif
       }
       else
       {
@@ -1443,6 +1447,8 @@ namespace GitAutoUpdateGUI
     {
       // Path = %path% + textBoxGitBashBinariesPath.text minus "git.exe"
       // TODO add implementation code
+      var winPath = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
+      MessageBox.Show("Here is your Windows Path variable: " + winPath);
     }
   }
 }
