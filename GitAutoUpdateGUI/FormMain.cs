@@ -26,11 +26,12 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using GitAutoUpdateGUI.Properties;
-using NamespaceYouAreUsing;
+using Tools;
 
 namespace GitAutoUpdateGUI
 {
@@ -1448,7 +1449,60 @@ namespace GitAutoUpdateGUI
       // Path = %path% + textBoxGitBashBinariesPath.text minus "git.exe"
       // TODO add implementation code
       var winPath = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
-      MessageBox.Show("Here is your Windows Path variable: " + winPath);
+#if Debug
+      MessageBox.Show("Here is your current Windows Path variable: " + winPath);
+#endif
+      // verification of GitBash in textBoxGitBashBinariesPath
+      if (textBoxGitBashBinariesPath.Text == string.Empty)
+      {
+        DisplayMessageOk(Translate("The GitBash directory path is empty") +
+          Period + Crlf + Translate("Enter a correct path"),
+          Translate("Directory empty"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, Translate("The GitBash directory path is empty"));
+        return;
+      }
+
+      if (!File.Exists(textBoxGitBashBinariesPath.Text))
+      {
+        DisplayMessageOk(Translate("The executable GitBash directory path doesn't exist") +
+          Period + Crlf + Translate("Enter a correct path"),
+          Translate("Wrong Directory"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, Translate("The executable GitBash directory path doesn't exist"));
+        return;
+      }
+
+      winPath += Punctuation.SemiColon + Punctuation.Backslash + 
+        textBoxGitBashBinariesPath.Text.Substring(0, textBoxGitBashBinariesPath.Text.Length - 8);
+#if Debug
+      MessageBox.Show("Here is your modifed Windows Path variable: " + winPath);
+#endif
+      bool additionSuccessful = false;
+      try
+      {
+        Environment.SetEnvironmentVariable("Path", winPath, EnvironmentVariableTarget.Machine);
+        additionSuccessful = true;
+      }
+      catch (SecurityException securityException)
+      {
+        additionSuccessful = false;
+        Logger.Add(textBoxLog, Translate("There was a security error, probably lack of rights") + Punctuation.Colon +
+          Punctuation.OneSpace + securityException.Message);
+      }
+      catch (Exception exception)
+      {
+        additionSuccessful = false;
+        Logger.Add(textBoxLog, Translate("There was an error") + Punctuation.Colon +
+          Punctuation.OneSpace + exception.Message);
+      }
+
+      if (additionSuccessful)
+      {
+        DisplayMessageOk(Translate(""), Translate(""), MessageBoxButtons.OK);
+      }
+      else
+      {
+        DisplayMessageOk(Translate(""), Translate(""), MessageBoxButtons.OK);
+      }
     }
   }
 }
