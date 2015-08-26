@@ -113,7 +113,7 @@ namespace GitAutoUpdateGUI
     private static bool IsInWinPath(string substring)
     {
       bool result = false;
-      string winPath = Environment.GetEnvironmentVariable("Path",EnvironmentVariableTarget.Machine);
+      string winPath = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
       if (winPath != null) result = winPath.Contains(substring);
       return result;
     }
@@ -651,7 +651,7 @@ namespace GitAutoUpdateGUI
 
       return result;
     }
-    
+
     private static Control FindFocusedControl(List<Control> container)
     {
       return container.FirstOrDefault(control => control.Focused);
@@ -995,7 +995,7 @@ namespace GitAutoUpdateGUI
 
       return result;
     }
-    
+
     private static bool NotHavingWords(string source, IEnumerable<string> badWords, bool caseSensitive = false)
     {
       bool result = true;
@@ -1021,7 +1021,7 @@ namespace GitAutoUpdateGUI
       {
         string tmpbadWord = badWord.Trim().ToLower();
         string tmpSource = source.Trim().ToLower();
-        if (tmpSource.Contains(tmpbadWord)) 
+        if (tmpSource.Contains(tmpbadWord))
         {
           result = false;
           break;
@@ -1471,12 +1471,12 @@ namespace GitAutoUpdateGUI
         return;
       }
 
-      winPath += Punctuation.SemiColon + Punctuation.Backslash + 
+      winPath += Punctuation.SemiColon + Punctuation.Backslash +
         textBoxGitBashBinariesPath.Text.Substring(0, textBoxGitBashBinariesPath.Text.Length - 8);
 #if Debug
       MessageBox.Show("Here is your modifed Windows Path variable: " + winPath);
 #endif
-      bool additionSuccessful = false;
+      bool additionSuccessful;
       try
       {
         Environment.SetEnvironmentVariable("Path", winPath, EnvironmentVariableTarget.Machine);
@@ -1485,23 +1485,36 @@ namespace GitAutoUpdateGUI
       catch (SecurityException securityException)
       {
         additionSuccessful = false;
-        Logger.Add(textBoxLog, Translate("There was a security error, probably lack of rights") + Punctuation.Colon +
-          Punctuation.OneSpace + securityException.Message);
+        Logger.Add(textBoxLog, Translate("There was a security error") +
+                                        Punctuation.Comma + Punctuation.OneSpace +
+                                        Translate("probably lack of rights") +
+                                        Punctuation.Colon + Punctuation.OneSpace + 
+                                        securityException.Message);
       }
       catch (Exception exception)
       {
         additionSuccessful = false;
         Logger.Add(textBoxLog, Translate("There was an error") + Punctuation.Colon +
-          Punctuation.OneSpace + exception.Message);
+          Punctuation.CrLf + exception.Message);
       }
 
       if (additionSuccessful)
       {
-        DisplayMessageOk(Translate(""), Translate(""), MessageBoxButtons.OK);
+        string message = Translate("The following path") + Punctuation.Colon + Punctuation.CrLf +
+          textBoxGitBashBinariesPath.Text.Substring(0, textBoxGitBashBinariesPath.Text.Length - 8) + 
+          Punctuation.CrLf + Translate("has been added to the Windows Path variable") +
+          Punctuation.CrLf + Translate("YOU HAVE TO REBOOT YOUR PC FOR THE VARIABLE TO BE TAKEN INTO EFFECT");
+        Logger.Add(textBoxLog, message);
+        DisplayMessageOk(message, Translate("Path added"), MessageBoxButtons.OK);
       }
       else
       {
-        DisplayMessageOk(Translate(""), Translate(""), MessageBoxButtons.OK);
+        string message = Translate("The following path") + Punctuation.Colon + Punctuation.CrLf +
+          textBoxGitBashBinariesPath.Text.Substring(0, textBoxGitBashBinariesPath.Text.Length - 8) + 
+          Punctuation.CrLf + Translate("has not been added to the Windows Path variable") +
+          Punctuation.CrLf + Translate("Check with the developer");
+        Logger.Add(textBoxLog, message);
+        DisplayMessageOk(message, Translate("Error"), MessageBoxButtons.OK);
       }
     }
   }
