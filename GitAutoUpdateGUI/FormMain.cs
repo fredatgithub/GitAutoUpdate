@@ -83,6 +83,7 @@ namespace GitAutoUpdateGUI
       SetLanguage(Settings.Default.LastLanguageUsed);
       CheckGitBashBinary();
       CheckGitBashPathInWinPath();
+      AdjustAllControls();
     }
 
     private void CheckGitBashPathInWinPath()
@@ -420,12 +421,42 @@ namespace GitAutoUpdateGUI
     {
       _currentLanguage = Language.French.ToString();
       SetLanguage(Language.French.ToString());
+      AdjustAllControls();
     }
 
     private void englishToolStripMenuItem_Click(object sender, EventArgs e)
     {
       _currentLanguage = Language.English.ToString();
       SetLanguage(Language.English.ToString());
+      AdjustAllControls();
+    }
+
+    private void AdjustAllControls()
+    {
+      AdjustControls(labelChooseVSVersion, comboBoxVSVersion, labelPickDirectory, buttonVSVersionGetPath, textBoxVSProjectPath);
+      AdjustControls(checkBoxGitInPath, buttonAddGitBinaryToWinPath);
+      AdjustControls(checkBoxGitBashInstalled, buttonGitBashBinPath, textBoxGitBashBinariesPath);
+      AdjustControls(buttonClearLogTextBox, buttonScannWholePC, buttonLoadVSProjects, buttonUpdateVSProjects, checkBoxOnlyGenerateScriptFile);
+      AdjustControls(checkBoxUnlistVSSolution, textBoxUnlistOldSolution, checkBoxCaseSensitive);
+      AdjustControls(buttonClearAll, buttonCheckAll, buttonCheckUncheckAll, labelSelectVSProjects);
+    }
+
+    private static void AdjustControls(params Control[] listOfControls )
+    {
+      int position = listOfControls[0].Width + 33; // 33 is the initial padding
+      bool isFirstControl = true;
+      foreach (Control control in listOfControls)
+      {
+        if (isFirstControl)
+        {
+          isFirstControl = false;
+        }
+        else
+        {
+          control.Left = position + 10;
+          position += control.Width;
+        }
+      }
     }
 
     private void SetLanguage(string myLanguage)
@@ -1447,7 +1478,6 @@ namespace GitAutoUpdateGUI
     private void buttonAddGitBinaryToWinPath_Click(object sender, EventArgs e)
     {
       // Path = %path% + textBoxGitBashBinariesPath.text minus "git.exe"
-      // TODO add implementation code
       var winPath = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
 #if Debug
       MessageBox.Show("Here is your current Windows Path variable: " + winPath);

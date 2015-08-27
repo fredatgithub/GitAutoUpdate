@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.ListViewGroup listViewGroup17 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-      System.Windows.Forms.ListViewGroup listViewGroup18 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -384,7 +384,7 @@
       // 
       // buttonVSVersionGetPath
       // 
-      this.buttonVSVersionGetPath.Location = new System.Drawing.Point(804, 78);
+      this.buttonVSVersionGetPath.Location = new System.Drawing.Point(791, 78);
       this.buttonVSVersionGetPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonVSVersionGetPath.Name = "buttonVSVersionGetPath";
       this.buttonVSVersionGetPath.Size = new System.Drawing.Size(37, 23);
@@ -422,13 +422,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.listViewVSProjects.GridLines = true;
-      listViewGroup17.Header = "ListViewGroup";
-      listViewGroup17.Name = "listViewGroup1";
-      listViewGroup18.Header = "ListViewGroup";
-      listViewGroup18.Name = "listViewGroup2";
+      listViewGroup9.Header = "ListViewGroup";
+      listViewGroup9.Name = "listViewGroup1";
+      listViewGroup10.Header = "ListViewGroup";
+      listViewGroup10.Name = "listViewGroup2";
       this.listViewVSProjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup17,
-            listViewGroup18});
+            listViewGroup9,
+            listViewGroup10});
       this.listViewVSProjects.Location = new System.Drawing.Point(33, 435);
       this.listViewVSProjects.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.listViewVSProjects.Name = "listViewVSProjects";
@@ -488,7 +488,7 @@
       this.buttonScannWholePC.Location = new System.Drawing.Point(173, 205);
       this.buttonScannWholePC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonScannWholePC.Name = "buttonScannWholePC";
-      this.buttonScannWholePC.Size = new System.Drawing.Size(149, 32);
+      this.buttonScannWholePC.Size = new System.Drawing.Size(140, 32);
       this.buttonScannWholePC.TabIndex = 13;
       this.buttonScannWholePC.Text = "Scan whole Pc";
       this.buttonScannWholePC.UseVisualStyleBackColor = true;
@@ -597,7 +597,7 @@
       this.buttonClearAll.Location = new System.Drawing.Point(35, 386);
       this.buttonClearAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonClearAll.Name = "buttonClearAll";
-      this.buttonClearAll.Size = new System.Drawing.Size(174, 32);
+      this.buttonClearAll.Size = new System.Drawing.Size(161, 32);
       this.buttonClearAll.TabIndex = 22;
       this.buttonClearAll.Text = "Uncheck all";
       this.buttonClearAll.UseVisualStyleBackColor = true;
@@ -609,7 +609,7 @@
       this.buttonCheckAll.Location = new System.Drawing.Point(224, 386);
       this.buttonCheckAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonCheckAll.Name = "buttonCheckAll";
-      this.buttonCheckAll.Size = new System.Drawing.Size(174, 32);
+      this.buttonCheckAll.Size = new System.Drawing.Size(146, 32);
       this.buttonCheckAll.TabIndex = 23;
       this.buttonCheckAll.Text = "Check all";
       this.buttonCheckAll.UseVisualStyleBackColor = true;

@@ -32,6 +32,11 @@ namespace GitAutoUpdateGUI
 
     public static void Add(TextBoxBase textBox, string message)
     {
+      if (textBox.Text == "Log")
+      {
+        textBox.Text = string.Empty;
+      }
+
       textBox.Text += DateTime.Now + OneSpace + Dash + OneSpace + message + Crlf;
     }
 
