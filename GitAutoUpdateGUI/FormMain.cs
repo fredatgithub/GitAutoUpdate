@@ -443,6 +443,11 @@ namespace GitAutoUpdateGUI
 
     private static void AdjustControls(params Control[] listOfControls )
     {
+      if (listOfControls.Length == 0)
+      {
+        return;
+      }
+
       int position = listOfControls[0].Width + 33; // 33 is the initial padding
       bool isFirstControl = true;
       foreach (Control control in listOfControls)
