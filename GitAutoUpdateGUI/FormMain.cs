@@ -1485,9 +1485,8 @@ namespace GitAutoUpdateGUI
       catch (SecurityException securityException)
       {
         additionSuccessful = false;
-        Logger.Add(textBoxLog, Translate("There was a security error") +
-          Punctuation.CreateSentence(Punctuation.Comma, Punctuation.OneSpace,
-                                        Translate("probably lack of rights"),
+        Logger.Add(textBoxLog, Punctuation.CreateSentence(Translate("There was a security error") +
+            Punctuation.Comma, Punctuation.OneSpace, Translate("probably lack of rights"),
                                         Punctuation.Colon, Punctuation.OneSpace) +
                                         securityException.Message);
       }
