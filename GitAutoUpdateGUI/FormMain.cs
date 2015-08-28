@@ -523,7 +523,7 @@ namespace GitAutoUpdateGUI
     {
       Control focusedControl = FindFocusedControl(new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath });
       TextBox control = focusedControl as TextBox;
-      control?.SelectAll();
+      control.SelectAll();
     }
 
     private void CutToClipboard(TextBoxBase tb, string errorMessage = "nothing")
