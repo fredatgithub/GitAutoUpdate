@@ -18,13 +18,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using System;
+using System.Text;
 
-namespace NamespaceYouAreUsing
+namespace Tools
 {
   public static class Punctuation
   {
     public const string Comma = ",";
     public const string Colon = ":";
+    public const string SemiColon = ";";
     public const string OneSpace = " ";
     public const string Dash = "-";
     public const string UnderScore = "_";
@@ -69,6 +71,17 @@ namespace NamespaceYouAreUsing
       }
 
       return result;
+    }
+    
+    public static string CreateSentence(params string[] listOfCharacters)
+    {
+      StringBuilder result = new StringBuilder();
+      foreach (string character in listOfCharacters)
+      {
+        result.Append(character);
+      }
+
+      return result.ToString();
     }
   }
 }

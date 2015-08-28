@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-      System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,6 +85,8 @@
       this.checkBoxCaseSensitive = new System.Windows.Forms.CheckBox();
       this.buttonClearAll = new System.Windows.Forms.Button();
       this.buttonCheckAll = new System.Windows.Forms.Button();
+      this.checkBoxGitInPath = new System.Windows.Forms.CheckBox();
+      this.buttonAddGitBinaryToWinPath = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -382,7 +384,7 @@
       // 
       // buttonVSVersionGetPath
       // 
-      this.buttonVSVersionGetPath.Location = new System.Drawing.Point(804, 78);
+      this.buttonVSVersionGetPath.Location = new System.Drawing.Point(791, 78);
       this.buttonVSVersionGetPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonVSVersionGetPath.Name = "buttonVSVersionGetPath";
       this.buttonVSVersionGetPath.Size = new System.Drawing.Size(37, 23);
@@ -396,7 +398,7 @@
       this.checkBoxGitBashInstalled.AutoSize = true;
       this.checkBoxGitBashInstalled.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.checkBoxGitBashInstalled.ForeColor = System.Drawing.SystemColors.ControlText;
-      this.checkBoxGitBashInstalled.Location = new System.Drawing.Point(33, 123);
+      this.checkBoxGitBashInstalled.Location = new System.Drawing.Point(33, 169);
       this.checkBoxGitBashInstalled.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.checkBoxGitBashInstalled.Name = "checkBoxGitBashInstalled";
       this.checkBoxGitBashInstalled.Size = new System.Drawing.Size(176, 24);
@@ -408,7 +410,7 @@
       // 
       this.labelSelectVSProjects.AutoSize = true;
       this.labelSelectVSProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelSelectVSProjects.Location = new System.Drawing.Point(610, 345);
+      this.labelSelectVSProjects.Location = new System.Drawing.Point(610, 391);
       this.labelSelectVSProjects.Name = "labelSelectVSProjects";
       this.labelSelectVSProjects.Size = new System.Drawing.Size(461, 25);
       this.labelSelectVSProjects.TabIndex = 7;
@@ -420,17 +422,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.listViewVSProjects.GridLines = true;
-      listViewGroup1.Header = "ListViewGroup";
-      listViewGroup1.Name = "listViewGroup1";
-      listViewGroup2.Header = "ListViewGroup";
-      listViewGroup2.Name = "listViewGroup2";
+      listViewGroup9.Header = "ListViewGroup";
+      listViewGroup9.Name = "listViewGroup1";
+      listViewGroup10.Header = "ListViewGroup";
+      listViewGroup10.Name = "listViewGroup2";
       this.listViewVSProjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
-      this.listViewVSProjects.Location = new System.Drawing.Point(33, 383);
+            listViewGroup9,
+            listViewGroup10});
+      this.listViewVSProjects.Location = new System.Drawing.Point(33, 435);
       this.listViewVSProjects.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.listViewVSProjects.Name = "listViewVSProjects";
-      this.listViewVSProjects.Size = new System.Drawing.Size(1519, 139);
+      this.listViewVSProjects.Size = new System.Drawing.Size(1519, 206);
       this.listViewVSProjects.TabIndex = 8;
       this.listViewVSProjects.UseCompatibleStateImageBehavior = false;
       // 
@@ -448,7 +450,7 @@
       // 
       this.buttonUpdateVSProjects.Enabled = false;
       this.buttonUpdateVSProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonUpdateVSProjects.Location = new System.Drawing.Point(616, 159);
+      this.buttonUpdateVSProjects.Location = new System.Drawing.Point(616, 205);
       this.buttonUpdateVSProjects.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonUpdateVSProjects.Name = "buttonUpdateVSProjects";
       this.buttonUpdateVSProjects.Size = new System.Drawing.Size(313, 32);
@@ -461,7 +463,7 @@
       // 
       this.textBoxGitBashBinariesPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.textBoxGitBashBinariesPath.Location = new System.Drawing.Point(323, 122);
+      this.textBoxGitBashBinariesPath.Location = new System.Drawing.Point(323, 168);
       this.textBoxGitBashBinariesPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.textBoxGitBashBinariesPath.Name = "textBoxGitBashBinariesPath";
       this.textBoxGitBashBinariesPath.Size = new System.Drawing.Size(1229, 22);
@@ -471,7 +473,7 @@
       // 
       // buttonGitBashBinPath
       // 
-      this.buttonGitBashBinPath.Location = new System.Drawing.Point(276, 122);
+      this.buttonGitBashBinPath.Location = new System.Drawing.Point(276, 168);
       this.buttonGitBashBinPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonGitBashBinPath.Name = "buttonGitBashBinPath";
       this.buttonGitBashBinPath.Size = new System.Drawing.Size(37, 23);
@@ -483,10 +485,10 @@
       // buttonScannWholePC
       // 
       this.buttonScannWholePC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonScannWholePC.Location = new System.Drawing.Point(173, 159);
+      this.buttonScannWholePC.Location = new System.Drawing.Point(173, 205);
       this.buttonScannWholePC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonScannWholePC.Name = "buttonScannWholePC";
-      this.buttonScannWholePC.Size = new System.Drawing.Size(149, 32);
+      this.buttonScannWholePC.Size = new System.Drawing.Size(140, 32);
       this.buttonScannWholePC.TabIndex = 13;
       this.buttonScannWholePC.Text = "Scan whole Pc";
       this.buttonScannWholePC.UseVisualStyleBackColor = true;
@@ -497,7 +499,7 @@
       this.textBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.textBoxLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBoxLog.Location = new System.Drawing.Point(33, 233);
+      this.textBoxLog.Location = new System.Drawing.Point(33, 279);
       this.textBoxLog.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.textBoxLog.Multiline = true;
       this.textBoxLog.Name = "textBoxLog";
@@ -509,7 +511,7 @@
       // buttonLoadVSProjects
       // 
       this.buttonLoadVSProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonLoadVSProjects.Location = new System.Drawing.Point(332, 159);
+      this.buttonLoadVSProjects.Location = new System.Drawing.Point(332, 205);
       this.buttonLoadVSProjects.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonLoadVSProjects.Name = "buttonLoadVSProjects";
       this.buttonLoadVSProjects.Size = new System.Drawing.Size(277, 32);
@@ -522,7 +524,7 @@
       // 
       this.checkBoxOnlyGenerateScriptFile.AutoSize = true;
       this.checkBoxOnlyGenerateScriptFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBoxOnlyGenerateScriptFile.Location = new System.Drawing.Point(935, 164);
+      this.checkBoxOnlyGenerateScriptFile.Location = new System.Drawing.Point(935, 210);
       this.checkBoxOnlyGenerateScriptFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.checkBoxOnlyGenerateScriptFile.Name = "checkBoxOnlyGenerateScriptFile";
       this.checkBoxOnlyGenerateScriptFile.Size = new System.Drawing.Size(209, 24);
@@ -533,7 +535,7 @@
       // buttonCheckUncheckAll
       // 
       this.buttonCheckUncheckAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonCheckUncheckAll.Location = new System.Drawing.Point(417, 340);
+      this.buttonCheckUncheckAll.Location = new System.Drawing.Point(417, 386);
       this.buttonCheckUncheckAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonCheckUncheckAll.Name = "buttonCheckUncheckAll";
       this.buttonCheckUncheckAll.Size = new System.Drawing.Size(189, 32);
@@ -545,7 +547,7 @@
       // buttonClearLogTextBox
       // 
       this.buttonClearLogTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonClearLogTextBox.Location = new System.Drawing.Point(35, 159);
+      this.buttonClearLogTextBox.Location = new System.Drawing.Point(35, 205);
       this.buttonClearLogTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonClearLogTextBox.Name = "buttonClearLogTextBox";
       this.buttonClearLogTextBox.Size = new System.Drawing.Size(132, 32);
@@ -558,7 +560,7 @@
       // 
       this.checkBoxUnlistVSSolution.AutoSize = true;
       this.checkBoxUnlistVSSolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBoxUnlistVSSolution.Location = new System.Drawing.Point(35, 201);
+      this.checkBoxUnlistVSSolution.Location = new System.Drawing.Point(35, 247);
       this.checkBoxUnlistVSSolution.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.checkBoxUnlistVSSolution.Name = "checkBoxUnlistVSSolution";
       this.checkBoxUnlistVSSolution.Size = new System.Drawing.Size(543, 24);
@@ -569,7 +571,7 @@
       // textBoxUnlistOldSolution
       // 
       this.textBoxUnlistOldSolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBoxUnlistOldSolution.Location = new System.Drawing.Point(679, 201);
+      this.textBoxUnlistOldSolution.Location = new System.Drawing.Point(748, 247);
       this.textBoxUnlistOldSolution.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.textBoxUnlistOldSolution.Name = "textBoxUnlistOldSolution";
       this.textBoxUnlistOldSolution.Size = new System.Drawing.Size(465, 26);
@@ -581,7 +583,7 @@
       // 
       this.checkBoxCaseSensitive.AutoSize = true;
       this.checkBoxCaseSensitive.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBoxCaseSensitive.Location = new System.Drawing.Point(1150, 201);
+      this.checkBoxCaseSensitive.Location = new System.Drawing.Point(1219, 247);
       this.checkBoxCaseSensitive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.checkBoxCaseSensitive.Name = "checkBoxCaseSensitive";
       this.checkBoxCaseSensitive.Size = new System.Drawing.Size(141, 24);
@@ -592,10 +594,10 @@
       // buttonClearAll
       // 
       this.buttonClearAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonClearAll.Location = new System.Drawing.Point(35, 340);
+      this.buttonClearAll.Location = new System.Drawing.Point(35, 386);
       this.buttonClearAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonClearAll.Name = "buttonClearAll";
-      this.buttonClearAll.Size = new System.Drawing.Size(174, 32);
+      this.buttonClearAll.Size = new System.Drawing.Size(161, 32);
       this.buttonClearAll.TabIndex = 22;
       this.buttonClearAll.Text = "Uncheck all";
       this.buttonClearAll.UseVisualStyleBackColor = true;
@@ -604,20 +606,48 @@
       // buttonCheckAll
       // 
       this.buttonCheckAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.buttonCheckAll.Location = new System.Drawing.Point(224, 340);
+      this.buttonCheckAll.Location = new System.Drawing.Point(224, 386);
       this.buttonCheckAll.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonCheckAll.Name = "buttonCheckAll";
-      this.buttonCheckAll.Size = new System.Drawing.Size(174, 32);
+      this.buttonCheckAll.Size = new System.Drawing.Size(146, 32);
       this.buttonCheckAll.TabIndex = 23;
       this.buttonCheckAll.Text = "Check all";
       this.buttonCheckAll.UseVisualStyleBackColor = true;
       this.buttonCheckAll.Click += new System.EventHandler(this.buttonCheckAll_Click);
       // 
+      // checkBoxGitInPath
+      // 
+      this.checkBoxGitInPath.AutoSize = true;
+      this.checkBoxGitInPath.Enabled = false;
+      this.checkBoxGitInPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.checkBoxGitInPath.ForeColor = System.Drawing.SystemColors.ControlText;
+      this.checkBoxGitInPath.Location = new System.Drawing.Point(33, 122);
+      this.checkBoxGitInPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.checkBoxGitInPath.Name = "checkBoxGitInPath";
+      this.checkBoxGitInPath.Size = new System.Drawing.Size(416, 24);
+      this.checkBoxGitInPath.TabIndex = 24;
+      this.checkBoxGitInPath.Text = "GitBash binary path in Windows Path variable";
+      this.checkBoxGitInPath.UseVisualStyleBackColor = true;
+      // 
+      // buttonAddGitBinaryToWinPath
+      // 
+      this.buttonAddGitBinaryToWinPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.buttonAddGitBinaryToWinPath.Location = new System.Drawing.Point(697, 117);
+      this.buttonAddGitBinaryToWinPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.buttonAddGitBinaryToWinPath.Name = "buttonAddGitBinaryToWinPath";
+      this.buttonAddGitBinaryToWinPath.Size = new System.Drawing.Size(316, 32);
+      this.buttonAddGitBinaryToWinPath.TabIndex = 25;
+      this.buttonAddGitBinaryToWinPath.Text = "Add GitBash binary to Windows Path";
+      this.buttonAddGitBinaryToWinPath.UseVisualStyleBackColor = true;
+      this.buttonAddGitBinaryToWinPath.Click += new System.EventHandler(this.buttonAddGitBinaryToWinPath_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1576, 534);
+      this.ClientSize = new System.Drawing.Size(1576, 652);
+      this.Controls.Add(this.buttonAddGitBinaryToWinPath);
+      this.Controls.Add(this.checkBoxGitInPath);
       this.Controls.Add(this.buttonCheckAll);
       this.Controls.Add(this.buttonClearAll);
       this.Controls.Add(this.checkBoxCaseSensitive);
@@ -712,5 +742,7 @@
     private System.Windows.Forms.CheckBox checkBoxCaseSensitive;
     private System.Windows.Forms.Button buttonClearAll;
     private System.Windows.Forms.Button buttonCheckAll;
+    private System.Windows.Forms.CheckBox checkBoxGitInPath;
+    private System.Windows.Forms.Button buttonAddGitBinaryToWinPath;
   }
 }

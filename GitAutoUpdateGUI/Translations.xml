@@ -425,9 +425,9 @@
       <frenchValue>Processus terminé</frenchValue>
     </term>
     <term>
-      <name>Unlist Visual Studio Solution having the terms separated with a comma</name>
-      <englishValue>Unlist Visual Studio Solution having the terms separated with a comma</englishValue>
-      <frenchValue>Supprimer les solutions Visual Studio ayant les mots séparés par une virgule</frenchValue>
+      <name>Unlist Visual Studio Solution having the following terms separated with a comma</name>
+      <englishValue>Unlist Visual Studio Solution having the following terms separated with a comma</englishValue>
+      <frenchValue>Supprimer les solutions Visual Studio ayant les mots suivants séparés par une virgule</frenchValue>
     </term>
     <term>
       <name>Case sensitive</name>
@@ -464,6 +464,131 @@
       <englishValue>Check all</englishValue>
       <frenchValue>Sélectionne tout</frenchValue>
     </term>
+    <term>
+      <name>GitBash binary path in Windows Path variable</name>
+      <englishValue>GitBash binary path is in the Windows Path variable</englishValue>
+      <frenchValue>Le chemin des binaires de GitBash est dans la variable Path de Windows</frenchValue>
+    </term>
+    <term>
+      <name>GitBash binary path not in Windows Path variable</name>
+      <englishValue>GitBash binary path is not in the Windows Path variable</englishValue>
+      <frenchValue>Le chemin des binaires de GitBash n'est pas dans la variable Path de Windows</frenchValue>
+    </term>
+    <term>
+      <name>error</name>
+      <englishValue>error</englishValue>
+      <frenchValue>erreur</frenchValue>
+    </term>
+    <term>
+      <name>There was a security error</name>
+      <englishValue>There was a security error</englishValue>
+      <frenchValue>Il y a eu une erreur de sécurité</frenchValue>
+    </term>
+    <term>
+      <name>probably lack of rights</name>
+      <englishValue>probably lack of rights</englishValue>
+      <frenchValue>probablement un manque de droits</frenchValue>
+    </term>
+    <term>
+      <name>There was an error</name>
+      <englishValue>There was an error</englishValue>
+      <frenchValue>Il y a eu une erreur</frenchValue>
+    </term>
+    <term>
+      <name>The following path</name>
+      <englishValue>The following path</englishValue>
+      <frenchValue>Le chemin suivant</frenchValue>
+    </term>
+    <term>
+      <name>has been added to the Windows Path variable</name>
+      <englishValue>has been added to the Windows Path variable</englishValue>
+      <frenchValue>a été ajouté à la variable Path de Windows</frenchValue>
+    </term>
+     <term>
+      <name>has not been added to the Windows Path variable</name>
+      <englishValue>has not been added to the Windows Path variable</englishValue>
+      <frenchValue>n'a pas été ajouté à la variable Path de Windows</frenchValue>
+    </term>
+    <term>
+      <name>YOU HAVE TO REBOOT YOUR PC FOR THE VARIABLE TO BE TAKEN INTO EFFECT</name>
+      <englishValue>YOU HAVE TO REBOOT YOUR PC FOR THE VARIABLE TO BE TAKEN INTO EFFECT</englishValue>
+      <frenchValue>VOUS DEVEZ REBOOTER VOTRE PC AFIN QUE LA VARIABLE SOIT PRISE EN COMPTE</frenchValue>
+    </term>
+    <term>
+      <name>Path added</name>
+      <englishValue>Path added</englishValue>
+      <frenchValue>Chemin ajouté</frenchValue>
+    </term>
+    <term>
+      <name>Check with the developer</name>
+      <englishValue>Check with the developer</englishValue>
+      <frenchValue>Contacter le développeur</frenchValue>
+    </term>
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
+    <!--<term>
+      <name></name>
+      <englishValue></englishValue>
+      <frenchValue></frenchValue>
+    </term>-->
     <!--<term>
       <name></name>
       <englishValue></englishValue>
