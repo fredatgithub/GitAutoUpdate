@@ -44,10 +44,6 @@ namespace GitAutoUpdateGUI
 
     readonly Dictionary<string, string> _languageDicoEn = new Dictionary<string, string>();
     readonly Dictionary<string, string> _languageDicoFr = new Dictionary<string, string>();
-    private const string OneSpace = " ";
-    //private const string Punctuation.Period = ".";
-    private const string Backslash = "\\";
-    private static readonly string Crlf = Environment.NewLine;
     private string _currentLanguage = "english";
 
     private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -619,9 +615,9 @@ namespace GitAutoUpdateGUI
       if (tb != ActiveControl) return;
       if (tb.Text == string.Empty)
       {
-        DisplayMessageOk(Translate("ThereIs") + OneSpace +
-          Translate(errorMessage) + OneSpace +
-          Translate("ToCut") + OneSpace, Translate(errorMessage),
+        DisplayMessageOk(Translate("ThereIs") + Punctuation.OneSpace +
+          Translate(errorMessage) + Punctuation.OneSpace +
+          Translate("ToCut") + Punctuation.OneSpace, Translate(errorMessage),
           MessageBoxButtons.OK);
         return;
       }
@@ -642,7 +638,7 @@ namespace GitAutoUpdateGUI
       if (tb != ActiveControl) return;
       if (tb.Text == string.Empty)
       {
-        DisplayMessageOk(Translate("ThereIsNothingToCopy") + OneSpace,
+        DisplayMessageOk(Translate("ThereIsNothingToCopy") + Punctuation.OneSpace,
           Translate(message), MessageBoxButtons.OK);
         return;
       }
@@ -738,7 +734,7 @@ namespace GitAutoUpdateGUI
       if (listViewVSProjects.Items.Count == 0)
       {
         DisplayMessageOk(Translate("The list doesn't have any Visual Studio project to update") +
-          Punctuation.Period + Crlf + Translate("Enter a correct path and search project again"),
+          Punctuation.Period + Punctuation.CrLf + Translate("Enter a correct path and search project again"),
           Translate("List empty"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The list doesn't have any Visual Studio project to update"));
         return;
@@ -748,7 +744,7 @@ namespace GitAutoUpdateGUI
       if (selectedProjects.Count == 0)
       {
         DisplayMessageOk(Translate("No project has been selected") +
-          Punctuation.Period + Crlf + Translate("Select at least one project"),
+          Punctuation.Period + Punctuation.CrLf + Translate("Select at least one project"),
           Translate("No selection"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("No project has been selected"));
         return;
@@ -783,7 +779,7 @@ namespace GitAutoUpdateGUI
       {
         var projectName = selectedProj.Text;
         AddGitPullToScript(updateScript, projectName);
-        Logger.Add(textBoxLog, Translate("Adding the selected project") + OneSpace + projectName);
+        Logger.Add(textBoxLog, Translate("Adding the selected project") + Punctuation.OneSpace + projectName);
       }
 
       AddPauseToFile(updateScript);
@@ -888,7 +884,7 @@ namespace GitAutoUpdateGUI
 
     private static string AddAtTheEndOfFileName(string fileName, string textToBeAdded)
     {
-      string result = GetDirectoryFileNameAndExtension(fileName)[0] + Backslash
+      string result = GetDirectoryFileNameAndExtension(fileName)[0] + Punctuation.Backslash
                                  + GetDirectoryFileNameAndExtension(fileName)[1]
                                  + textToBeAdded
                                  + GetDirectoryFileNameAndExtension(fileName)[2];
@@ -902,7 +898,7 @@ namespace GitAutoUpdateGUI
       if (textBoxVSProjectPath.Text == string.Empty)
       {
         DisplayMessageOk(Translate("The Visual Studio project directory path is empty") +
-          Punctuation.Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Punctuation.CrLf + Translate("Enter a correct path"),
           Translate("Directory empty"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The Visual Studio project directory path is empty"));
         return;
@@ -911,7 +907,7 @@ namespace GitAutoUpdateGUI
       if (!Directory.Exists(textBoxVSProjectPath.Text))
       {
         DisplayMessageOk(Translate("The Visual Studio project directory path doesn't exist") +
-          Punctuation.Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Punctuation.CrLf + Translate("Enter a correct path"),
           Translate("Wrong Directory"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The Visual Studio project directory path doesn't exist"));
         return;
@@ -920,7 +916,7 @@ namespace GitAutoUpdateGUI
       if (!Directory.EnumerateDirectories(textBoxVSProjectPath.Text).Any())
       {
         DisplayMessageOk(Translate("The Visual Studio project directory is empty") +
-          Punctuation.Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Punctuation.CrLf + Translate("Enter a correct path"),
           Translate("Directory empty"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The Visual Studio project directory is empty"));
         return;
@@ -930,7 +926,7 @@ namespace GitAutoUpdateGUI
       if (textBoxGitBashBinariesPath.Text == string.Empty)
       {
         DisplayMessageOk(Translate("The GitBash directory path is empty") +
-          Punctuation.Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Punctuation.CrLf + Translate("Enter a correct path"),
           Translate("Directory empty"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The GitBash directory path is empty"));
         return;
@@ -939,7 +935,7 @@ namespace GitAutoUpdateGUI
       if (!File.Exists(textBoxGitBashBinariesPath.Text))
       {
         DisplayMessageOk(Translate("The executable GitBash directory path doesn't exist") +
-          Punctuation.Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Punctuation.CrLf + Translate("Enter a correct path"),
           Translate("Wrong Directory"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The executable GitBash directory path doesn't exist"));
         return;
@@ -1010,8 +1006,8 @@ namespace GitAutoUpdateGUI
         }
       }
 
-      Logger.Add(textBoxLog, projectCount + OneSpace + Translate("project") + Plural(projectCount) +
-        OneSpace + Translate(Plural(projectCount, "has")) + OneSpace +
+      Logger.Add(textBoxLog, projectCount + Punctuation.OneSpace + Translate("project") + Plural(projectCount) +
+        Punctuation.OneSpace + Translate(Plural(projectCount, "has")) + Punctuation.OneSpace +
         Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
       buttonUpdateVSProjects.Enabled = true;
     }
@@ -1328,7 +1324,7 @@ namespace GitAutoUpdateGUI
       Application.DoEvents();
 
       DisplayMessageOk(Translate("The process may take several minutes or several hours depending on the number of folder inside my document directory") +
-        Crlf + Translate("A window will pop up at the end of the process"),
+        Punctuation.CrLf + Translate("A window will pop up at the end of the process"),
         Translate("Lenghty process"), MessageBoxButtons.OK);
       string mydoc = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
       IEnumerable<string> listOfDir = GetAllDirectories(mydoc, ".git", SearchOption.AllDirectories);
@@ -1367,14 +1363,14 @@ namespace GitAutoUpdateGUI
         projectCount++;
       }
 
-      Logger.Add(textBoxLog, projectCount + OneSpace + Translate("project") + Plural(projectCount) +
-        OneSpace + Translate(Plural(projectCount, "has")) + OneSpace +
+      Logger.Add(textBoxLog, projectCount + Punctuation.OneSpace + Translate("project") + Plural(projectCount) +
+        Punctuation.OneSpace + Translate(Plural(projectCount, "has")) + Punctuation.OneSpace +
         Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
       buttonUpdateVSProjects.Enabled = true;
       chrono.Stop();
       TimeSpan ts = chrono.Elapsed;
-      DisplayMessageOk(Translate("The process is over") + Crlf +
-        Translate("It took") + OneSpace + DisplayElapseTime(ts),
+      DisplayMessageOk(Translate("The process is over") + Punctuation.CrLf +
+        Translate("It took") + Punctuation.OneSpace + DisplayElapseTime(ts),
         Translate("Process over"), MessageBoxButtons.OK);
     }
 
@@ -1541,7 +1537,7 @@ namespace GitAutoUpdateGUI
       if (textBoxGitBashBinariesPath.Text == string.Empty)
       {
         DisplayMessageOk(Translate("The GitBash directory path is empty") +
-          Punctuation.Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Punctuation.CrLf + Translate("Enter a correct path"),
           Translate("Directory empty"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The GitBash directory path is empty"));
         return;
@@ -1550,7 +1546,7 @@ namespace GitAutoUpdateGUI
       if (!File.Exists(textBoxGitBashBinariesPath.Text))
       {
         DisplayMessageOk(Translate("The executable GitBash directory path doesn't exist") +
-          Punctuation.Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Punctuation.CrLf + Translate("Enter a correct path"),
           Translate("Wrong Directory"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The executable GitBash directory path doesn't exist"));
         return;
