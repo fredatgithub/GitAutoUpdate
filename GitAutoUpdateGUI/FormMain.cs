@@ -123,7 +123,6 @@ namespace GitAutoUpdateGUI
     private void LoadComboBoxVsVersions(ComboBox cb)
     {
       ClearComboBox(cb);
-      // read XML file
       if (!File.Exists(Settings.Default.VisualStudioVersionsFileName))
       {
         CreateVsVersionFile();

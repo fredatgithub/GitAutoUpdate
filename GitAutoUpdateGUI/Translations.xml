@@ -332,7 +332,7 @@
     <term>
       <name>Toggle items</name>
       <englishValue>Toggle items</englishValue>
-      <frenchValue>Tout Cocher/Décocher</frenchValue>
+      <frenchValue>Inverse tout</frenchValue>
     </term>
     <term>
       <name>The path to GitBash does not match its installation</name>
