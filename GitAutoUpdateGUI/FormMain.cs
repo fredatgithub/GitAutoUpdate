@@ -45,7 +45,7 @@ namespace GitAutoUpdateGUI
     readonly Dictionary<string, string> _languageDicoEn = new Dictionary<string, string>();
     readonly Dictionary<string, string> _languageDicoFr = new Dictionary<string, string>();
     private const string OneSpace = " ";
-    private const string Period = ".";
+    //private const string Punctuation.Period = ".";
     private const string Backslash = "\\";
     private static readonly string Crlf = Environment.NewLine;
     private string _currentLanguage = "english";
@@ -95,7 +95,7 @@ namespace GitAutoUpdateGUI
         checkBoxGitInPath.Text = Translate("GitBash binary path in Windows Path variable");
         checkBoxGitInPath.BackColor = Color.LightGreen;
 #if Debug
-        buttonAddGitBinaryToWinPath.Enabled = true;
+        // buttonAddGitBinaryToWinPath.Enabled = true;
 #else
         buttonAddGitBinaryToWinPath.Enabled = false;
 #endif
@@ -441,7 +441,7 @@ namespace GitAutoUpdateGUI
       AdjustControls(buttonClearAll, buttonCheckAll, buttonCheckUncheckAll, labelSelectVSProjects);
     }
 
-    private static void AdjustControls(params Control[] listOfControls )
+    private static void AdjustControls(params Control[] listOfControls)
     {
       if (listOfControls.Length == 0)
       {
@@ -738,7 +738,7 @@ namespace GitAutoUpdateGUI
       if (listViewVSProjects.Items.Count == 0)
       {
         DisplayMessageOk(Translate("The list doesn't have any Visual Studio project to update") +
-          Period + Crlf + Translate("Enter a correct path and search project again"),
+          Punctuation.Period + Crlf + Translate("Enter a correct path and search project again"),
           Translate("List empty"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The list doesn't have any Visual Studio project to update"));
         return;
@@ -748,7 +748,7 @@ namespace GitAutoUpdateGUI
       if (selectedProjects.Count == 0)
       {
         DisplayMessageOk(Translate("No project has been selected") +
-          Period + Crlf + Translate("Select at least one project"),
+          Punctuation.Period + Crlf + Translate("Select at least one project"),
           Translate("No selection"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("No project has been selected"));
         return;
@@ -902,7 +902,7 @@ namespace GitAutoUpdateGUI
       if (textBoxVSProjectPath.Text == string.Empty)
       {
         DisplayMessageOk(Translate("The Visual Studio project directory path is empty") +
-          Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Crlf + Translate("Enter a correct path"),
           Translate("Directory empty"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The Visual Studio project directory path is empty"));
         return;
@@ -911,7 +911,7 @@ namespace GitAutoUpdateGUI
       if (!Directory.Exists(textBoxVSProjectPath.Text))
       {
         DisplayMessageOk(Translate("The Visual Studio project directory path doesn't exist") +
-          Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Crlf + Translate("Enter a correct path"),
           Translate("Wrong Directory"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The Visual Studio project directory path doesn't exist"));
         return;
@@ -920,7 +920,7 @@ namespace GitAutoUpdateGUI
       if (!Directory.EnumerateDirectories(textBoxVSProjectPath.Text).Any())
       {
         DisplayMessageOk(Translate("The Visual Studio project directory is empty") +
-          Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Crlf + Translate("Enter a correct path"),
           Translate("Directory empty"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The Visual Studio project directory is empty"));
         return;
@@ -930,7 +930,7 @@ namespace GitAutoUpdateGUI
       if (textBoxGitBashBinariesPath.Text == string.Empty)
       {
         DisplayMessageOk(Translate("The GitBash directory path is empty") +
-          Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Crlf + Translate("Enter a correct path"),
           Translate("Directory empty"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The GitBash directory path is empty"));
         return;
@@ -939,7 +939,7 @@ namespace GitAutoUpdateGUI
       if (!File.Exists(textBoxGitBashBinariesPath.Text))
       {
         DisplayMessageOk(Translate("The executable GitBash directory path doesn't exist") +
-          Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Crlf + Translate("Enter a correct path"),
           Translate("Wrong Directory"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The executable GitBash directory path doesn't exist"));
         return;
@@ -1203,7 +1203,58 @@ namespace GitAutoUpdateGUI
 
     private void textBoxVSProjectPath_TextChanged(object sender, EventArgs e)
     {
+      TurnGreenOrRed(textBoxVSProjectPath.Text, ObjectType.Directory, labelChooseVSVersion, labelPickDirectory);
       buttonUpdateVSProjects.Enabled = false;
+    }
+
+    public enum ObjectType
+    {
+      File,
+      Directory
+    }
+
+    private static void TurnGreenOrRed(string fileName, ObjectType objectType = ObjectType.Directory, params Control[] listOfControls)
+    {
+      if (objectType == ObjectType.Directory)
+      {
+        if (Directory.Exists(fileName))
+        {
+          foreach (var control in listOfControls)
+          {
+            control.BackColor = Color.LightGreen;
+          }
+        }
+        else
+        {
+          foreach (var control in listOfControls)
+          {
+            control.BackColor = Color.Red;
+          }
+        }
+
+        return;
+      }
+
+      if (objectType == ObjectType.File)
+      {
+        if (File.Exists(fileName))
+        {
+          foreach (var control in listOfControls)
+          {
+            control.BackColor = Color.LightGreen;
+          }
+        }
+        else
+        {
+          foreach (var control in listOfControls)
+          {
+            control.BackColor = Color.Red;
+          }
+        }
+
+        return;
+      }
+      // any other object type
     }
 
     private void buttonCheckUncheckAll_Click(object sender, EventArgs e)
@@ -1431,8 +1482,7 @@ namespace GitAutoUpdateGUI
 
       foreach (DriveInfo drive in DriveInfo.GetDrives().Where(drive => drive.DriveType != DriveType.CDRom))
       {
-        var dirs = from dir in drive.RootDirectory.EnumerateDirectories()
-                   select new { ProgDir = dir };
+        var dirs = from dir in drive.RootDirectory.EnumerateDirectories() select new { ProgDir = dir };
         foreach (var di in dirs)
         {
           try
@@ -1491,7 +1541,7 @@ namespace GitAutoUpdateGUI
       if (textBoxGitBashBinariesPath.Text == string.Empty)
       {
         DisplayMessageOk(Translate("The GitBash directory path is empty") +
-          Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Crlf + Translate("Enter a correct path"),
           Translate("Directory empty"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The GitBash directory path is empty"));
         return;
@@ -1500,7 +1550,7 @@ namespace GitAutoUpdateGUI
       if (!File.Exists(textBoxGitBashBinariesPath.Text))
       {
         DisplayMessageOk(Translate("The executable GitBash directory path doesn't exist") +
-          Period + Crlf + Translate("Enter a correct path"),
+          Punctuation.Period + Crlf + Translate("Enter a correct path"),
           Translate("Wrong Directory"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The executable GitBash directory path doesn't exist"));
         return;
@@ -1550,6 +1600,11 @@ namespace GitAutoUpdateGUI
         Logger.Add(textBoxLog, message);
         DisplayMessageOk(message, Translate("Error"), MessageBoxButtons.OK);
       }
+    }
+
+    private void checkBoxGitInPath_CheckedChanged(object sender, EventArgs e)
+    {
+      buttonAddGitBinaryToWinPath.Enabled = !checkBoxGitInPath.Checked;
     }
   }
 }
