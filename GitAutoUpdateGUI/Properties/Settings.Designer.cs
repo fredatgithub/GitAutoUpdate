@@ -214,5 +214,17 @@ namespace GitAutoUpdateGUI.Properties {
                 this["checkBoxGitInPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public float _fontSize {
+            get {
+                return ((float)(this["_fontSize"]));
+            }
+            set {
+                this["_fontSize"] = value;
+            }
+        }
     }
 }

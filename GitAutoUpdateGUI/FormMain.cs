@@ -45,6 +45,7 @@ namespace GitAutoUpdateGUI
     readonly Dictionary<string, string> _languageDicoEn = new Dictionary<string, string>();
     readonly Dictionary<string, string> _languageDicoFr = new Dictionary<string, string>();
     private string _currentLanguage = "english";
+    private float _fontSize;
 
     private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -386,6 +387,7 @@ namespace GitAutoUpdateGUI
       textBoxUnlistOldSolution.Text = Settings.Default.textBoxUnlistOldSolution;
       checkBoxCaseSensitive.Checked = Settings.Default.checkBoxCaseSensitive;
       checkBoxGitInPath.Checked = Settings.Default.checkBoxGitInPath;
+      _fontSize = Settings.Default._fontSize;
     }
 
     private void SaveWindowValue()
@@ -404,6 +406,7 @@ namespace GitAutoUpdateGUI
       Settings.Default.textBoxUnlistOldSolution = textBoxUnlistOldSolution.Text;
       Settings.Default.checkBoxCaseSensitive = checkBoxCaseSensitive.Checked;
       Settings.Default.checkBoxGitInPath = checkBoxGitInPath.Checked;
+      Settings.Default._fontSize = _fontSize;
       Settings.Default.Save();
     }
 
@@ -436,7 +439,7 @@ namespace GitAutoUpdateGUI
       AdjustControls(buttonClearAll, buttonCheckAll, buttonCheckUncheckAll, labelSelectVSProjects);
     }
 
-    private static void AdjustControls(params Control[] listOfControls)
+    private void AdjustControls(params Control[] listOfControls)
     {
       if (listOfControls.Length == 0)
       {
@@ -449,12 +452,14 @@ namespace GitAutoUpdateGUI
       {
         if (isFirstControl)
         {
+          //control.Font = new Font(new FontFamily("Verdana"), _fontSize);
           isFirstControl = false;
         }
         else
         {
-          control.Left = position + 10;
-          position += control.Width;
+          control.Left = position + 25;
+          position += control.Width + 10;
+          //control.Font = new Font(new FontFamily("Verdana"), _fontSize);
         }
       }
     }
