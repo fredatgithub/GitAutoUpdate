@@ -529,21 +529,21 @@
       <englishValue>Create git clone backup script for gitted Visual Studio Solutions</englishValue>
       <frenchValue>Création du script de backup pour faire un git clone pour les solutions Visual Studio avec Git</frenchValue>
     </term>
-    <!--<term>
-      <name></name>
-      <englishValue></englishValue>
-      <frenchValue></frenchValue>
-    </term>-->
-    <!--<term>
-      <name></name>
-      <englishValue></englishValue>
-      <frenchValue></frenchValue>
-    </term>-->
-    <!--<term>
-      <name></name>
-      <englishValue></englishValue>
-      <frenchValue></frenchValue>
-    </term>-->
+    <term>
+      <name>Listing Visual Studio solutions with Git</name>
+      <englishValue>Listing Visual Studio solutions with Git</englishValue>
+      <frenchValue>Listing des solutions Visual Studio avec Git</frenchValue>
+    </term>
+    <term>
+      <name>View backup script file</name>
+      <englishValue>View backup script file</englishValue>
+      <frenchValue>Afficher le fichier de script de backup</frenchValue>
+    </term>
+    <term>
+      <name>Would you like to view the backup script file</name>
+      <englishValue>Would you like to view the backup script file</englishValue>
+      <frenchValue>Voulez-vous afficher le fichier script de backup</frenchValue>
+    </term>
     <!--<term>
       <name></name>
       <englishValue></englishValue>

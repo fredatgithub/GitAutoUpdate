@@ -868,6 +868,35 @@ namespace GitAutoUpdateGUI
       sw.Close();
     }
 
+    private void AddBeginningOfBackupScript(string fileName)
+    {
+      const bool append = true;
+      /*
+      set VisualStudioVersion=2012
+      set VisualStudioName=Visual Studio %VisualStudioVersion%
+      cd \
+      cd %userprofile%
+      cd "Documents"
+      cd %VisualStudioName%
+      cd "Projects"
+      */
+      string visualStudioName = "Visual Studio " + comboBoxVSVersion.SelectedItem;
+      string userprofile = Environment.GetEnvironmentVariable("userprofile");
+      var sw = new StreamWriter(fileName, append);
+      sw.WriteLine("REM Batch script generated automatically by GitAutoUpdateGui");
+      sw.WriteLine("REM Source and executable can be found at");
+      sw.WriteLine("REM https://github.com/fredatgithub/GitAutoUpdate");
+      sw.WriteLine("REM created by Freddy Juhel on the 18th of September 2015");
+      sw.WriteLine("REM If you have any error, check that GitBash is installed");
+      sw.WriteLine("REM then add C:\\Program Files\\Git\\bin to the environment PATH variable and reboot you PC");
+      sw.WriteLine("cd \\");
+      sw.WriteLine("Cd " + userprofile);
+      sw.WriteLine("Cd Documents");
+      sw.WriteLine("Cd " + visualStudioName);
+      sw.WriteLine("Cd Projects");
+      sw.Close();
+    }
+
     private static void CreateNewFile(string fileName)
     {
       const bool doNotAppend = false;
@@ -961,7 +990,7 @@ namespace GitAutoUpdateGUI
 
       if (checkBoxUnlistVSSolution.Checked && textBoxUnlistOldSolution.Text != string.Empty)
       {
-        int numberOfBadWords = textBoxUnlistOldSolution.Text.Split(',').Count();
+        int numberOfBadWords = textBoxUnlistOldSolution.Text.Split(',').Length;
         Logger.Add(textBoxLog, Translate("Removing Visual Studio Solution having") +
           Punctuation.OneSpace + Translate("the") +
           FrenchPlural(numberOfBadWords, _currentLanguage) +
@@ -1618,6 +1647,88 @@ namespace GitAutoUpdateGUI
     {
       //TODO
       // algo : chercher tous les solutions VS gitted and create a bat script to git clone them
+      // ideally for every Visual Studio */projects directory get gitted VS solutions
+      if (listViewVSProjects.Items.Count == 0)
+      {
+        DisplayMessageOk(Translate("The list doesn't have any Visual Studio project to update") +
+          Punctuation.Period + Punctuation.CrLf + Translate("Enter a correct path and search project again"),
+          Translate("List empty"), MessageBoxButtons.OK);
+        Logger.Add(textBoxLog, Translate("The list doesn't have any Visual Studio project to update"));
+        return;
+      }
+
+      Logger.Add(textBoxLog, Translate("Listing Visual Studio solutions with Git"));
+      if (checkBoxOnlyGenerateScriptFile.Checked)
+      {
+        Logger.Add(textBoxLog, Translate("Creating the GitCloneBackup.bat script"));
+      }
+
+      string backupScript = Path.Combine(textBoxVSProjectPath.Text, "GitCloneBackup.bat");
+      backupScript = GenerateUniqueFileName(backupScript);
+      CreateNewFile(backupScript);
+      AddBeginningOfBackupScript(backupScript);
+
+      int projectCount = 0;
+      foreach (var directory in Directory.EnumerateDirectories(textBoxVSProjectPath.Text))
+      {
+        var filteredFiles = Directory.GetFiles(directory, "*.sln").ToList();
+        foreach (var solutionName in filteredFiles)
+        {
+          var tmpSolPath = GetDirectoryFileNameAndExtension(solutionName)[0];
+          var tmpSolNameOnly0 = GetDirectoryFileNameAndExtension(solutionName)[0];
+          var tmpSolNameOnly = tmpSolNameOnly0.Substring(tmpSolNameOnly0.LastIndexOf('\\') + 1);
+
+          var subfilteredDirs = Directory.EnumerateDirectories(tmpSolPath, "*.git").ToList();
+          if (subfilteredDirs.Count != 0)
+          {
+            //removing unwanted solution (having words such as old or bad)
+            if (!checkBoxUnlistVSSolution.Checked ||
+              textBoxUnlistOldSolution.Text == string.Empty ||
+              (checkBoxUnlistVSSolution.Checked &&
+              NotHavingWords(tmpSolNameOnly, textBoxUnlistOldSolution.Text.Split(','),
+              checkBoxCaseSensitive.Checked)))
+            {
+              // add each solution to script file
+              ListViewItem item1 = new ListViewItem(tmpSolNameOnly) { Checked = false };
+              item1.SubItems.Add(tmpSolNameOnly);
+              item1.SubItems.Add(tmpSolPath);
+              if (!IsInlistView(listViewVSProjects, item1, 2))
+              {
+                listViewVSProjects.Items.Add(item1);
+                projectCount++;
+                Application.DoEvents();
+              }
+            }
+          }
+        }
+      }
+
+      //var selectedProjects = listViewVSProjects.CheckedItems;
+      //foreach (ListViewItem selectedProj in selectedProjects)
+      //{
+      //  var projectName = selectedProj.Text;
+      //  AddGitPullToScript(backupScript, projectName);
+      //  Logger.Add(textBoxLog, Translate("Adding the gitted project") + Punctuation.OneSpace + projectName);
+      //}
+
+      AddPauseToFile(backupScript);
+
+      if (DisplayMessage(Translate("Would you like to view the backup script file"),
+        Translate("View backup script file"), MessageBoxButtons.YesNo) == DialogResult.Yes)
+      {
+        Process task = new Process
+        {
+          StartInfo =
+          {
+            UseShellExecute = true,
+            FileName = "Notepad.exe",
+            Arguments = backupScript,
+            CreateNoWindow = false
+          }
+        };
+
+        task.Start();
+      }
     }
   }
 }
