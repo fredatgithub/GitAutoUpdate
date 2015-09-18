@@ -772,7 +772,6 @@ namespace GitAutoUpdateGUI
       }
 
       string updateScript = Path.Combine(textBoxVSProjectPath.Text, "update.bat");
-      // check if updateScript doesn't already exist, if so, increment the name
       updateScript = GenerateUniqueFileName(updateScript);
       CreateNewFile(updateScript);
       AddBeginningOfScript(updateScript);
@@ -828,7 +827,7 @@ namespace GitAutoUpdateGUI
     private void AddPauseToFile(string fileName)
     {
       const bool append = true;
-      StreamWriter sw = new StreamWriter(fileName, append);
+      var sw = new StreamWriter(fileName, append);
       sw.WriteLine("REM " + Translate("Press a key to exit"));
       sw.WriteLine("pause");
       sw.Close();
@@ -837,7 +836,7 @@ namespace GitAutoUpdateGUI
     private static void AddGitPullToScript(string fileName, string directoryName)
     {
       const bool append = true;
-      StreamWriter sw = new StreamWriter(fileName, append);
+      var sw = new StreamWriter(fileName, append);
       sw.WriteLine("cd \"" + directoryName + "\"");
       sw.WriteLine("git pull origin master");
       sw.WriteLine("cd ..");
@@ -847,7 +846,7 @@ namespace GitAutoUpdateGUI
     private void AddBeginningOfScript(string fileName)
     {
       const bool append = true;
-      StreamWriter sw = new StreamWriter(fileName, append);
+      var sw = new StreamWriter(fileName, append);
       sw.WriteLine("REM Batch script generated automatically by GitAutoUpdateGui");
       sw.WriteLine("REM Source and executable can be found at");
       sw.WriteLine("REM https://github.com/fredatgithub/GitAutoUpdate");
