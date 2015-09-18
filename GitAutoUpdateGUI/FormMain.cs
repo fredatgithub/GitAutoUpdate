@@ -432,7 +432,7 @@ namespace GitAutoUpdateGUI
     private void AdjustAllControls()
     {
       AdjustControls(labelChooseVSVersion, comboBoxVSVersion, labelPickDirectory, buttonVSVersionGetPath, textBoxVSProjectPath);
-      AdjustControls(checkBoxGitInPath, buttonAddGitBinaryToWinPath);
+      AdjustControls(checkBoxGitInPath, buttonAddGitBinaryToWinPath, buttonCreateBackupScript);
       AdjustControls(checkBoxGitBashInstalled, buttonGitBashBinPath, textBoxGitBashBinariesPath);
       AdjustControls(buttonClearLogTextBox, buttonScannWholePC, buttonLoadVSProjects, buttonUpdateVSProjects, checkBoxOnlyGenerateScriptFile);
       AdjustControls(checkBoxUnlistVSSolution, textBoxUnlistOldSolution, checkBoxCaseSensitive);
@@ -512,6 +512,7 @@ namespace GitAutoUpdateGUI
           buttonCheckAll.Text = _languageDicoEn["Check all"];
           checkBoxGitBashInstalled.Text = _languageDicoEn[CheckOrUncheck(checkBoxGitBashInstalled, "GitBash installed")];
           checkBoxGitInPath.Text = _languageDicoEn[CheckOrUncheck(checkBoxGitInPath, "GitBash binary path in Windows Path variable")];
+          buttonCreateBackupScript.Text = _languageDicoEn["Create git clone backup script for gitted Visual Studio Solutions"];
           _currentLanguage = "English";
           break;
         case "French":
@@ -558,6 +559,7 @@ namespace GitAutoUpdateGUI
           buttonCheckAll.Text = _languageDicoFr["Check all"];
           checkBoxGitBashInstalled.Text = _languageDicoFr[CheckOrUncheck(checkBoxGitBashInstalled, "GitBash installed")];
           checkBoxGitInPath.Text = _languageDicoFr[CheckOrUncheck(checkBoxGitInPath, "GitBash binary path in Windows Path variable")];
+          buttonCreateBackupScript.Text = _languageDicoFr["Create git clone backup script for gitted Visual Studio Solutions"];
           _currentLanguage = "French";
           break;
       }
@@ -840,6 +842,14 @@ namespace GitAutoUpdateGUI
       sw.WriteLine("cd \"" + directoryName + "\"");
       sw.WriteLine("git pull origin master");
       sw.WriteLine("cd ..");
+      sw.Close();
+    }
+
+    private static void AddGitCloneToScript(string fileName, string gitAddress)
+    {
+      const bool append = true;
+      var sw = new StreamWriter(fileName, append);
+      sw.WriteLine("git clone " + gitAddress);
       sw.Close();
     }
 
@@ -1602,6 +1612,12 @@ namespace GitAutoUpdateGUI
     private void checkBoxGitInPath_CheckedChanged(object sender, EventArgs e)
     {
       buttonAddGitBinaryToWinPath.Enabled = !checkBoxGitInPath.Checked;
+    }
+
+    private void buttonCreateBackupScript_Click(object sender, EventArgs e)
+    {
+      //TODO
+      // algo : chercher tous les solutions VS gitted and create a bat script to git clone them
     }
   }
 }

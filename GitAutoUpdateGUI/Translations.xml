@@ -524,11 +524,11 @@
       <englishValue>Check with the developer</englishValue>
       <frenchValue>Contacter le développeur</frenchValue>
     </term>
-    <!--<term>
-      <name></name>
-      <englishValue></englishValue>
-      <frenchValue></frenchValue>
-    </term>-->
+    <term>
+      <name>Create git clone backup script for gitted Visual Studio Solutions</name>
+      <englishValue>Create git clone backup script for gitted Visual Studio Solutions</englishValue>
+      <frenchValue>Création du script de backup pour faire un git clone pour les solutions Visual Studio avec Git</frenchValue>
+    </term>
     <!--<term>
       <name></name>
       <englishValue></englishValue>
