@@ -1701,6 +1701,10 @@ namespace GitAutoUpdateGUI
             }
           }
         }
+
+        Logger.Add(textBoxLog, projectCount + Punctuation.OneSpace + Translate("project") + Plural(projectCount) +
+       Punctuation.OneSpace + Translate(Plural(projectCount, "has")) + Punctuation.OneSpace +
+       Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
       }
 
       //var selectedProjects = listViewVSProjects.CheckedItems;
