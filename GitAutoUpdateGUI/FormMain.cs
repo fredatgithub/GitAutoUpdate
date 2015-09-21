@@ -1648,21 +1648,10 @@ namespace GitAutoUpdateGUI
       //TODO
       // algo : chercher tous les solutions VS gitted and create a bat script to git clone them
       // ideally for every Visual Studio */projects directory get gitted VS solutions
-      if (listViewVSProjects.Items.Count == 0)
-      {
-        DisplayMessageOk(Translate("The list doesn't have any Visual Studio project to update") +
-          Punctuation.Period + Punctuation.CrLf + Translate("Enter a correct path and search project again"),
-          Translate("List empty"), MessageBoxButtons.OK);
-        Logger.Add(textBoxLog, Translate("The list doesn't have any Visual Studio project to update"));
-        return;
-      }
 
+      Logger.Add(textBoxLog, Translate("Creating the GitCloneBackup.bat script"));
       Logger.Add(textBoxLog, Translate("Listing Visual Studio solutions with Git"));
-      if (checkBoxOnlyGenerateScriptFile.Checked)
-      {
-        Logger.Add(textBoxLog, Translate("Creating the GitCloneBackup.bat script"));
-      }
-
+      
       string backupScript = Path.Combine(textBoxVSProjectPath.Text, "GitCloneBackup.bat");
       backupScript = GenerateUniqueFileName(backupScript);
       CreateNewFile(backupScript);
