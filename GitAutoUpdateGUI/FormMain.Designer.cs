@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-      System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -423,13 +423,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.listViewVSProjects.GridLines = true;
-      listViewGroup11.Header = "ListViewGroup";
-      listViewGroup11.Name = "listViewGroup1";
-      listViewGroup12.Header = "ListViewGroup";
-      listViewGroup12.Name = "listViewGroup2";
+      listViewGroup1.Header = "ListViewGroup";
+      listViewGroup1.Name = "listViewGroup1";
+      listViewGroup2.Header = "ListViewGroup";
+      listViewGroup2.Name = "listViewGroup2";
       this.listViewVSProjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup11,
-            listViewGroup12});
+            listViewGroup1,
+            listViewGroup2});
       this.listViewVSProjects.Location = new System.Drawing.Point(33, 434);
       this.listViewVSProjects.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.listViewVSProjects.Name = "listViewVSProjects";
@@ -571,6 +571,7 @@
       // 
       // textBoxUnlistOldSolution
       // 
+      this.textBoxUnlistOldSolution.AcceptsReturn = true;
       this.textBoxUnlistOldSolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.textBoxUnlistOldSolution.Location = new System.Drawing.Point(748, 247);
       this.textBoxUnlistOldSolution.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

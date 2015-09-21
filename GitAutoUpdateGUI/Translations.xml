@@ -504,7 +504,7 @@
       <englishValue>has been added to the Windows Path variable</englishValue>
       <frenchValue>a été ajouté à la variable Path de Windows</frenchValue>
     </term>
-     <term>
+    <term>
       <name>has not been added to the Windows Path variable</name>
       <englishValue>has not been added to the Windows Path variable</englishValue>
       <frenchValue>n'a pas été ajouté à la variable Path de Windows</frenchValue>
@@ -544,11 +544,11 @@
       <englishValue>Would you like to view the backup script file</englishValue>
       <frenchValue>Voulez-vous afficher le fichier script de backup</frenchValue>
     </term>
-    <!--<term>
-      <name></name>
-      <englishValue></englishValue>
-      <frenchValue></frenchValue>
-    </term>-->
+    <term>
+      <name>The config file doesn't exist in</name>
+      <englishValue>The config file doesn't exist in</englishValue>
+      <frenchValue>Le fichier config n'existe pas</frenchValue>
+    </term>
     <!--<term>
       <name></name>
       <englishValue></englishValue>
