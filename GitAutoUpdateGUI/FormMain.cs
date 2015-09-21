@@ -29,7 +29,6 @@ using System.Reflection;
 using System.Security;
 using System.Text;
 using System.Windows.Forms;
-using System.Xml;
 using System.Xml.Linq;
 using GitAutoUpdateGUI.Properties;
 using Tools;
@@ -83,6 +82,25 @@ namespace GitAutoUpdateGUI
       CheckGitBashBinary();
       CheckGitBashPathInWinPath();
       AdjustAllControls();
+      EnableDisableButtons(listViewVSProjects, buttonCheckAll, buttonClearAll, buttonCheckUncheckAll, buttonUpdateVSProjects);
+    }
+
+    private static void EnableDisableButtons(ListView conditionalListView, params Control[] listOfControls)
+    {
+      if (conditionalListView.Items.Count == 0)
+      {
+        foreach (var control in listOfControls)
+        {
+          control.Enabled = false;
+        }
+      }
+      else
+      {
+        foreach (var control in listOfControls)
+        {
+          control.Enabled = true;
+        }
+      }
     }
 
     private void CheckGitBashPathInWinPath()
@@ -1065,7 +1083,7 @@ namespace GitAutoUpdateGUI
       Logger.Add(textBoxLog, projectCount + Punctuation.OneSpace + Translate("project") + Plural(projectCount) +
                              Punctuation.OneSpace + Translate(Plural(projectCount, "has")) + Punctuation.OneSpace +
                              Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
-      buttonUpdateVSProjects.Enabled = true;
+      EnableDisableButtons(listViewVSProjects, buttonCheckAll, buttonClearAll, buttonCheckUncheckAll, buttonUpdateVSProjects);
     }
 
     private static bool IsInlistView(ListView listView, ListViewItem lviItem, int columnNumber)
@@ -1425,7 +1443,7 @@ namespace GitAutoUpdateGUI
       Logger.Add(textBoxLog, projectCount + Punctuation.OneSpace + Translate("project") + Plural(projectCount) +
                              Punctuation.OneSpace + Translate(Plural(projectCount, "has")) + Punctuation.OneSpace +
                              Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
-      buttonUpdateVSProjects.Enabled = true;
+      EnableDisableButtons(listViewVSProjects, buttonCheckAll, buttonClearAll, buttonCheckUncheckAll, buttonUpdateVSProjects);
       chrono.Stop();
       TimeSpan ts = chrono.Elapsed;
       DisplayMessageOk(Translate("The process is over") + Punctuation.CrLf +
@@ -1767,6 +1785,7 @@ namespace GitAutoUpdateGUI
         Logger.Add(textBoxLog, Translate("Adding the gitted project") + Punctuation.OneSpace + gitUrl);
       }
 
+      EnableDisableButtons(listViewVSProjects, buttonCheckAll, buttonClearAll, buttonCheckUncheckAll, buttonUpdateVSProjects);
       AddPauseToFile(backupScript);
 
       if (DisplayMessage(Translate("Would you like to view the backup script file"),
