@@ -549,16 +549,16 @@
       <englishValue>The config file doesn't exist in</englishValue>
       <frenchValue>Le fichier config n'existe pas</frenchValue>
     </term>
-    <!--<term>
-      <name></name>
-      <englishValue></englishValue>
-      <frenchValue></frenchValue>
-    </term>-->
-    <!--<term>
-      <name></name>
-      <englishValue></englishValue>
-      <frenchValue></frenchValue>
-    </term>-->
+    <term>
+      <name>Adding the gitted project</name>
+      <englishValue>Adding the gitted project</englishValue>
+      <frenchValue>Ajout du projet git</frenchValue>
+    </term>
+    <term>
+      <name>Creating the GitCloneBackup.bat script</name>
+      <englishValue>Creating the GitCloneBackup.bat script</englishValue>
+      <frenchValue>Création du script GitCloneBackup.bat</frenchValue>
+    </term>
     <!--<term>
       <name></name>
       <englishValue></englishValue>

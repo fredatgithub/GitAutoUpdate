@@ -1684,6 +1684,7 @@ namespace GitAutoUpdateGUI
         return;
       }
 
+      Logger.Clear(textBoxLog);
       Logger.Add(textBoxLog, Translate("Creating the GitCloneBackup.bat script"));
       Logger.Add(textBoxLog, Translate("Listing Visual Studio solutions with Git"));
       listViewVSProjects.Items.Clear();
@@ -1741,11 +1742,11 @@ namespace GitAutoUpdateGUI
             }
           }
         }
+      }
 
-        Logger.Add(textBoxLog, projectCount + Punctuation.OneSpace + Translate("project") + Plural(projectCount) +
+      Logger.Add(textBoxLog, projectCount + Punctuation.OneSpace + Translate("project") + Plural(projectCount) +
                                Punctuation.OneSpace + Translate(Plural(projectCount, "has")) + Punctuation.OneSpace +
                                Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
-      }
 
       // if no selected project has been checked, display message
       var selectedProjects = listViewVSProjects.CheckedItems;
