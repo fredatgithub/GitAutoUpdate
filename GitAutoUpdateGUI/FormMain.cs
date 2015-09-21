@@ -1691,7 +1691,20 @@ namespace GitAutoUpdateGUI
       backupScript = GenerateUniqueFileName(backupScript);
       CreateNewFile(backupScript);
       AddBeginningOfBackupScript(backupScript);
+      listViewVSProjects.Items.Clear();
 
+      listViewVSProjects.Columns.Add("To be updated", 240, HorizontalAlignment.Left);
+      listViewVSProjects.Columns.Add("Solution Name", 240, HorizontalAlignment.Left);
+      listViewVSProjects.Columns.Add("Solution Path", 640, HorizontalAlignment.Left);
+      listViewVSProjects.Columns.Add("Git URL", 640, HorizontalAlignment.Left);
+
+      listViewVSProjects.View = View.Details;
+      listViewVSProjects.LabelEdit = false;
+      listViewVSProjects.AllowColumnReorder = true;
+      listViewVSProjects.CheckBoxes = true;
+      listViewVSProjects.FullRowSelect = true;
+      listViewVSProjects.GridLines = true;
+      listViewVSProjects.Sorting = SortOrder.None;
       int projectCount = 0;
       foreach (var directory in Directory.EnumerateDirectories(textBoxVSProjectPath.Text))
       {
@@ -1718,10 +1731,12 @@ namespace GitAutoUpdateGUI
               ListViewItem item1 = new ListViewItem(tmpSolNameOnly) { Checked = true };
               item1.SubItems.Add(tmpSolNameOnly);
               item1.SubItems.Add(tmpSolPath);
-              if (!IsInlistView(listViewVSProjects, item1, 2))
+              item1.SubItems.Add(gitUrl);
+              if (!IsInlistView(listViewVSProjects, item1, 2) && gitUrl != string.Empty)
               {
                 listViewVSProjects.Items.Add(item1);
                 projectCount++;
+                Application.DoEvents();
               }
             }
           }
@@ -1745,9 +1760,10 @@ namespace GitAutoUpdateGUI
 
       foreach (ListViewItem selectedProj in selectedProjects)
       {
-        var projectName = selectedProj.Text;
-        AddGitCloneToScript(backupScript, projectName);
-        Logger.Add(textBoxLog, Translate("Adding the gitted project") + Punctuation.OneSpace + projectName);
+        var gitUrl = selectedProj.SubItems[3].Text;
+        if (gitUrl == string.Empty) continue;
+        AddGitCloneToScript(backupScript, gitUrl);
+        Logger.Add(textBoxLog, Translate("Adding the gitted project") + Punctuation.OneSpace + gitUrl);
       }
 
       AddPauseToFile(backupScript);
