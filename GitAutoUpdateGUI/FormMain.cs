@@ -692,12 +692,12 @@ namespace GitAutoUpdateGUI
         case "english":
           result = _languageDicoEn.ContainsKey(index)
             ? _languageDicoEn[index]
-            : "the term: \"" + index + "\" has not been translated yet.\nPlease tell the developer to translate this term";
+            : "the term: \"" + index + "\" has not been translated yet.\nPlease add an entry in the Translations.xml file or tell the developer to translate this term";
           break;
         case "french":
           result = _languageDicoFr.ContainsKey(index)
             ? _languageDicoFr[index]
-            : "the term: \"" + index + "\" has not been translated yet.\nPlease tell the developer to translate this term";
+            : "the term: \"" + index + "\" has not been translated yet.\nPlease add an entry in the Translations.xml file or tell the developer to translate this term";
           break;
       }
 
