@@ -470,20 +470,28 @@ namespace GitAutoUpdateGUI
 
       int position = listOfControls[0].Width + 33; // 33 is the initial padding
       bool isFirstControl = true;
+      if (_fontSize == 0.0f)
+      {
+        _fontSize = 10.0f;
+      }
+
+      //var lastControl = listOfControls[listOfControls.Length - 1];
       foreach (Control control in listOfControls)
       {
         if (isFirstControl)
         {
-          //control.Font = new Font(new FontFamily("Verdana"), _fontSize);
+          control.Font = new Font(new FontFamily("Verdana"), _fontSize);
           isFirstControl = false;
         }
         else
         {
           control.Left = position + 25;
           position += control.Width + 10;
-          //control.Font = new Font(new FontFamily("Verdana"), _fontSize);
+          control.Font = new Font(new FontFamily("Verdana"), _fontSize);
         }
       }
+
+      //lastControl.Width = Width - position; //  + lastControl.Width + 10);
     }
 
     private void SetLanguage(string myLanguage)

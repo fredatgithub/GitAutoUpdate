@@ -526,8 +526,8 @@
     </term>
     <term>
       <name>Create git clone backup script for gitted Visual Studio Solutions</name>
-      <englishValue>Create git clone backup script for gitted Visual Studio Solutions</englishValue>
-      <frenchValue>Création du script de backup pour faire un git clone pour les solutions Visual Studio avec Git</frenchValue>
+      <englishValue>Create a git clone backup script</englishValue>
+      <frenchValue>Création du script de backup pour faire des git clone</frenchValue>
     </term>
     <term>
       <name>Listing Visual Studio solutions with Git</name>

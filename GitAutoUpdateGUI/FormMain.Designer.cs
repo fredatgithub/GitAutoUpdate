@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-      System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -367,7 +367,7 @@
       this.textBoxVSProjectPath.Location = new System.Drawing.Point(848, 78);
       this.textBoxVSProjectPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.textBoxVSProjectPath.Name = "textBoxVSProjectPath";
-      this.textBoxVSProjectPath.Size = new System.Drawing.Size(704, 22);
+      this.textBoxVSProjectPath.Size = new System.Drawing.Size(678, 22);
       this.textBoxVSProjectPath.TabIndex = 3;
       this.textBoxVSProjectPath.Text = "C:\\";
       this.textBoxVSProjectPath.TextChanged += new System.EventHandler(this.textBoxVSProjectPath_TextChanged);
@@ -423,13 +423,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.listViewVSProjects.GridLines = true;
-      listViewGroup1.Header = "ListViewGroup";
-      listViewGroup1.Name = "listViewGroup1";
-      listViewGroup2.Header = "ListViewGroup";
-      listViewGroup2.Name = "listViewGroup2";
+      listViewGroup3.Header = "ListViewGroup";
+      listViewGroup3.Name = "listViewGroup1";
+      listViewGroup4.Header = "ListViewGroup";
+      listViewGroup4.Name = "listViewGroup2";
       this.listViewVSProjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup3,
+            listViewGroup4});
       this.listViewVSProjects.Location = new System.Drawing.Point(33, 434);
       this.listViewVSProjects.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.listViewVSProjects.Name = "listViewVSProjects";
@@ -652,9 +652,9 @@
       this.buttonCreateBackupScript.Location = new System.Drawing.Point(1034, 117);
       this.buttonCreateBackupScript.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.buttonCreateBackupScript.Name = "buttonCreateBackupScript";
-      this.buttonCreateBackupScript.Size = new System.Drawing.Size(518, 32);
+      this.buttonCreateBackupScript.Size = new System.Drawing.Size(467, 32);
       this.buttonCreateBackupScript.TabIndex = 26;
-      this.buttonCreateBackupScript.Text = "Create git clone backup script for gitted Visual Studio Solutions";
+      this.buttonCreateBackupScript.Text = "Create git clone backup script";
       this.buttonCreateBackupScript.UseVisualStyleBackColor = true;
       this.buttonCreateBackupScript.Click += new System.EventHandler(this.buttonCreateBackupScript_Click);
       // 
