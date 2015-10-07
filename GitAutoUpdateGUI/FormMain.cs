@@ -79,9 +79,9 @@ namespace GitAutoUpdateGUI
       GetWindowValue();
       LoadLanguages();
       SetLanguage(Settings.Default.LastLanguageUsed);
+      AdjustAllControls();
       CheckGitBashBinary();
       CheckGitBashPathInWinPath();
-      AdjustAllControls();
       EnableDisableButtons(listViewVSProjects, buttonCheckAll, buttonClearAll, buttonCheckUncheckAll, buttonUpdateVSProjects);
     }
 
