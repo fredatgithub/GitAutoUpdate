@@ -2,12 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GitAutoUpdateGUI.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="WindowHeight" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">200</Value>
-    </Setting>
-    <Setting Name="WindowWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">200</Value>
-    </Setting>
     <Setting Name="WindowTop" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
@@ -52,6 +46,12 @@
     </Setting>
     <Setting Name="_fontSize" Type="System.Single" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="WindowHeight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">800</Value>
+    </Setting>
+    <Setting Name="WindowWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1024</Value>
     </Setting>
   </Settings>
 </SettingsFile>
