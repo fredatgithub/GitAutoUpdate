@@ -149,7 +149,19 @@ namespace GitAutoUpdateGUI
         CreateVsVersionFile();
       }
 
-      XDocument xmlDoc = XDocument.Load(Settings.Default.VisualStudioVersionsFileName);
+      XDocument xmlDoc;
+      try
+      {
+        xmlDoc = XDocument.Load(Settings.Default.VisualStudioVersionsFileName);
+      }
+      catch (Exception exception)
+      {
+        MessageBox.Show("Error while loading the " + Settings.Default.VisualStudioVersionsFileName +
+                        " xml file: " + exception.Message);
+        CreateVsVersionFile();
+        return;
+      }
+
       var result = from node in xmlDoc.Descendants("VSVersion")
                    where node.HasElements
                    let xElement = node.Element("name")
@@ -161,7 +173,10 @@ namespace GitAutoUpdateGUI
 
       foreach (var q in result)
       {
-        comboBoxVSVersion.Items.Add(q.vsNameValue);
+        if (!comboBoxVSVersion.Items.Contains(q.vsNameValue))
+        {
+          comboBoxVSVersion.Items.Add(q.vsNameValue);
+        }
       }
 
       comboBoxVSVersion.SelectedIndex = comboBoxVSVersion.Items.Count - 1; // select latest version
@@ -171,11 +186,7 @@ namespace GitAutoUpdateGUI
     {
       var minimumVersion = new List<string>
       {
-        "<?xml version=\"1.0\" encoding=\"utf - 8\" ?>",
-        "<Document>",
-        "<DocumentVersion>",
-        "<version> 1.0 </version>",
-        "</DocumentVersion>",
+        "<?xml version=\"1.0\" encoding=\"utf-8\" ?>",
         "<VSVersions>",
         "<VSVersion>",
         "<name>Visual Studio 2003</name>",
@@ -198,8 +209,7 @@ namespace GitAutoUpdateGUI
         "<VSVersion>",
         "<name>Visual Studio 2015</name>",
         "</VSVersion>",
-        "</VSVersions>",
-        "</Document>"
+        "</VSVersions>"
       };
       StreamWriter sw = new StreamWriter(Settings.Default.VisualStudioVersionsFileName);
       foreach (string item in minimumVersion)
@@ -218,7 +228,18 @@ namespace GitAutoUpdateGUI
       }
 
       // read the translation file and feed the language
-      XDocument xDoc = XDocument.Load(Settings.Default.LanguageFileName);
+      XDocument xDoc;
+      try
+      {
+        xDoc = XDocument.Load(Settings.Default.LanguageFileName);
+      }
+      catch (Exception exception)
+      {
+        MessageBox.Show("Error while loading " + Settings.Default.LanguageFileName +
+          "xml file " + exception.Message);
+        CreateLanguageFile();
+        return;
+      }
       var result = from node in xDoc.Descendants("term")
                    where node.HasElements
                    let xElementName = node.Element("name")
@@ -235,8 +256,23 @@ namespace GitAutoUpdateGUI
                    };
       foreach (var i in result)
       {
-        _languageDicoEn.Add(i.name, i.englishValue);
-        _languageDicoFr.Add(i.name, i.frenchValue);
+        if (!_languageDicoEn.ContainsKey(i.name))
+        {
+          _languageDicoEn.Add(i.name, i.englishValue);
+        }
+        else
+        {
+          MessageBox.Show("Your xml file has duplicate like: " + i.name);
+        }
+
+        if (!_languageDicoFr.ContainsKey(i.name))
+        {
+          _languageDicoFr.Add(i.name, i.frenchValue);
+        }
+        else
+        {
+          MessageBox.Show("Your xml file has duplicate like: " + i.name);
+        }
       }
     }
 
@@ -244,11 +280,7 @@ namespace GitAutoUpdateGUI
     {
       var minimumVersion = new List<string>
       {
-        "<?xml version=\"1.0\" encoding=\"utf - 8\" ?>",
-        "<Document>",
-        "<DocumentVersion>",
-        "<version> 1.0 </version>",
-        "</DocumentVersion>",
+        "<?xml version=\"1.0\" encoding=\"utf-8\" ?>",
         "<terms>",
         "<term>",
         "<name>MenuFile</name>",
@@ -380,8 +412,7 @@ namespace GitAutoUpdateGUI
         "<englishValue>About</englishValue>",
         "<frenchValue>A propos de ...</frenchValue>",
         "</term>",
-        "</terms>",
-        "</Document>"
+        "</terms>"
       };
       StreamWriter sw = new StreamWriter(Settings.Default.LanguageFileName);
       foreach (string item in minimumVersion)
