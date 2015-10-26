@@ -735,12 +735,7 @@ namespace GitAutoUpdateGUI
       tb.Text = tb.Text.Insert(selectionIndex, Clipboard.GetText());
       tb.SelectionStart = selectionIndex + Clipboard.GetText().Length;
     }
-
-    private void DisplayMessageOk(string message, string title, MessageBoxButtons buttons)
-    {
-      MessageBox.Show(this, message, title, buttons);
-    }
-
+    
     private string Translate(string index) // could add (string index, string _currentLanguage = "english")
     {
       string result = string.Empty;
@@ -892,6 +887,11 @@ namespace GitAutoUpdateGUI
           task.Start();
         }
       }
+    }
+
+    private void DisplayMessageOk(string message, string title, MessageBoxButtons buttons)
+    {
+      MessageBox.Show(this, message, title, buttons);
     }
 
     private DialogResult DisplayMessage(string message, string title, MessageBoxButtons buttons)
