@@ -1430,4 +1430,59 @@
     <englishValue>Number of quote</englishValue>
     <frenchValue>Nombre de citation</frenchValue>
   </term>
+  <term>
+    <name>Path</name>
+    <englishValue>Path</englishValue>
+    <frenchValue>Chemin</frenchValue>
+  </term>
+  <term>
+    <name>Initial path</name>
+    <englishValue>Initial path</englishValue>
+    <frenchValue>Chemin initial</frenchValue>
+  </term>
+  <term>
+    <name>File to change</name>
+    <englishValue>File to change</englishValue>
+    <frenchValue>Fichier à changer</frenchValue>
+  </term>
+  <term>
+    <name>String to search</name>
+    <englishValue>String to search</englishValue>
+    <frenchValue>Chaîne à chercher</frenchValue>
+  </term>
+  <term>
+    <name>Replace by</name>
+    <englishValue>Replace by</englishValue>
+    <frenchValue>Remplacer par</frenchValue>
+  </term>
+  <term>
+    <name>Replace</name>
+    <englishValue>Replace</englishValue>
+    <frenchValue>Remplacer</frenchValue>
+  </term>
+  <term>
+    <name>The list doesn't have any item</name>
+    <englishValue>The list doesn't have any item</englishValue>
+    <frenchValue>La liste n'a pas d'élément</frenchValue>
+  </term>
+  <term>
+    <name>View</name>
+    <englishValue>View</englishValue>
+    <frenchValue>Afficher</frenchValue>
+  </term>
+  <term>
+    <name>The list doesn't have any item to view</name>
+    <englishValue>The list doesn't have any item to view</englishValue>
+    <frenchValue>La liste n'a pas d'item a visualiser</frenchValue>
+  </term>
+  <term>
+    <name>Check off some items</name>
+    <englishValue>Check off some items</englishValue>
+    <frenchValue>Cochez un ou plusieurs éléments</frenchValue>
+  </term>
+  <term>
+    <name>No selected item</name>
+    <englishValue>No selected item</englishValue>
+    <frenchValue>Pas d'élément coché</frenchValue>
+  </term>
 </terms>
