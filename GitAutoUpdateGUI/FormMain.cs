@@ -1123,6 +1123,7 @@ namespace GitAutoUpdateGUI
                              Punctuation.OneSpace + Translate(Plural(projectCount, "has")) + Punctuation.OneSpace +
                              Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
       EnableDisableButtons(listViewVSProjects, buttonCheckAll, buttonClearAll, buttonCheckUncheckAll, buttonUpdateVSProjects);
+      buttonUpdateVSProjects.Enabled = GetItemChecked(listViewVSProjects) > 0;
     }
 
     private static bool IsInlistView(ListView listView, ListViewItem lviItem, int columnNumber)
@@ -1866,6 +1867,16 @@ namespace GitAutoUpdateGUI
         }
       }
       return result;
+    }
+
+    private void listViewVSProjects_ItemChecked(object sender, ItemCheckedEventArgs e)
+    {
+      buttonUpdateVSProjects.Enabled = GetItemChecked(listViewVSProjects) > 0;
+    }
+
+    private static int GetItemChecked(ListView lv)
+    {
+      return lv.CheckedItems.Count;
     }
   }
 }
