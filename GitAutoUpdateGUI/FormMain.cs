@@ -735,7 +735,7 @@ namespace GitAutoUpdateGUI
       tb.Text = tb.Text.Insert(selectionIndex, Clipboard.GetText());
       tb.SelectionStart = selectionIndex + Clipboard.GetText().Length;
     }
-    
+
     private string Translate(string index) // could add (string index, string _currentLanguage = "english")
     {
       string result = string.Empty;
@@ -1123,7 +1123,27 @@ namespace GitAutoUpdateGUI
                              Punctuation.OneSpace + Translate(Plural(projectCount, "has")) + Punctuation.OneSpace +
                              Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
       EnableDisableButtons(listViewVSProjects, buttonCheckAll, buttonClearAll, buttonCheckUncheckAll, buttonUpdateVSProjects);
+      listViewVSProjects.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
       buttonUpdateVSProjects.Enabled = GetItemChecked(listViewVSProjects) > 0;
+    }
+
+    private static ColumnHeaderAutoResizeStyle GetLongestString(string headerText, ListView lv)
+    {
+      return headerText.Length > MaxString(lv.Items).Length ? ColumnHeaderAutoResizeStyle.HeaderSize : ColumnHeaderAutoResizeStyle.ColumnContent;
+    }
+
+    private static string MaxString(ListView.ListViewItemCollection items)
+    {
+      string longest = string.Empty;
+      foreach (var item in items)
+      {
+        if (item.ToString().Length > longest.Length)
+        {
+          longest = item.ToString();
+        }
+      }
+
+      return longest;
     }
 
     private static bool IsInlistView(ListView listView, ListViewItem lviItem, int columnNumber)
