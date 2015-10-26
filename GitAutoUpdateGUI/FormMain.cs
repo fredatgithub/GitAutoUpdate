@@ -1128,7 +1128,6 @@ namespace GitAutoUpdateGUI
 
     private static bool IsInlistView(ListView listView, ListViewItem lviItem, int columnNumber)
     {
-      // return listView.Items.Cast<ListViewItem>().All(item => item.SubItems[columnNumber].Text != lviItem.SubItems[columnNumber].Text);
       bool result = false;
       foreach (ListViewItem item in listView.Items)
       {
