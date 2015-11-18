@@ -136,7 +136,17 @@
     <frenchValue>Il y a</frenchValue>
   </term>
   <term>
+    <name>There is</name>
+    <englishValue>There is</englishValue>
+    <frenchValue>Il y a</frenchValue>
+  </term>
+  <term>
     <name>toCut</name>
+    <englishValue>to cut</englishValue>
+    <frenchValue>à couper</frenchValue>
+  </term>
+   <term>
+    <name>to cut</name>
     <englishValue>to cut</englishValue>
     <frenchValue>à couper</frenchValue>
   </term>
@@ -145,8 +155,18 @@
     <englishValue>No text has been selected</englishValue>
     <frenchValue>Pas de texte a été selectionné</frenchValue>
   </term>
+   <term>
+    <name>No text has been selected</name>
+    <englishValue>No text has been selected</englishValue>
+    <frenchValue>Aucun texte n'a été selectionné</frenchValue>
+  </term>
   <term>
     <name>ThereIsNothingToCopy</name>
+    <englishValue>There is nothing to copy</englishValue>
+    <frenchValue>Il n'y a rien à copier</frenchValue>
+  </term>
+  <term>
+    <name>There is nothing to copy</name>
     <englishValue>There is nothing to copy</englishValue>
     <frenchValue>Il n'y a rien à copier</frenchValue>
   </term>
@@ -1251,26 +1271,6 @@
     <frenchValue>Le chemin de sauvegarde du fichier ne peut être vide</frenchValue>
   </term>
   <term>
-    <name>There is nothing to copy</name>
-    <englishValue>There is nothing to copy</englishValue>
-    <frenchValue>Il n'y a rien à copier</frenchValue>
-  </term>
-  <term>
-    <name>There is</name>
-    <englishValue>There is</englishValue>
-    <frenchValue>Il y a</frenchValue>
-  </term>
-  <term>
-    <name>to cut</name>
-    <englishValue>to cut</englishValue>
-    <frenchValue>à couper</frenchValue>
-  </term>
-  <term>
-    <name>No text has been selected</name>
-    <englishValue>No text has been selected</englishValue>
-    <frenchValue>Pas de texte n'a été sélectionné</frenchValue>
-  </term>
-  <term>
     <name>the term</name>
     <englishValue>the term</englishValue>
     <frenchValue>le terme</frenchValue>
@@ -1484,5 +1484,110 @@
     <name>No selected item</name>
     <englishValue>No selected item</englishValue>
     <frenchValue>Pas d'élément coché</frenchValue>
+  </term>
+  <term>
+    <name>File modified</name>
+    <englishValue>File modified</englishValue>
+    <frenchValue>Fichier modifié</frenchValue>
+  </term>
+  <term>
+    <name>One file</name>
+    <englishValue>One file</englishValue>
+    <frenchValue>Un fichier</frenchValue>
+  </term>
+  <term>
+    <name>Rename</name>
+    <englishValue>Rename</englishValue>
+    <frenchValue>Renommer</frenchValue>
+  </term>
+  <term>
+    <name>All files in</name>
+    <englishValue>All files in</englishValue>
+    <frenchValue>Tous les fichiers dans</frenchValue>
+  </term>
+  <term>
+    <name>Includes sub-directories</name>
+    <englishValue>Includes sub-directories</englishValue>
+    <frenchValue>Incluant les sous répertoires</frenchValue>
+  </term>
+  <term>
+    <name>Cut file every</name>
+    <englishValue>Cut file every</englishValue>
+    <frenchValue>Couper le fichier à chaque</frenchValue>
+  </term>
+  <term>
+    <name>MB</name>
+    <englishValue>MB</englishValue>
+    <frenchValue>MO</frenchValue>
+  </term>
+  <term>
+    <name>Delete source file after rename</name>
+    <englishValue>Delete source file after rename</englishValue>
+    <frenchValue>Effacer le fichier source après renommage</frenchValue>
+  </term>
+  <term>
+    <name>Wrong file name</name>
+    <englishValue>Wrong file name</englishValue>
+    <frenchValue>Mauvais nom de fichier</frenchValue>
+  </term>
+  <term>
+    <name>The file doesn't start with the word primes</name>
+    <englishValue>The file doesn't start with the word primes</englishValue>
+    <frenchValue>Le fichier ne commence pas par le mot primes</frenchValue>
+  </term>
+  <term>
+    <name>Nothing to do</name>
+    <englishValue>Nothing to do</englishValue>
+    <frenchValue>Rien à faire</frenchValue>
+  </term>
+  <term>
+    <name>The file name has a start number and you don't want it to be cut so there's nothing to do</name>
+    <englishValue>The file name has a start number and you don't want it to be cut so there's nothing to do</englishValue>
+    <frenchValue>Le nom du fichier a un nombre de début et vous ne voulez pas couper le fichier donc il n'y a rien à faire</frenchValue>
+  </term>
+  <term>
+    <name>The file name or the path is not correct</name>
+    <englishValue>The file name or the path is not correct</englishValue>
+    <frenchValue>Le nom du fichier ou le chemin n'est pas correct</frenchValue>
+  </term>
+  <term>
+    <name>File not correct</name>
+    <englishValue>File not correct</englishValue>
+    <frenchValue>Fichier non correct</frenchValue>
+  </term>
+  <term>
+    <name>Select</name>
+    <englishValue>Select</englishValue>
+    <frenchValue>Sélectionner</frenchValue>
+  </term>
+  <term>
+    <name>Enter</name>
+    <englishValue>Enter</englishValue>
+    <frenchValue>Entrez</frenchValue>
+  </term>
+  <term>
+    <name>a continent</name>
+    <englishValue>a continent</englishValue>
+    <frenchValue>un continent</frenchValue>
+  </term>
+  <term>
+    <name>a country</name>
+    <englishValue>a country</englishValue>
+    <frenchValue>un pays</frenchValue>
+  </term>
+  <term>
+    <name>a state</name>
+    <englishValue>a state</englishValue>
+    <frenchValue>un état</frenchValue>
+  </term>
+  <term>
+    <name>a county</name>
+    <englishValue>a county</englishValue>
+    <frenchValue>un comté</frenchValue>
+  </term>
+  <term>
+    <name>a city</name>
+    <englishValue>a city</englishValue>
+    <frenchValue>une ville</frenchValue>
   </term>
 </terms>
