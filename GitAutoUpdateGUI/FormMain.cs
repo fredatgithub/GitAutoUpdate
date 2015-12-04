@@ -910,12 +910,19 @@ namespace GitAutoUpdateGUI
 
     private static void AddGitPullToScript(string fileName, string directoryName)
     {
-      const bool append = true;
-      var sw = new StreamWriter(fileName, append);
-      sw.WriteLine("cd \"" + directoryName + "\"");
-      sw.WriteLine("git pull origin master");
-      sw.WriteLine("cd ..");
-      sw.Close();
+      try
+      {
+        const bool append = true;
+        var sw = new StreamWriter(fileName, append);
+        sw.WriteLine("cd \"" + directoryName + "\"");
+        sw.WriteLine("git pull origin master");
+        sw.WriteLine("cd ..");
+        sw.Close();
+      }
+      catch (Exception exception)
+      {
+        MessageBox.Show("Cannot access to the file " + fileName + " error: " + exception);
+      }
     }
 
     private static void AddGitCloneToScript(string fileName, string gitAddress)
