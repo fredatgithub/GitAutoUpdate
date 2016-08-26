@@ -1080,7 +1080,7 @@ namespace GitAutoUpdateGUI
       }
 
       listViewVSProjects.Items.Clear();
-
+      listViewVSProjects.Columns.Clear();
       listViewVSProjects.Columns.Add("To be updated", 240, HorizontalAlignment.Left);
       listViewVSProjects.Columns.Add("Solution Name", 240, HorizontalAlignment.Left);
       listViewVSProjects.Columns.Add("Solution Path", 640, HorizontalAlignment.Left);
@@ -1130,7 +1130,11 @@ namespace GitAutoUpdateGUI
                              Punctuation.OneSpace + Translate(Plural(projectCount, "has")) + Punctuation.OneSpace +
                              Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
       EnableDisableButtons(listViewVSProjects, buttonCheckAll, buttonClearAll, buttonCheckUncheckAll, buttonUpdateVSProjects);
-      listViewVSProjects.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+      if (listViewVSProjects.Items.Count != 0)
+      {
+        listViewVSProjects.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+      }
+      
       buttonUpdateVSProjects.Enabled = GetItemChecked(listViewVSProjects) > 0;
     }
 
