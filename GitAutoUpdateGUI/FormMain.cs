@@ -1134,7 +1134,7 @@ namespace GitAutoUpdateGUI
       {
         listViewVSProjects.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
       }
-      
+
       buttonUpdateVSProjects.Enabled = GetItemChecked(listViewVSProjects) > 0;
     }
 
