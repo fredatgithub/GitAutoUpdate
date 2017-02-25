@@ -210,8 +210,12 @@ namespace GitAutoUpdateGUI
         "<VSVersion>",
         "<name>Visual Studio 2015</name>",
         "</VSVersion>",
+        "<VSVersion>",
+        "<name>Visual Studio 2017</name>",
+        "</VSVersion>",
         "</VSVersions>"
       };
+
       StreamWriter sw = new StreamWriter(Settings.Default.VisualStudioVersionsFileName);
       foreach (string item in minimumVersion)
       {
