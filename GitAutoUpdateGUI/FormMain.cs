@@ -1,6 +1,6 @@
 ﻿/*
 The MIT License(MIT)
-Copyright(c) 2015 Freddy Juhel
+Copyright(c) 2017 Freddy Juhel
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -46,6 +46,7 @@ namespace GitAutoUpdateGUI
     private readonly Dictionary<string, string> _languageDicoFr = new Dictionary<string, string>();
     private string _currentLanguage = "english";
     private float _fontSize;
+    private bool settingsHaveChanged = false;
 
     private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -1318,6 +1319,7 @@ namespace GitAutoUpdateGUI
 
     private void textBoxGitBashBinariesPath_TextChanged(object sender, EventArgs e)
     {
+      settingsHaveChanged = true;
       CheckGitBashBinary();
       buttonUpdateVSProjects.Enabled = false;
     }
@@ -1343,6 +1345,7 @@ namespace GitAutoUpdateGUI
 
     private void textBoxVSProjectPath_TextChanged(object sender, EventArgs e)
     {
+      settingsHaveChanged = true;
       TurnGreenOrRed(textBoxVSProjectPath.Text, ObjectType.Directory, labelChooseVSVersion, labelPickDirectory);
       buttonUpdateVSProjects.Enabled = false;
     }
@@ -1423,6 +1426,7 @@ namespace GitAutoUpdateGUI
 
     private void comboBoxVSVersion_SelectedIndexChanged(object sender, EventArgs e)
     {
+      settingsHaveChanged = true;
       string userProfile = Environment.GetEnvironmentVariable("USERPROFILE"); // C:\Users\userName
       if (userProfile == string.Empty)
       {
@@ -1661,6 +1665,7 @@ namespace GitAutoUpdateGUI
 
     private void textBoxUnlistOldSolution_TextChanged(object sender, EventArgs e)
     {
+      settingsHaveChanged = true;
       if (textBoxUnlistOldSolution.Text == string.Empty)
       {
         checkBoxUnlistVSSolution.Checked = false;
@@ -1759,6 +1764,7 @@ namespace GitAutoUpdateGUI
     private void checkBoxGitInPath_CheckedChanged(object sender, EventArgs e)
     {
       buttonAddGitBinaryToWinPath.Enabled = !checkBoxGitInPath.Checked;
+      settingsHaveChanged = true;
     }
 
     private void buttonCreateBackupScript_Click(object sender, EventArgs e)
@@ -1907,6 +1913,34 @@ namespace GitAutoUpdateGUI
     private static int GetItemChecked(ListView lv)
     {
       return lv.CheckedItems.Count;
+    }
+
+    private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (settingsHaveChanged)
+      {
+        SaveWindowValue();
+      }
+    }
+
+    private void checkBoxUnlistVSSolution_CheckedChanged(object sender, EventArgs e)
+    {
+      settingsHaveChanged = true;
+    }
+
+    private void checkBoxGitBashInstalled_CheckedChanged(object sender, EventArgs e)
+    {
+      settingsHaveChanged = true;
+    }
+
+    private void checkBoxOnlyGenerateScriptFile_CheckedChanged(object sender, EventArgs e)
+    {
+      settingsHaveChanged = true;
+    }
+
+    private void checkBoxCaseSensitive_CheckedChanged(object sender, EventArgs e)
+    {
+      settingsHaveChanged = true;
     }
   }
 }
