@@ -47,6 +47,7 @@ namespace GitAutoUpdateGUI
     private string _currentLanguage = "english";
     private float _fontSize;
     private bool settingsHaveChanged = false;
+    private List<string> _previousUpdateFileList = new List<string>();
 
     private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -846,8 +847,27 @@ namespace GitAutoUpdateGUI
         Logger.Add(textBoxLog, textBoxVSProjectPath.Text);
       }
 
+      if (_previousUpdateFileList.Count == 1)
+      {
+        // delete previous version
+        try
+        {
+          // check if a cmd.exe process is still running
+          File.Delete(_previousUpdateFileList[0]);
+          _previousUpdateFileList.RemoveAt(0);
+        }
+        catch (Exception exception)
+        {
+          Logger.Add(textBoxLog,
+            string.Format("Error while deleting previous update script named {0}", _previousUpdateFileList[0], CultureInfo.CurrentCulture));
+          Logger.Add(textBoxLog,
+            string.Format("The exception is {0}", exception.Message, CultureInfo.CurrentCulture));
+        }
+      }
+
       string updateScript = Path.Combine(textBoxVSProjectPath.Text, "update.bat");
       updateScript = GenerateUniqueFileName(updateScript);
+      _previousUpdateFileList.Add(updateScript);
       CreateNewFile(updateScript);
       AddBeginningOfScript(updateScript);
 
