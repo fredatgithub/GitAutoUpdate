@@ -464,7 +464,7 @@
       this.buttonUpdateVSProjects.TabIndex = 10;
       this.buttonUpdateVSProjects.Text = "Update selected Visual Studio Projects";
       this.buttonUpdateVSProjects.UseVisualStyleBackColor = true;
-      this.buttonUpdateVSProjects.Click += new System.EventHandler(this.buttonUpdateVSProjects_Click);
+      this.buttonUpdateVSProjects.Click += new System.EventHandler(this.ButtonUpdateVSProjects_Click);
       // 
       // textBoxGitBashBinariesPath
       // 

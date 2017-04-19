@@ -807,7 +807,7 @@ namespace GitAutoUpdateGUI
       return source.IndexOf(toCheck, StringComparison.InvariantCultureIgnoreCase) >= 0;
     }
 
-    private void buttonUpdateVSProjects_Click(object sender, EventArgs e)
+    private void ButtonUpdateVSProjects_Click(object sender, EventArgs e)
     {
       if (listViewVSProjects.Items.Count == 0)
       {
