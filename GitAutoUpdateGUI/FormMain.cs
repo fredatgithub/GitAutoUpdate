@@ -162,7 +162,7 @@ namespace GitAutoUpdateGUI
         }
       }
 
-      comboBoxVSVersion.SelectedIndex = comboBoxVSVersion.Items.Count - 1; // select latest version
+      comboBoxVSVersion.SelectedIndex = comboBoxVSVersion.Items.Count - 1; // select last itemù which is the latest version of VS
     }
 
     private static void CreateVsVersionFile()
