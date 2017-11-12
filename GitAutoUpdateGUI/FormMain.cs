@@ -46,8 +46,7 @@ namespace GitAutoUpdateGUI
     {
       Assembly assembly = Assembly.GetExecutingAssembly();
       FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-      Text += string.Format(" V{0}.{1}.{2}.{3}", fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart,
-        fvi.FilePrivatePart);
+      Text += $" V{fvi.FileMajorPart}.{fvi.FileMinorPart}.{fvi.FileBuildPart}.{fvi.FilePrivatePart}";
     }
 
     private void FormMain_Load(object sender, EventArgs e)
@@ -59,6 +58,7 @@ namespace GitAutoUpdateGUI
     {
       DisplayTitle();
       LoadComboBoxVsVersions(comboBoxVSVersion);
+      LoadCheckedListBoxVSVersion();
       GetWindowValue();
       LoadLanguages();
       SetLanguage(Settings.Default.LastLanguageUsed);
@@ -124,6 +124,45 @@ namespace GitAutoUpdateGUI
       cb.Items.Clear();
     }
 
+    private void LoadCheckedListBoxVSVersion()
+    {
+      checkedListBoxVSVersion.Items.Clear();
+      if (!File.Exists(Settings.Default.VisualStudioVersionsFileName))
+      {
+        CreateVsVersionFile();
+      }
+
+      XDocument xmlDoc;
+      try
+      {
+        xmlDoc = XDocument.Load(Settings.Default.VisualStudioVersionsFileName);
+      }
+      catch (Exception exception)
+      {
+        MessageBox.Show("Error while loading the " + Settings.Default.VisualStudioVersionsFileName +
+                        " xml file: " + exception.Message);
+        CreateVsVersionFile();
+        return;
+      }
+
+      var result = from node in xmlDoc.Descendants("VSVersion")
+        where node.HasElements
+        let xElement = node.Element("name")
+        where xElement != null
+        select new
+        {
+          vsNameValue = xElement.Value,
+        };
+
+      foreach (var q in result)
+      {
+        if (!checkedListBoxVSVersion.Items.Contains(q.vsNameValue))
+        {
+          checkedListBoxVSVersion.Items.Add(q.vsNameValue);
+        }
+      }
+    }
+
     private void LoadComboBoxVsVersions(ComboBox cb)
     {
       ClearComboBox(cb);
@@ -162,7 +201,7 @@ namespace GitAutoUpdateGUI
         }
       }
 
-      comboBoxVSVersion.SelectedIndex = comboBoxVSVersion.Items.Count - 1; // select last itemù which is the latest version of VS
+      comboBoxVSVersion.SelectedIndex = comboBoxVSVersion.Items.Count - 1; // select last item which is the latest version of VS
     }
 
     private static void CreateVsVersionFile()
@@ -839,10 +878,8 @@ namespace GitAutoUpdateGUI
         }
         catch (Exception exception)
         {
-          Logger.Add(textBoxLog,
-            string.Format("Error while deleting previous update script named {0}", _previousUpdateFileList[0], CultureInfo.CurrentCulture));
-          Logger.Add(textBoxLog,
-            string.Format("The exception is {0}", exception.Message, CultureInfo.CurrentCulture));
+          Logger.Add(textBoxLog, $"Error while deleting previous update script named {_previousUpdateFileList[0]}");
+          Logger.Add(textBoxLog, $"The exception is {exception.Message}");
         }
       }
 
@@ -1946,6 +1983,28 @@ namespace GitAutoUpdateGUI
     private void checkBoxCaseSensitive_CheckedChanged(object sender, EventArgs e)
     {
       settingsHaveChanged = true;
+    }
+
+    private void checkedListBoxVSVersion_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      settingsHaveChanged = true;
+      string userProfile = Environment.GetEnvironmentVariable("USERPROFILE"); // C:\Users\userName
+      if (userProfile == string.Empty)
+      {
+        DisplayMessageOk(Translate("The USERPROFILE variable cannot be empty"),
+          Translate("USERPROFILE variable empty"), MessageBoxButtons.OK);
+        return;
+      }
+
+      string vsVersion = GetNumbers(comboBoxVSVersion.SelectedItem.ToString());
+      string documentsPath = Environment.SpecialFolder.MyDocuments.ToString();
+      if (userProfile != null && !Directory.Exists(Path.Combine(userProfile, documentsPath)))
+      {
+        documentsPath = Environment.SpecialFolder.MyDocuments.ToString().Substring(2);
+      }
+
+      textBoxVSProjectPath.Text = AddSlash(userProfile) + AddSlash(documentsPath) +
+                                  "Visual Studio " + AddSlash(vsVersion) + AddSlash("Projects");
     }
   }
 }

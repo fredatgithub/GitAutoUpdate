@@ -226,5 +226,17 @@ namespace GitAutoUpdateGUI.Properties {
                 this["WindowWidth"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkedListBoxVSVersionItem1 {
+            get {
+                return ((bool)(this["checkedListBoxVSVersionItem1"]));
+            }
+            set {
+                this["checkedListBoxVSVersionItem1"] = value;
+            }
+        }
     }
 }
