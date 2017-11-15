@@ -230,12 +230,96 @@ namespace GitAutoUpdateGUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool checkedListBoxVSVersionItem1 {
+        public bool checkedListBoxVSVersion2003 {
             get {
-                return ((bool)(this["checkedListBoxVSVersionItem1"]));
+                return ((bool)(this["checkedListBoxVSVersion2003"]));
             }
             set {
-                this["checkedListBoxVSVersionItem1"] = value;
+                this["checkedListBoxVSVersion2003"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkedListBoxVSVersion2005 {
+            get {
+                return ((bool)(this["checkedListBoxVSVersion2005"]));
+            }
+            set {
+                this["checkedListBoxVSVersion2005"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkedListBoxVSVersion2008 {
+            get {
+                return ((bool)(this["checkedListBoxVSVersion2008"]));
+            }
+            set {
+                this["checkedListBoxVSVersion2008"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkedListBoxVSVersion2010 {
+            get {
+                return ((bool)(this["checkedListBoxVSVersion2010"]));
+            }
+            set {
+                this["checkedListBoxVSVersion2010"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkedListBoxVSVersion2012 {
+            get {
+                return ((bool)(this["checkedListBoxVSVersion2012"]));
+            }
+            set {
+                this["checkedListBoxVSVersion2012"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkedListBoxVSVersion2013 {
+            get {
+                return ((bool)(this["checkedListBoxVSVersion2013"]));
+            }
+            set {
+                this["checkedListBoxVSVersion2013"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkedListBoxVSVersion2015 {
+            get {
+                return ((bool)(this["checkedListBoxVSVersion2015"]));
+            }
+            set {
+                this["checkedListBoxVSVersion2015"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkedListBoxVSVersion2017 {
+            get {
+                return ((bool)(this["checkedListBoxVSVersion2017"]));
+            }
+            set {
+                this["checkedListBoxVSVersion2017"] = value;
             }
         }
     }

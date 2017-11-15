@@ -58,7 +58,7 @@ namespace GitAutoUpdateGUI
     {
       DisplayTitle();
       LoadComboBoxVsVersions(comboBoxVSVersion);
-      LoadCheckedListBoxVSVersion();
+      LoadCheckedListBoxVsVersion();
       GetWindowValue();
       LoadLanguages();
       SetLanguage(Settings.Default.LastLanguageUsed);
@@ -124,7 +124,7 @@ namespace GitAutoUpdateGUI
       cb.Items.Clear();
     }
 
-    private void LoadCheckedListBoxVSVersion()
+    private void LoadCheckedListBoxVsVersion()
     {
       checkedListBoxVSVersion.Items.Clear();
       if (!File.Exists(Settings.Default.VisualStudioVersionsFileName))
@@ -158,7 +158,7 @@ namespace GitAutoUpdateGUI
       {
         if (!checkedListBoxVSVersion.Items.Contains(q.vsNameValue))
         {
-          checkedListBoxVSVersion.Items.Add(q.vsNameValue);
+          checkedListBoxVSVersion.Items.Add(q.vsNameValue, false);
         }
       }
     }
@@ -465,6 +465,7 @@ namespace GitAutoUpdateGUI
       checkBoxCaseSensitive.Checked = Settings.Default.checkBoxCaseSensitive;
       checkBoxGitInPath.Checked = Settings.Default.checkBoxGitInPath;
       _fontSize = Settings.Default._fontSize;
+      //checkedListBoxVSVersion.Items.
     }
 
     private void SaveWindowValue()
@@ -484,6 +485,18 @@ namespace GitAutoUpdateGUI
       Settings.Default.checkBoxCaseSensitive = checkBoxCaseSensitive.Checked;
       Settings.Default.checkBoxGitInPath = checkBoxGitInPath.Checked;
       Settings.Default._fontSize = _fontSize;
+      string checkedListBoxVSVersionItemcollection = string.Empty;
+      for (int i = 0; i < checkedListBoxVSVersion.Items.Count; i++)
+      {
+        checkedListBoxVSVersionItemcollection += $"{checkedListBoxVSVersion.Items[i].ToString()}|";
+        // TODO save all values whose item is checked
+      //  if (checkedListBoxVSVersion.Items[i].Value )
+      //  {
+
+      //  }
+      }
+
+      checkedListBoxVSVersionItemcollection = checkedListBoxVSVersionItemcollection.TrimEnd('|');
       Settings.Default.Save();
     }
 

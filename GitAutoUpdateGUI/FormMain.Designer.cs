@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-      System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -428,13 +428,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.listViewVSProjects.GridLines = true;
-      listViewGroup7.Header = "ListViewGroup";
-      listViewGroup7.Name = "listViewGroup1";
-      listViewGroup8.Header = "ListViewGroup";
-      listViewGroup8.Name = "listViewGroup2";
+      listViewGroup1.Header = "ListViewGroup";
+      listViewGroup1.Name = "listViewGroup1";
+      listViewGroup2.Header = "ListViewGroup";
+      listViewGroup2.Name = "listViewGroup2";
       this.listViewVSProjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup7,
-            listViewGroup8});
+            listViewGroup1,
+            listViewGroup2});
       this.listViewVSProjects.Location = new System.Drawing.Point(25, 492);
       this.listViewVSProjects.Margin = new System.Windows.Forms.Padding(2);
       this.listViewVSProjects.Name = "listViewVSProjects";
