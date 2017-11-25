@@ -66,6 +66,35 @@ namespace GitAutoUpdateGUI
       CheckGitBashBinary();
       CheckGitBashPathInWinPath();
       EnableDisableButtons(listViewVSProjects, buttonCheckAll, buttonClearAll, buttonCheckUncheckAll, buttonUpdateVSProjects);
+      VerifyCheckedVersion();
+    }
+
+    private void VerifyCheckedVersion()
+    {
+      // disable all versions that don't have an update cmd script
+      List<string> checkedVersion = GetCheckedItemFromCheckedListBox(checkedListBoxVSVersion);
+      foreach (var item in checkedVersion)
+      {
+        if (File.Exists($"{string.Empty}{item}"))
+        {
+          // enable item
+        }
+        else
+        {
+          // disable item
+        }
+      }
+    }
+
+    private List<string> GetCheckedItemFromCheckedListBox(CheckedListBox checkedListBoxVSVersion)
+    {
+      List<string> result = new List<string>();
+      foreach (var item in checkedListBoxVSVersion.CheckedItems)
+      {
+        result.Add(item.ToString());
+      }
+
+      return result;
     }
 
     private static void EnableDisableButtons(ListView conditionalListView, params Control[] listOfControls)
@@ -146,13 +175,13 @@ namespace GitAutoUpdateGUI
       }
 
       var result = from node in xmlDoc.Descendants("VSVersion")
-        where node.HasElements
-        let xElement = node.Element("name")
-        where xElement != null
-        select new
-        {
-          vsNameValue = xElement.Value,
-        };
+                   where node.HasElements
+                   let xElement = node.Element("name")
+                   where xElement != null
+                   select new
+                   {
+                     vsNameValue = xElement.Value,
+                   };
 
       foreach (var q in result)
       {
@@ -490,10 +519,10 @@ namespace GitAutoUpdateGUI
       {
         checkedListBoxVSVersionItemcollection += $"{checkedListBoxVSVersion.Items[i].ToString()}|";
         // TODO save all values whose item is checked
-      //  if (checkedListBoxVSVersion.Items[i].Value )
-      //  {
+        //  if (checkedListBoxVSVersion.Items[i].Value )
+        //  {
 
-      //  }
+        //  }
       }
 
       checkedListBoxVSVersionItemcollection = checkedListBoxVSVersionItemcollection.TrimEnd('|');
@@ -2018,6 +2047,19 @@ namespace GitAutoUpdateGUI
 
       textBoxVSProjectPath.Text = AddSlash(userProfile) + AddSlash(documentsPath) +
                                   "Visual Studio " + AddSlash(vsVersion) + AddSlash("Projects");
+    }
+
+    private void ButtonUpdateCheckedVersionClick(object sender, EventArgs e)
+    {
+      List<string> itemList = new List<string>();
+      foreach (var item in checkedListBoxVSVersion.CheckedItems)
+      {
+        itemList.Add(item.ToString());
+      }
+
+      // check if scripts update.cmd do exist and if so, then start them
+
+
     }
   }
 }

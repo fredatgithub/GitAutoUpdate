@@ -89,6 +89,7 @@
       this.buttonAddGitBinaryToWinPath = new System.Windows.Forms.Button();
       this.buttonCreateBackupScript = new System.Windows.Forms.Button();
       this.checkedListBoxVSVersion = new System.Windows.Forms.CheckedListBox();
+      this.buttonUpdateCheckedVersion = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -677,11 +678,24 @@
       this.checkedListBoxVSVersion.TabIndex = 27;
       this.checkedListBoxVSVersion.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxVSVersion_SelectedIndexChanged);
       // 
+      // buttonUpdateCheckedVersion
+      // 
+      this.buttonUpdateCheckedVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.buttonUpdateCheckedVersion.Location = new System.Drawing.Point(442, 196);
+      this.buttonUpdateCheckedVersion.Margin = new System.Windows.Forms.Padding(2);
+      this.buttonUpdateCheckedVersion.Name = "buttonUpdateCheckedVersion";
+      this.buttonUpdateCheckedVersion.Size = new System.Drawing.Size(106, 26);
+      this.buttonUpdateCheckedVersion.TabIndex = 28;
+      this.buttonUpdateCheckedVersion.Text = "Update";
+      this.buttonUpdateCheckedVersion.UseVisualStyleBackColor = true;
+      this.buttonUpdateCheckedVersion.Click += new System.EventHandler(this.ButtonUpdateCheckedVersionClick);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1182, 708);
+      this.Controls.Add(this.buttonUpdateCheckedVersion);
       this.Controls.Add(this.checkedListBoxVSVersion);
       this.Controls.Add(this.buttonCreateBackupScript);
       this.Controls.Add(this.buttonAddGitBinaryToWinPath);
@@ -784,5 +798,6 @@
     private System.Windows.Forms.Button buttonAddGitBinaryToWinPath;
     private System.Windows.Forms.Button buttonCreateBackupScript;
     private System.Windows.Forms.CheckedListBox checkedListBoxVSVersion;
+    private System.Windows.Forms.Button buttonUpdateCheckedVersion;
   }
 }
