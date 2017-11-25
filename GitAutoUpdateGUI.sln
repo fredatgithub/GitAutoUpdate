@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitAutoUpdateGUI", "GitAutoUpdateGUI\GitAutoUpdateGUI.csproj", "{B492FE99-F506-48C7-8D6D-B35C2CDEF668}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestGitAutoUpdate", "UnitTestGitAutoUpdate\UnitTestGitAutoUpdate.csproj", "{8F7C41F0-C4AB-41D2-9C82-7CE30D04F0DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{B492FE99-F506-48C7-8D6D-B35C2CDEF668}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B492FE99-F506-48C7-8D6D-B35C2CDEF668}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B492FE99-F506-48C7-8D6D-B35C2CDEF668}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F7C41F0-C4AB-41D2-9C82-7CE30D04F0DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F7C41F0-C4AB-41D2-9C82-7CE30D04F0DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F7C41F0-C4AB-41D2-9C82-7CE30D04F0DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F7C41F0-C4AB-41D2-9C82-7CE30D04F0DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E06AC6CD-4430-4278-BE70-69070F80E130}
 	EndGlobalSection
 EndGlobal

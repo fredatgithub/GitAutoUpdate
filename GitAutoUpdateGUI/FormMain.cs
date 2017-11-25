@@ -90,10 +90,12 @@ namespace GitAutoUpdateGUI
       }
 
       //textBoxVSProjectPath.Text = AddSlash(userProfile) + AddSlash(documentsPath) + "Visual Studio " + AddSlash(vsVersion) + AddSlash("Projects");
-      string VsPath = $"{AddSlash(userProfile)}{AddSlash(documentsPath)}Visual Studio {AddSlash(vsVersion)}{AddSlash("Projects")}";
+     
       foreach (var item in checkedVersion)
       {
-        if (File.Exists($"{string.Empty}{item}"))
+        string VsPath = $"{AddSlash(userProfile)}{AddSlash(documentsPath)}Visual Studio {AddSlash(item.Substring(item.Length - 4))}{AddSlash("Projects")}";
+
+        if (File.Exists(Path.Combine(VsPath, GetLatestFile(VsPath, "update*.bat"))))
         {
           // enable item
         }
@@ -102,6 +104,17 @@ namespace GitAutoUpdateGUI
           // disable item
         }
       }
+    }
+
+    public static string GetLatestFile(string directoryPath, string patternFileName)
+    {
+      var directory = new DirectoryInfo(directoryPath);
+      //string[] allFiles = Directory.GetFiles(directoryPath, searchPattern: patternFileName);
+      var result = (from f in directory.GetFiles(patternFileName, SearchOption.TopDirectoryOnly)
+                    orderby f.LastWriteTime descending
+                    select f).First();
+
+      return result.Name;
     }
 
     private List<string> GetCheckedItemFromCheckedListBox(CheckedListBox checkedListBoxVSVersion)
@@ -2075,8 +2088,7 @@ namespace GitAutoUpdateGUI
       }
 
       // check if scripts update.cmd do exist and if so, then start them
-
-
-      textBoxVSProjectPath}
+      
+      }
   }
 }
