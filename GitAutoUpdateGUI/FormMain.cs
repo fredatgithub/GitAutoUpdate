@@ -73,6 +73,24 @@ namespace GitAutoUpdateGUI
     {
       // disable all versions that don't have an update cmd script
       List<string> checkedVersion = GetCheckedItemFromCheckedListBox(checkedListBoxVSVersion);
+      settingsHaveChanged = true;
+      string userProfile = Environment.GetEnvironmentVariable("USERPROFILE"); // C:\Users\userName
+      if (userProfile == string.Empty)
+      {
+        DisplayMessageOk(Translate("The USERPROFILE variable cannot be empty"),
+          Translate("USERPROFILE variable empty"), MessageBoxButtons.OK);
+        return;
+      }
+
+      string vsVersion = GetNumbers(comboBoxVSVersion.SelectedItem.ToString());
+      string documentsPath = Environment.SpecialFolder.MyDocuments.ToString();
+      if (userProfile != null && !Directory.Exists(Path.Combine(userProfile, documentsPath)))
+      {
+        documentsPath = Environment.SpecialFolder.MyDocuments.ToString().Substring(2);
+      }
+
+      //textBoxVSProjectPath.Text = AddSlash(userProfile) + AddSlash(documentsPath) + "Visual Studio " + AddSlash(vsVersion) + AddSlash("Projects");
+      string VsPath = $"{AddSlash(userProfile)}{AddSlash(documentsPath)}Visual Studio {AddSlash(vsVersion)}{AddSlash("Projects")}";
       foreach (var item in checkedVersion)
       {
         if (File.Exists($"{string.Empty}{item}"))
@@ -2045,8 +2063,7 @@ namespace GitAutoUpdateGUI
         documentsPath = Environment.SpecialFolder.MyDocuments.ToString().Substring(2);
       }
 
-      textBoxVSProjectPath.Text = AddSlash(userProfile) + AddSlash(documentsPath) +
-                                  "Visual Studio " + AddSlash(vsVersion) + AddSlash("Projects");
+      textBoxVSProjectPath.Text = AddSlash(userProfile) + AddSlash(documentsPath) + "Visual Studio " + AddSlash(vsVersion) + AddSlash("Projects");
     }
 
     private void ButtonUpdateCheckedVersionClick(object sender, EventArgs e)
@@ -2060,6 +2077,6 @@ namespace GitAutoUpdateGUI
       // check if scripts update.cmd do exist and if so, then start them
 
 
-    }
+      textBoxVSProjectPath}
   }
 }
