@@ -53,28 +53,28 @@
     <Setting Name="WindowWidth" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1024</Value>
     </Setting>
-    <Setting Name="checkedListBoxVSVersion2003" Type="System.Boolean" Scope="User">
+    <Setting Name="Visual_Studio_2003" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="checkedListBoxVSVersion2005" Type="System.Boolean" Scope="User">
+    <Setting Name="Visual_Studio_2005" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="checkedListBoxVSVersion2008" Type="System.Boolean" Scope="User">
+    <Setting Name="Visual_Studio_2008" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="checkedListBoxVSVersion2010" Type="System.Boolean" Scope="User">
+    <Setting Name="Visual_Studio_2010" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="checkedListBoxVSVersion2012" Type="System.Boolean" Scope="User">
+    <Setting Name="Visual_Studio_2012" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="checkedListBoxVSVersion2013" Type="System.Boolean" Scope="User">
+    <Setting Name="Visual_Studio_2013" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="checkedListBoxVSVersion2015" Type="System.Boolean" Scope="User">
+    <Setting Name="Visual_Studio_2015" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="checkedListBoxVSVersion2017" Type="System.Boolean" Scope="User">
+    <Setting Name="Visual_Studio_2017" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

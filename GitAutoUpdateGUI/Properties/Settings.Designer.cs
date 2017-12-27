@@ -230,96 +230,96 @@ namespace GitAutoUpdateGUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool checkedListBoxVSVersion2003 {
+        public bool Visual_Studio_2003 {
             get {
-                return ((bool)(this["checkedListBoxVSVersion2003"]));
+                return ((bool)(this["Visual_Studio_2003"]));
             }
             set {
-                this["checkedListBoxVSVersion2003"] = value;
+                this["Visual_Studio_2003"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool checkedListBoxVSVersion2005 {
+        public bool Visual_Studio_2005 {
             get {
-                return ((bool)(this["checkedListBoxVSVersion2005"]));
+                return ((bool)(this["Visual_Studio_2005"]));
             }
             set {
-                this["checkedListBoxVSVersion2005"] = value;
+                this["Visual_Studio_2005"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool checkedListBoxVSVersion2008 {
+        public bool Visual_Studio_2008 {
             get {
-                return ((bool)(this["checkedListBoxVSVersion2008"]));
+                return ((bool)(this["Visual_Studio_2008"]));
             }
             set {
-                this["checkedListBoxVSVersion2008"] = value;
+                this["Visual_Studio_2008"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool checkedListBoxVSVersion2010 {
+        public bool Visual_Studio_2010 {
             get {
-                return ((bool)(this["checkedListBoxVSVersion2010"]));
+                return ((bool)(this["Visual_Studio_2010"]));
             }
             set {
-                this["checkedListBoxVSVersion2010"] = value;
+                this["Visual_Studio_2010"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool checkedListBoxVSVersion2012 {
+        public bool Visual_Studio_2012 {
             get {
-                return ((bool)(this["checkedListBoxVSVersion2012"]));
+                return ((bool)(this["Visual_Studio_2012"]));
             }
             set {
-                this["checkedListBoxVSVersion2012"] = value;
+                this["Visual_Studio_2012"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool checkedListBoxVSVersion2013 {
+        public bool Visual_Studio_2013 {
             get {
-                return ((bool)(this["checkedListBoxVSVersion2013"]));
+                return ((bool)(this["Visual_Studio_2013"]));
             }
             set {
-                this["checkedListBoxVSVersion2013"] = value;
+                this["Visual_Studio_2013"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool checkedListBoxVSVersion2015 {
+        public bool Visual_Studio_2015 {
             get {
-                return ((bool)(this["checkedListBoxVSVersion2015"]));
+                return ((bool)(this["Visual_Studio_2015"]));
             }
             set {
-                this["checkedListBoxVSVersion2015"] = value;
+                this["Visual_Studio_2015"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool checkedListBoxVSVersion2017 {
+        public bool Visual_Studio_2017 {
             get {
-                return ((bool)(this["checkedListBoxVSVersion2017"]));
+                return ((bool)(this["Visual_Studio_2017"]));
             }
             set {
-                this["checkedListBoxVSVersion2017"] = value;
+                this["Visual_Studio_2017"] = value;
             }
         }
     }

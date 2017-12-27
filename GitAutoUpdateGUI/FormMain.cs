@@ -59,9 +59,9 @@ namespace GitAutoUpdateGUI
       DisplayTitle();
       LoadComboBoxVsVersions(comboBoxVSVersion);
       LoadCheckedListBoxVsVersion();
-      GetWindowValue();
       LoadLanguages();
       SetLanguage(Settings.Default.LastLanguageUsed);
+      GetWindowValue();
       AdjustAllControls();
       CheckGitBashBinary();
       CheckGitBashPathInWinPath();
@@ -90,7 +90,7 @@ namespace GitAutoUpdateGUI
       }
 
       //textBoxVSProjectPath.Text = AddSlash(userProfile) + AddSlash(documentsPath) + "Visual Studio " + AddSlash(vsVersion) + AddSlash("Projects");
-     
+
       foreach (var item in checkedVersion)
       {
         string VsPath = $"{AddSlash(userProfile)}{AddSlash(documentsPath)}Visual Studio {AddSlash(item.Substring(item.Length - 4))}{AddSlash("Projects")}";
@@ -525,7 +525,36 @@ namespace GitAutoUpdateGUI
       checkBoxCaseSensitive.Checked = Settings.Default.checkBoxCaseSensitive;
       checkBoxGitInPath.Checked = Settings.Default.checkBoxGitInPath;
       _fontSize = Settings.Default._fontSize;
-      //checkedListBoxVSVersion.Items.
+      for (int i = 0; i < checkedListBoxVSVersion.Items.Count; i++)
+      {
+        switch (checkedListBoxVSVersion.Items[i].ToString())
+        {
+          case "Visual_Studio_2003":
+            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2003;
+            break;
+          case "Visual_Studio_2005":
+            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2005;
+            break;
+          case "Visual_Studio_2008":
+            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2008;
+            break;
+          case "Visual_Studio_2010":
+            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2010;
+            break;
+          case "Visual_Studio_2012":
+            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2012;
+            break;
+          case "Visual_Studio_2013":
+            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2013;
+            break;
+          case "Visual_Studio_2015":
+            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2015;
+            break;
+          case "Visual_Studio_2017":
+            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2017;
+            break;
+        }
+      }
     }
 
     private void SaveWindowValue()
@@ -545,18 +574,52 @@ namespace GitAutoUpdateGUI
       Settings.Default.checkBoxCaseSensitive = checkBoxCaseSensitive.Checked;
       Settings.Default.checkBoxGitInPath = checkBoxGitInPath.Checked;
       Settings.Default._fontSize = _fontSize;
-      string checkedListBoxVSVersionItemcollection = string.Empty;
-      for (int i = 0; i < checkedListBoxVSVersion.Items.Count; i++)
-      {
-        checkedListBoxVSVersionItemcollection += $"{checkedListBoxVSVersion.Items[i].ToString()}|";
-        // TODO save all values whose item is checked
-        //  if (checkedListBoxVSVersion.Items[i].Value )
-        //  {
 
-        //  }
+      Settings.Default.Visual_Studio_2003 = false;
+      Settings.Default.Visual_Studio_2005 = false;
+      Settings.Default.Visual_Studio_2008 = false;
+      Settings.Default.Visual_Studio_2010 = false;
+      Settings.Default.Visual_Studio_2012 = false;
+      Settings.Default.Visual_Studio_2013 = false;
+      Settings.Default.Visual_Studio_2015 = false;
+      Settings.Default.Visual_Studio_2017 = false;
+
+      foreach (string vsVersion in ChangeCharacterInList(GetCheckedVsVersion(checkedListBoxVSVersion)))
+      {
+        if (vsVersion == "Visual_Studio_2003")
+        {
+          Settings.Default.Visual_Studio_2003 = true;
+        }
+        else if (vsVersion == "Visual_Studio_2005")
+        {
+          Settings.Default.Visual_Studio_2005 = true;
+        }
+        else if (vsVersion == "Visual_Studio_2008")
+        {
+          Settings.Default.Visual_Studio_2008 = true;
+        }
+        else if (vsVersion == "Visual_Studio_2010")
+        {
+          Settings.Default.Visual_Studio_2010 = true;
+        }
+        else if (vsVersion == "Visual_Studio_2012")
+        {
+          Settings.Default.Visual_Studio_2012 = true;
+        }
+        else if (vsVersion == "Visual_Studio_2013")
+        {
+          Settings.Default.Visual_Studio_2013 = true;
+        }
+        else if (vsVersion == "Visual_Studio_2015")
+        {
+          Settings.Default.Visual_Studio_2015 = true;
+        }
+        else if (vsVersion == "Visual_Studio_2017")
+        {
+          Settings.Default.Visual_Studio_2017 = true;
+        }
       }
 
-      checkedListBoxVSVersionItemcollection = checkedListBoxVSVersionItemcollection.TrimEnd('|');
       Settings.Default.Save();
     }
 
@@ -2088,7 +2151,34 @@ namespace GitAutoUpdateGUI
       }
 
       // check if scripts update.cmd do exist and if so, then start them
-      
+
+    }
+
+    private List<string> GetCheckedVsVersion(CheckedListBox ckListBox)
+    {
+      List<string> itemList = new List<string>();
+      foreach (var item in ckListBox.CheckedItems)
+      {
+        itemList.Add(item.ToString());
       }
+
+      return itemList;
+    }
+
+    private static string ChangeCharacter(char oldChar, char newChar, string theString)
+    {
+      return theString.Replace(oldChar, newChar);
+    }
+
+    private List<string> ChangeCharacterInList(List<string> theList)
+    {
+      List<string> result = new List<string>();
+      foreach (var item in theList)
+      {
+        result.Add(ChangeCharacter(' ', '_', item));
+      }
+
+      return result;
+    }
   }
 }
