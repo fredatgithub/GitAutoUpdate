@@ -525,6 +525,10 @@ namespace GitAutoUpdateGUI
       checkBoxCaseSensitive.Checked = Settings.Default.checkBoxCaseSensitive;
       checkBoxGitInPath.Checked = Settings.Default.checkBoxGitInPath;
       _fontSize = Settings.Default._fontSize;
+      foreach (object item in checkedListBoxVSVersion.Items)
+      {
+        // add code 
+      }
       for (int i = 0; i < checkedListBoxVSVersion.Items.Count; i++)
       {
         switch (checkedListBoxVSVersion.Items[i].ToString())
