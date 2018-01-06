@@ -2156,10 +2156,12 @@ namespace GitAutoUpdateGUI
         // check if scripts update.cmd do exist and if so, then start them
         // if not then create one
         // get all update*.cmd
-        const string pattern = "update*.cmd";
+        const string pattern = "update*.bat";
         //C:\Users\username\Documents\Visual Studio 2015\Projects
-        var di = new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), item, "Projects"));
-        FileInfo[] files = di.GetFiles(pattern);
+        string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), item,
+          "Projects\\");
+        var di = new DirectoryInfo(directoryPath);
+        FileInfo[] files = di.GetFiles(pattern, SearchOption.TopDirectoryOnly);
         if (files.Length == 1)
         {
           // start the only file
