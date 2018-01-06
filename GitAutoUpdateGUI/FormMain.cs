@@ -94,9 +94,9 @@ namespace GitAutoUpdateGUI
 
       foreach (var item in checkedVersion)
       {
-        string VsPath = $"{AddSlash(userProfile)}{AddSlash(documentsPath)}Visual Studio {AddSlash(item.Substring(item.Length - 4))}{AddSlash("Projects")}";
+        string vsPath = $"{AddSlash(userProfile)}{AddSlash(documentsPath)}Visual Studio {AddSlash(item.Substring(item.Length - 4))}{AddSlash("Projects")}";
 
-        if (File.Exists(Path.Combine(VsPath, GetLatestFile(VsPath, "update*.bat"))))
+        if (File.Exists(Path.Combine(vsPath, GetLatestFile(vsPath, "update*.bat"))))
         {
           // enable item
         }
@@ -118,10 +118,10 @@ namespace GitAutoUpdateGUI
       return result.Name;
     }
 
-    private List<string> GetCheckedItemFromCheckedListBox(CheckedListBox checkedListBoxVSVersion)
+    private List<string> GetCheckedItemFromCheckedListBox(CheckedListBox checkedListBoxVsVersion)
     {
       List<string> result = new List<string>();
-      foreach (var item in checkedListBoxVSVersion.CheckedItems)
+      foreach (var item in checkedListBoxVsVersion.CheckedItems)
       {
         result.Add(item.ToString());
       }
@@ -846,7 +846,7 @@ namespace GitAutoUpdateGUI
     {
       Control focusedControl = FindFocusedControl(new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath });
       TextBox control = focusedControl as TextBox;
-      if (control != null) control.SelectAll();
+      control?.SelectAll();
     }
 
     private void CutToClipboard(TextBoxBase tb, string errorMessage = "nothing")
@@ -1686,8 +1686,7 @@ namespace GitAutoUpdateGUI
 
     private static string DisplayElapseTime(TimeSpan ts)
     {
-      return string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-        ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+      return $"{ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}";
     }
 
     public static IEnumerable<string> GetAllDirectories(string path, string pattern = "*",
