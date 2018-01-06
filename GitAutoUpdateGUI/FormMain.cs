@@ -525,37 +525,34 @@ namespace GitAutoUpdateGUI
       checkBoxCaseSensitive.Checked = Settings.Default.checkBoxCaseSensitive;
       checkBoxGitInPath.Checked = Settings.Default.checkBoxGitInPath;
       _fontSize = Settings.Default._fontSize;
-      foreach (object item in checkedListBoxVSVersion.Items)
-      {
-        // add code 
-      }
+
       for (int i = 0; i < checkedListBoxVSVersion.Items.Count; i++)
       {
-        switch (checkedListBoxVSVersion.Items[i].ToString())
+        switch (i)
         {
-          case "Visual_Studio_2003":
-            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2003;
+          case 0:
+            checkedListBoxVSVersion.SetItemChecked(i, Settings.Default.Visual_Studio_2003);
             break;
-          case "Visual_Studio_2005":
-            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2005;
+          case 1:
+            checkedListBoxVSVersion.SetItemChecked(i, Settings.Default.Visual_Studio_2005);
             break;
-          case "Visual_Studio_2008":
-            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2008;
+          case 2:
+            checkedListBoxVSVersion.SetItemChecked(i, Settings.Default.Visual_Studio_2008);
             break;
-          case "Visual_Studio_2010":
-            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2010;
+          case 3:
+            checkedListBoxVSVersion.SetItemChecked(i, Settings.Default.Visual_Studio_2010);
             break;
-          case "Visual_Studio_2012":
-            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2012;
+          case 4:
+            checkedListBoxVSVersion.SetItemChecked(i, Settings.Default.Visual_Studio_2012);
             break;
-          case "Visual_Studio_2013":
-            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2013;
+          case 5:
+            checkedListBoxVSVersion.SetItemChecked(i, Settings.Default.Visual_Studio_2013);
             break;
-          case "Visual_Studio_2015":
-            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2015;
+          case 6:
+            checkedListBoxVSVersion.SetItemChecked(i, Settings.Default.Visual_Studio_2015);
             break;
-          case "Visual_Studio_2017":
-            checkedListBoxVSVersion.Items[i] = Settings.Default.Visual_Studio_2017;
+          case 7:
+            checkedListBoxVSVersion.SetItemChecked(i, Settings.Default.Visual_Studio_2017);
             break;
         }
       }
@@ -2154,8 +2151,34 @@ namespace GitAutoUpdateGUI
         itemList.Add(item.ToString());
       }
 
-      // check if scripts update.cmd do exist and if so, then start them
+      foreach (string item in itemList)
+      {
+        // check if scripts update.cmd do exist and if so, then start them
+        // if not then create one
+        // get all update*.cmd
+        const string pattern = "update*.cmd";
+        //C:\Users\username\Documents\Visual Studio 2015\Projects
+        var di = new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), item, "Projects"));
+        FileInfo[] files = di.GetFiles(pattern);
+        if (files.Length == 1)
+        {
+          // start the only file
+          // TODO
 
+        }
+        if (files.Length > 0)
+        {
+          // get the latest file or greatest numbered file name
+          // TODO
+
+        }
+        else
+        {
+          // no files so create one cmd script by using already created method in this code
+          // TODO
+
+        }
+      }
     }
 
     private List<string> GetCheckedVsVersion(CheckedListBox ckListBox)
