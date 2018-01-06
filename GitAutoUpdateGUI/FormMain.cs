@@ -1036,35 +1036,14 @@ namespace GitAutoUpdateGUI
       AddPauseToFile(updateScript);
       if (!checkBoxOnlyGenerateScriptFile.Checked)
       {
-        Process task = new Process
-        {
-          StartInfo =
-          {
-            UseShellExecute = true,
-            FileName = updateScript,
-            CreateNoWindow = false
-          }
-        };
-
-        task.Start();
+        StartProcess(updateScript);
       }
       else
       {
         if (DisplayMessage(Translate("Would you like to view the update script file"),
           Translate("View update script file"), MessageBoxButtons.YesNo) == DialogResult.Yes)
         {
-          Process task = new Process
-          {
-            StartInfo =
-            {
-              UseShellExecute = true,
-              FileName = "Notepad.exe",
-              Arguments = updateScript,
-              CreateNoWindow = false
-            }
-          };
-
-          task.Start();
+          StartApplication("Notepad.exe", updateScript);
         }
       }
     }
@@ -2183,7 +2162,7 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private List<string> GetCheckedVsVersion(CheckedListBox ckListBox)
+    private static List<string> GetCheckedVsVersion(CheckedListBox ckListBox)
     {
       List<string> itemList = new List<string>();
       foreach (var item in ckListBox.CheckedItems)
@@ -2199,7 +2178,7 @@ namespace GitAutoUpdateGUI
       return theString.Replace(oldChar, newChar);
     }
 
-    private List<string> ChangeCharacterInList(List<string> theList)
+    private static List<string> ChangeCharacterInList(List<string> theList)
     {
       List<string> result = new List<string>();
       foreach (var item in theList)
@@ -2208,6 +2187,37 @@ namespace GitAutoUpdateGUI
       }
 
       return result;
+    }
+
+    private static void StartProcess(string dosScript, bool useShellExecute = true, bool createNoWindow = false)
+    {
+      Process task = new Process
+      {
+        StartInfo =
+        {
+          UseShellExecute = useShellExecute,
+          FileName = dosScript,
+          CreateNoWindow = createNoWindow
+        }
+      };
+
+      task.Start();
+    }
+
+    private static void StartApplication(string applicationName, string argument, bool useShellExecute = true, bool createNoWindow = false)
+    {
+      Process task = new Process
+      {
+        StartInfo =
+        {
+          UseShellExecute = useShellExecute,
+          FileName = applicationName,
+          Arguments = argument,
+          CreateNoWindow = createNoWindow
+        }
+      };
+
+      task.Start();
     }
   }
 }
