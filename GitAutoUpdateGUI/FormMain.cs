@@ -2167,7 +2167,7 @@ namespace GitAutoUpdateGUI
       string result = files[0].FullName;
       foreach (FileInfo fileInfo in files)
       {
-        if (FileNumber(fileInfo.Name) > FileNumber(Path.GetFileName(result)))
+        if (GetDigitFromFileName(fileInfo.Name) > GetDigitFromFileName(Path.GetFileName(result)))
         {
           result = fileInfo.FullName;
         }
@@ -2176,7 +2176,7 @@ namespace GitAutoUpdateGUI
       return result;
     }
 
-    public static int FileNumber(string fileName)
+    public static int GetDigitFromFileName(string fileName)
     {
       int result = 0;
       Regex regex = new Regex(@"\d+");

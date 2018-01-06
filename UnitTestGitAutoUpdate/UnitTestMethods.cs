@@ -33,7 +33,7 @@ namespace UnitTestGitAutoUpdate
     {
       const string source = "update.bat";
       const int expected = 0;
-      int result = GitMethods.FileNumber(source);
+      int result = GitMethods.GetDigitFromFileName(source);
       Assert.AreEqual(result, expected);
     }
 
@@ -42,7 +42,7 @@ namespace UnitTestGitAutoUpdate
     {
       const string source = "update0.bat";
       const int expected = 0;
-      int result = GitMethods.FileNumber(source);
+      int result = GitMethods.GetDigitFromFileName(source);
       Assert.AreEqual(result, expected);
     }
 
@@ -51,7 +51,7 @@ namespace UnitTestGitAutoUpdate
     {
       const string source = "update1.bat";
       const int expected = 1;
-      int result = GitMethods.FileNumber(source);
+      int result = GitMethods.GetDigitFromFileName(source);
       Assert.AreEqual(result, expected);
     }
 
@@ -60,7 +60,7 @@ namespace UnitTestGitAutoUpdate
     {
       const string source = "update66.bat";
       const int expected = 66;
-      int result = GitMethods.FileNumber(source);
+      int result = GitMethods.GetDigitFromFileName(source);
       Assert.AreEqual(result, expected);
     }
     
@@ -69,7 +69,7 @@ namespace UnitTestGitAutoUpdate
     {
       const string source = "update-good-one-to-keep.bat";
       const int expected = 0;
-      int result = GitMethods.FileNumber(source);
+      int result = GitMethods.GetDigitFromFileName(source);
       Assert.AreEqual(result, expected);
     }
   }
