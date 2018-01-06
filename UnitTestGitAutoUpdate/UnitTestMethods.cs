@@ -27,5 +27,50 @@ namespace UnitTestGitAutoUpdate
       string result = GitMethods.GetLatestFile(source1, source2);
       Assert.AreEqual(result, expected);
     }
+
+    [TestMethod]
+    public void TestMethod_FileNumber_no_digit()
+    {
+      const string source = "update.bat";
+      const int expected = 0;
+      int result = GitMethods.FileNumber(source);
+      Assert.AreEqual(result, expected);
+    }
+
+    [TestMethod]
+    public void TestMethod_FileNumber_one_digit_zero()
+    {
+      const string source = "update0.bat";
+      const int expected = 0;
+      int result = GitMethods.FileNumber(source);
+      Assert.AreEqual(result, expected);
+    }
+
+    [TestMethod]
+    public void TestMethod_FileNumber_one_digit_one()
+    {
+      const string source = "update1.bat";
+      const int expected = 1;
+      int result = GitMethods.FileNumber(source);
+      Assert.AreEqual(result, expected);
+    }
+
+    [TestMethod]
+    public void TestMethod_FileNumber_two_digits()
+    {
+      const string source = "update66.bat";
+      const int expected = 66;
+      int result = GitMethods.FileNumber(source);
+      Assert.AreEqual(result, expected);
+    }
+    
+    [TestMethod]
+    public void TestMethod_FileNumber_no_digit_and_long_name()
+    {
+      const string source = "update-good-one-to-keep.bat";
+      const int expected = 0;
+      int result = GitMethods.FileNumber(source);
+      Assert.AreEqual(result, expected);
+    }
   }
 }

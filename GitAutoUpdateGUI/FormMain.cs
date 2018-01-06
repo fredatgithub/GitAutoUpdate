@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using GitAutoUpdateGUI.Properties;
@@ -2144,14 +2145,13 @@ namespace GitAutoUpdateGUI
         if (files.Length == 1)
         {
           // start the only file
-          // TODO
-
+          StartProcess(files[0].FullName);
         }
-        if (files.Length > 0)
+        else if (files.Length > 1)
         {
           // get the latest file or greatest numbered file name
-          // TODO
-
+          string geatestFileName = GetGreatestFile(files);
+          StartProcess(geatestFileName);
         }
         else
         {
@@ -2160,6 +2160,33 @@ namespace GitAutoUpdateGUI
 
         }
       }
+    }
+
+    public static string GetGreatestFile(FileInfo[] files)
+    {
+      string result = files[0].FullName;
+      foreach (FileInfo fileInfo in files)
+      {
+        if (FileNumber(fileInfo.Name) > FileNumber(Path.GetFileName(result)))
+        {
+          result = fileInfo.FullName;
+        }
+      }
+
+      return result;
+    }
+
+    public static int FileNumber(string fileName)
+    {
+      int result = 0;
+      Regex regex = new Regex(@"\d+");
+      Match match = regex.Match(fileName);
+      if (match.Success)
+      {
+        int.TryParse(match.Value, out result);
+      }
+
+      return result;
     }
 
     private static List<string> GetCheckedVsVersion(CheckedListBox ckListBox)
