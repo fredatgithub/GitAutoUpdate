@@ -1573,6 +1573,11 @@ namespace GitAutoUpdateGUI
       lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = true);
     }
 
+    private static void CheckAllItemsIncheckedListBox(CheckedListBox clb)
+    {
+      //clb.Items.OfType<CheckedListBox>().ToList().ForEach(item => item.Items.Checked = true);
+    }
+
     private static void UnCheckAllItems(ListView lvw)
     {
       lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = false);
@@ -2244,6 +2249,30 @@ namespace GitAutoUpdateGUI
       };
 
       task.Start();
+    }
+
+    private void buttonListBoxVSVersionCheck_Click(object sender, EventArgs e)
+    {
+      if (checkedListBoxVSVersion.Items.Count != 0)
+      {
+        CheckAllItems(checkedListBoxVSVersion);
+      }
+    }
+
+    private void buttonListBoxVSVersionUncheck_Click(object sender, EventArgs e)
+    {
+      if (checkedListBoxVSVersion.Items.Count != 0)
+      {
+        UnCheckAllItems(checkedListBoxVSVersion);
+      }
+    }
+
+    private void buttonListBoxVSVersionToggle_Click(object sender, EventArgs e)
+    {
+      if (checkedListBoxVSVersion.Items.Count != 0)
+      {
+        ToggleAllItems(listViewVSProjects);
+      }
     }
   }
 }

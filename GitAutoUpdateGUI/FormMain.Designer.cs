@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-      System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,6 +90,9 @@
       this.buttonCreateBackupScript = new System.Windows.Forms.Button();
       this.checkedListBoxVSVersion = new System.Windows.Forms.CheckedListBox();
       this.buttonUpdateCheckedVersion = new System.Windows.Forms.Button();
+      this.buttonListBoxVSVersionCheck = new System.Windows.Forms.Button();
+      this.buttonListBoxVSVersionUncheck = new System.Windows.Forms.Button();
+      this.buttonListBoxVSVersionToggle = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -429,13 +432,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.listViewVSProjects.GridLines = true;
-      listViewGroup1.Header = "ListViewGroup";
-      listViewGroup1.Name = "listViewGroup1";
-      listViewGroup2.Header = "ListViewGroup";
-      listViewGroup2.Name = "listViewGroup2";
+      listViewGroup5.Header = "ListViewGroup";
+      listViewGroup5.Name = "listViewGroup1";
+      listViewGroup6.Header = "ListViewGroup";
+      listViewGroup6.Name = "listViewGroup2";
       this.listViewVSProjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup5,
+            listViewGroup6});
       this.listViewVSProjects.Location = new System.Drawing.Point(25, 492);
       this.listViewVSProjects.Margin = new System.Windows.Forms.Padding(2);
       this.listViewVSProjects.Name = "listViewVSProjects";
@@ -690,11 +693,50 @@
       this.buttonUpdateCheckedVersion.UseVisualStyleBackColor = true;
       this.buttonUpdateCheckedVersion.Click += new System.EventHandler(this.ButtonUpdateCheckedVersionClick);
       // 
+      // buttonListBoxVSVersionCheck
+      // 
+      this.buttonListBoxVSVersionCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.buttonListBoxVSVersionCheck.Location = new System.Drawing.Point(130, 98);
+      this.buttonListBoxVSVersionCheck.Margin = new System.Windows.Forms.Padding(2);
+      this.buttonListBoxVSVersionCheck.Name = "buttonListBoxVSVersionCheck";
+      this.buttonListBoxVSVersionCheck.Size = new System.Drawing.Size(128, 26);
+      this.buttonListBoxVSVersionCheck.TabIndex = 31;
+      this.buttonListBoxVSVersionCheck.Text = "Check all";
+      this.buttonListBoxVSVersionCheck.UseVisualStyleBackColor = true;
+      this.buttonListBoxVSVersionCheck.Click += new System.EventHandler(this.buttonListBoxVSVersionCheck_Click);
+      // 
+      // buttonListBoxVSVersionUncheck
+      // 
+      this.buttonListBoxVSVersionUncheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.buttonListBoxVSVersionUncheck.Location = new System.Drawing.Point(130, 140);
+      this.buttonListBoxVSVersionUncheck.Margin = new System.Windows.Forms.Padding(2);
+      this.buttonListBoxVSVersionUncheck.Name = "buttonListBoxVSVersionUncheck";
+      this.buttonListBoxVSVersionUncheck.Size = new System.Drawing.Size(138, 26);
+      this.buttonListBoxVSVersionUncheck.TabIndex = 30;
+      this.buttonListBoxVSVersionUncheck.Text = "Uncheck all";
+      this.buttonListBoxVSVersionUncheck.UseVisualStyleBackColor = true;
+      this.buttonListBoxVSVersionUncheck.Click += new System.EventHandler(this.buttonListBoxVSVersionUncheck_Click);
+      // 
+      // buttonListBoxVSVersionToggle
+      // 
+      this.buttonListBoxVSVersionToggle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.buttonListBoxVSVersionToggle.Location = new System.Drawing.Point(130, 187);
+      this.buttonListBoxVSVersionToggle.Margin = new System.Windows.Forms.Padding(2);
+      this.buttonListBoxVSVersionToggle.Name = "buttonListBoxVSVersionToggle";
+      this.buttonListBoxVSVersionToggle.Size = new System.Drawing.Size(136, 26);
+      this.buttonListBoxVSVersionToggle.TabIndex = 29;
+      this.buttonListBoxVSVersionToggle.Text = "Check/Uncheck All";
+      this.buttonListBoxVSVersionToggle.UseVisualStyleBackColor = true;
+      this.buttonListBoxVSVersionToggle.Click += new System.EventHandler(this.buttonListBoxVSVersionToggle_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1182, 708);
+      this.Controls.Add(this.buttonListBoxVSVersionCheck);
+      this.Controls.Add(this.buttonListBoxVSVersionUncheck);
+      this.Controls.Add(this.buttonListBoxVSVersionToggle);
       this.Controls.Add(this.buttonUpdateCheckedVersion);
       this.Controls.Add(this.checkedListBoxVSVersion);
       this.Controls.Add(this.buttonCreateBackupScript);
@@ -799,5 +841,8 @@
     private System.Windows.Forms.Button buttonCreateBackupScript;
     private System.Windows.Forms.CheckedListBox checkedListBoxVSVersion;
     private System.Windows.Forms.Button buttonUpdateCheckedVersion;
+    private System.Windows.Forms.Button buttonListBoxVSVersionCheck;
+    private System.Windows.Forms.Button buttonListBoxVSVersionUncheck;
+    private System.Windows.Forms.Button buttonListBoxVSVersionToggle;
   }
 }
