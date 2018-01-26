@@ -28,7 +28,7 @@ namespace GitAutoUpdateGUI
     private readonly Dictionary<string, string> _languageDicoFr = new Dictionary<string, string>();
     private string _currentLanguage = "english";
     private float _fontSize;
-    private bool settingsHaveChanged = false;
+    private bool settingsHaveChanged;
     private List<string> _previousUpdateFileList = new List<string>();
 
     private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
