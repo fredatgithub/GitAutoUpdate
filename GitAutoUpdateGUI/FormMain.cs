@@ -729,13 +729,18 @@ namespace GitAutoUpdateGUI
           buttonScannWholePC.Text = _languageDicoEn["Scan whole Pc"];
           buttonLoadVSProjects.Text = _languageDicoEn["Search for Visual Studio Projects"];
           checkBoxOnlyGenerateScriptFile.Text = _languageDicoEn["Generate only the script file"];
-          buttonCheckUncheckAll.Text = _languageDicoEn["Toggle items"];
-          buttonClearLogTextBox.Text = _languageDicoEn["Clear log"];
+         buttonClearLogTextBox.Text = _languageDicoEn["Clear log"];
           checkBoxUnlistVSSolution.Text =
             _languageDicoEn["Unlist Visual Studio Solution having the following terms separated with a comma"];
           checkBoxCaseSensitive.Text = _languageDicoEn["Case sensitive"];
           buttonClearAll.Text = _languageDicoEn["Uncheck all"];
           buttonCheckAll.Text = _languageDicoEn["Check all"];
+          buttonCheckUncheckAll.Text = _languageDicoEn["Toggle items"];
+
+          buttonListBoxVSVersionUncheck.Text = _languageDicoEn["Uncheck all"];
+          buttonListBoxVSVersionCheck.Text = _languageDicoEn["Check all"];
+          buttonListBoxVSVersionToggle.Text = _languageDicoEn["Toggle items"];
+
           checkBoxGitBashInstalled.Text = _languageDicoEn[CheckOrUncheck(checkBoxGitBashInstalled, "GitBash installed")];
           checkBoxGitInPath.Text =
             _languageDicoEn[CheckOrUncheck(checkBoxGitInPath, "GitBash binary path in Windows Path variable")];
@@ -781,6 +786,9 @@ namespace GitAutoUpdateGUI
           checkBoxOnlyGenerateScriptFile.Text = _languageDicoFr["Generate only the script file"];
           buttonCheckUncheckAll.Text = _languageDicoFr["Toggle items"];
           buttonClearLogTextBox.Text = _languageDicoFr["Clear log"];
+          buttonListBoxVSVersionUncheck.Text = _languageDicoFr["Uncheck all"];
+          buttonListBoxVSVersionCheck.Text = _languageDicoFr["Check all"];
+          buttonListBoxVSVersionToggle.Text = _languageDicoFr["Toggle items"];
           checkBoxUnlistVSSolution.Text =
             _languageDicoFr["Unlist Visual Studio Solution having the following terms separated with a comma"];
           checkBoxCaseSensitive.Text = _languageDicoFr["Case sensitive"];
@@ -1606,8 +1614,7 @@ namespace GitAutoUpdateGUI
         documentsPath = Environment.SpecialFolder.MyDocuments.ToString().Substring(2);
       }
 
-      textBoxVSProjectPath.Text = AddSlash(userProfile) + AddSlash(documentsPath) +
-                                  "Visual Studio " + AddSlash(vsVersion) + AddSlash("Projects");
+      textBoxVSProjectPath.Text = AddSlash(userProfile) + AddSlash(documentsPath) + "Visual Studio " + AddSlash(vsVersion) + AddSlash("Projects");
     }
 
     private static string AddSlash(string myString)
@@ -2108,23 +2115,20 @@ namespace GitAutoUpdateGUI
 
     private void checkedListBoxVSVersion_SelectedIndexChanged(object sender, EventArgs e)
     {
-      settingsHaveChanged = true;
-      string userProfile = Environment.GetEnvironmentVariable("USERPROFILE"); // C:\Users\userName
-      if (userProfile == string.Empty)
+      if (checkedListBoxVSVersion.CheckedItems.Count == 0)
       {
-        DisplayMessageOk(Translate("The USERPROFILE variable cannot be empty"),
-          Translate("USERPROFILE variable empty"), MessageBoxButtons.OK);
-        return;
+        buttonListBoxVSVersionCheck.Enabled = false;
+        buttonListBoxVSVersionUncheck.Enabled = false;
+        buttonListBoxVSVersionToggle.Enabled = false;
+        buttonUpdateCheckedVersion.Enabled = false;
       }
-
-      string vsVersion = GetNumbers(comboBoxVSVersion.SelectedItem.ToString());
-      string documentsPath = Environment.SpecialFolder.MyDocuments.ToString();
-      if (userProfile != null && !Directory.Exists(Path.Combine(userProfile, documentsPath)))
+      else
       {
-        documentsPath = Environment.SpecialFolder.MyDocuments.ToString().Substring(2);
+        buttonListBoxVSVersionCheck.Enabled = true;
+        buttonListBoxVSVersionUncheck.Enabled = true;
+        buttonListBoxVSVersionToggle.Enabled = true;
+        buttonUpdateCheckedVersion.Enabled = true;
       }
-
-      textBoxVSProjectPath.Text = AddSlash(userProfile) + AddSlash(documentsPath) + "Visual Studio " + AddSlash(vsVersion) + AddSlash("Projects");
     }
 
     private void ButtonUpdateCheckedVersionClick(object sender, EventArgs e)
@@ -2255,7 +2259,7 @@ namespace GitAutoUpdateGUI
     {
       if (checkedListBoxVSVersion.Items.Count != 0)
       {
-        CheckAllItems(checkedListBoxVSVersion);
+        //CheckAllItems(checkedListBoxVSVersion);
       }
     }
 
@@ -2263,7 +2267,7 @@ namespace GitAutoUpdateGUI
     {
       if (checkedListBoxVSVersion.Items.Count != 0)
       {
-        UnCheckAllItems(checkedListBoxVSVersion);
+        //UnCheckAllItems(checkedListBoxVSVersion);
       }
     }
 

@@ -28,8 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-      System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+      System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -432,13 +432,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.listViewVSProjects.GridLines = true;
-      listViewGroup5.Header = "ListViewGroup";
-      listViewGroup5.Name = "listViewGroup1";
-      listViewGroup6.Header = "ListViewGroup";
-      listViewGroup6.Name = "listViewGroup2";
+      listViewGroup1.Header = "ListViewGroup";
+      listViewGroup1.Name = "listViewGroup1";
+      listViewGroup2.Header = "ListViewGroup";
+      listViewGroup2.Name = "listViewGroup2";
       this.listViewVSProjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup5,
-            listViewGroup6});
+            listViewGroup1,
+            listViewGroup2});
       this.listViewVSProjects.Location = new System.Drawing.Point(25, 492);
       this.listViewVSProjects.Margin = new System.Windows.Forms.Padding(2);
       this.listViewVSProjects.Name = "listViewVSProjects";
@@ -699,7 +699,7 @@
       this.buttonListBoxVSVersionCheck.Location = new System.Drawing.Point(130, 98);
       this.buttonListBoxVSVersionCheck.Margin = new System.Windows.Forms.Padding(2);
       this.buttonListBoxVSVersionCheck.Name = "buttonListBoxVSVersionCheck";
-      this.buttonListBoxVSVersionCheck.Size = new System.Drawing.Size(128, 26);
+      this.buttonListBoxVSVersionCheck.Size = new System.Drawing.Size(138, 26);
       this.buttonListBoxVSVersionCheck.TabIndex = 31;
       this.buttonListBoxVSVersionCheck.Text = "Check all";
       this.buttonListBoxVSVersionCheck.UseVisualStyleBackColor = true;
