@@ -910,6 +910,11 @@
     <englishValue>Quote</englishValue>
     <frenchValue>Citation</frenchValue>
   </term>
+   <term>
+    <name>quote</name>
+    <englishValue>quote</englishValue>
+    <frenchValue>citation</frenchValue>
+  </term>
   <term>
     <name>Search</name>
     <englishValue>Search</englishValue>
@@ -1589,5 +1594,170 @@
     <name>a city</name>
     <englishValue>a city</englishValue>
     <frenchValue>une ville</frenchValue>
+  </term>
+  <term>
+    <name>First name</name>
+    <englishValue>First name</englishValue>
+    <frenchValue>Prénom</frenchValue>
+  </term>
+  <term>
+    <name>Last name</name>
+    <englishValue>Last name</englishValue>
+    <frenchValue>Nom de famille</frenchValue>
+  </term>
+  <term>
+    <name>Gender</name>
+    <englishValue>Gender</englishValue>
+    <frenchValue>Sexe</frenchValue>
+  </term>
+  <term>
+    <name>Simple level</name>
+    <englishValue>Simple level</englishValue>
+    <frenchValue>Niveau en simple</frenchValue>
+  </term>
+  <term>
+    <name>Double level</name>
+    <englishValue>Double level</englishValue>
+    <frenchValue>Niveau en double</frenchValue>
+  </term>
+  <term>
+    <name>Mixed level</name>
+    <englishValue>Mixed level</englishValue>
+    <frenchValue>Niveau en mixte</frenchValue>
+  </term>
+  <term>
+    <name>Player number</name>
+    <englishValue>Player number</englishValue>
+    <frenchValue>Numéro joueur</frenchValue>
+  </term>
+  <term>
+    <name>License number</name>
+    <englishValue>License number</englishValue>
+    <frenchValue>Numéro de licence</frenchValue>
+  </term>
+  <term>
+    <name>Choose a process</name>
+    <englishValue>Choose a process</englishValue>
+    <frenchValue>Choisir un process</frenchValue>
+  </term>
+  <term>
+    <name>Shutdown when done</name>
+    <englishValue>Shutdown when done</englishValue>
+    <frenchValue>Arrêter PC quand fini</frenchValue>
+  </term>
+   <term>
+    <name>You must select a process first</name>
+    <englishValue>You must select a process first</englishValue>
+    <frenchValue>Vous devez sélectionner un process</frenchValue>
+  </term>
+  <term>
+    <name>Select a process</name>
+    <englishValue>Select a process</englishValue>
+    <frenchValue>Sélectionnez un process</frenchValue>
+  </term>
+  <term>
+    <name>Result found</name>
+    <englishValue>Result found</englishValue>
+    <frenchValue>Résultat trouvé</frenchValue>
+  </term>
+   <term>
+    <name>Quote found</name>
+    <englishValue>Quote found</englishValue>
+    <frenchValue>Citation trouvée</frenchValue>
+  </term>
+   <term>
+    <name>Statistics</name>
+    <englishValue>Statistics</englishValue>
+    <frenchValue>Statistiques</frenchValue>
+  </term>
+   <term>
+    <name>in total</name>
+    <englishValue>in total</englishValue>
+    <frenchValue>au total</frenchValue>
+  </term>
+  <term>
+    <name>in French</name>
+    <englishValue>in French</englishValue>
+    <frenchValue>en français</frenchValue>
+  </term>
+  <term>
+    <name>duplicate quote</name>
+    <englishValue>duplicate quote</englishValue>
+    <frenchValue>citation en double</frenchValue>
+  </term>
+  <term>
+    <name>No duplicate quote found</name>
+    <englishValue>No duplicate quote found</englishValue>
+    <frenchValue>Pas de citation en double</frenchValue>
+  </term>
+  <term>
+    <name>List of author sorted by number of quotes descending</name>
+    <englishValue>List of author sorted by number of quotes descending</englishValue>
+    <frenchValue>Liste des auteurs triée par nombre de citation par ordre décroissant</frenchValue>
+  </term>
+   <term>
+    <name>List of author sorted in alphabetical order</name>
+    <englishValue>List of author sorted in alphabetical order</englishValue>
+    <frenchValue>Liste des auteurs triée par ordre alphabétique</frenchValue>
+  </term>
+  <term>
+    <name>in English</name>
+    <englishValue>in English</englishValue>
+    <frenchValue>en anglais</frenchValue>
+  </term>
+  <term>
+    <name>Open XML file</name>
+    <englishValue>Open XML file</englishValue>
+    <frenchValue>Ouvrir fichier XML</frenchValue>
+  </term>
+  <term>
+    <name>Found</name>
+    <englishValue>Found</englishValue>
+    <frenchValue>Trouvé</frenchValue>
+  </term>
+  <term>
+    <name>Not Found</name>
+    <englishValue>Not Found</englishValue>
+    <frenchValue>Non trouvé</frenchValue>
+  </term>
+  <term>
+    <name>Load</name>
+    <englishValue>Load</englishValue>
+    <frenchValue>Charger</frenchValue>
+  </term>
+  <term>
+    <name>Term to search</name>
+    <englishValue>Term to search</englishValue>
+    <frenchValue>Terme à chercher</frenchValue>
+  </term>
+  <term>
+    <name>Path to XML file</name>
+    <englishValue>Path to XML file</englishValue>
+    <frenchValue>Chemin du fichier XML</frenchValue>
+  </term>
+  <term>
+    <name>Xml files</name>
+    <englishValue>Xml files</englishValue>
+    <frenchValue>Fichier Xml</frenchValue>
+  </term>
+  <term>
+    <name>You should clean the file</name>
+    <englishValue>You should clean the file</englishValue>
+    <frenchValue>Vous devriez nettoyer le fichier</frenchValue>
+  </term>
+  <term>
+    <name>Cleaning needed</name>
+    <englishValue>Cleaning needed</englishValue>
+    <frenchValue>Nettoyage nécessaire</frenchValue>
+  </term>
+   <term>
+    <name>Duplicate</name>
+    <englishValue>Duplicate</englishValue>
+    <frenchValue>Doublon</frenchValue>
+  </term>
+  <term>
+    <name>Update</name>
+    <englishValue>Update</englishValue>
+    <frenchValue>Mise à jour</frenchValue>
   </term>
 </terms>

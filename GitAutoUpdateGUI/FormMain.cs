@@ -740,7 +740,7 @@ namespace GitAutoUpdateGUI
           buttonListBoxVSVersionUncheck.Text = _languageDicoEn["Uncheck all"];
           buttonListBoxVSVersionCheck.Text = _languageDicoEn["Check all"];
           buttonListBoxVSVersionToggle.Text = _languageDicoEn["Toggle items"];
-
+          buttonUpdateCheckedVersion.Text = _languageDicoEn["Update"];
           checkBoxGitBashInstalled.Text = _languageDicoEn[CheckOrUncheck(checkBoxGitBashInstalled, "GitBash installed")];
           checkBoxGitInPath.Text =
             _languageDicoEn[CheckOrUncheck(checkBoxGitInPath, "GitBash binary path in Windows Path variable")];
@@ -794,6 +794,7 @@ namespace GitAutoUpdateGUI
           checkBoxCaseSensitive.Text = _languageDicoFr["Case sensitive"];
           buttonClearAll.Text = _languageDicoFr["Uncheck all"];
           buttonCheckAll.Text = _languageDicoFr["Check all"];
+          buttonUpdateCheckedVersion.Text = _languageDicoFr["Update"];
           checkBoxGitBashInstalled.Text = _languageDicoFr[CheckOrUncheck(checkBoxGitBashInstalled, "GitBash installed")];
           checkBoxGitInPath.Text =
             _languageDicoFr[CheckOrUncheck(checkBoxGitInPath, "GitBash binary path in Windows Path variable")];
