@@ -125,7 +125,7 @@ namespace GitAutoUpdateGUI
       return string.Empty;
     }
 
-    private List<string> GetCheckedItemFromCheckedListBox(CheckedListBox checkedListBoxVsVersion)
+    private static List<string> GetCheckedItemFromCheckedListBox(CheckedListBox checkedListBoxVsVersion)
     {
       List<string> result = new List<string>();
       foreach (var item in checkedListBoxVsVersion.CheckedItems)
@@ -1571,7 +1571,7 @@ namespace GitAutoUpdateGUI
           }
         }
 
-        return;
+        return; // necessary if any other object
       }
       // any other object type
     }
@@ -1613,7 +1613,7 @@ namespace GitAutoUpdateGUI
     {
       for (int i = 0; i <= (clb.Items.Count - 1); i++)
       {
-        clb.SetItemCheckState(i, checkItem ? CheckState.Checked : CheckState.Unchecked);
+        clb.SetItemCheckState(i, clb.GetItemCheckState(i) == CheckState.Checked ? CheckState.Unchecked : CheckState.Checked);
       }
     }
 
@@ -1854,7 +1854,7 @@ namespace GitAutoUpdateGUI
       return files;
     }
 
-    private void textBoxUnlistOldSolution_TextChanged(object sender, EventArgs e)
+    private void TextBoxUnlistOldSolution_TextChanged(object sender, EventArgs e)
     {
       settingsHaveChanged = true;
       if (textBoxUnlistOldSolution.Text == string.Empty)
@@ -1863,7 +1863,7 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void buttonClearAll_Click(object sender, EventArgs e)
+    private void ButtonClearAll_Click(object sender, EventArgs e)
     {
       if (listViewVSProjects.Items.Count != 0)
       {
@@ -1879,7 +1879,7 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void buttonAddGitBinaryToWinPath_Click(object sender, EventArgs e)
+    private void ButtonAddGitBinaryToWinPath_Click(object sender, EventArgs e)
     {
       // Path = %path% + textBoxGitBashBinariesPath.text minus "git.exe"
       var winPath = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
@@ -1952,13 +1952,13 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void checkBoxGitInPath_CheckedChanged(object sender, EventArgs e)
+    private void CheckBoxGitInPath_CheckedChanged(object sender, EventArgs e)
     {
       buttonAddGitBinaryToWinPath.Enabled = !checkBoxGitInPath.Checked;
       settingsHaveChanged = true;
     }
 
-    private void buttonCreateBackupScript_Click(object sender, EventArgs e)
+    private void ButtonCreateBackupScript_Click(object sender, EventArgs e)
     {
       if (textBoxVSProjectPath.Text == string.Empty)
       {
@@ -2096,7 +2096,7 @@ namespace GitAutoUpdateGUI
       return result;
     }
 
-    private void listViewVSProjects_ItemChecked(object sender, ItemCheckedEventArgs e)
+    private void ListViewVSProjects_ItemChecked(object sender, ItemCheckedEventArgs e)
     {
       buttonUpdateVSProjects.Enabled = GetItemChecked(listViewVSProjects) > 0;
     }
@@ -2106,7 +2106,7 @@ namespace GitAutoUpdateGUI
       return lv.CheckedItems.Count;
     }
 
-    private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+    private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
     {
       if (settingsHaveChanged)
       {
@@ -2114,27 +2114,27 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void checkBoxUnlistVSSolution_CheckedChanged(object sender, EventArgs e)
+    private void CheckBoxUnlistVSSolution_CheckedChanged(object sender, EventArgs e)
     {
       settingsHaveChanged = true;
     }
 
-    private void checkBoxGitBashInstalled_CheckedChanged(object sender, EventArgs e)
+    private void CheckBoxGitBashInstalled_CheckedChanged(object sender, EventArgs e)
     {
       settingsHaveChanged = true;
     }
 
-    private void checkBoxOnlyGenerateScriptFile_CheckedChanged(object sender, EventArgs e)
+    private void CheckBoxOnlyGenerateScriptFile_CheckedChanged(object sender, EventArgs e)
     {
       settingsHaveChanged = true;
     }
 
-    private void checkBoxCaseSensitive_CheckedChanged(object sender, EventArgs e)
+    private void CheckBoxCaseSensitive_CheckedChanged(object sender, EventArgs e)
     {
       settingsHaveChanged = true;
     }
 
-    private void checkedListBoxVSVersion_SelectedIndexChanged(object sender, EventArgs e)
+    private void CheckedListBoxVSVersion_SelectedIndexChanged(object sender, EventArgs e)
     {
       if (checkedListBoxVSVersion.CheckedItems.Count == 0)
       {
@@ -2296,7 +2296,7 @@ namespace GitAutoUpdateGUI
     {
       if (checkedListBoxVSVersion.Items.Count != 0)
       {
-        ToggleAllItemsInCheckedListBox(checkedListBoxVSVersion, true);
+        ToggleAllItemsInCheckedListBox(checkedListBoxVSVersion, false);
       }
     }
   }

@@ -157,7 +157,7 @@
       this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
       this.saveToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
       this.saveToolStripMenuItem.Text = "&Enregistrer";
-      this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+      this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
       // 
       // saveasToolStripMenuItem
       // 
@@ -413,7 +413,7 @@
       this.checkBoxGitBashInstalled.TabIndex = 6;
       this.checkBoxGitBashInstalled.Text = "GitBash installed";
       this.checkBoxGitBashInstalled.UseVisualStyleBackColor = true;
-      this.checkBoxGitBashInstalled.CheckedChanged += new System.EventHandler(this.checkBoxGitBashInstalled_CheckedChanged);
+      this.checkBoxGitBashInstalled.CheckedChanged += new System.EventHandler(this.CheckBoxGitBashInstalled_CheckedChanged);
       // 
       // labelSelectVSProjects
       // 
@@ -445,7 +445,7 @@
       this.listViewVSProjects.Size = new System.Drawing.Size(1140, 207);
       this.listViewVSProjects.TabIndex = 8;
       this.listViewVSProjects.UseCompatibleStateImageBehavior = false;
-      this.listViewVSProjects.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewVSProjects_ItemChecked);
+      this.listViewVSProjects.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.ListViewVSProjects_ItemChecked);
       // 
       // labelPickDirectory
       // 
@@ -543,7 +543,7 @@
       this.checkBoxOnlyGenerateScriptFile.TabIndex = 16;
       this.checkBoxOnlyGenerateScriptFile.Text = "Only generate script file";
       this.checkBoxOnlyGenerateScriptFile.UseVisualStyleBackColor = true;
-      this.checkBoxOnlyGenerateScriptFile.CheckedChanged += new System.EventHandler(this.checkBoxOnlyGenerateScriptFile_CheckedChanged);
+      this.checkBoxOnlyGenerateScriptFile.CheckedChanged += new System.EventHandler(this.CheckBoxOnlyGenerateScriptFile_CheckedChanged);
       // 
       // buttonCheckUncheckAll
       // 
@@ -580,7 +580,7 @@
       this.checkBoxUnlistVSSolution.TabIndex = 19;
       this.checkBoxUnlistVSSolution.Text = "Unlist Visual Studio Solutions having the text separated with a comma";
       this.checkBoxUnlistVSSolution.UseVisualStyleBackColor = true;
-      this.checkBoxUnlistVSSolution.CheckedChanged += new System.EventHandler(this.checkBoxUnlistVSSolution_CheckedChanged);
+      this.checkBoxUnlistVSSolution.CheckedChanged += new System.EventHandler(this.CheckBoxUnlistVSSolution_CheckedChanged);
       // 
       // textBoxUnlistOldSolution
       // 
@@ -592,7 +592,7 @@
       this.textBoxUnlistOldSolution.Size = new System.Drawing.Size(350, 23);
       this.textBoxUnlistOldSolution.TabIndex = 20;
       this.textBoxUnlistOldSolution.Text = "old, bad";
-      this.textBoxUnlistOldSolution.TextChanged += new System.EventHandler(this.textBoxUnlistOldSolution_TextChanged);
+      this.textBoxUnlistOldSolution.TextChanged += new System.EventHandler(this.TextBoxUnlistOldSolution_TextChanged);
       // 
       // checkBoxCaseSensitive
       // 
@@ -605,7 +605,7 @@
       this.checkBoxCaseSensitive.TabIndex = 21;
       this.checkBoxCaseSensitive.Text = "Case sensitive";
       this.checkBoxCaseSensitive.UseVisualStyleBackColor = true;
-      this.checkBoxCaseSensitive.CheckedChanged += new System.EventHandler(this.checkBoxCaseSensitive_CheckedChanged);
+      this.checkBoxCaseSensitive.CheckedChanged += new System.EventHandler(this.CheckBoxCaseSensitive_CheckedChanged);
       // 
       // buttonClearAll
       // 
@@ -617,7 +617,7 @@
       this.buttonClearAll.TabIndex = 22;
       this.buttonClearAll.Text = "Uncheck all";
       this.buttonClearAll.UseVisualStyleBackColor = true;
-      this.buttonClearAll.Click += new System.EventHandler(this.buttonClearAll_Click);
+      this.buttonClearAll.Click += new System.EventHandler(this.ButtonClearAll_Click);
       // 
       // buttonCheckAll
       // 
@@ -644,7 +644,7 @@
       this.checkBoxGitInPath.TabIndex = 24;
       this.checkBoxGitInPath.Text = "GitBash binary path in Windows Path variable";
       this.checkBoxGitInPath.UseVisualStyleBackColor = true;
-      this.checkBoxGitInPath.CheckedChanged += new System.EventHandler(this.checkBoxGitInPath_CheckedChanged);
+      this.checkBoxGitInPath.CheckedChanged += new System.EventHandler(this.CheckBoxGitInPath_CheckedChanged);
       // 
       // buttonAddGitBinaryToWinPath
       // 
@@ -656,7 +656,7 @@
       this.buttonAddGitBinaryToWinPath.TabIndex = 25;
       this.buttonAddGitBinaryToWinPath.Text = "Add GitBash binary to Windows Path";
       this.buttonAddGitBinaryToWinPath.UseVisualStyleBackColor = true;
-      this.buttonAddGitBinaryToWinPath.Click += new System.EventHandler(this.buttonAddGitBinaryToWinPath_Click);
+      this.buttonAddGitBinaryToWinPath.Click += new System.EventHandler(this.ButtonAddGitBinaryToWinPath_Click);
       // 
       // buttonCreateBackupScript
       // 
@@ -670,7 +670,7 @@
       this.buttonCreateBackupScript.TabIndex = 26;
       this.buttonCreateBackupScript.Text = "Create git clone backup script";
       this.buttonCreateBackupScript.UseVisualStyleBackColor = true;
-      this.buttonCreateBackupScript.Click += new System.EventHandler(this.buttonCreateBackupScript_Click);
+      this.buttonCreateBackupScript.Click += new System.EventHandler(this.ButtonCreateBackupScript_Click);
       // 
       // checkedListBoxVSVersion
       // 
@@ -679,7 +679,7 @@
       this.checkedListBoxVSVersion.Name = "checkedListBoxVSVersion";
       this.checkedListBoxVSVersion.Size = new System.Drawing.Size(148, 124);
       this.checkedListBoxVSVersion.TabIndex = 27;
-      this.checkedListBoxVSVersion.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxVSVersion_SelectedIndexChanged);
+      this.checkedListBoxVSVersion.SelectedIndexChanged += new System.EventHandler(this.CheckedListBoxVSVersion_SelectedIndexChanged);
       // 
       // buttonUpdateCheckedVersion
       // 
