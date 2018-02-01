@@ -941,7 +941,7 @@ namespace GitAutoUpdateGUI
       return container.FirstOrDefault(control => control.Focused);
     }
 
-    private void buttonVSVersionGetPath_Click(object sender, EventArgs e)
+    private void ButtonVSVersionGetPath_Click(object sender, EventArgs e)
     {
       textBoxVSProjectPath.Text = ChooseDirectory();
     }
@@ -971,7 +971,7 @@ namespace GitAutoUpdateGUI
       return result;
     }
 
-    private void buttonGitBashBinPath_Click(object sender, EventArgs e)
+    private void ButtonGitBashBinPath_Click(object sender, EventArgs e)
     {
       textBoxGitBashBinariesPath.Text = ChooseOneFile("git executable (git.exe)|git.exe");
     }
@@ -1187,7 +1187,7 @@ namespace GitAutoUpdateGUI
       return result;
     }
 
-    private void buttonLoadVSProjects_Click(object sender, EventArgs e)
+    private void ButtonLoadVSProjects_Click(object sender, EventArgs e)
     {
       Logger.Clear(textBoxLog);
       Logger.Add(textBoxLog, Translate("Clearing past results"));
@@ -1576,7 +1576,7 @@ namespace GitAutoUpdateGUI
       // any other object type
     }
 
-    private void buttonCheckUncheckAll_Click(object sender, EventArgs e)
+    private void ButtonCheckUncheckAll_Click(object sender, EventArgs e)
     {
       if (listViewVSProjects.Items.Count != 0)
       {
@@ -1594,11 +1594,6 @@ namespace GitAutoUpdateGUI
       Enumerable.Range(0, clb.Items.Count).ToList().ForEach(x => clb.SetItemChecked(x, checkedOrUnchecked));
     }
 
-    private static void CheckAllItemsIncheckedListBox(CheckedListBox clb)
-    {
-      //clb.Items.OfType<CheckedListBox>().ToList().ForEach(item => item.Items.Checked = true);
-    }
-
     private static void UnCheckAllItems(ListView lvw)
     {
       lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = false);
@@ -1609,7 +1604,7 @@ namespace GitAutoUpdateGUI
       lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = !item.Checked);
     }
 
-    private void ToggleAllItemsInCheckedListBox(CheckedListBox clb, bool checkItem)
+    private static void ToggleAllItemsInCheckedListBox(CheckedListBox clb, bool checkItem)
     {
       for (int i = 0; i <= (clb.Items.Count - 1); i++)
       {
@@ -1617,7 +1612,7 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void comboBoxVSVersion_SelectedIndexChanged(object sender, EventArgs e)
+    private void ComboBoxVSVersion_SelectedIndexChanged(object sender, EventArgs e)
     {
       settingsHaveChanged = true;
       string userProfile = Environment.GetEnvironmentVariable("USERPROFILE"); // C:\Users\userName
@@ -1648,12 +1643,12 @@ namespace GitAutoUpdateGUI
       return myString.Where(char.IsNumber).Aggregate(string.Empty, (current, c) => current + c);
     }
 
-    private void buttonClearLogTextBox_Click(object sender, EventArgs e)
+    private void ButtonClearLogTextBox_Click(object sender, EventArgs e)
     {
       textBoxLog.Text = string.Empty;
     }
 
-    private void buttonScannWholePC_Click(object sender, EventArgs e)
+    private void ButtonScannWholePC_Click(object sender, EventArgs e)
     {
       Logger.Clear(textBoxLog);
       Logger.Add(textBoxLog, Translate("Clearing list result"));
@@ -1871,7 +1866,7 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void buttonCheckAll_Click(object sender, EventArgs e)
+    private void ButtonCheckAll_Click(object sender, EventArgs e)
     {
       if (listViewVSProjects.Items.Count != 0)
       {

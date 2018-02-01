@@ -388,7 +388,7 @@
       this.comboBoxVSVersion.Size = new System.Drawing.Size(148, 21);
       this.comboBoxVSVersion.TabIndex = 4;
       this.comboBoxVSVersion.Text = "Visual Studio Version";
-      this.comboBoxVSVersion.SelectedIndexChanged += new System.EventHandler(this.comboBoxVSVersion_SelectedIndexChanged);
+      this.comboBoxVSVersion.SelectedIndexChanged += new System.EventHandler(this.ComboBoxVSVersion_SelectedIndexChanged);
       // 
       // buttonVSVersionGetPath
       // 
@@ -399,7 +399,7 @@
       this.buttonVSVersionGetPath.TabIndex = 5;
       this.buttonVSVersionGetPath.Text = "...";
       this.buttonVSVersionGetPath.UseVisualStyleBackColor = true;
-      this.buttonVSVersionGetPath.Click += new System.EventHandler(this.buttonVSVersionGetPath_Click);
+      this.buttonVSVersionGetPath.Click += new System.EventHandler(this.ButtonVSVersionGetPath_Click);
       // 
       // checkBoxGitBashInstalled
       // 
@@ -492,7 +492,7 @@
       this.buttonGitBashBinPath.TabIndex = 12;
       this.buttonGitBashBinPath.Text = "...";
       this.buttonGitBashBinPath.UseVisualStyleBackColor = true;
-      this.buttonGitBashBinPath.Click += new System.EventHandler(this.buttonGitBashBinPath_Click);
+      this.buttonGitBashBinPath.Click += new System.EventHandler(this.ButtonGitBashBinPath_Click);
       // 
       // buttonScannWholePC
       // 
@@ -504,7 +504,7 @@
       this.buttonScannWholePC.TabIndex = 13;
       this.buttonScannWholePC.Text = "Scan whole Pc";
       this.buttonScannWholePC.UseVisualStyleBackColor = true;
-      this.buttonScannWholePC.Click += new System.EventHandler(this.buttonScannWholePC_Click);
+      this.buttonScannWholePC.Click += new System.EventHandler(this.ButtonScannWholePC_Click);
       // 
       // textBoxLog
       // 
@@ -530,7 +530,7 @@
       this.buttonLoadVSProjects.TabIndex = 15;
       this.buttonLoadVSProjects.Text = "Search for Visual Studio Projects";
       this.buttonLoadVSProjects.UseVisualStyleBackColor = true;
-      this.buttonLoadVSProjects.Click += new System.EventHandler(this.buttonLoadVSProjects_Click);
+      this.buttonLoadVSProjects.Click += new System.EventHandler(this.ButtonLoadVSProjects_Click);
       // 
       // checkBoxOnlyGenerateScriptFile
       // 
@@ -555,7 +555,7 @@
       this.buttonCheckUncheckAll.TabIndex = 17;
       this.buttonCheckUncheckAll.Text = "Check/Uncheck All";
       this.buttonCheckUncheckAll.UseVisualStyleBackColor = true;
-      this.buttonCheckUncheckAll.Click += new System.EventHandler(this.buttonCheckUncheckAll_Click);
+      this.buttonCheckUncheckAll.Click += new System.EventHandler(this.ButtonCheckUncheckAll_Click);
       // 
       // buttonClearLogTextBox
       // 
@@ -567,7 +567,7 @@
       this.buttonClearLogTextBox.TabIndex = 18;
       this.buttonClearLogTextBox.Text = "Clear Log";
       this.buttonClearLogTextBox.UseVisualStyleBackColor = true;
-      this.buttonClearLogTextBox.Click += new System.EventHandler(this.buttonClearLogTextBox_Click);
+      this.buttonClearLogTextBox.Click += new System.EventHandler(this.ButtonClearLogTextBox_Click);
       // 
       // checkBoxUnlistVSSolution
       // 
@@ -629,7 +629,7 @@
       this.buttonCheckAll.TabIndex = 23;
       this.buttonCheckAll.Text = "Check all";
       this.buttonCheckAll.UseVisualStyleBackColor = true;
-      this.buttonCheckAll.Click += new System.EventHandler(this.buttonCheckAll_Click);
+      this.buttonCheckAll.Click += new System.EventHandler(this.ButtonCheckAll_Click);
       // 
       // checkBoxGitInPath
       // 
