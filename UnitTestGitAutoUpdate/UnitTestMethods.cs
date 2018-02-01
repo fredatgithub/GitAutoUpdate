@@ -13,7 +13,7 @@ namespace UnitTestGitAutoUpdate
       const string methodName = "GetLatestFile";
       const string source1 = @"C:\Users\fred\Documents\Visual Studio 2012\Projects";
       const string source2 = "update*.bat";
-      const string expected = "update64.bat";
+      const string expected = "update11.bat";
       object obj = privateTypeObject.InvokeStatic(methodName, source1, source2);
       Assert.AreEqual(expected, (string)obj);
     }
@@ -23,7 +23,7 @@ namespace UnitTestGitAutoUpdate
     {
       const string source1 = @"C:\Users\fred\Documents\Visual Studio 2012\Projects";
       const string source2 = "update*.bat";
-      const string expected = "update64.bat";
+      const string expected = "update11.bat";
       string result = GitMethods.GetLatestFile(source1, source2);
       Assert.AreEqual(result, expected);
     }
