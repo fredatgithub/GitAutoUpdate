@@ -703,7 +703,7 @@
       this.buttonListBoxVSVersionCheck.TabIndex = 31;
       this.buttonListBoxVSVersionCheck.Text = "Check all";
       this.buttonListBoxVSVersionCheck.UseVisualStyleBackColor = true;
-      this.buttonListBoxVSVersionCheck.Click += new System.EventHandler(this.buttonListBoxVSVersionCheck_Click);
+      this.buttonListBoxVSVersionCheck.Click += new System.EventHandler(this.ButtonListBoxVSVersionCheck_Click);
       // 
       // buttonListBoxVSVersionUncheck
       // 
@@ -715,7 +715,7 @@
       this.buttonListBoxVSVersionUncheck.TabIndex = 30;
       this.buttonListBoxVSVersionUncheck.Text = "Uncheck all";
       this.buttonListBoxVSVersionUncheck.UseVisualStyleBackColor = true;
-      this.buttonListBoxVSVersionUncheck.Click += new System.EventHandler(this.buttonListBoxVSVersionUncheck_Click);
+      this.buttonListBoxVSVersionUncheck.Click += new System.EventHandler(this.ButtonListBoxVSVersionUncheck_Click);
       // 
       // buttonListBoxVSVersionToggle
       // 
@@ -727,7 +727,7 @@
       this.buttonListBoxVSVersionToggle.TabIndex = 29;
       this.buttonListBoxVSVersionToggle.Text = "Check/Uncheck All";
       this.buttonListBoxVSVersionToggle.UseVisualStyleBackColor = true;
-      this.buttonListBoxVSVersionToggle.Click += new System.EventHandler(this.buttonListBoxVSVersionToggle_Click);
+      this.buttonListBoxVSVersionToggle.Click += new System.EventHandler(this.ButtonListBoxVSVersionToggle_Click);
       // 
       // FormMain
       // 

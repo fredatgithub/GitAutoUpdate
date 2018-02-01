@@ -111,11 +111,18 @@ namespace GitAutoUpdateGUI
     {
       var directory = new DirectoryInfo(directoryPath);
       //string[] allFiles = Directory.GetFiles(directoryPath, searchPattern: patternFileName);
-      var result = (from f in directory.GetFiles(patternFileName, SearchOption.TopDirectoryOnly)
-                    orderby f.LastWriteTime descending
-                    select f).First();
+      if (Directory.Exists(directoryPath))
+      {
+        var result = (from f in directory.GetFiles(patternFileName, SearchOption.TopDirectoryOnly)
+          orderby f.LastWriteTime descending
+          select f).First();
+        if (result != null)
+        {
+          return result.Name;
+        }
+      }
 
-      return result.Name;
+      return string.Empty;
     }
 
     private List<string> GetCheckedItemFromCheckedListBox(CheckedListBox checkedListBoxVsVersion)
@@ -1581,6 +1588,11 @@ namespace GitAutoUpdateGUI
     {
       lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = true);
     }
+    
+    private static void CheckUncheckAllItemsIncheckedListbox(CheckedListBox clb, bool checkedOrUnchecked)
+    {
+      Enumerable.Range(0, clb.Items.Count).ToList().ForEach(x => clb.SetItemChecked(x, checkedOrUnchecked));
+    }
 
     private static void CheckAllItemsIncheckedListBox(CheckedListBox clb)
     {
@@ -1595,6 +1607,14 @@ namespace GitAutoUpdateGUI
     private static void ToggleAllItems(ListView lvw)
     {
       lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = !item.Checked);
+    }
+
+    private void ToggleAllItemsInCheckedListBox(CheckedListBox clb, bool checkItem)
+    {
+      for (int i = 0; i <= (clb.Items.Count - 1); i++)
+      {
+        clb.SetItemCheckState(i, checkItem ? CheckState.Checked : CheckState.Unchecked);
+      }
     }
 
     private void comboBoxVSVersion_SelectedIndexChanged(object sender, EventArgs e)
@@ -2256,27 +2276,27 @@ namespace GitAutoUpdateGUI
       task.Start();
     }
 
-    private void buttonListBoxVSVersionCheck_Click(object sender, EventArgs e)
+    private void ButtonListBoxVSVersionCheck_Click(object sender, EventArgs e)
     {
       if (checkedListBoxVSVersion.Items.Count != 0)
       {
-        //CheckAllItems(checkedListBoxVSVersion);
+        CheckUncheckAllItemsIncheckedListbox(checkedListBoxVSVersion, true);
       }
     }
 
-    private void buttonListBoxVSVersionUncheck_Click(object sender, EventArgs e)
+    private void ButtonListBoxVSVersionUncheck_Click(object sender, EventArgs e)
     {
       if (checkedListBoxVSVersion.Items.Count != 0)
       {
-        //UnCheckAllItems(checkedListBoxVSVersion);
+        CheckUncheckAllItemsIncheckedListbox(checkedListBoxVSVersion, false);
       }
     }
 
-    private void buttonListBoxVSVersionToggle_Click(object sender, EventArgs e)
+    private void ButtonListBoxVSVersionToggle_Click(object sender, EventArgs e)
     {
       if (checkedListBoxVSVersion.Items.Count != 0)
       {
-        ToggleAllItems(listViewVSProjects);
+        ToggleAllItemsInCheckedListBox(checkedListBoxVSVersion, true);
       }
     }
   }
