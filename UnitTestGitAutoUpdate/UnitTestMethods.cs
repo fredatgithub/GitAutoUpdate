@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GitMethods = GitAutoUpdateGUI.FormMain;
 
 namespace UnitTestGitAutoUpdate
@@ -71,6 +73,42 @@ namespace UnitTestGitAutoUpdate
       const int expected = 0;
       int result = GitMethods.GetDigitFromFileName(source);
       Assert.AreEqual(result, expected);
+     
+      
+    }
+
+    [TestMethod]
+    public void TestMethod_System_variables()
+    {
+      string source = $"{Path.GetPathRoot(Environment.SystemDirectory)}Program Files\\Git\\bin";
+      const string expected = "C:\\Program Files\\Git\\bin";
+      Assert.AreEqual(source, expected);
+    }
+
+    [TestMethod]
+    public void TestMethod_Program_files_variables()
+    {
+      string source = $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Git\\cmd";
+      const string expected = "C:\\Program Files\\Git\\cmd";
+      Assert.AreEqual(source, expected);
+      //Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+    }
+
+    [TestMethod]
+    public void TestMethod_AppData_Roaming_variables()
+    {
+      string source = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}";
+      const string expected = "C:\\Users\\fred\\AppData\\Roaming";
+      Assert.AreEqual(source, expected);
+    }
+
+
+    [TestMethod]
+    public void TestMethod_AppData_Local_variables()
+    {
+      string source = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0,21)}\\Local";
+      const string expected = "C:\\Users\\fred\\AppData\\Local";
+      Assert.AreEqual(source, expected);
     }
   }
 }

@@ -157,7 +157,7 @@ namespace GitAutoUpdateGUI
     private void CheckGitBashPathInWinPath()
     {
       checkBoxGitInPath.Enabled = true;
-      if (IsInWinPath("\\Git\\bin"))
+      if (IsInWinPath("\\Git\\bin") || GitIsInstalled())
       {
         checkBoxGitInPath.Checked = true;
         checkBoxGitInPath.Text = Translate("GitBash binary path in Windows Path variable");
@@ -177,6 +177,34 @@ namespace GitAutoUpdateGUI
       }
 
       checkBoxGitInPath.Enabled = false;
+    }
+
+    private static bool GitIsInstalled()
+    {
+      bool result = false;
+      List<string> listOfGitInstallation = new List<string>
+      {
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Git\\bin",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Git\\cmd",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Git\\mingw32\\bin",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Git\\mingw32\\libexec\\git-core",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Microsoft Visual Studio\\2017\\Professional\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\Git\\cmd",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Microsoft Visual Studio\\2017\\Professional\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\Git\\mingw32\\bin",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Microsoft Visual Studio 14.0\\Web\\External\\git",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0,21)}\\Local\\Atlassian\\SourceTree\\git_local\\bin",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0,21)}\\Local\\Atlassian\\SourceTree\\git_local\\cmd",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0,21)}\\Local\\Atlassian\\SourceTree\\git_local\\libexec\\git-core",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0,21)}\\Local\\atom\\app-1.20.1\\resources\\app\\node_modules\\dugite\\git\\mingw64\\bin"
+      };
+
+      foreach (string file in listOfGitInstallation)
+      {
+        if (!File.Exists($"{file}\\git.exe")) continue;
+        result = true;
+        break;
+      }
+
+      return result;
     }
 
     private static bool IsInWinPath(string substring)
