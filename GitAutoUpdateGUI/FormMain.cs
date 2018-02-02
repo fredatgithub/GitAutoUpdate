@@ -114,8 +114,8 @@ namespace GitAutoUpdateGUI
       if (Directory.Exists(directoryPath))
       {
         var result = (from f in directory.GetFiles(patternFileName, SearchOption.TopDirectoryOnly)
-          orderby f.LastWriteTime descending
-          select f).First();
+                      orderby f.LastWriteTime descending
+                      select f).First();
         if (result != null)
         {
           return result.Name;
@@ -764,7 +764,7 @@ namespace GitAutoUpdateGUI
           buttonScannWholePC.Text = _languageDicoEn["Scan whole Pc"];
           buttonLoadVSProjects.Text = _languageDicoEn["Search for Visual Studio Projects"];
           checkBoxOnlyGenerateScriptFile.Text = _languageDicoEn["Generate only the script file"];
-         buttonClearLogTextBox.Text = _languageDicoEn["Clear log"];
+          buttonClearLogTextBox.Text = _languageDicoEn["Clear log"];
           checkBoxUnlistVSSolution.Text =
             _languageDicoEn["Unlist Visual Studio Solution having the following terms separated with a comma"];
           checkBoxCaseSensitive.Text = _languageDicoEn["Case sensitive"];
@@ -1013,9 +1013,7 @@ namespace GitAutoUpdateGUI
     {
       if (listViewVSProjects.Items.Count == 0)
       {
-        DisplayMessageOk(Translate("The list doesn't have any Visual Studio project to update") +
-                         Punctuation.Period + Punctuation.CrLf +
-                         Translate("Enter a correct path and search project again"),
+        DisplayMessageOk(Translate("The list doesn't have any Visual Studio project to update") + Punctuation.Period + Punctuation.CrLf + Translate("Enter a correct path and search project again"),
           Translate("List empty"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The list doesn't have any Visual Studio project to update"));
         return;
@@ -1024,9 +1022,7 @@ namespace GitAutoUpdateGUI
       var selectedProjects = listViewVSProjects.CheckedItems;
       if (selectedProjects.Count == 0)
       {
-        DisplayMessageOk(Translate("No project has been selected") +
-                         Punctuation.Period + Punctuation.CrLf + Translate("Select at least one project"),
-          Translate("No selection"), MessageBoxButtons.OK);
+        DisplayMessageOk(Translate("No project has been selected") + Punctuation.Period + Punctuation.CrLf + Translate("Select at least one project"), Translate("No selection"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("No project has been selected"));
         return;
       }
@@ -1222,8 +1218,9 @@ namespace GitAutoUpdateGUI
       if (textBoxVSProjectPath.Text == string.Empty)
       {
         DisplayMessageOk(Translate("The Visual Studio project directory path is empty") +
-                         Punctuation.Period + Punctuation.CrLf + Translate("Enter a correct path"),
-          Translate("Directory empty"), MessageBoxButtons.OK);
+                         Punctuation.Period + Punctuation.CrLf + 
+                         Translate("Enter a correct path"),
+                         Translate("Directory empty"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The Visual Studio project directory path is empty"));
         return;
       }
@@ -1616,7 +1613,7 @@ namespace GitAutoUpdateGUI
     {
       lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = true);
     }
-    
+
     private static void CheckUncheckAllItemsIncheckedListbox(CheckedListBox clb, bool checkedOrUnchecked)
     {
       Enumerable.Range(0, clb.Items.Count).ToList().ForEach(x => clb.SetItemChecked(x, checkedOrUnchecked));

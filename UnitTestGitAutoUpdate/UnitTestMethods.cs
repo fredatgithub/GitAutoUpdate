@@ -91,7 +91,6 @@ namespace UnitTestGitAutoUpdate
       string source = $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Git\\cmd";
       const string expected = "C:\\Program Files\\Git\\cmd";
       Assert.AreEqual(source, expected);
-      //Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
     }
 
     [TestMethod]
@@ -108,6 +107,22 @@ namespace UnitTestGitAutoUpdate
     {
       string source = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0,21)}\\Local";
       const string expected = "C:\\Users\\fred\\AppData\\Local";
+      Assert.AreEqual(source, expected);
+    }
+
+    [TestMethod]
+    public void TestMethod_Get_username_and_pc_name_variables()
+    {
+      string source = $"{System.Security.Principal.WindowsIdentity.GetCurrent().Name}";
+      const string expected = "quad\\fred";
+      Assert.AreEqual(source, expected);
+    }
+
+    [TestMethod]
+    public void TestMethod_Get_username_variables()
+    {
+      string source = $"{Environment.UserName}";
+      const string expected = "fred";
       Assert.AreEqual(source, expected);
     }
   }
