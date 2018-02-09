@@ -207,6 +207,34 @@ namespace GitAutoUpdateGUI
       return result;
     }
 
+    private static string GetGitPath()
+    {
+      string result = string.Empty;
+      List<string> listOfGitInstallation = new List<string>
+      {
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Git\\bin",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Git\\cmd",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Git\\mingw32\\bin",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Git\\mingw32\\libexec\\git-core",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Microsoft Visual Studio\\2017\\Professional\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\Git\\cmd",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Microsoft Visual Studio\\2017\\Professional\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\Git\\mingw32\\bin",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Microsoft Visual Studio 14.0\\Web\\External\\git",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0,21)}\\Local\\Atlassian\\SourceTree\\git_local\\bin",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0,21)}\\Local\\Atlassian\\SourceTree\\git_local\\cmd",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0,21)}\\Local\\Atlassian\\SourceTree\\git_local\\libexec\\git-core",
+        $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0,21)}\\Local\\atom\\app-1.20.1\\resources\\app\\node_modules\\dugite\\git\\mingw64\\bin"
+      };
+
+      foreach (string file in listOfGitInstallation)
+      {
+        if (!File.Exists($"{file}\\git.exe")) continue;
+        result = $"{file}\\";
+        break;
+      }
+
+      return result;
+    }
+
     private static bool IsInWinPath(string substring)
     {
       bool result = false;
@@ -1007,8 +1035,14 @@ namespace GitAutoUpdateGUI
 
     private void ButtonGitBashBinPath_Click(object sender, EventArgs e)
     {
-      textBoxGitBashBinariesPath.Text = ChooseOneFile("git executable (git.exe)|git.exe", Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ?? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)
-      );
+      string startPath = GetGitPath();
+      if (startPath == string.Empty)
+      {
+        startPath = Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ??
+                    Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+      }
+
+      textBoxGitBashBinariesPath.Text = ChooseOneFile("git executable (git.exe)|git.exe", startPath);
     }
 
     private static bool ContainsIgnoreCase(string source, string toCheck)
@@ -1225,7 +1259,7 @@ namespace GitAutoUpdateGUI
       if (textBoxVSProjectPath.Text == string.Empty)
       {
         DisplayMessageOk(Translate("The Visual Studio project directory path is empty") +
-                         Punctuation.Period + Punctuation.CrLf + 
+                         Punctuation.Period + Punctuation.CrLf +
                          Translate("Enter a correct path"),
                          Translate("Directory empty"), MessageBoxButtons.OK);
         Logger.Add(textBoxLog, Translate("The Visual Studio project directory path is empty"));
