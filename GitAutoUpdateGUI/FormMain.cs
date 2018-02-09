@@ -986,11 +986,17 @@ namespace GitAutoUpdateGUI
       return result;
     }
 
-    private static string ChooseOneFile(string filter = "All files (*.*)|*.*")
+    private static string ChooseOneFile(string filter = "All files (*.*)|*.*", string initialDirectory = "")
     {
       string result = string.Empty;
       FileDialog fd = new OpenFileDialog();
       fd.Filter = filter;
+      if (initialDirectory == string.Empty)
+      {
+        initialDirectory = Environment.GetEnvironmentVariable("PROGRAMFILES");
+      }
+
+      fd.InitialDirectory = initialDirectory;
       if (fd.ShowDialog() == DialogResult.OK)
       {
         result = fd.FileName;
