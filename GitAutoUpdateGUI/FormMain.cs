@@ -993,7 +993,7 @@ namespace GitAutoUpdateGUI
       fd.Filter = filter;
       if (initialDirectory == string.Empty)
       {
-        initialDirectory = Environment.GetEnvironmentVariable("PROGRAMFILES");
+        initialDirectory = $"{Environment.GetEnvironmentVariable("systemdrive")}\\";
       }
 
       fd.InitialDirectory = initialDirectory;
@@ -1007,7 +1007,8 @@ namespace GitAutoUpdateGUI
 
     private void ButtonGitBashBinPath_Click(object sender, EventArgs e)
     {
-      textBoxGitBashBinariesPath.Text = ChooseOneFile("git executable (git.exe)|git.exe");
+      textBoxGitBashBinariesPath.Text = ChooseOneFile("git executable (git.exe)|git.exe", Environment.GetEnvironmentVariable("PROGRAMFILES(X86)") ?? Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)
+      );
     }
 
     private static bool ContainsIgnoreCase(string source, string toCheck)
