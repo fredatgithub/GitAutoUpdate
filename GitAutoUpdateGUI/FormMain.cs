@@ -90,11 +90,9 @@ namespace GitAutoUpdateGUI
         documentsPath = Environment.SpecialFolder.MyDocuments.ToString().Substring(2);
       }
 
-      //textBoxVSProjectPath.Text = AddSlash(userProfile) + AddSlash(documentsPath) + "Visual Studio " + AddSlash(vsVersion) + AddSlash("Projects");
-
       foreach (var item in checkedVersion)
       {
-        string vsPath = $"{AddSlash(userProfile)}{AddSlash(documentsPath)}Visual Studio {AddSlash(item.Substring(item.Length - 4))}{AddSlash("Projects")}";
+        string vsPath = Path.Combine(userProfile, documentsPath, item, "Projects");
 
         if (File.Exists(Path.Combine(vsPath, GetLatestFile(vsPath, "update*.bat"))))
         {
