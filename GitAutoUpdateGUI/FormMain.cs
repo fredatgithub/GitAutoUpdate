@@ -1697,9 +1697,14 @@ namespace GitAutoUpdateGUI
 
       textBoxVSProjectPath.Text = Path.Combine(userProfile, documentsPath, $"Visual Studio {vsVersion}", "Projects");
 
-      // disable buttonLoadVSProjects.Enable = false;
+      buttonLoadVSProjects.Enabled = Directory.Exists(textBoxVSProjectPath.Text);
     }
 
+    /// <summary>
+    /// Get numbers from a string
+    /// </summary>
+    /// <param name="myString">The string to search numbers in</param>
+    /// <returns>A string with only numbers</returns>
     private static string GetNumbers(string myString)
     {
       return myString.Where(char.IsNumber).Aggregate(string.Empty, (current, c) => current + c);

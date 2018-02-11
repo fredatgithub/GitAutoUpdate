@@ -125,5 +125,16 @@ namespace UnitTestGitAutoUpdate
       const string expected = "fred";
       Assert.AreEqual(source, expected);
     }
+
+    [TestMethod]
+    public void TestMethod_GetNumbers()
+    {
+      PrivateType privateTypeObject = new PrivateType(typeof(GitMethods));
+      const string methodName = "GetNumbers";
+      const string source = @"C:\Users\user\Documents\Visual Studio 2012\Projects";
+      const string expected = "2012";
+      object obj = privateTypeObject.InvokeStatic(methodName, source);
+      Assert.AreEqual(expected, (string)obj);
+    }
   }
 }
