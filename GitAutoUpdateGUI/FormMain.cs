@@ -1,4 +1,6 @@
 #define Debug
+using GitAutoUpdateGUI.Properties;
+using Tools;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,8 +14,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using GitAutoUpdateGUI.Properties;
-using Tools;
 
 namespace GitAutoUpdateGUI
 {
@@ -31,18 +31,19 @@ namespace GitAutoUpdateGUI
     private bool settingsHaveChanged;
     private List<string> _previousUpdateFileList = new List<string>();
 
-    private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
+    private void QuitToolStripMenuItemClick(object sender, EventArgs e)
     {
       SaveWindowValue();
       Application.Exit();
     }
 
-    private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+    private void AboutToolStripMenuItemClick(object sender, EventArgs e)
     {
       AboutBoxApplication aboutBoxApplication = new AboutBoxApplication();
       aboutBoxApplication.ShowDialog();
     }
 
+    /// <summary>Add the version to the title of the main form</summary>
     private void DisplayTitle()
     {
       Assembly assembly = Assembly.GetExecutingAssembly();
@@ -50,7 +51,7 @@ namespace GitAutoUpdateGUI
       Text += $" V{fvi.FileMajorPart}.{fvi.FileMinorPart}.{fvi.FileBuildPart}.{fvi.FilePrivatePart}";
     }
 
-    private void FormMain_Load(object sender, EventArgs e)
+    private void FormMainLoad(object sender, EventArgs e)
     {
       LoadSettingsAtStartup();
     }
@@ -135,6 +136,9 @@ namespace GitAutoUpdateGUI
       return result;
     }
 
+    /// <summary>Enable or Disable all passed-in controls</summary>
+    /// <param name="conditionalListView">The list view</param>
+    /// <param name="listOfControls">The list of controls</param>
     private static void EnableDisableButtons(ListView conditionalListView, params Control[] listOfControls)
     {
       if (conditionalListView.Items.Count == 0)
@@ -234,6 +238,9 @@ namespace GitAutoUpdateGUI
       return result;
     }
 
+    /// <summary>Check if parameter is in Windows Path</summary>
+    /// <param name="substring">The string to check</param>
+    /// <returns>A boolean stating if the string is in Windows path</returns>
     private static bool IsInWinPath(string substring)
     {
       bool result = false;
@@ -242,9 +249,9 @@ namespace GitAutoUpdateGUI
       return result;
     }
 
-    private static void ClearComboBox(ComboBox cb)
+    private static void ClearComboBox(ComboBox comboBox)
     {
-      cb.Items.Clear();
+      comboBox.Items.Clear();
     }
 
     private void LoadCheckedListBoxVsVersion()
@@ -286,9 +293,9 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void LoadComboBoxVsVersions(ComboBox cb)
+    private void LoadComboBoxVsVersions(ComboBox comboBox)
     {
-      ClearComboBox(cb);
+      ClearComboBox(comboBox);
       if (!File.Exists(Settings.Default.VisualStudioVersionsFileName))
       {
         CreateVsVersionFile();
@@ -301,8 +308,7 @@ namespace GitAutoUpdateGUI
       }
       catch (Exception exception)
       {
-        MessageBox.Show("Error while loading the " + Settings.Default.VisualStudioVersionsFileName +
-                        " xml file: " + exception.Message);
+        MessageBox.Show("Error while loading the " + Settings.Default.VisualStudioVersionsFileName + " xml file: " + exception.Message);
         CreateVsVersionFile();
         return;
       }
@@ -327,6 +333,7 @@ namespace GitAutoUpdateGUI
       comboBoxVSVersion.SelectedIndex = comboBoxVSVersion.Items.Count - 1; // select last item which is the latest version of VS
     }
 
+    /// <summary>Create a default file if none exist</summary>
     private static void CreateVsVersionFile()
     {
       var minimumVersion = new List<string>
@@ -369,6 +376,7 @@ namespace GitAutoUpdateGUI
       sw.Close();
     }
 
+    /// <summary>Load all languages</summary>
     private void LoadLanguages()
     {
       if (!File.Exists(Settings.Default.LanguageFileName))
@@ -425,6 +433,7 @@ namespace GitAutoUpdateGUI
       }
     }
 
+    /// <summary>Create a new language file if none exist</summary>
     private static void CreateLanguageFile()
     {
       var minimumVersion = new List<string>
@@ -687,25 +696,29 @@ namespace GitAutoUpdateGUI
       Settings.Default.Save();
     }
 
+    /// <summary>Save all window values before exiting</summary>
+    /// <param name="sender">Sender is the main form</param>
+    /// <param name="e">Form closing event arguments</param>
     private void FormMainFormClosing(object sender, FormClosingEventArgs e)
     {
       SaveWindowValue();
     }
 
-    private void frenchToolStripMenuItem_Click(object sender, EventArgs e)
+    private void frenchToolStripMenuItemClick(object sender, EventArgs e)
     {
       _currentLanguage = Language.French.ToString();
       SetLanguage(Language.French.ToString());
       AdjustAllControls();
     }
 
-    private void englishToolStripMenuItem_Click(object sender, EventArgs e)
+    private void englishToolStripMenuItemClick(object sender, EventArgs e)
     {
       _currentLanguage = Language.English.ToString();
       SetLanguage(Language.English.ToString());
       AdjustAllControls();
     }
 
+    /// <summary>Adjust all controls length when translating controls label</summary>
     private void AdjustAllControls()
     {
       AdjustControls(labelChooseVSVersion, comboBoxVSVersion, labelPickDirectory, buttonVSVersionGetPath,
@@ -732,7 +745,6 @@ namespace GitAutoUpdateGUI
         _fontSize = 10.0f;
       }
 
-      //var lastControl = listOfControls[listOfControls.Length - 1];
       foreach (Control control in listOfControls)
       {
         if (isFirstControl)
@@ -747,8 +759,6 @@ namespace GitAutoUpdateGUI
           control.Font = new Font(new FontFamily("Verdana"), _fontSize);
         }
       }
-
-      //lastControl.Width = Width - position; //  + lastControl.Width + 10);
     }
 
     private void SetLanguage(string myLanguage)
@@ -867,14 +877,14 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private static string CheckOrUncheck(CheckBox cb, string positiveString)
+    private static string CheckOrUncheck(CheckBox checkbox, string positiveString)
     {
       switch (positiveString)
       {
         case "GitBash installed":
-          return cb.Checked ? "GitBash installed" : "GitBash not installed";
+          return checkbox.Checked ? "GitBash installed" : "GitBash not installed";
         case "GitBash binary path in Windows Path variable":
-          return cb.Checked
+          return checkbox.Checked
             ? "GitBash binary path in Windows Path variable"
             : "GitBash binary path not in Windows Path variable";
         default:
@@ -882,7 +892,7 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+    private void cutToolStripMenuItemClick(object sender, EventArgs e)
     {
       var listOfCtrl = new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath };
       Control focusedControl = FindFocusedControl(listOfCtrl);
@@ -893,7 +903,7 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+    private void copyToolStripMenuItemClick(object sender, EventArgs e)
     {
       Control focusedControl = FindFocusedControl(new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath });
       var tb = focusedControl as TextBox;
@@ -903,7 +913,7 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+    private void pasteToolStripMenuItemClick(object sender, EventArgs e)
     {
       Control focusedControl = FindFocusedControl(new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath });
       var tb = focusedControl as TextBox;
@@ -913,17 +923,17 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+    private void selectAllToolStripMenuItemClick(object sender, EventArgs e)
     {
       Control focusedControl = FindFocusedControl(new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath });
       TextBox control = focusedControl as TextBox;
       control?.SelectAll();
     }
 
-    private void CutToClipboard(TextBoxBase tb, string errorMessage = "nothing")
+    private void CutToClipboard(TextBoxBase textBox, string errorMessage = "nothing")
     {
-      if (tb != ActiveControl) return;
-      if (tb.Text == string.Empty)
+      if (textBox != ActiveControl) return;
+      if (textBox.Text == string.Empty)
       {
         DisplayMessageOk(Translate("ThereIs") + Punctuation.OneSpace +
                          Translate(errorMessage) + Punctuation.OneSpace +
@@ -932,35 +942,35 @@ namespace GitAutoUpdateGUI
         return;
       }
 
-      if (tb.SelectedText == string.Empty)
+      if (textBox.SelectedText == string.Empty)
       {
         DisplayMessageOk(Translate("NoTextHasBeenSelected"),
           Translate(errorMessage), MessageBoxButtons.OK);
         return;
       }
 
-      Clipboard.SetText(tb.SelectedText);
-      tb.SelectedText = string.Empty;
+      Clipboard.SetText(textBox.SelectedText);
+      textBox.SelectedText = string.Empty;
     }
 
-    private void CopyToClipboard(TextBoxBase tb, string message = "nothing")
+    private void CopyToClipboard(TextBoxBase textBox, string message = "nothing")
     {
-      if (tb != ActiveControl) return;
-      if (tb.Text == string.Empty)
+      if (textBox != ActiveControl) return;
+      if (textBox.Text == string.Empty)
       {
         DisplayMessageOk(Translate("ThereIsNothingToCopy") + Punctuation.OneSpace,
           Translate(message), MessageBoxButtons.OK);
         return;
       }
 
-      if (tb.SelectedText == string.Empty)
+      if (textBox.SelectedText == string.Empty)
       {
         DisplayMessageOk(Translate("NoTextHasBeenSelected"),
           Translate(message), MessageBoxButtons.OK);
         return;
       }
 
-      Clipboard.SetText(tb.SelectedText);
+      Clipboard.SetText(textBox.SelectedText);
     }
 
     private void PasteFromClipboard(TextBoxBase tb)
@@ -979,12 +989,12 @@ namespace GitAutoUpdateGUI
         case "english":
           result = _languageDicoEn.ContainsKey(index)
             ? _languageDicoEn[index]
-            : "the term: \"" + index + "\" has not been translated yet.\nPlease add an entry in the Translations.xml file or tell the developer to translate this term";
+            : "the term: \"" + index + "\" has not been translated yet.\nPlease add an entry in the Translations.xml file";
           break;
         case "french":
           result = _languageDicoFr.ContainsKey(index)
             ? _languageDicoFr[index]
-            : "the term: \"" + index + "\" has not been translated yet.\nPlease add an entry in the Translations.xml file or tell the developer to translate this term";
+            : "the term: \"" + index + "\" has not been translated yet.\nPlease add an entry in the Translations.xml file";
           break;
       }
 
@@ -1004,10 +1014,10 @@ namespace GitAutoUpdateGUI
     private static string ChooseDirectory()
     {
       string result = string.Empty;
-      FolderBrowserDialog fbd = new FolderBrowserDialog();
-      if (fbd.ShowDialog() == DialogResult.OK)
+      FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+      if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
       {
-        result = fbd.SelectedPath;
+        result = folderBrowserDialog.SelectedPath;
       }
 
       return result;
@@ -1044,7 +1054,7 @@ namespace GitAutoUpdateGUI
       textBoxGitBashBinariesPath.Text = ChooseOneFile("git executable (git.exe)|git.exe", startPath);
     }
 
-    private static bool ContainsIgnoreCase(string source, string toCheck)
+    private static bool ContainIgnoreCase(string source, string toCheck)
     {
       return source.IndexOf(toCheck, StringComparison.InvariantCultureIgnoreCase) >= 0;
     }
@@ -1069,7 +1079,7 @@ namespace GitAutoUpdateGUI
 
       const string gitBinaryPath = "\\Git\\bin"; // valid for x86 and x64 pc because of (x86) directory
       string pathVariable = Environment.GetEnvironmentVariable("Path");
-      if (pathVariable != null && !ContainsIgnoreCase(pathVariable, gitBinaryPath) &&
+      if (pathVariable != null && !ContainIgnoreCase(pathVariable, gitBinaryPath) &&
           !checkBoxOnlyGenerateScriptFile.Checked)
       {
         DisplayMessageOk(Translate("The Path variable does not have the path to the GitBash binaries"),
@@ -1105,7 +1115,7 @@ namespace GitAutoUpdateGUI
       updateScript = GenerateUniqueFileName(updateScript);
       _previousUpdateFileList.Add(updateScript);
       CreateNewFile(updateScript);
-      AddBeginningOfScript(updateScript);
+      AddStartOfScript(updateScript);
 
       foreach (ListViewItem selectedProj in selectedProjects)
       {
@@ -1129,11 +1139,20 @@ namespace GitAutoUpdateGUI
       }
     }
 
+    /// <summary>Display a standard message box</summary>
+    /// <param name="message">The message to display</param>
+    /// <param name="title">the title of the window</param>
+    /// <param name="buttons">The type of message box buttons</param>
     private void DisplayMessageOk(string message, string title, MessageBoxButtons buttons)
     {
       MessageBox.Show(this, message, title, buttons);
     }
 
+    /// <summary>Display a message box and send a dialog result</summary>
+    /// <param name="message">The message to be displayed</param>
+    /// <param name="title">The title of the window</param>
+    /// <param name="buttons">The type of message box buttons</param>
+    /// <returns>A dialog result after displaying a message box</returns>
     private DialogResult DisplayMessage(string message, string title, MessageBoxButtons buttons)
     {
       return MessageBox.Show(this, message, title, buttons);
@@ -1143,6 +1162,7 @@ namespace GitAutoUpdateGUI
     {
       const bool append = true;
       var sw = new StreamWriter(fileName, append);
+      sw.WriteLine(string.Empty);
       sw.WriteLine("REM " + Translate("Press a key to exit"));
       sw.WriteLine("pause");
       sw.Close();
@@ -1161,7 +1181,7 @@ namespace GitAutoUpdateGUI
       }
       catch (Exception exception)
       {
-        MessageBox.Show("Cannot access to the file " + fileName + " error: " + exception);
+        MessageBox.Show($"Cannot access to the file {fileName} error: {exception}");
       }
     }
 
@@ -1173,7 +1193,7 @@ namespace GitAutoUpdateGUI
       sw.Close();
     }
 
-    private void AddBeginningOfScript(string fileName)
+    private void AddStartOfScript(string fileName)
     {
       const bool append = true;
       var sw = new StreamWriter(fileName, append);
@@ -1184,7 +1204,7 @@ namespace GitAutoUpdateGUI
       sw.WriteLine("REM If you have any error, check that GitBash is installed");
       sw.WriteLine("REM then add C:\\Program Files\\Git\\bin to the environment PATH variable and reboot you PC");
       sw.WriteLine("cd \\");
-      sw.WriteLine("cd " + textBoxVSProjectPath.Text);
+      sw.WriteLine($"cd {textBoxVSProjectPath.Text}");
       sw.Close();
     }
 
@@ -1210,9 +1230,9 @@ namespace GitAutoUpdateGUI
       sw.WriteLine("REM If you have any error, check that GitBash is installed");
       sw.WriteLine("REM then add C:\\Program Files\\Git\\bin to the environment PATH variable and reboot you PC");
       sw.WriteLine("cd \\");
-      sw.WriteLine("Cd " + userprofile);
+      sw.WriteLine($"Cd {userprofile}");
       sw.WriteLine("Cd Documents");
-      sw.WriteLine("Cd " + visualStudioName);
+      sw.WriteLine($"Cd {visualStudioName}");
       sw.WriteLine("Cd Projects");
       sw.Close();
     }
@@ -1316,7 +1336,7 @@ namespace GitAutoUpdateGUI
                                Punctuation.OneSpace + Translate("the") +
                                FrenchPlural(numberOfBadWords, _currentLanguage) +
                                Punctuation.OneSpace + Translate("word") +
-                               Plural(numberOfBadWords) + Punctuation.OneSpace +
+                               Pluralize(numberOfBadWords) + Punctuation.OneSpace +
                                textBoxUnlistOldSolution.Text.Replace(",", Punctuation.OneSpace + Translate("and")));
       }
 
@@ -1367,8 +1387,8 @@ namespace GitAutoUpdateGUI
         }
       }
 
-      Logger.Add(textBoxLog, projectCount + Punctuation.OneSpace + Translate("project") + Plural(projectCount) +
-                             Punctuation.OneSpace + Translate(Plural(projectCount, "has")) + Punctuation.OneSpace +
+      Logger.Add(textBoxLog, projectCount + Punctuation.OneSpace + Translate("project") + Pluralize(projectCount) +
+                             Punctuation.OneSpace + Translate(Pluralize(projectCount, "has")) + Punctuation.OneSpace +
                              Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
       EnableDisableButtons(listViewVSProjects, buttonCheckAll, buttonClearAll, buttonCheckUncheckAll, buttonUpdateVSProjects);
       if (listViewVSProjects.Items.Count != 0)
@@ -1376,7 +1396,7 @@ namespace GitAutoUpdateGUI
         listViewVSProjects.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
       }
 
-      buttonUpdateVSProjects.Enabled = GetItemChecked(listViewVSProjects) > 0;
+      buttonUpdateVSProjects.Enabled = GetItemCheckedNumbers(listViewVSProjects) > 0;
     }
 
     private static ColumnHeaderAutoResizeStyle GetLongestString(string headerText, ListView lv)
@@ -1453,7 +1473,7 @@ namespace GitAutoUpdateGUI
       return (number > 1 && currentLanguage.ToLower() == "french") ? "s" : string.Empty;
     }
 
-    private static string Plural(int number, string irregularNoun = "")
+    private static string Pluralize(int number, string irregularNoun = "")
     {
       switch (irregularNoun)
       {
@@ -1553,11 +1573,10 @@ namespace GitAutoUpdateGUI
       string directory = Path.GetDirectoryName(filePath);
       string fileName = Path.GetFileNameWithoutExtension(filePath);
       string extension = Path.GetExtension(filePath);
-
       return new[] { directory, fileName, extension };
     }
 
-    private void textBoxGitBashBinariesPath_TextChanged(object sender, EventArgs e)
+    private void textBoxGitBashBinariesPathTextChanged(object sender, EventArgs e)
     {
       settingsHaveChanged = true;
       CheckGitBashBinary();
@@ -1583,7 +1602,7 @@ namespace GitAutoUpdateGUI
       checkBoxGitBashInstalled.Enabled = false;
     }
 
-    private void textBoxVSProjectPath_TextChanged(object sender, EventArgs e)
+    private void TextBoxVsProjectPathTextChanged(object sender, EventArgs e)
     {
       settingsHaveChanged = true;
       TurnGreenOrRed(textBoxVSProjectPath.Text, ObjectType.Directory, labelChooseVSVersion, labelPickDirectory);
@@ -1592,8 +1611,8 @@ namespace GitAutoUpdateGUI
 
     public enum ObjectType
     {
-      File,
-      Directory
+      File = 0,
+      Directory = 1
     }
 
     private static void TurnGreenOrRed(string fileName, ObjectType objectType = ObjectType.Directory,
@@ -1649,9 +1668,9 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private static void CheckAllItems(ListView lvw)
+    private static void CheckAllItems(ListView listView)
     {
-      lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = true);
+      listView.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = true);
     }
 
     private static void CheckUncheckAllItemsIncheckedListbox(CheckedListBox clb, bool checkedOrUnchecked)
@@ -1659,14 +1678,14 @@ namespace GitAutoUpdateGUI
       Enumerable.Range(0, clb.Items.Count).ToList().ForEach(x => clb.SetItemChecked(x, checkedOrUnchecked));
     }
 
-    private static void UnCheckAllItems(ListView lvw)
+    private static void UnCheckAllItems(ListView listView)
     {
-      lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = false);
+      listView.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = false);
     }
 
-    private static void ToggleAllItems(ListView lvw)
+    private static void ToggleAllItems(ListView listView)
     {
-      lvw.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = !item.Checked);
+      listView.Items.OfType<ListViewItem>().ToList().ForEach(item => item.Checked = !item.Checked);
     }
 
     private static void ToggleAllItemsInCheckedListBox(CheckedListBox clb, bool checkItem)
@@ -1766,8 +1785,8 @@ namespace GitAutoUpdateGUI
         projectCount++;
       }
 
-      Logger.Add(textBoxLog, projectCount + Punctuation.OneSpace + Translate("project") + Plural(projectCount) +
-                             Punctuation.OneSpace + Translate(Plural(projectCount, "has")) + Punctuation.OneSpace +
+      Logger.Add(textBoxLog, projectCount + Punctuation.OneSpace + Translate("project") + Pluralize(projectCount) +
+                             Punctuation.OneSpace + Translate(Pluralize(projectCount, "has")) + Punctuation.OneSpace +
                              Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
       EnableDisableButtons(listViewVSProjects, buttonCheckAll, buttonClearAll, buttonCheckUncheckAll, buttonUpdateVSProjects);
       chrono.Stop();
@@ -1801,6 +1820,7 @@ namespace GitAutoUpdateGUI
             result.Add(directory);
             Application.DoEvents();
           }
+
           complete = true;
         }
         catch (UnauthorizedAccessException)
@@ -1846,7 +1866,7 @@ namespace GitAutoUpdateGUI
       return result;
     }
 
-    private List<FileInfo> SearchVsGitHubDirectories()
+    private List<FileInfo> SearchVsGitDirectories()
     {
       List<FileInfo> files = new List<FileInfo>();
 
@@ -2089,8 +2109,8 @@ namespace GitAutoUpdateGUI
         }
       }
 
-      Logger.Add(textBoxLog, projectCount + Punctuation.OneSpace + Translate("project") + Plural(projectCount) +
-                               Punctuation.OneSpace + Translate(Plural(projectCount, "has")) + Punctuation.OneSpace +
+      Logger.Add(textBoxLog, projectCount + Punctuation.OneSpace + Translate("project") + Pluralize(projectCount) +
+                               Punctuation.OneSpace + Translate(Pluralize(projectCount, "has")) + Punctuation.OneSpace +
                                Translate("been found") + FrenchPlural(projectCount, _currentLanguage));
 
       // if no selected project has been checked, display message
@@ -2138,8 +2158,7 @@ namespace GitAutoUpdateGUI
       string result = string.Empty;
       if (!File.Exists(Path.Combine(fileName, "config")))
       {
-        Logger.Add(textBoxLog, Translate("The config file doesn't exist in") +
-                               Punctuation.OneSpace + fileName);
+        Logger.Add(textBoxLog, Translate("The config file doesn't exist in") + Punctuation.OneSpace + fileName);
       }
       else
       {
@@ -2158,10 +2177,10 @@ namespace GitAutoUpdateGUI
 
     private void ListViewVSProjects_ItemChecked(object sender, ItemCheckedEventArgs e)
     {
-      buttonUpdateVSProjects.Enabled = GetItemChecked(listViewVSProjects) > 0;
+      buttonUpdateVSProjects.Enabled = GetItemCheckedNumbers(listViewVSProjects) > 0;
     }
 
-    private static int GetItemChecked(ListView lv)
+    private static int GetItemCheckedNumbers(ListView lv)
     {
       return lv.CheckedItems.Count;
     }
