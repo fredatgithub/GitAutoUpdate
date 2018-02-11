@@ -1700,9 +1700,7 @@ namespace GitAutoUpdateGUI
       buttonLoadVSProjects.Enabled = Directory.Exists(textBoxVSProjectPath.Text);
     }
 
-    /// <summary>
-    /// Get numbers from a string
-    /// </summary>
+    /// <summary>Get numbers from a string</summary>
     /// <param name="myString">The string to search numbers in</param>
     /// <returns>A string with only numbers</returns>
     private static string GetNumbers(string myString)
