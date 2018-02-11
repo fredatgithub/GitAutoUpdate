@@ -68,6 +68,7 @@ namespace GitAutoUpdateGUI
       CheckGitBashPathInWinPath();
       EnableDisableButtons(listViewVSProjects, buttonCheckAll, buttonClearAll, buttonCheckUncheckAll, buttonUpdateVSProjects);
       VerifyCheckedVersion();
+      buttonUpdateCheckedVersion.Enabled = checkedListBoxVSVersion.CheckedItems.Count != 0;
     }
 
     private void VerifyCheckedVersion()
@@ -113,7 +114,7 @@ namespace GitAutoUpdateGUI
       {
         var result = (from f in directory.GetFiles(patternFileName, SearchOption.TopDirectoryOnly)
                       orderby f.LastWriteTime descending
-                      select f).First();
+                      select f).FirstOrDefault();
         if (result != null)
         {
           return result.Name;
@@ -1694,12 +1695,7 @@ namespace GitAutoUpdateGUI
         documentsPath = Environment.SpecialFolder.MyDocuments.ToString().Substring(2);
       }
 
-      textBoxVSProjectPath.Text = AddSlash(userProfile) + AddSlash(documentsPath) + "Visual Studio " + AddSlash(vsVersion) + AddSlash("Projects");
-    }
-
-    private static string AddSlash(string myString)
-    {
-      return myString.EndsWith("\\") ? myString : myString + "\\";
+      textBoxVSProjectPath.Text = Path.Combine(userProfile, documentsPath, "Visual Studio ", vsVersion, "Projects");
     }
 
     private static string GetNumbers(string myString)
@@ -2341,6 +2337,8 @@ namespace GitAutoUpdateGUI
       {
         CheckUncheckAllItemsIncheckedListbox(checkedListBoxVSVersion, true);
       }
+
+      buttonUpdateCheckedVersion.Enabled = checkedListBoxVSVersion.CheckedItems.Count != 0;
     }
 
     private void ButtonListBoxVSVersionUncheck_Click(object sender, EventArgs e)
@@ -2349,6 +2347,8 @@ namespace GitAutoUpdateGUI
       {
         CheckUncheckAllItemsIncheckedListbox(checkedListBoxVSVersion, false);
       }
+
+      buttonUpdateCheckedVersion.Enabled = checkedListBoxVSVersion.CheckedItems.Count != 0;
     }
 
     private void ButtonListBoxVSVersionToggle_Click(object sender, EventArgs e)
@@ -2357,6 +2357,8 @@ namespace GitAutoUpdateGUI
       {
         ToggleAllItemsInCheckedListBox(checkedListBoxVSVersion, false);
       }
+
+      buttonUpdateCheckedVersion.Enabled = checkedListBoxVSVersion.CheckedItems.Count != 0;
     }
   }
 }
