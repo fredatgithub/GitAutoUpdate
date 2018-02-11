@@ -1695,7 +1695,7 @@ namespace GitAutoUpdateGUI
         documentsPath = Environment.SpecialFolder.MyDocuments.ToString().Substring(2);
       }
 
-      textBoxVSProjectPath.Text = Path.Combine(userProfile, documentsPath, "Visual Studio ", vsVersion, "Projects");
+      textBoxVSProjectPath.Text = Path.Combine(userProfile, documentsPath, $"Visual Studio {vsVersion}", "Projects");
     }
 
     private static string GetNumbers(string myString)
