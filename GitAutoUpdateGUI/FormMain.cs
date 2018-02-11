@@ -1696,6 +1696,8 @@ namespace GitAutoUpdateGUI
       }
 
       textBoxVSProjectPath.Text = Path.Combine(userProfile, documentsPath, $"Visual Studio {vsVersion}", "Projects");
+
+      // disable buttonLoadVSProjects.Enable = false;
     }
 
     private static string GetNumbers(string myString)
