@@ -108,7 +108,7 @@
       this.menuStripMain.Location = new System.Drawing.Point(0, 0);
       this.menuStripMain.Name = "menuStripMain";
       this.menuStripMain.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-      this.menuStripMain.Size = new System.Drawing.Size(1182, 24);
+      this.menuStripMain.Size = new System.Drawing.Size(1259, 24);
       this.menuStripMain.TabIndex = 1;
       // 
       // fileToolStripMenuItem
@@ -281,13 +281,13 @@
       // personalizeToolStripMenuItem
       // 
       this.personalizeToolStripMenuItem.Name = "personalizeToolStripMenuItem";
-      this.personalizeToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+      this.personalizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.personalizeToolStripMenuItem.Text = "&Personnaliser";
       // 
       // optionsToolStripMenuItem
       // 
       this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+      this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.optionsToolStripMenuItem.Text = "&Options";
       // 
       // languagetoolStripMenuItem
@@ -373,7 +373,7 @@
       this.textBoxVSProjectPath.Location = new System.Drawing.Point(653, 63);
       this.textBoxVSProjectPath.Margin = new System.Windows.Forms.Padding(2);
       this.textBoxVSProjectPath.Name = "textBoxVSProjectPath";
-      this.textBoxVSProjectPath.Size = new System.Drawing.Size(510, 20);
+      this.textBoxVSProjectPath.Size = new System.Drawing.Size(587, 20);
       this.textBoxVSProjectPath.TabIndex = 3;
       this.textBoxVSProjectPath.Text = "C:\\";
       this.textBoxVSProjectPath.TextChanged += new System.EventHandler(this.TextBoxVsProjectPathTextChanged);
@@ -441,7 +441,7 @@
       this.listViewVSProjects.Location = new System.Drawing.Point(25, 492);
       this.listViewVSProjects.Margin = new System.Windows.Forms.Padding(2);
       this.listViewVSProjects.Name = "listViewVSProjects";
-      this.listViewVSProjects.Size = new System.Drawing.Size(1140, 207);
+      this.listViewVSProjects.Size = new System.Drawing.Size(1217, 207);
       this.listViewVSProjects.TabIndex = 8;
       this.listViewVSProjects.UseCompatibleStateImageBehavior = false;
       this.listViewVSProjects.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.ListViewVSProjects_ItemChecked);
@@ -477,7 +477,7 @@
       this.textBoxGitBashBinariesPath.Location = new System.Drawing.Point(242, 277);
       this.textBoxGitBashBinariesPath.Margin = new System.Windows.Forms.Padding(2);
       this.textBoxGitBashBinariesPath.Name = "textBoxGitBashBinariesPath";
-      this.textBoxGitBashBinariesPath.Size = new System.Drawing.Size(923, 20);
+      this.textBoxGitBashBinariesPath.Size = new System.Drawing.Size(1000, 20);
       this.textBoxGitBashBinariesPath.TabIndex = 11;
       this.textBoxGitBashBinariesPath.Text = "C:\\";
       this.textBoxGitBashBinariesPath.TextChanged += new System.EventHandler(this.textBoxGitBashBinariesPathTextChanged);
@@ -515,7 +515,7 @@
       this.textBoxLog.Multiline = true;
       this.textBoxLog.Name = "textBoxLog";
       this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-      this.textBoxLog.Size = new System.Drawing.Size(1140, 83);
+      this.textBoxLog.Size = new System.Drawing.Size(1217, 83);
       this.textBoxLog.TabIndex = 14;
       this.textBoxLog.Text = "Log";
       // 
@@ -665,7 +665,7 @@
       this.buttonCreateBackupScript.Location = new System.Drawing.Point(776, 236);
       this.buttonCreateBackupScript.Margin = new System.Windows.Forms.Padding(2);
       this.buttonCreateBackupScript.Name = "buttonCreateBackupScript";
-      this.buttonCreateBackupScript.Size = new System.Drawing.Size(350, 26);
+      this.buttonCreateBackupScript.Size = new System.Drawing.Size(427, 26);
       this.buttonCreateBackupScript.TabIndex = 26;
       this.buttonCreateBackupScript.Text = "Create git clone backup script";
       this.buttonCreateBackupScript.UseVisualStyleBackColor = true;
@@ -733,7 +733,7 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-      this.ClientSize = new System.Drawing.Size(1182, 708);
+      this.ClientSize = new System.Drawing.Size(1259, 708);
       this.Controls.Add(this.buttonListBoxVSVersionCheck);
       this.Controls.Add(this.buttonListBoxVSVersionUncheck);
       this.Controls.Add(this.buttonListBoxVSVersionToggle);
