@@ -30,7 +30,7 @@
     {
       System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
       System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-      this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+      this.menuStripMain = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,24 +93,23 @@
       this.buttonListBoxVSVersionCheck = new System.Windows.Forms.Button();
       this.buttonListBoxVSVersionUncheck = new System.Windows.Forms.Button();
       this.buttonListBoxVSVersionToggle = new System.Windows.Forms.Button();
-      this.menuStrip1.SuspendLayout();
+      this.menuStripMain.SuspendLayout();
       this.SuspendLayout();
       // 
-      // menuStrip1
+      // menuStripMain
       // 
-      this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-      this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+      this.menuStripMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+      this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.languagetoolStripMenuItem,
             this.helpToolStripMenuItem});
-      this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-      this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-      this.menuStrip1.Size = new System.Drawing.Size(1182, 24);
-      this.menuStrip1.TabIndex = 1;
-      this.menuStrip1.Text = "menuStrip1";
+      this.menuStripMain.Location = new System.Drawing.Point(0, 0);
+      this.menuStripMain.Name = "menuStripMain";
+      this.menuStripMain.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+      this.menuStripMain.Size = new System.Drawing.Size(1182, 24);
+      this.menuStripMain.TabIndex = 1;
       // 
       // fileToolStripMenuItem
       // 
@@ -765,16 +764,16 @@
       this.Controls.Add(this.comboBoxVSVersion);
       this.Controls.Add(this.textBoxVSProjectPath);
       this.Controls.Add(this.labelChooseVSVersion);
-      this.Controls.Add(this.menuStrip1);
-      this.MainMenuStrip = this.menuStrip1;
+      this.Controls.Add(this.menuStripMain);
+      this.MainMenuStrip = this.menuStripMain;
       this.Margin = new System.Windows.Forms.Padding(2);
       this.Name = "FormMain";
       this.ShowIcon = false;
       this.Text = "Git Auto update GUI";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMainFormClosing);
       this.Load += new System.EventHandler(this.FormMainLoad);
-      this.menuStrip1.ResumeLayout(false);
-      this.menuStrip1.PerformLayout();
+      this.menuStripMain.ResumeLayout(false);
+      this.menuStripMain.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -782,7 +781,7 @@
 
     #endregion
 
-    private System.Windows.Forms.MenuStrip menuStrip1;
+    private System.Windows.Forms.MenuStrip menuStripMain;
     private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
