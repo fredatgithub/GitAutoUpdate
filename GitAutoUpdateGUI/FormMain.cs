@@ -1084,7 +1084,7 @@ namespace GitAutoUpdateGUI
           !checkBoxOnlyGenerateScriptFile.Checked)
       {
         DisplayMessageOk(Translate("The Path variable does not have the path to the GitBash binaries"),
-          Translate("Path variable no GitBash binaries"), MessageBoxButtons.OK);
+          Translate("No GitBash binary found in PATH variable"), MessageBoxButtons.OK);
         return;
       }
 
