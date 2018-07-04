@@ -18,6 +18,12 @@ namespace GitAutoUpdateGUI
       textBoxDescription.Text = AssemblyDescription;
     }
 
+    public sealed override string Text
+    {
+      get { return base.Text; }
+      set { base.Text = value; }
+    }
+
     #region Accesseurs d'attribut de l'assembly
 
     public string AssemblyTitle
