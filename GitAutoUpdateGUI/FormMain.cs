@@ -1,6 +1,5 @@
 #define Debug
 using GitAutoUpdateGUI.Properties;
-using Tools;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,6 +13,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using Tools;
 
 namespace GitAutoUpdateGUI
 {
@@ -1024,24 +1024,24 @@ namespace GitAutoUpdateGUI
     }
 
     private static string ChooseOneFile(string filter = "All files (*.*)|*.*", string initialDirectory = "", bool checkIfFileExists = false)
-        {
-            string result = string.Empty;
-            FileDialog fd = new OpenFileDialog();
-            fd.Filter = filter;
-            fd.CheckFileExists = checkIfFileExists;
-            if (initialDirectory == string.Empty)
-            {
-                initialDirectory = $"{Environment.GetEnvironmentVariable("systemdrive")}\\";
-            }
+    {
+      string result = string.Empty;
+      FileDialog fd = new OpenFileDialog();
+      fd.Filter = filter;
+      fd.CheckFileExists = checkIfFileExists;
+      if (initialDirectory == string.Empty)
+      {
+        initialDirectory = $"{Environment.GetEnvironmentVariable("systemdrive")}\\";
+      }
 
-            fd.InitialDirectory = initialDirectory;
-            if (fd.ShowDialog() == DialogResult.OK)
-            {
-                result = fd.FileName;
-            }
+      fd.InitialDirectory = initialDirectory;
+      if (fd.ShowDialog() == DialogResult.OK)
+      {
+        result = fd.FileName;
+      }
 
-            return result;
-        }
+      return result;
+    }
 
     private void ButtonGitBashBinPath_Click(object sender, EventArgs e)
     {
