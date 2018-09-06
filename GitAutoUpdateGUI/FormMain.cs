@@ -1081,7 +1081,7 @@ namespace GitAutoUpdateGUI
       const string gitBinaryPath = "\\Git\\bin"; // valid for x86 and x64 pc because of (x86) directory
       string pathVariable = Environment.GetEnvironmentVariable("Path");
       if (pathVariable != null && !ContainIgnoreCase(pathVariable, gitBinaryPath) &&
-          !checkBoxOnlyGenerateScriptFile.Checked)
+          !checkBoxOnlyGenerateScriptFile.Checked && !textBoxGitBashBinariesPath.Text.ToLower().EndsWith("git.exe"))
       {
         DisplayMessageOk(Translate("The Path variable does not have the path to the GitBash binaries"),
           Translate("No GitBash binary found in PATH variable"), MessageBoxButtons.OK);

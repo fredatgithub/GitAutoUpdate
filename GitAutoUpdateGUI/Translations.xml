@@ -746,6 +746,11 @@
     <frenchValue>millisecondes</frenchValue>
   </term>
   <term>
+    <name>millisecond</name>
+    <englishValue>millisecond</englishValue>
+    <frenchValue>milliseconde</frenchValue>
+  </term>
+  <term>
     <name>Process over</name>
     <englishValue>Process over</englishValue>
     <frenchValue>Processus terminé</frenchValue>
@@ -809,6 +814,11 @@
     <name>GitBash binary path not in Windows Path variable</name>
     <englishValue>GitBash binary path is not in the Windows Path variable</englishValue>
     <frenchValue>Le chemin des binaires de GitBash n'est pas dans la variable Path de Windows</frenchValue>
+  </term>
+  <term>
+    <name>No GitBash binary found in PATH variable</name>
+    <englishValue>No GitBash binary found in PATH variable</englishValue>
+    <frenchValue>Pas de binaire GitBash trouvé dans la variable PATH</frenchValue>
   </term>
   <term>
     <name>error</name>
@@ -1759,5 +1769,35 @@
     <name>Update</name>
     <englishValue>Update</englishValue>
     <frenchValue>Mise à jour</frenchValue>
+  </term>
+  <term>
+    <name>year</name>
+    <englishValue>year</englishValue>
+    <frenchValue>année</frenchValue>
+  </term>
+  <term>
+    <name>month</name>
+    <englishValue>month</englishValue>
+    <frenchValue>mois</frenchValue>
+  </term>
+  <term>
+    <name>day</name>
+    <englishValue>day</englishValue>
+    <frenchValue>jour</frenchValue>
+  </term>
+  <term>
+    <name>hour</name>
+    <englishValue>hour</englishValue>
+    <frenchValue>heure</frenchValue>
+  </term>
+  <term>
+    <name>minute</name>
+    <englishValue>minute</englishValue>
+    <frenchValue>minute</frenchValue>
+  </term>
+  <term>
+    <name>second</name>
+    <englishValue>second</englishValue>
+    <frenchValue>seconde</frenchValue>
   </term>
 </terms>
