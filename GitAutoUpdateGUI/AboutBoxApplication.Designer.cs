@@ -161,7 +161,7 @@
       this.MaximizeBox = false;
       this.MinimizeBox = false;
       this.Name = "AboutBoxApplication";
-      this.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+      this.Padding = new System.Windows.Forms.Padding(9);
       this.ShowIcon = false;
       this.ShowInTaskbar = false;
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

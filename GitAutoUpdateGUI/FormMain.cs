@@ -1091,7 +1091,7 @@ namespace GitAutoUpdateGUI
       Logger.Add(textBoxLog, Translate("Updating selected projects"));
       if (checkBoxOnlyGenerateScriptFile.Checked)
       {
-        Logger.Add(textBoxLog, Translate("Creating the update.bat script"));
+        Logger.Add(textBoxLog, Translate($"Creating the {Settings.Default.UpdatefileName} script"));
         Logger.Add(textBoxLog, Translate("in"));
         Logger.Add(textBoxLog, textBoxVSProjectPath.Text);
       }
@@ -1112,7 +1112,7 @@ namespace GitAutoUpdateGUI
         }
       }
 
-      string updateScript = Path.Combine(textBoxVSProjectPath.Text, "update.bat");
+      string updateScript = Path.Combine(textBoxVSProjectPath.Text, Settings.Default.UpdatefileName);
       updateScript = GenerateUniqueFileName(updateScript);
       _previousUpdateFileList.Add(updateScript);
       CreateNewFile(updateScript);
@@ -2234,23 +2234,31 @@ namespace GitAutoUpdateGUI
 
     private void ButtonUpdateCheckedVersionClick(object sender, EventArgs e)
     {
+      //List<string> itemList = (from object item in checkedListBoxVSVersion.CheckedItems select item.ToString()).ToList();
       List<string> itemList = new List<string>();
       foreach (var item in checkedListBoxVSVersion.CheckedItems)
       {
         itemList.Add(item.ToString());
       }
 
+      string pattern = Settings.Default.UpdateFilePattern; // "update*.bat";
+      bool textBoxVsProjectPathIsIncluded = false;
       foreach (string item in itemList)
       {
         // check if scripts update.cmd do exist and if so, then start them
         // if not then create one
         // get all update*.cmd
-        const string pattern = "update*.bat";
+
         //C:\Users\username\Documents\Visual Studio 2015\Projects
         string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), item,
           "Projects\\");
-        var di = new DirectoryInfo(directoryPath);
-        FileInfo[] files = di.GetFiles(pattern, SearchOption.TopDirectoryOnly);
+        if (Path.Combine(directoryPath) == Path.Combine(textBoxVSProjectPath.Text))
+        {
+          textBoxVsProjectPathIsIncluded = true;
+        }
+
+        var directoryInfo = new DirectoryInfo(directoryPath);
+        FileInfo[] files = directoryInfo.GetFiles(pattern, SearchOption.TopDirectoryOnly);
         if (files.Length == 1)
         {
           // start the only file
@@ -2269,6 +2277,24 @@ namespace GitAutoUpdateGUI
 
         }
       }
+
+      // if textBoxVSProjectPath.text is not in the list, add it
+      if (textBoxVsProjectPathIsIncluded) return;
+
+      var directoryInfo2 = new DirectoryInfo(Path.Combine(textBoxVSProjectPath.Text));
+      FileInfo[] files2 = directoryInfo2.GetFiles(pattern, SearchOption.TopDirectoryOnly);
+      if (files2.Length == 1)
+      {
+        // start the only file
+        StartProcess(files2[0].FullName);
+      }
+      else if (files2.Length > 1)
+      {
+        // get the latest file or greatest numbered file name
+        string geatestFileName = GetGreatestFile(files2);
+        StartProcess(geatestFileName);
+      }
+
     }
 
     public static string GetGreatestFile(FileInfo[] files)

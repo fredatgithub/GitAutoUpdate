@@ -77,5 +77,11 @@
     <Setting Name="Visual_Studio_2017" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="UpdateFilePattern" Type="System.String" Scope="User">
+      <Value Profile="(Default)">update*.bat</Value>
+    </Setting>
+    <Setting Name="UpdatefileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">update.bat</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

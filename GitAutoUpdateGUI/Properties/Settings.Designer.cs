@@ -322,5 +322,29 @@ namespace GitAutoUpdateGUI.Properties {
                 this["Visual_Studio_2017"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("update*.bat")]
+        public string UpdateFilePattern {
+            get {
+                return ((string)(this["UpdateFilePattern"]));
+            }
+            set {
+                this["UpdateFilePattern"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("update.bat")]
+        public string UpdatefileName {
+            get {
+                return ((string)(this["UpdatefileName"]));
+            }
+            set {
+                this["UpdatefileName"] = value;
+            }
+        }
     }
 }
