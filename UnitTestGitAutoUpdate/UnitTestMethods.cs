@@ -15,7 +15,7 @@ namespace UnitTestGitAutoUpdate
       const string methodName = "GetLatestFile";
       const string source1 = @"C:\Users\fred\Documents\Visual Studio 2012\Projects";
       const string source2 = "update*.bat";
-      const string expected = "update11.bat";
+      const string expected = "update7.bat";
       object obj = privateTypeObject.InvokeStatic(methodName, source1, source2);
       Assert.AreEqual(expected, (string)obj);
     }
@@ -25,7 +25,7 @@ namespace UnitTestGitAutoUpdate
     {
       const string source1 = @"C:\Users\fred\Documents\Visual Studio 2012\Projects";
       const string source2 = "update*.bat";
-      const string expected = "update11.bat";
+      const string expected = "update7.bat";
       string result = GitMethods.GetLatestFile(source1, source2);
       Assert.AreEqual(result, expected);
     }
@@ -133,6 +133,28 @@ namespace UnitTestGitAutoUpdate
       const string methodName = "GetNumbers";
       const string source = @"C:\Users\user\Documents\Visual Studio 2012\Projects";
       const string expected = "2012";
+      object obj = privateTypeObject.InvokeStatic(methodName, source);
+      Assert.AreEqual(expected, (string)obj);
+    }
+
+    [TestMethod]
+    public void TestMethod_AddSlash_with_a_slash()
+    {
+      PrivateType privateTypeObject = new PrivateType(typeof(GitMethods));
+      const string methodName = "AddSlash";
+      const string source = @"C:\Users\user\Documents\Visual Studio 2012\Projects\";
+      const string expected = @"C:\Users\user\Documents\Visual Studio 2012\Projects\";
+      object obj = privateTypeObject.InvokeStatic(methodName, source);
+      Assert.AreEqual(expected, (string)obj);
+    }
+
+    [TestMethod]
+    public void TestMethod_AddSlash_without_a_slash()
+    {
+      PrivateType privateTypeObject = new PrivateType(typeof(GitMethods));
+      const string methodName = "AddSlash";
+      const string source = @"C:\Users\user\Documents\Visual Studio 2012\Projects";
+      const string expected = @"C:\Users\user\Documents\Visual Studio 2012\Projects\";
       object obj = privateTypeObject.InvokeStatic(methodName, source);
       Assert.AreEqual(expected, (string)obj);
     }

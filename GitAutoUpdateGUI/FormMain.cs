@@ -2252,7 +2252,7 @@ namespace GitAutoUpdateGUI
         //C:\Users\username\Documents\Visual Studio 2015\Projects
         string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), item,
           "Projects\\");
-        if (Path.Combine(directoryPath) == Path.Combine(textBoxVSProjectPath.Text))
+        if (AddSlash(directoryPath) == AddSlash(textBoxVSProjectPath.Text))
         {
           textBoxVsProjectPathIsIncluded = true;
         }
@@ -2294,7 +2294,11 @@ namespace GitAutoUpdateGUI
         string geatestFileName = GetGreatestFile(files2);
         StartProcess(geatestFileName);
       }
+    }
 
+    private static string AddSlash(string directoryPath)
+    {
+      return directoryPath.EndsWith("\\") ? directoryPath : directoryPath + "\\";
     }
 
     public static string GetGreatestFile(FileInfo[] files)
