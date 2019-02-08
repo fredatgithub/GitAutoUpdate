@@ -480,7 +480,7 @@
       this.textBoxGitBashBinariesPath.Size = new System.Drawing.Size(1000, 20);
       this.textBoxGitBashBinariesPath.TabIndex = 11;
       this.textBoxGitBashBinariesPath.Text = "C:\\";
-      this.textBoxGitBashBinariesPath.TextChanged += new System.EventHandler(this.textBoxGitBashBinariesPathTextChanged);
+      this.textBoxGitBashBinariesPath.TextChanged += new System.EventHandler(this.TextBoxGitBashBinariesPathTextChanged);
       // 
       // buttonGitBashBinPath
       // 

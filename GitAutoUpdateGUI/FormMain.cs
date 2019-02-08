@@ -1577,7 +1577,7 @@ namespace GitAutoUpdateGUI
       return new[] { directory, fileName, extension };
     }
 
-    private void textBoxGitBashBinariesPathTextChanged(object sender, EventArgs e)
+    private void TextBoxGitBashBinariesPathTextChanged(object sender, EventArgs e)
     {
       settingsHaveChanged = true;
       CheckGitBashBinary();
@@ -1656,7 +1656,7 @@ namespace GitAutoUpdateGUI
           }
         }
 
-        return; // necessary if any other object
+        // return; // necessary if any other object
       }
       // any other object type
     }
@@ -1700,7 +1700,16 @@ namespace GitAutoUpdateGUI
     private void ComboBoxVSVersion_SelectedIndexChanged(object sender, EventArgs e)
     {
       settingsHaveChanged = true;
-      string userProfile = Environment.GetEnvironmentVariable("USERPROFILE"); // C:\Users\userName
+      string userProfile = string.Empty;
+      try
+      {
+        userProfile = Environment.GetEnvironmentVariable("USERPROFILE"); // C:\Users\userName
+      }
+      catch (Exception)
+      {
+        userProfile = string.Empty;
+      }
+      
       if (userProfile == string.Empty)
       {
         DisplayMessageOk(Translate("The USERPROFILE variable cannot be empty"),
