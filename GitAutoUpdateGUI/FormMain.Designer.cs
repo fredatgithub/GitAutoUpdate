@@ -237,7 +237,7 @@
       this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
       this.cutToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.cutToolStripMenuItem.Text = "&Couper";
-      this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItemClick);
+      this.cutToolStripMenuItem.Click += new System.EventHandler(this.CutToolStripMenuItemClick);
       // 
       // copyToolStripMenuItem
       // 
@@ -246,7 +246,7 @@
       this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
       this.copyToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.copyToolStripMenuItem.Text = "Co&pier";
-      this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItemClick);
+      this.copyToolStripMenuItem.Click += new System.EventHandler(this.CopyToolStripMenuItemClick);
       // 
       // pasteToolStripMenuItem
       // 
@@ -255,7 +255,7 @@
       this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
       this.pasteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.pasteToolStripMenuItem.Text = "Co&ller";
-      this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItemClick);
+      this.pasteToolStripMenuItem.Click += new System.EventHandler(this.PasteToolStripMenuItemClick);
       // 
       // toolStripSeparator4
       // 
@@ -267,7 +267,7 @@
       this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
       this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
       this.selectAllToolStripMenuItem.Text = "Sélectio&nner tout";
-      this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItemClick);
+      this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.SelectAllToolStripMenuItemClick);
       // 
       // toolsToolStripMenuItem
       // 
@@ -304,14 +304,14 @@
       this.frenchToolStripMenuItem.Name = "frenchToolStripMenuItem";
       this.frenchToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
       this.frenchToolStripMenuItem.Text = "Français";
-      this.frenchToolStripMenuItem.Click += new System.EventHandler(this.frenchToolStripMenuItemClick);
+      this.frenchToolStripMenuItem.Click += new System.EventHandler(this.FrenchToolStripMenuItemClick);
       // 
       // englishToolStripMenuItem
       // 
       this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
       this.englishToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
       this.englishToolStripMenuItem.Text = "Anglais";
-      this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItemClick);
+      this.englishToolStripMenuItem.Click += new System.EventHandler(this.EnglishToolStripMenuItemClick);
       // 
       // helpToolStripMenuItem
       // 

@@ -65,7 +65,7 @@ namespace UnitTestGitAutoUpdate
       int result = GitMethods.GetDigitFromFileName(source);
       Assert.AreEqual(result, expected);
     }
-    
+
     [TestMethod]
     public void TestMethod_FileNumber_no_digit_and_long_name()
     {
@@ -73,8 +73,6 @@ namespace UnitTestGitAutoUpdate
       const int expected = 0;
       int result = GitMethods.GetDigitFromFileName(source);
       Assert.AreEqual(result, expected);
-     
-      
     }
 
     [TestMethod]
@@ -105,7 +103,7 @@ namespace UnitTestGitAutoUpdate
     [TestMethod]
     public void TestMethod_AppData_Local_variables()
     {
-      string source = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0,21)}\\Local";
+      string source = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0, 21)}\\Local";
       const string expected = "C:\\Users\\fred\\AppData\\Local";
       Assert.AreEqual(source, expected);
     }

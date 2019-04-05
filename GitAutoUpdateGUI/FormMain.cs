@@ -44,11 +44,11 @@ namespace GitAutoUpdateGUI
     }
 
     /// <summary>Add the version to the title of the main form</summary>
-    private void DisplayTitle()
+    private static string DisplayTitle()
     {
       Assembly assembly = Assembly.GetExecutingAssembly();
       FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-      Text += $" V{fvi.FileMajorPart}.{fvi.FileMinorPart}.{fvi.FileBuildPart}.{fvi.FilePrivatePart}";
+      return $" V{fvi.FileMajorPart}.{fvi.FileMinorPart}.{fvi.FileBuildPart}.{fvi.FilePrivatePart}";
     }
 
     private void FormMainLoad(object sender, EventArgs e)
@@ -58,7 +58,7 @@ namespace GitAutoUpdateGUI
 
     private void LoadSettingsAtStartup()
     {
-      DisplayTitle();
+      Text += DisplayTitle();
       LoadComboBoxVsVersions(comboBoxVSVersion);
       LoadCheckedListBoxVsVersion();
       LoadLanguages();
@@ -364,6 +364,9 @@ namespace GitAutoUpdateGUI
         "<VSVersion>",
         "<name>Visual Studio 2017</name>",
         "</VSVersion>",
+         "<VSVersion>",
+        "<name>Visual Studio 2019</name>",
+        "</VSVersion>",
         "</VSVersions>"
       };
 
@@ -626,6 +629,9 @@ namespace GitAutoUpdateGUI
           case 7:
             checkedListBoxVSVersion.SetItemChecked(i, Settings.Default.Visual_Studio_2017);
             break;
+          case 8:
+            checkedListBoxVSVersion.SetItemChecked(i, Settings.Default.Visual_Studio_2019);
+            break;
         }
       }
     }
@@ -656,6 +662,7 @@ namespace GitAutoUpdateGUI
       Settings.Default.Visual_Studio_2013 = false;
       Settings.Default.Visual_Studio_2015 = false;
       Settings.Default.Visual_Studio_2017 = false;
+      Settings.Default.Visual_Studio_2019 = false;
 
       foreach (string vsVersion in ChangeCharacterInList(GetCheckedVsVersion(checkedListBoxVSVersion)))
       {
@@ -691,6 +698,10 @@ namespace GitAutoUpdateGUI
         {
           Settings.Default.Visual_Studio_2017 = true;
         }
+        else if (vsVersion == "Visual_Studio_2019")
+        {
+          Settings.Default.Visual_Studio_2019 = true;
+        }
       }
 
       Settings.Default.Save();
@@ -704,14 +715,14 @@ namespace GitAutoUpdateGUI
       SaveWindowValue();
     }
 
-    private void frenchToolStripMenuItemClick(object sender, EventArgs e)
+    private void FrenchToolStripMenuItemClick(object sender, EventArgs e)
     {
       _currentLanguage = Language.French.ToString();
       SetLanguage(Language.French.ToString());
       AdjustAllControls();
     }
 
-    private void englishToolStripMenuItemClick(object sender, EventArgs e)
+    private void EnglishToolStripMenuItemClick(object sender, EventArgs e)
     {
       _currentLanguage = Language.English.ToString();
       SetLanguage(Language.English.ToString());
@@ -892,7 +903,7 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void cutToolStripMenuItemClick(object sender, EventArgs e)
+    private void CutToolStripMenuItemClick(object sender, EventArgs e)
     {
       var listOfCtrl = new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath };
       Control focusedControl = FindFocusedControl(listOfCtrl);
@@ -903,7 +914,7 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void copyToolStripMenuItemClick(object sender, EventArgs e)
+    private void CopyToolStripMenuItemClick(object sender, EventArgs e)
     {
       Control focusedControl = FindFocusedControl(new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath });
       var tb = focusedControl as TextBox;
@@ -913,7 +924,7 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void pasteToolStripMenuItemClick(object sender, EventArgs e)
+    private void PasteToolStripMenuItemClick(object sender, EventArgs e)
     {
       Control focusedControl = FindFocusedControl(new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath });
       var tb = focusedControl as TextBox;
@@ -923,7 +934,7 @@ namespace GitAutoUpdateGUI
       }
     }
 
-    private void selectAllToolStripMenuItemClick(object sender, EventArgs e)
+    private void SelectAllToolStripMenuItemClick(object sender, EventArgs e)
     {
       Control focusedControl = FindFocusedControl(new List<Control> { textBoxVSProjectPath, textBoxGitBashBinariesPath });
       TextBox control = focusedControl as TextBox;
@@ -1709,7 +1720,7 @@ namespace GitAutoUpdateGUI
       {
         userProfile = string.Empty;
       }
-      
+
       if (userProfile == string.Empty)
       {
         DisplayMessageOk(Translate("The USERPROFILE variable cannot be empty"),
