@@ -44,7 +44,7 @@ namespace GitAutoUpdateGUI
     }
 
     /// <summary>Add the version to the title of the main form</summary>
-    private static string DisplayTitle()
+    private static string GetApplicationVersion()
     {
       Assembly assembly = Assembly.GetExecutingAssembly();
       FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
@@ -58,7 +58,7 @@ namespace GitAutoUpdateGUI
 
     private void LoadSettingsAtStartup()
     {
-      Text += DisplayTitle();
+      Text += GetApplicationVersion();
       LoadComboBoxVsVersions(comboBoxVSVersion);
       LoadCheckedListBoxVsVersion();
       LoadLanguages();
@@ -367,6 +367,9 @@ namespace GitAutoUpdateGUI
          "<VSVersion>",
         "<name>Visual Studio 2019</name>",
         "</VSVersion>",
+         "<VSVersion>",
+        "<name>Visual Studio 2022</name>",
+        "</VSVersion>",
         "</VSVersions>"
       };
 
@@ -663,6 +666,7 @@ namespace GitAutoUpdateGUI
       Settings.Default.Visual_Studio_2015 = false;
       Settings.Default.Visual_Studio_2017 = false;
       Settings.Default.Visual_Studio_2019 = false;
+      Settings.Default.Visual_Studio_2022 = false;
 
       foreach (string vsVersion in ChangeCharacterInList(GetCheckedVsVersion(checkedListBoxVSVersion)))
       {
@@ -701,6 +705,10 @@ namespace GitAutoUpdateGUI
         else if (vsVersion == "Visual_Studio_2019")
         {
           Settings.Default.Visual_Studio_2019 = true;
+        }
+        else if (vsVersion == "Visual_Studio_2022")
+        {
+          Settings.Default.Visual_Studio_2022 = true;
         }
       }
 
@@ -2028,8 +2036,7 @@ namespace GitAutoUpdateGUI
       catch (Exception exception)
       {
         additionSuccessful = false;
-        Logger.Add(textBoxLog, Translate("There was an error") + Punctuation.Colon +
-                               Punctuation.CrLf + exception.Message);
+        Logger.Add(textBoxLog, Translate("There was an error") + Punctuation.Colon + Punctuation.CrLf + exception.Message);
       }
 
       if (additionSuccessful)

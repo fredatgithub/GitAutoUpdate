@@ -358,5 +358,17 @@ namespace GitAutoUpdateGUI.Properties {
                 this["Visual_Studio_2019"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Visual_Studio_2022 {
+            get {
+                return ((bool)(this["Visual_Studio_2022"]));
+            }
+            set {
+                this["Visual_Studio_2022"] = value;
+            }
+        }
     }
 }

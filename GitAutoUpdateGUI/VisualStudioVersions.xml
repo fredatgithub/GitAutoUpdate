@@ -27,4 +27,7 @@
   <VSVersion>
     <name>Visual Studio 2019</name>
   </VSVersion>
+	<VSVersion>
+		<name>Visual Studio 2022</name>
+	</VSVersion>
 </VSVersions>
