@@ -13,17 +13,29 @@ namespace UnitTestGitAutoUpdate
     {
       PrivateType privateTypeObject = new PrivateType(typeof(GitMethods));
       const string methodName = "GetLatestFile";
-      const string source1 = @"C:\Users\fred\Documents\Visual Studio 2012\Projects";
+      var source1 = $@"C:\Users\{GetProfileUserName()}\Documents\Visual Studio 2012\Projects";
+      if (!Directory.Exists(source1))
+      {
+        Assert.IsTrue(true);
+        return;
+      }
+
       const string source2 = "update*.bat";
       const string expected = "update7.bat";
-      object obj = privateTypeObject.InvokeStatic(methodName, source1, source2);
-      Assert.AreEqual(expected, (string)obj);
+      object result = privateTypeObject.InvokeStatic(methodName, source1, source2);
+      Assert.AreEqual(expected, result.ToString());
     }
 
     [TestMethod]
     public void TestMethod_GetLatestFilePublic()
     {
-      const string source1 = @"C:\Users\fred\Documents\Visual Studio 2012\Projects";
+      string source1 = $@"C:\Users\{GetProfileUserName()}\Documents\Visual Studio 2012\Projects";
+      if (!Directory.Exists(source1))
+      {
+        Assert.IsTrue(true);
+        return;
+      }
+
       const string source2 = "update*.bat";
       const string expected = "update7.bat";
       string result = GitMethods.GetLatestFile(source1, source2);
@@ -87,7 +99,7 @@ namespace UnitTestGitAutoUpdate
     public void TestMethod_Program_files_variables()
     {
       string source = $"{Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)}\\Git\\cmd";
-      const string expected = "C:\\Program Files\\Git\\cmd";
+      const string expected = "C:\\Program Files (x86)\\Git\\cmd";
       Assert.AreEqual(source, expected);
     }
 
@@ -95,7 +107,7 @@ namespace UnitTestGitAutoUpdate
     public void TestMethod_AppData_Roaming_variables()
     {
       string source = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}";
-      const string expected = "C:\\Users\\fred\\AppData\\Roaming";
+      string expected = $@"C:\Users\{GetProfileUserName()}\AppData\Roaming";
       Assert.AreEqual(source, expected);
     }
 
@@ -103,8 +115,8 @@ namespace UnitTestGitAutoUpdate
     [TestMethod]
     public void TestMethod_AppData_Local_variables()
     {
-      string source = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0, 21)}\\Local";
-      const string expected = "C:\\Users\\fred\\AppData\\Local";
+      string source = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Substring(0, 22)}\\Local";
+      string expected = $"C:\\Users\\{GetProfileUserName()}\\AppData\\Local";
       Assert.AreEqual(source, expected);
     }
 
@@ -112,7 +124,7 @@ namespace UnitTestGitAutoUpdate
     public void TestMethod_Get_username_and_pc_name_variables()
     {
       string source = $"{System.Security.Principal.WindowsIdentity.GetCurrent().Name}";
-      const string expected = "quad\\fred";
+      string expected = $@"{GetHostname()}\{GetProfileUserName()}";
       Assert.AreEqual(source, expected);
     }
 
@@ -120,7 +132,7 @@ namespace UnitTestGitAutoUpdate
     public void TestMethod_Get_username_variables()
     {
       string source = $"{Environment.UserName}";
-      const string expected = "fred";
+      string expected = GetProfileUserName();
       Assert.AreEqual(source, expected);
     }
 
@@ -129,10 +141,10 @@ namespace UnitTestGitAutoUpdate
     {
       PrivateType privateTypeObject = new PrivateType(typeof(GitMethods));
       const string methodName = "GetNumbers";
-      const string source = @"C:\Users\user\Documents\Visual Studio 2012\Projects";
+      string source = $@"C:\Users\Documents\Visual Studio 2012\Projects";
       const string expected = "2012";
-      object obj = privateTypeObject.InvokeStatic(methodName, source);
-      Assert.AreEqual(expected, (string)obj);
+      object result = privateTypeObject.InvokeStatic(methodName, source);
+      Assert.AreEqual(expected, result.ToString());
     }
 
     [TestMethod]
@@ -140,8 +152,8 @@ namespace UnitTestGitAutoUpdate
     {
       PrivateType privateTypeObject = new PrivateType(typeof(GitMethods));
       const string methodName = "AddSlash";
-      const string source = @"C:\Users\user\Documents\Visual Studio 2012\Projects\";
-      const string expected = @"C:\Users\user\Documents\Visual Studio 2012\Projects\";
+      string source = $@"C:\Users\{GetProfileUserName()}\Documents\Visual Studio 2012\Projects\";
+      string expected = $@"C:\Users\{GetProfileUserName()}\Documents\Visual Studio 2012\Projects\";
       object obj = privateTypeObject.InvokeStatic(methodName, source);
       Assert.AreEqual(expected, (string)obj);
     }
@@ -151,10 +163,20 @@ namespace UnitTestGitAutoUpdate
     {
       PrivateType privateTypeObject = new PrivateType(typeof(GitMethods));
       const string methodName = "AddSlash";
-      const string source = @"C:\Users\user\Documents\Visual Studio 2012\Projects";
-      const string expected = @"C:\Users\user\Documents\Visual Studio 2012\Projects\";
+      string source = $@"C:\Users\{GetProfileUserName()}\Documents\Visual Studio 2012\Projects";
+      string expected = $@"C:\Users\{GetProfileUserName()}\Documents\Visual Studio 2012\Projects\";
       object obj = privateTypeObject.InvokeStatic(methodName, source);
       Assert.AreEqual(expected, (string)obj);
+    }
+
+    public string GetProfileUserName()
+    {
+      return Environment.UserName;
+    }
+
+    public string GetHostname()
+    {
+      return Environment.MachineName;
     }
   }
 }
